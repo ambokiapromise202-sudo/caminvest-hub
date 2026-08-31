@@ -3,84 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CamInvest Hub | Invest With Knowledge</title>
+<title>POP MART CM - CamInvest Hub</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;line-height:1.6;color:#172033;background:#f7f9fc}
-header{background:#0b5d45;color:white;padding:18px 7%;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:23px;font-weight:700}
-nav a{color:white;text-decoration:none;margin-left:20px}
-.hero{padding:75px 7%;background:linear-gradient(135deg,#0b5d45,#12805f);color:white}
-.hero h1{font-size:42px;max-width:650px;margin-bottom:18px}
-.hero p{max-width:650px;font-size:18px;margin-bottom:28px}
-.btn{display:inline-block;padding:13px 22px;border-radius:8px;text-decoration:none;font-weight:700;margin-right:8px}
-.primary{background:white;color:#0b5d45}.outline{border:1px solid white;color:white}
-section{padding:55px 7%}
-h2{text-align:center;margin-bottom:30px;font-size:30px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.card{background:white;padding:25px;border-radius:12px;box-shadow:0 4px 18px #0000000d}
-.card h3{margin-bottom:10px;color:#0b5d45}
-.notice{background:#fff6df;border-left:5px solid #e1a900;padding:20px;border-radius:8px;max-width:900px;margin:auto}
-form{max-width:550px;margin:auto;background:white;padding:25px;border-radius:12px}
-input,textarea{width:100%;padding:12px;margin:8px 0 15px;border:1px solid #ccd3dc;border-radius:7px}
-button{background:#0b5d45;color:white;border:0;padding:13px 20px;border-radius:7px;font-weight:700;cursor:pointer}
-footer{background:#10231e;color:#dbe8e3;text-align:center;padding:30px 7%}
-.small{font-size:13px;color:#657080}
-@media(max-width:600px){.hero h1{font-size:34px}nav{display:none}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f5f5f5;padding-bottom:80px}
+.header{background:#ff2a2a;color:white;padding:15px;display:flex;justify-content:space-between;align-items:center}
+.header b{font-size:20px;letter-spacing:1px}
+.balance-card{background:white;margin:15px;border-radius:15px;padding:15px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+.balance-card h2{color:#ff2a2a;font-size:28px}
+.balance-card small{color:gray}
+.platform-btn{border:1px solid #ff2a2a;color:#ff2a2a;padding:8px 15px;border-radius:20px;text-decoration:none;font-size:12px;font-weight:bold}
+.hero{background:white;margin:15px;border-radius:15px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+.hero img{width:100%;height:220px;object-fit:cover}
+.hero-content{padding:15px;text-align:center}
+.hero-content h3{color:#ff2a2a;margin-bottom:5px}
+.actions{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;padding:15px}
+.action{background:white;border-radius:15px;padding:15px 5px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.1);text-decoration:none;color:black}
+.action span{font-size:28px;display:block;margin-bottom:5px}
+.action b{font-size:11px;display:block}
+.reward-card{background:white;margin:15px;border-radius:15px;padding:15px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+.reward-card h4{margin-bottom:10px}
+.task{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee}
+.task:last-child{border:0}
+.task button{background:#ff2a2a;color:white;border:none;padding:8px 15px;border-radius:20px;font-weight:bold}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:999}
+.bottom-nav a{text-decoration:none;color:gray;text-align:center;font-size:11px}
+.bottom-nav a.active{color:#ff2a2a}
+.bottom-nav span{font-size:22px;display:block}
+.whatsapp-float{position:fixed;bottom:75px;right:15px;background:#25D366;color:white;padding:12px 18px;border-radius:50px;text-decoration:none;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:1000}
 </style>
 </head>
 <body>
-<header>
-<div class="logo">CamInvest Hub</div>
-<nav><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a></nav>
-</header>
 
-<main>
-<section class="hero">
-<h1>Build your financial future with informed decisions.</h1>
-<p>CamInvest Hub is a concept platform for investment education, market information and responsible financial planning.</p>
-<a class="btn primary" href="#contact">Get Started</a>
-<a class="btn outline" href="#services">Explore</a>
-</section>
-
-<section id="about">
-<h2>About CamInvest Hub</h2>
-<div class="card">
-<p>We aim to help users understand investment opportunities, potential risks, fees and basic portfolio principles before making financial decisions.</p>
+<div class="header">
+<b>POP MART</b>
+<span>🔔 👤</span>
 </div>
-</section>
 
-<section id="services">
-<h2>What We Offer</h2>
-<div class="cards">
-<div class="card"><h3>Investment Education</h3><p>Learn basic concepts such as diversification, risk and long-term planning.</p></div>
-<div class="card"><h3>Market Information</h3><p>Understand how different asset classes can behave and what factors may affect them.</p></div>
-<div class="card"><h3>Risk Awareness</h3><p>Clear information about possible losses, volatility, fees and other risks.</p></div>
-<div class="card"><h3>Portfolio Guidance</h3><p>General educational guidance for thinking about goals, time horizons and diversification.</p></div>
+<div class="balance-card">
+<div>
+<small>Demo Balance (Learning Points)</small>
+<h2>FCFA 2,060</h2>
+<small>≈ Learning Level 1</small>
 </div>
-</section>
-
-<section>
-<div class="notice">
-<strong>Investment risk notice:</strong> Investments can lose value. Returns are not guaranteed. This demonstration website does not accept deposits or promise profits. Before offering investment products or handling client funds, obtain the required professional and regulatory advice and permissions.
+<a class="platform-btn" href="https://wa.me/237680726514?text=Hello%20CamInvest%20I%20need%20platform%20rules" target="_blank">Platform Rules</a>
 </div>
-</section>
 
-<section id="contact">
-<h2>Contact Us</h2>
-<form onsubmit="event.preventDefault(); alert('Thank you! This demo form is not connected to a real inbox yet.');">
-<label>Name</label><input type="text" placeholder="Your name" required>
-<label>Email</label><input type="email" placeholder="you@example.com" required>
-<label>Message</label><textarea rows="5" placeholder="How can we help?"></textarea>
-<button type="submit">Send Message</button>
-</form>
-</section>
-</main>
+<div class="hero">
+<img src="https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=600" alt="POP MART Machine">
+<div class="hero-content">
+<h3>CamInvest Hub - Learn & Earn Points</h3>
+<p style="font-size:12px;color:gray">Watch videos daily to earn points for free classes. No deposit required!</p>
+</div>
+</div>
 
-<footer>
-<p><strong>CamInvest Hub</strong></p>
-<p class="small">Demo website • Educational information only • No guaranteed returns</p>
-</footer>
+<div class="actions">
+<a class="action" href="https://wa.me/237680726514?text=Hello%20I%20want%20to%20Recharge%20my%20learning%20account" target="_blank">
+<span>💳</span><b>Recharge</b><small style="font-size:9px;color:gray">Buy Class</small>
+</a>
+<a class="action" href="https://wa.me/237680726514?text=Hello%20I%20want%20to%20Withdraw%20my%20points" target="_blank">
+<span>💰</span><b>Withdraw</b><small style="font-size:9px;color:gray">Get Reward</small>
+</a>
+<a class="action" href="https://wa.me/237680726514?text=Hello%20I%20need%20Help%20with%20CamInvest" target="_blank">
+<span>🎧</span><b>Help</b><small style="font-size:9px;color:gray">WhatsApp Us</small>
+</a>
+<a class="action" href="https://wa.me/237680726514?text=Hello%20I%20want%20Daily%20Rewards" target="_blank">
+<span>🎁</span><b>Daily Rewards</b><small style="font-size:9px;color:gray">Watch & Earn</small>
+</a>
+</div>
+
+<div class="reward-card">
+<h4>📚 Daily Learning Tasks - Earn Points</h4>
+<div class="task">
+<div><b>Watch Investment Video (5 min)</b><br><small style="color:gray">+ 200 Points</small></div>
+<button onclick="window.open('https://wa.me/237680726514?text=I%20finished%20video%20task','_blank')">GO</button>
+</div>
+<div class="task">
+<div><b>Share CamInvest on WhatsApp</b><br><small style="color:gray">+ 100 Points</small></div>
+<button onclick="window.open('https://wa.me/237680726514?text=I%20shared%20CamInvest','_blank')">GO</button>
+</div>
+<div class="task">
+<div><b>Invite 1 Friend to Learn</b><br><small style="color:gray">+ 500 Points</small></div>
+<button onclick="window.open('https://wa.me/237680726514?text=I%20invited%20a%20friend','_blank')">GO</button>
+</div>
+</div>
+
+<div class="reward-card" style="background:#fff8e1;border:1px solid #ffecb3">
+<h4>⚠️ Safe Learning Notice</h4>
+<p style="font-size:12px;line-height:1.5">This is an <b>EDUCATIONAL</b> platform by Ambokia Promise from Douala. We do NOT take deposits. Points are for learning only. To buy a class, you chat with us on WhatsApp and pay via MoMo directly. No automatic recharge.</p>
+</div>
+
+<a class="whatsapp-float" href="https://wa.me/237680726514?text=Hello%20CamInvest%20Hub%20I%20need%20help" target="_blank">💬 Chat Us</a>
+
+<div class="bottom-nav">
+<a class="active"><span>🏠</span>Home</a>
+<a href="https://wa.me/237680726514" target="_blank"><span>📊</span>Earn</a>
+<a href="https://wa.me/237680726514" target="_blank"><span>👥</span>Team</a>
+<a href="https://wa.me/237680726514" target="_blank"><span>👤</span>Mine</a>
+</div>
+
 </body>
 </html>
-<a href="https://wa.me/237680726514?text=Hello%20CamInvest%20Hub%20I%20need%20investment%20help" style="position:fixed;bottom:20px;right:20px;background:#25D366;color:white;padding:15px 20px;border-radius:50px;text-decoration:none;font-weight:bold;z-index:9999;box-shadow:0 4px 10px rgba(0,0,0,0.3);">💬 WhatsApp Us</a>
