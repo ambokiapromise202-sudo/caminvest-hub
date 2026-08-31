@@ -3,63 +3,81 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>POP MART CM - CamInvest Hub</title>
+<title>CamInvest Hub - POP MART CM</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#f5f5f5;padding-bottom:80px}
-.header{background:#ff2a2a;color:white;padding:15px;display:flex;justify-content:space-between;align-items:center}
-.header b{font-size:20px;letter-spacing:1px}
+.login-page{position:fixed;top:0;left:0;right:0;bottom:0;background:#ff2a2a;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;color:white}
+.login-page img{width:100px;height:100px;border-radius:20px;background:white;padding:10px;margin-bottom:20px}
+.login-page input{width:100%;max-width:300px;padding:15px;border-radius:10px;border:none;margin:10px 0;font-size:16px}
+.login-page button{width:100%;max-width:300px;padding:15px;background:black;color:white;border:none;border-radius:10px;font-weight:bold;margin-top:10px;font-size:16px}
+.header{background:#ff2a2a;color:white;padding:12px 15px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:8px}
+.logo-icon{width:35px;height:35px;background:white;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px}
 .balance-card{background:white;margin:15px;border-radius:15px;padding:15px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
-.balance-card h2{color:#ff2a2a;font-size:28px}
-.balance-card small{color:gray}
-.platform-btn{border:1px solid #ff2a2a;color:#ff2a2a;padding:8px 15px;border-radius:20px;text-decoration:none;font-size:12px;font-weight:bold}
+.balance-card h2{color:#ff2a2a;font-size:26px}
+.platform-btn{border:1px solid #ff2a2a;color:#ff2a2a;padding:8px 15px;border-radius:20px;text-decoration:none;font-size:11px;font-weight:bold}
 .hero{background:white;margin:15px;border-radius:15px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
-.hero img{width:100%;height:220px;object-fit:cover}
+.hero img{width:100%;height:240px;object-fit:cover}
 .hero-content{padding:15px;text-align:center}
-.hero-content h3{color:#ff2a2a;margin-bottom:5px}
 .actions{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;padding:15px}
 .action{background:white;border-radius:15px;padding:15px 5px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,0.1);text-decoration:none;color:black}
 .action span{font-size:28px;display:block;margin-bottom:5px}
 .action b{font-size:11px;display:block}
 .reward-card{background:white;margin:15px;border-radius:15px;padding:15px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
-.reward-card h4{margin-bottom:10px}
-.task{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee}
-.task:last-child{border:0}
+.task{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #eee}
 .task button{background:#ff2a2a;color:white;border:none;padding:8px 15px;border-radius:20px;font-weight:bold}
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:999}
 .bottom-nav a{text-decoration:none;color:gray;text-align:center;font-size:11px}
 .bottom-nav a.active{color:#ff2a2a}
 .bottom-nav span{font-size:22px;display:block}
 .whatsapp-float{position:fixed;bottom:75px;right:15px;background:#25D366;color:white;padding:12px 18px;border-radius:50px;text-decoration:none;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:1000}
+.momo-box{background:#ffcc00;color:black;padding:10px;border-radius:10px;margin-top:10px;font-size:12px;font-weight:bold;text-align:center}
 </style>
 </head>
 <body>
 
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="login-page">
+<div style="font-size:50px">📦</div>
+<h2 style="margin:15px 0">CamInvest Hub</h2>
+<p style="margin-bottom:20px;font-size:13px;opacity:0.9">Learn Investment - POP MART Style</p>
+<input type="tel" id="phoneInput" placeholder="Enter your phone (6XXXXXXXX)" maxlength="9">
+<input type="password" id="pinInput" placeholder="Create 4-digit PIN (e.g. 1234)" maxlength="4">
+<button onclick="login()">LOGIN / REGISTER</button>
+<p style="font-size:11px;margin-top:15px;opacity:0.8">Demo App by Ambokia Promise - Douala</p>
+</div>
+
+<!-- MAIN APP -->
 <div class="header">
-<b>POP MART</b>
+<div class="logo">
+<div class="logo-icon">💎</div>
+<div><b>CamInvest Hub</b><br><small style="font-size:9px">POP MART CM</small></div>
+</div>
 <span>🔔 👤</span>
 </div>
 
 <div class="balance-card">
 <div>
 <small>Demo Balance (Learning Points)</small>
-<h2>FCFA 2,060</h2>
-<small>≈ Learning Level 1</small>
+<h2 id="balanceDisplay">FCFA 2,060</h2>
+<small id="userDisplay">≈ Welcome!</small>
+<div class="momo-box">MTN MoMo: 680 72 65 14 - Ambokia Promise</div>
 </div>
-<a class="platform-btn" href="https://wa.me/237680726514?text=Hello%20CamInvest%20I%20need%20platform%20rules" target="_blank">Platform Rules</a>
+<a class="platform-btn" href="https://wa.me/237680726514?text=Hello%20CamInvest%20I%20need%20platform%20rules" target="_blank">Rules</a>
 </div>
 
 <div class="hero">
-<img src="https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=600" alt="POP MART Machine">
+<img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?w=600" alt="POP MART Labubu">
 <div class="hero-content">
-<h3>CamInvest Hub - Learn & Earn Points</h3>
-<p style="font-size:12px;color:gray">Watch videos daily to earn points for free classes. No deposit required!</p>
+<h3 style="color:#ff2a2a">POP MART Labubu - Learn & Earn Points</h3>
+<p style="font-size:12px;color:gray;margin-top:5px">Watch videos daily to earn points for free classes. No deposit required! 100% Safe & Legal.</p>
 </div>
 </div>
 
 <div class="actions">
-<a class="action" href="https://wa.me/237680726514?text=Hello%20I%20want%20to%20Recharge%20my%20learning%20account" target="_blank">
-<span>💳</span><b>Recharge</b><small style="font-size:9px;color:gray">Buy Class</small>
+<a class="action" href="https://wa.me/237680726514?text=Hello%20CamInvest%20I%20want%20to%20Recharge%20Buy%20Class%20MTN%20MoMo%20680726514" target="_blank">
+<span>💳</span><b>Recharge</b><small style="font-size:9px;color:gray">MTN MoMo</small>
 </a>
 <a class="action" href="https://wa.me/237680726514?text=Hello%20I%20want%20to%20Withdraw%20my%20points" target="_blank">
 <span>💰</span><b>Withdraw</b><small style="font-size:9px;color:gray">Get Reward</small>
@@ -79,18 +97,13 @@ body{background:#f5f5f5;padding-bottom:80px}
 <button onclick="window.open('https://wa.me/237680726514?text=I%20finished%20video%20task','_blank')">GO</button>
 </div>
 <div class="task">
-<div><b>Share CamInvest on WhatsApp</b><br><small style="color:gray">+ 100 Points</small></div>
+<div><b>Share CamInvest on WhatsApp Status</b><br><small style="color:gray">+ 100 Points</small></div>
 <button onclick="window.open('https://wa.me/237680726514?text=I%20shared%20CamInvest','_blank')">GO</button>
 </div>
 <div class="task">
 <div><b>Invite 1 Friend to Learn</b><br><small style="color:gray">+ 500 Points</small></div>
 <button onclick="window.open('https://wa.me/237680726514?text=I%20invited%20a%20friend','_blank')">GO</button>
 </div>
-</div>
-
-<div class="reward-card" style="background:#fff8e1;border:1px solid #ffecb3">
-<h4>⚠️ Safe Learning Notice</h4>
-<p style="font-size:12px;line-height:1.5">This is an <b>EDUCATIONAL</b> platform by Ambokia Promise from Douala. We do NOT take deposits. Points are for learning only. To buy a class, you chat with us on WhatsApp and pay via MoMo directly. No automatic recharge.</p>
 </div>
 
 <a class="whatsapp-float" href="https://wa.me/237680726514?text=Hello%20CamInvest%20Hub%20I%20need%20help" target="_blank">💬 Chat Us</a>
@@ -101,6 +114,22 @@ body{background:#f5f5f5;padding-bottom:80px}
 <a href="https://wa.me/237680726514" target="_blank"><span>👥</span>Team</a>
 <a href="https://wa.me/237680726514" target="_blank"><span>👤</span>Mine</a>
 </div>
+
+<script>
+function login(){
+let phone=document.getElementById('phoneInput').value;
+let pin=document.getElementById('pinInput').value;
+if(phone.length<9){alert('Enter your 9-digit phone number');return}
+if(pin.length!=4){alert('Create 4-digit PIN e.g. 1234');return}
+document.getElementById('loginPage').style.display='none';
+document.getElementById('userDisplay').innerText='Welcome: 6'+phone.slice(-8)+' | PIN: '+pin;
+localStorage.setItem('userPhone',phone);
+}
+if(localStorage.getItem('userPhone')){
+document.getElementById('loginPage').style.display='none';
+document.getElementById('userDisplay').innerText='Welcome back: 6'+localStorage.getItem('userPhone').slice(-8);
+}
+</script>
 
 </body>
 </html>
