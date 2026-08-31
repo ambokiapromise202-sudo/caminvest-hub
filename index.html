@@ -1,147 +1,216 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CamInvest Hub</title>
+<title>CamInvest Hub - 200F to 400,000F</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0a1931;color:#fff;padding-bottom:80px}
-.top{background:#12376a;padding:20px;border-radius:0 0 20px 20px}
-.bal{font-size:34px;font-weight:900}
-.refBox{background:#fff;color:#111;border-radius:16px;margin:12px;padding:14px;border:2px solid gold}
-.refInput{width:100%;padding:12px;border-radius:10px;border:2px solid #0a1931;background:#fffbe6;font-weight:900;font-size:13px;color:#0a1931}
-.grid{display:flex;justify-content:space-around;background:#fff;color:#111;margin:12px;padding:12px;border-radius:16px;text-align:center;font-size:12px;font-weight:700}
-.card{background:#fff;color:#111;border-radius:14px;margin:10px 12px;display:flex;overflow:hidden}
-.price{background:#0a1931;color:#fff;min-width:95px;display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:900;padding:10px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Arial}
+body{background:#0a1931;color:#fff;min-height:100vh}
+.page{display:none;min-height:100vh;padding-bottom:80px}.show{display:block}
+.box{max-width:400px;margin:0 auto;padding:15px}
+.cardAuth{background:#fff;color:#111;border-radius:20px;padding:22px;margin-top:30px}
+input{width:100%;padding:13px;border-radius:12px;border:1px solid #ccc;margin:7px 0;font-size:15px}
+.btn{width:100%;padding:14px;border:0;border-radius:25px;font-weight:900;cursor:pointer}
+.btnDark{background:#0a1931;color:#fff}.btnGold{background:#ffd400;color:#000}
+.top{background:linear-gradient(180deg,#12376a,#0a1931);padding:18px;border-radius:0 0 22px 22px}
+.bal{font-size:36px;font-weight:900}
+.refBox{background:#fff;color:#111;border-radius:16px;padding:14px;margin:12px;border:2px solid gold}
+.refInput{width:100%;padding:11px;border-radius:10px;border:2px solid #0a1931;background:#fffbe6;font-weight:900;font-size:12px;color:#0a1931}
+.grid{display:flex;justify-content:space-around;background:#fff;color:#111;margin:12px;padding:12px;border-radius:16px;text-align:center;font-weight:700;font-size:11px}
+.investCard{background:#fff;color:#111;border-radius:14px;margin:10px 12px;display:flex;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,.2)}
+.price{min-width:92px;display:flex;align-items:center;justify-content:center;flex-direction:column;font-weight:900;padding:10px;color:#fff;text-align:center}
 .info{padding:10px;flex:1}
-.btn{width:100%;padding:10px;border:0;border-radius:20px;font-weight:900;background:#0a1931;color:#fff;margin-top:5px}
-.task{background:#fff;color:#111;margin:8px 12px;padding:10px;border-radius:12px;display:flex;align-items:center;gap:10px;border-left:4px solid gold}
-.bot{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;color:#888;font-size:11px}
-.page{display:none}.show{display:block}
+.task{background:#fff;color:#111;margin:7px 12px;padding:10px;border-radius:12px;display:flex;align-items:center;gap:10px;border-left:5px solid gold}
+.bot{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;color:#888;font-size:11px;border-top:1px solid #ddd;z-index:99}
 .active{color:#0a1931;font-weight:900}
+.prog{height:7px;background:rgba(255,255,255,.3);border-radius:10px;overflow:hidden;margin-top:8px}.prog div{height:100%;background:#ffd400}
+.tag{font-size:10px;background:gold;color:#000;padding:2px 6px;border-radius:10px;font-weight:900;margin-left:4px}
 </style>
 </head>
 <body>
 
-<div id="home" class="page show">
+<!-- AUTH PAGE -->
+<div id="authPage" class="page">
+<div class="box">
+<div class="cardAuth" id="regBox">
+<h2 style="text-align:center">📝 Register</h2>
+<p style="text-align:center;font-size:12px;opacity:.7">MoMo Payment: 678657567</p>
+<input id="rPhone" placeholder="MoMo Number e.g. 678657567">
+<input id="rPass" type="password" placeholder="Password (6 digits)">
+<input id="rRef" placeholder="Referral Code (optional)">
+<button class="btn btnDark" onclick="doRegister()">REGISTER - GET 200F FREE</button>
+<p style="text-align:center;margin-top:10px;font-size:13px">Have account? <a href="#" onclick="showAuth('login')">Login</a></p>
+<div style="background:#fffbe6;padding:10px;border-radius:10px;margin-top:10px;font-size:11px;border-left:4px solid gold">
+<b>Earnings:</b> 200F→40F/day (365d) | Video 105F/day | Team 15%<br>
+<b>Plans: 200F to 400,000F</b>
+</div>
+</div>
+
+<div class="cardAuth" id="loginBox" style="display:none">
+<h2 style="text-align:center">🔐 Login</h2>
+<input id="lPhone" placeholder="MoMo Number">
+<input id="lPass" type="password" placeholder="Password">
+<button class="btn btnDark" onclick="doLogin()">LOGIN</button>
+<p style="text-align:center;margin-top:10px;font-size:13px">No account? <a href="#" onclick="showAuth('reg')">Register</a></p>
+</div>
+</div>
+</div>
+
+<!-- HOME PAGE -->
+<div id="homePage" class="page">
 <div class="top">
-<div style="font-size:12px;opacity:.8">Balance - <span id="phoneTop"></span></div>
+<div style="display:flex;justify-content:space-between;font-size:12px;opacity:.8"><span id="phoneTop">678657567</span><span id="refTop">CAMI-...</span></div>
 <div class="bal">XAF <span id="balTop">200</span></div>
-<div style="margin-top:6px;font-size:11px">Today Tasks: <span id="tDone">0</span>/10 = <span id="tEarn">0</span>F</div>
+<div style="font-size:11px">Video: <span id="tDone">0</span>/10 = <span id="tEarn">0</span>F | Today Total: <span id="todayTotal">0</span>F</div>
+<div class="prog"><div id="progBar" style="width:0%"></div></div>
+<div style="margin-top:8px;background:rgba(255,212,0,.15);border:1px dashed gold;padding:6px 10px;border-radius:20px;display:inline-block;font-size:11px">💳 MoMo: <b>678657567 - Ambokia Promise</b></div>
 </div>
 
 <div class="refBox">
-<b>🔗 YOUR REFERRAL LINK - TAP AND HOLD TO COPY</b><br>
-<small style="color:green">Share = Earn 15% (30F from 200F plan)</small>
-<input id="refLink" class="refInput" readonly onclick="this.select()" value="https://caminvest-hub.vercel.app/?ref=CAMI-678657567">
+<b>🔗 Referral Link - Tap to Select, Long Press to Copy</b><br>
+<small style="color:green">Get 15% when friend buys plan</small>
+<input id="refLink" class="refInput" readonly onclick="this.select()" value="">
 <div style="display:flex;gap:6px;margin-top:8px">
-<button onclick="window.location.href='https://wa.me/?text='+document.getElementById('refLink').value" style="flex:1;padding:10px;border-radius:20px;border:0;background:#25D366;color:#fff;font-weight:900">WhatsApp Share</button>
-<button onclick="document.getElementById('refLink').select(); alert('NOW LONG PRESS -> COPY')" style="flex:1;padding:10px;border-radius:20px;border:0;background:gold;font-weight:900">Select Link</button>
+<button class="btn" style="flex:1;padding:10px;background:#25D366;color:#fff;border-radius:20px" onclick="shareWA()">WhatsApp Share</button>
+<button class="btn" style="flex:1;padding:10px;background:#0a1931;color:#fff;border-radius:20px" onclick="document.getElementById('refLink').select();">SELECT LINK</button>
 </div>
-<div style="margin-top:6px;font-size:12px">Code: <b id="code"></b></div>
 </div>
 
 <div class="grid">
-<div onclick="recharge()"><div>💳</div>Recharge</div>
-<div onclick="withdraw()"><div>🏧</div>Withdraw</div>
-<div onclick="showP('taskPage')"><div>🎬</div>Task</div>
-<div onclick="showP('mePage')"><div>👤</div>Me</div>
+<div onclick="recharge()"><div style="font-size:20px">💳</div>Recharge</div>
+<div onclick="withdraw()"><div style="font-size:20px">🏧</div>Withdraw</div>
+<div onclick="showPage('taskPage')"><div style="font-size:20px">🎬</div>Tasks</div>
+<div onclick="showPage('teamPage')"><div style="font-size:20px">👥</div>Team</div>
 </div>
 
-<div style="margin:12px;font-weight:900">🔥 PLANS</div>
-<div class="card"><div class="price">200F<br><small>365d</small></div><div class="info"><b>Starter</b><br><small>40F x 365 = 14600F</small><button class="btn" onclick="buy(200,40,365,'Starter 200F')">BUY 200F</button></div></div>
-<div class="card"><div class="price" style="background:#b45309">500F<br><small>30d</small></div><div class="info"><b>Bronze</b><br><small>165F x 30 = 4950F</small><button class="btn" style="background:orange;color:#000" onclick="buy(500,165,30,'Bronze 500F')">BUY 500F</button></div></div>
-<div class="card"><div class="price" style="background:green">1000F</div><div class="info"><b>Silver</b><br><small>350F daily</small><button class="btn" style="background:gold;color:#000" onclick="buy(1000,350,30,'Silver')">BUY 1000F</button></div></div>
+<div style="margin:12px;font-weight:900">🔥 Investment Plans 200F - 400,000F</div>
 
-<div style="margin:12px;font-weight:900">🎬 Daily Task - 105F (10 videos x 10.5F)</div>
+<div id="planList"></div>
+
+<div style="margin:12px;font-weight:900">🎬 Daily Video Tasks - 105F/Day</div>
 <div id="taskList"></div>
 </div>
 
-<div id="taskPage" class="page"><div style="padding:15px"><h3>Video Tasks</h3><div id="taskList2"></div></div></div>
-<div id="orderPage" class="page"><div style="padding:15px"><h3>Orders</h3><div id="orders"></div></div></div>
-<div id="mePage" class="page"><div style="padding:15px"><h3 id="mePh"></h3><p>Balance: <span id="meBal"></span></p><p>MoMo: 678657567</p></div></div>
+<div id="orderPage" class="page"><div class="box"><h3>My Orders</h3><div id="orders" style="margin-top:10px"></div><button class="btn btnDark" style="margin-top:15px" onclick="showPage('homePage')">Back Home</button></div></div>
+<div id="taskPage" class="page"><div class="box"><h3>Watch Videos - Earn 105F</h3><p style="font-size:12px;opacity:.8">Need active plan to unlock. 10.5F per video.</p><div id="taskList2" style="margin-top:10px"></div><button class="btn btnDark" style="margin-top:15px" onclick="showPage('homePage')">Back</button></div></div>
+<div id="teamPage" class="page"><div class="box"><div style="background:#fff;color:#111;border-radius:16px;padding:16px"><h3>👥 My Team</h3><p>Code: <b id="teamCode"></b></p><p style="margin-top:8px">L1 15% | L2 2% | L3 1%</p><div style="margin-top:10px"><div>👤 Direct: <b>0</b> (0F earned)</div><div>👥 Level 2: <b>0</b></div><div>👥 Level 3: <b>0</b></div></div><input id="teamLink" class="refInput" readonly style="margin-top:10px" onclick="this.select()"></div><button class="btn btnDark" style="margin-top:15px" onclick="showPage('homePage')">Back</button></div></div>
+<div id="mePage" class="page"><div class="box"><h3 id="mePhone"></h3><div style="background:rgba(255,255,255,.1);padding:12px;border-radius:12px;margin:10px 0">Balance: XAF <b id="meBal"></b></div><div style="background:#fff;color:#111;padding:14px;border-radius:14px"><div>🏦 MoMo: 678657567</div><hr style="margin:8px 0"><div onclick="location.href='https://wa.me/237678657567'">💬 WhatsApp Support</div><hr style="margin:8px 0"><div onclick="if(confirm('Logout?')){localStorage.clear();location.reload();}">🚪 Logout</div></div><button class="btn btnGold" style="margin-top:15px" onclick="showPage('homePage')">Back Home</button></div></div>
 
-<div class="bot">
-<div class="active" onclick="showP('home')">🏠<br>Home</div>
-<div onclick="showP('orderPage')">📋<br>Order</div>
-<div onclick="showP('taskPage')">🎬<br>Task</div>
-<div onclick="showP('mePage')">👤<br>Me</div>
+<div class="bot" id="bottomNav" style="display:none">
+<div id="bHome" class="active" onclick="showPage('homePage')">🏠<br>Home</div>
+<div id="bOrder" onclick="showPage('orderPage')">📋<br>Orders</div>
+<div id="bTask" onclick="showPage('taskPage')">🎬<br>Tasks</div>
+<div id="bTeam" onclick="showPage('teamPage')">👥<br>Team</div>
+<div id="bMe" onclick="showPage('mePage')">👤<br>Me</div>
 </div>
 
 <script>
-let phone=localStorage.getItem('phone')||'678657567';
-let bal=parseInt(localStorage.getItem('bal')||'200');
+// DATA
+const plans=[
+{amt:200,daily:40,days:365,name:"Starter 200F",color:"#0a1931",tag:"NEW"},
+{amt:500,daily:165,days:30,name:"Bronze 500F",color:"#b45309",tag:"HOT"},
+{amt:1000,daily:350,days:30,name:"Silver 1K",color:"#15803d",tag:"POPULAR"},
+{amt:2000,daily:750,days:30,name:"Silver Pro 2K",color:"#7c3aed",tag:""},
+{amt:5000,daily:1800,days:60,name:"Gold 5K",color:"#be185d",tag:"BEST"},
+{amt:10000,daily:3800,days:60,name:"Gold Pro 10K",color:"#0e7490",tag:""},
+{amt:20000,daily:8000,days:60,name:"Diamond 20K",color:"#1f2937",tag:"VIP"},
+{amt:50000,daily:20500,days:60,name:"Diamond Pro 50K",color:"#7f1d1d",tag:"VIP"},
+{amt:100000,daily:42000,days:60,name:"Elite 100K",color:"#000",tag:"ELITE"},
+{amt:200000,daily:85000,days:90,name:"Elite Pro 200K",color:"#111827",tag:"ELITE"},
+{amt:400000,daily:175000,days:90,name:"Emperor 400K",color:"#3f0a3f",tag:"MAX"},
+];
+
+let phone=localStorage.getItem('phone');
+let bal=parseInt(localStorage.getItem('bal')||'0');
 let orders=JSON.parse(localStorage.getItem('orders')||'[]');
 let tDone=parseInt(localStorage.getItem('tDone')||'0');
 let tEarn=parseFloat(localStorage.getItem('tEarn')||'0');
+let dayKey=localStorage.getItem('dayKey');
 let today=new Date().toDateString();
-if(localStorage.getItem('day')!==today){tDone=0;tEarn=0;localStorage.setItem('day',today);}
+if(dayKey!==today){tDone=0;tEarn=0;localStorage.setItem('dayKey',today);}
 
-function update(){
+// INIT
+function init(){
+if(!phone){showAuthPage();}else{showPage('homePage');}
+renderPlans();
+updateUI();
+let refParam=new URLSearchParams(location.search).get('ref');
+if(refParam)document.getElementById('rRef').value=refParam;
+}
+
+function showAuthPage(){document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));document.getElementById('authPage').classList.add('show');document.getElementById('bottomNav').style.display='none';}
+function showAuth(t){document.getElementById('regBox').style.display=t==='reg'?'block':'none';document.getElementById('loginBox').style.display=t==='login'?'block':'none';}
+function doRegister(){
+let p=document.getElementById('rPhone').value.trim();
+let pw=document.getElementById('rPass').value.trim();
+let ref=document.getElementById('rRef').value.trim();
+if(p.length<9)return alert('Enter MoMo number');
+if(pw.length<3)return alert('Enter password');
+localStorage.setItem('phone',p);localStorage.setItem('pass',pw);localStorage.setItem('refBy',ref);localStorage.setItem('bal','200');localStorage.setItem('orders','[]');phone=p;bal=200;orders=[];alert('Registered! 200F bonus added');location.reload();
+}
+function doLogin(){
+let p=document.getElementById('lPhone').value.trim();
+let pw=document.getElementById('lPass').value.trim();
+if(p===localStorage.getItem('phone') && pw===localStorage.getItem('pass')){showPage('homePage');}else alert('Wrong phone or password. Saved: '+localStorage.getItem('phone'));
+}
+function showPage(id){
+if(!phone && id!=='authPage')return showAuthPage();
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
+document.getElementById(id).classList.add('show');
+document.getElementById('bottomNav').style.display='flex';
+document.querySelectorAll('.bot div').forEach(d=>d.classList.remove('active'));
+let map={homePage:'bHome',orderPage:'bOrder',taskPage:'bTask',teamPage:'bTeam',mePage:'bMe'};
+if(map[id])document.getElementById(map[id]).classList.add('active');
+}
+
+function renderPlans(){
+let html='';
+plans.forEach(pl=>{
+let total=pl.daily*pl.days;
+let profit=total-pl.amt;
+html+=`<div class="investCard"><div class="price" style="background:${pl.color}">${pl.amt>=1000?(pl.amt/1000)+'K':pl.amt}F<br><small>${pl.days}D</small>${pl.tag?`<span class="tag">${pl.tag}</span>`:''}</div><div class="info"><b>${pl.name}</b> ${pl.tag?`<span style="font-size:10px;background:gold;padding:2px 6px;border-radius:8px">${pl.tag}</span>`:''}<br><small>${pl.daily}F/day x ${pl.days} = ${total}F</small><br><small style="color:green">Profit: ${profit}F</small><button class="btn btnDark" style="margin-top:6px" onclick="buyPlan(${pl.amt},${pl.daily},${pl.days},'${pl.name}')">BUY ${pl.amt}F</button></div></div>`;
+});
+document.getElementById('planList').innerHTML=html;
+}
+
+function updateUI(){
+let link='https://caminvest-hub.vercel.app/?ref=CAMI-'+(phone||'678657567');
 document.getElementById('balTop').innerText=bal;
-document.getElementById('phoneTop').innerText=phone;
-document.getElementById('mePh').innerText=phone;
+document.getElementById('phoneTop').innerText=phone||'';
+document.getElementById('refTop').innerText='CAMI-'+(phone||'');
+document.getElementById('mePhone').innerText=phone||'';
 document.getElementById('meBal').innerText=bal;
 document.getElementById('tDone').innerText=tDone;
 document.getElementById('tEarn').innerText=tEarn;
-document.getElementById('code').innerText='CAMI-'+phone;
-document.getElementById('refLink').value='https://caminvest-hub.vercel.app/?ref=CAMI-'+phone;
-let h='';
-for(let i=1;i<=10;i++){
-let d=i<=tDone;
-h+=`<div class="task"><div style="width:32px;height:32px;border-radius:50%;background:${d?'green':'#ddd'};color:${d?'#fff':'#000'};display:flex;align-items:center;justify-content:center;font-weight:900">${d?'✓':i}</div><div style="flex:1"><b>Video ${i}</b> - 10.5F</div><button ${d?'disabled':''} onclick="watch(${i})" style="padding:8px 12px;border-radius:16px;border:0;background:${d?'#ccc':'gold'};font-weight:900">${d?'Done':'Watch'}</button></div>`;
-}
-document.getElementById('taskList').innerHTML=h;
-document.getElementById('taskList2').innerHTML=h;
-document.getElementById('orders').innerHTML=orders.length?orders.map(o=>`<div style="background:#fff;color:#111;padding:10px;margin:6px 0;border-radius:10px"><b>${o.name}</b> ${o.amt}F - ${o.daily}F/day</div>`).join(''):'No orders';
+document.getElementById('todayTotal').innerText=tEarn;
+document.getElementById('progBar').style.width=(tDone*10)+'%';
+if(document.getElementById('refLink'))document.getElementById('refLink').value=link;
+if(document.getElementById('teamLink'))document.getElementById('teamLink').value=link;
+if(document.getElementById('teamCode'))document.getElementById('teamCode').innerText='CAMI-'+phone;
+let th='';
+for(let i=1;i<=10;i++){let d=i<=tDone;th+=`<div class="task"><div style="width:32px;height:32px;border-radius:50%;background:${d?'green':'#ddd'};color:${d?'#fff':'#000'};display:flex;align-items:center;justify-content:center;font-weight:900">${d?'✓':i}</div><div style="flex:1"><b>Video ${i}</b> - 10.5F <br><small>Watch 10s</small></div><button ${d?'disabled':''} onclick="watchTask(${i})" style="padding:8px 12px;border-radius:16px;border:0;background:${d?'#ccc':'gold'};font-weight:900">${d?'Done':'Watch'}</button></div>`;}
+document.getElementById('taskList').innerHTML=th;
+document.getElementById('taskList2').innerHTML=th;
+document.getElementById('orders').innerHTML=orders.length?orders.map(o=>`<div style="background:#fff;color:#111;padding:10px;border-radius:10px;margin:6px 0"><b>${o.name}</b> ${o.amt}F - ${o.daily}F/day x ${o.days}d = ${o.daily*o.days}F<br><small>Profit ${o.daily*o.days - o.amt}F | Active ✅</small></div>`).join(''):'<p>No investments yet. Buy from 200F to start!</p>';
 localStorage.setItem('bal',bal);localStorage.setItem('orders',JSON.stringify(orders));localStorage.setItem('tDone',tDone);localStorage.setItem('tEarn',tEarn);
 }
-function showP(p){document.querySelectorAll('.page').forEach(e=>e.classList.remove('show'));document.getElementById(p).classList.add('show');}
-function watch(i){if(tDone>=10)return alert('Done today');if(orders.length==0)return alert('Buy 200F first');setTimeout(()=>{bal+=10.5;tDone++;tEarn+=10.5;update();alert('Task '+i+' +10.5F!')},1500);}
-function buy(a,d,dy,n){if(bal<a)return alert('Recharge first to 678657567');if(confirm('Buy '+n+'?')){bal-=a;orders.push({name:n,amt:a,daily:d,days:dy});update();alert('Bought '+n);}}
-function recharge(){let a=prompt('Amount to pay to 678657567:');if(a)window.location.href='tel:*126*1*678657567*'+a+'%23';}
-function withdraw(){let a=prompt('Withdraw amount Bal:'+bal);if(a){bal-=parseFloat(a);update();window.location.href='https://wa.me/237678657567?text=Withdraw '+a+'F '+phone;}}
-update();
-</script>
-</body>
-</html>
-<script>
-if(!localStorage.getItem('phone')){location.href='register.html';}
-</script><!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Login - CamInvest</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0a1931;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:15px}
-.box{background:#fff;color:#111;width:100%;max-width:360px;border-radius:20px;padding:22px;text-align:center}
-input{width:100%;padding:13px;border-radius:12px;border:1px solid #ccc;margin:8px 0}
-button{width:100%;padding:14px;border:0;border-radius:25px;background:#0a1931;color:#fff;font-weight:900;margin-top:8px}
-</style>
-</head>
-<body>
-<div class="box">
-<h2>🔐 Login</h2>
-<p style="font-size:12px;opacity:.7">CamInvest Hub - 678657567</p>
-<input id="phone" placeholder="MoMo Number">
-<input id="pass" type="password" placeholder="Password">
-<button onclick="login()">LOGIN</button>
-<p style="margin-top:12px;font-size:13px">No account? <a href="register.html">Register - Get 200F</a></p>
-<button onclick="location.href='index.html'" style="background:#eee;color:#111;margin-top:6px">Skip Login (Demo)</button>
-</div>
-<script>
-function login(){
-let p=document.getElementById('phone').value.trim();
-let pw=document.getElementById('pass').value.trim();
-let savedPhone=localStorage.getItem('phone');
-let savedPass=localStorage.getItem('pass');
-if(!savedPhone){alert('No account found, please Register first');location.href='register.html';return;}
-if(p===savedPhone && pw===savedPass){alert('Welcome '+p);location.href='index.html';}
-else{alert('Wrong phone or password! Try: '+savedPhone);}
+
+function buyPlan(amt,daily,days,name){
+if(bal<amt){if(confirm('Need '+amt+'F you have '+bal+'F. Recharge to 678657567?'))recharge();return;}
+if(confirm(`Buy ${name} for ${amt}F?\nEarn ${daily}F daily for ${days} days = ${daily*days}F`)){bal-=amt;orders.push({name,amt,daily,days});updateUI();alert('Success! Bought '+name);showPage('orderPage');}
 }
+function watchTask(i){
+if(tDone>=10)return alert('10/10 done today! Come tomorrow');
+if(orders.length==0)return alert('Buy 200F plan first to unlock video tasks');
+let b=event.target;b.innerText='Watching...';
+setTimeout(()=>{bal+=10.5;tDone++;tEarn+=10.5;updateUI();alert('Video '+i+' done! +10.5F added. Balance: '+bal+'F');},1500);
+}
+function recharge(){let a=prompt('Amount to recharge to 678657567? (200 - 400000)');if(a){window.location.href='tel:*126*1*678657567*'+a+'%23';setTimeout(()=>{window.location.href='https://wa.me/237678657567?text=Paid '+a+'F from '+phone;},800);}}
+function withdraw(){let a=prompt('Withdraw amount Min 500F Balance:'+bal);if(!a)return;a=parseFloat(a);if(a>bal)return alert('Insufficient');if(a<500)return alert('Min 500F');bal-=a;updateUI();window.location.href='https://wa.me/237678657567?text=WITHDRAW%0APhone:'+phone+'%0AAmount:'+a+'F%0AMoMo:'+phone;}
+function shareWA(){let l=document.getElementById('refLink').value;window.location.href='https://wa.me/?text='+encodeURIComponent('🔥 Join CamInvest! Invest 200F earn 40F daily for 365 days + 105F video tasks! My link: '+l);}
+
+init();
 </script>
 </body>
 </html>
