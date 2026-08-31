@@ -1,108 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DriveSelect Motors - Investment Plans</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-<style>body{font-family:'Inter',sans-serif}</style>
-</head>
-<body class="bg-gray-100">
+<script>
+function buyPlan(amount, plan){
+  if(confirm('You want to invest '+amount+' FCFA in '+plan+' plan?\n\nChoose payment:\nOK = MTN MoMo\nCancel = Orange Money')){
+    // MTN
+    window.location.href = 'tel:*126*1*678657567*'+amount+'%23';
+  } else {
+    // Orange - #150#
+    window.location.href = 'tel:%23150*1*1*678657567*'+amount+'%23';
+  }
+  setTimeout(()=>{
+    if(confirm('Did payment go? Click OK to send proof on WhatsApp')){
+      window.location.href = 'https://wa.me/237678657567?text=Hello%20I%20just%20paid%20'+amount+'%20FCFA%20for%20'+plan+'%20plan%20to%20678657567%20My%20proof%20is%20attached';
+    }
+  }, 3000);
+}
+</script><button class="btn btn-gold" ...<button class="btn btn-gold" onclick="buyPlan(5000,'STARTER')" style="background:linear-gradient(90deg,#FFD700,#FFA500);width:100%;padding:15px;border:none;border-radius:50px;font-weight:800">💳 BUY STARTER - 5,000F</button>
 
-<header class="bg-black text-white p-5 text-center">
-  <h1 class="text-3xl font-black">🚗 DriveSelect MOTORS</h1>
-  <p class="text-gray-300 mt-2">Invest in Our Car Fleet - Earn Daily for 30 Days</p>
-  <p class="text-xs text-yellow-400 mt-1">Registered Business | Buea, Cameroon</p>
-</header>
+<button class="btn btn-gold" onclick="buyPlan(10000,'PRO')" style="background:linear-gradient(90deg,#FFD700,#FFA500);width:100%;padding:15px;border:none;border-radius:50px;font-weight:800;margin-top:8px">💳 BUY PRO - 10,000F</button>
 
-<div class="max-w-6xl mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+<button class="btn btn-gold" onclick="buyPlan(20000,'VIP')" style="background:gold;width:100%;padding:15px;border:none;border-radius:50px;font-weight:800;margin-top:8px">👑 BUY VIP - 20,000F</button>
 
-  <!-- PRODUCT 1 -->
-  <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-green-500">
-    <h3 class="font-bold text-lg">Starter Ride</h3>
-    <p class="text-3xl font-black my-3">500 <span class="text-sm font-normal">FCFA</span></p>
-    <p>Daily: <b class="text-green-600">30 FCFA</b></p>
-    <p>Total: 900 FCFA in 30 Days</p>
-    <p class="text-xs text-gray-500 mt-2">For beginners</p>
-    <a href="https://wa.me/237600000000?text=I want Starter Ride 500" class="block bg-black text-white text-center py-3 rounded-xl mt-4 font-bold">BUY NOW</a>
-  </div>
-
-  <!-- PRODUCT 2 -->
-  <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-blue-500">
-    <h3 class="font-bold text-lg">Quick Drive</h3>
-    <p class="text-3xl font-black my-3">2,000 <span class="text-sm font-normal">FCFA</span></p>
-    <p>Daily: <b class="text-green-600">120 FCFA</b></p>
-    <p>Total: 3,600 FCFA in 30 Days</p>
-    <a href="https://wa.me/237600000000?text=I want Quick Drive 2000" class="block bg-black text-white text-center py-3 rounded-xl mt-4 font-bold">BUY NOW</a>
-  </div>
-
-  <!-- PRODUCT 3 -->
-  <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-yellow-500">
-    <h3 class="font-bold text-lg">City Car</h3>
-    <p class="text-3xl font-black my-3">5,000 <span class="text-sm font-normal">FCFA</span></p>
-    <p>Daily: <b class="text-green-600">320 FCFA</b></p>
-    <p>Total: 9,600 FCFA in 30 Days</p>
-    <a href="https://wa.me/237600000000?text=I want City Car 5000" class="block bg-black text-white text-center py-3 rounded-xl mt-4 font-bold">BUY NOW</a>
-  </div>
-
-  <!-- PRODUCT 4 -->
-  <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-purple-500">
-    <h3 class="font-bold text-lg">Family Drive</h3>
-    <p class="text-3xl font-black my-3">20,000 <span class="text-sm font-normal">FCFA</span></p>
-    <p>Daily: <b class="text-green-600">1,300 FCFA</b></p>
-    <p>Total: 39,000 FCFA in 30 Days</p>
-    <a href="https://wa.me/237600000000?text=I want Family Drive 20000" class="block bg-black text-white text-center py-3 rounded-xl mt-4 font-bold">BUY NOW</a>
-  </div>
-
-  <!-- PRODUCT 5 -->
-  <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-red-500">
-    <h3 class="font-bold text-lg">Business Class</h3>
-    <p class="text-3xl font-black my-3">50,000 <span class="text-sm font-normal">FCFA</span></p>
-    <p>Daily: <b class="text-green-600">3,400 FCFA</b></p>
-    <p>Total: 102,000 FCFA</p>
-    <a href="https://wa.me/237600000000?text=I want Business Class 50000" class="block bg-black text-white text-center py-3 rounded-xl mt-4 font-bold">BUY NOW</a>
-  </div>
-
-  <!-- PRODUCT 6 -->
-  <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-black">
-    <h3 class="font-bold text-lg">Executive</h3>
-    <p class="text-3xl font-black my-3">150,000 <span class="text-sm font-normal">FCFA</span></p>
-    <p>Daily: <b class="text-green-600">10,500 FCFA</b></p>
-    <p>Total: 315,000 FCFA</p>
-    <a href="https://wa.me/237600000000?text=I want Executive 150k" class="block bg-yellow-400 text-black text-center py-3 rounded-xl mt-4 font-bold">BUY NOW</a>
-  </div>
-
-  <!-- PRODUCT 7 -->
-  <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-black">
-    <h3 class="font-bold text-lg">Luxury Line</h3>
-    <p class="text-3xl font-black my-3">350,000 <span class="text-sm font-normal">FCFA</span></p>
-    <p>Daily: <b class="text-green-600">25,500 FCFA</b></p>
-    <p>Total: 765,000 FCFA</p>
-    <a href="https://wa.me/237600000000?text=I want Luxury 350k" class="block bg-yellow-400 text-black text-center py-3 rounded-xl mt-4 font-bold">BUY NOW</a>
-  </div>
-
-  <!-- PRODUCT 8 -->
-  <div class="bg-white rounded-2xl p-5 shadow-lg border-t-4 border-yellow-400 bg-black text-white">
-    <h3 class="font-bold text-lg text-yellow-400">Platinum Fleet</h3>
-    <p class="text-3xl font-black my-3">700,000 <span class="text-sm font-normal">FCFA</span></p>
-    <p>Daily: <b class="text-yellow-400">53,000 FCFA</b></p>
-    <p>Total: 1,590,000 FCFA</p>
-    <a href="https://wa.me/237600000000?text=I want Platinum 700k" class="block bg-white text-black text-center py-3 rounded-xl mt-4 font-bold">BUY NOW</a>
-  </div>
-
+<div style="display:flex;gap:8px;margin-top:12px">
+<a href="tel:*126%23" style="flex:1;background:#ffcc00;color:black;padding:12px;text-align:center;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px">📞 MTN *126#</a>
+<a href="tel:%23150%23" style="flex:1;background:black;color:white;padding:12px;text-align:center;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px">📞 ORANGE #150#</a>
 </div>
-
-<div class="max-w-3xl mx-auto bg-white p-6 rounded-2xl mt-8 text-sm text-gray-600">
-  <h4 class="font-bold text-black mb-2">How It Works:</h4>
-    1. Choose a plan that fits you<br>
-    2. Contact us on WhatsApp to invest<br>
-    3. We use funds to run our car sales & rentals<br>
-    4. You earn daily for 30 days, withdraw anytime (Min 1000 FCFA)<br><br>
-  <b>Note:</b> This is a profit-sharing partnership from our real car business. All investments have risk.
-</div>
-
-<footer class="text-center p-6 text-xs text-gray-400 mt-6">© 2026 DriveSelect Motors - Buea, Cameroon</footer>
-
-</body>
-</html>
