@@ -1,6 +1,70 @@
--- CamInvest Hub DB
-create table profiles (id uuid primary key references auth.users, phone text, balance int default 200, referral_code text, invited_by text, created_at timestamp default now());
-create table plans (id serial primary key, name text, price int, daily int, cycle int, total int);
-insert into plans values (1,'Freight Link',5000,300,30,9000),(2,'Express Route',10000,650,30,19500),(3,'VIP Cargo',20000,1400,30,42000);
-create table investments (id serial primary key, user_id uuid, plan_id int, amount int, status text default 'active', profit int default 0, start_date timestamp default now());
-create table transactions (id serial primary key, user_id uuid, type text, amount int, momo_ref text, status text default 'pending', created_at timestamp default now());
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CamInvest Hub</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0b2a4a;color:#fff;padding-bottom:70px}
+.top{padding:20px}
+.b{font-size:32px;font-weight:900}
+.box{background:#fff;color:#222;border-radius:18px;display:flex;justify-content:space-around;padding:12px;margin:12px;text-align:center}
+.i{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:auto;font-size:20px}
+.h{margin:15px;border-left:4px solid gold;padding-left:10px;font-weight:800}
+.s{background:rgba(255,255,255,0.08);margin:8px 12px;border-radius:25px;padding:10px;display:flex;gap:10px;border-left:4px solid gold}
+.c{background:#fff;color:#222;border-radius:16px;margin:10px 12px;padding:12px;display:flex;gap:10px}
+.p{background:#0b2a4a;color:#fff;padding:10px;border-radius:10px;text-align:center;min-width:95px;font-weight:800}
+.btn{background:#0b2a4a;color:#fff;border:0;padding:12px;width:100%;border-radius:25px;font-weight:800;margin-top:8px}
+.bot{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;color:#888;font-size:11px;text-align:center}
+.on{color:#0b2a4a;font-weight:800}
+.page{display:none}.active{display:block}
+</style>
+<script>
+function go(id){document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function pay(a){
+if(confirm('Pay XAF'+a+' to 678657567?\nOK=MTN MoMo\nCancel=Orange')){
+location.href='tel:*126*1*678657567*'+a+'%23'
+}else{location.href='tel:%23150%23'}
+setTimeout(()=>{location.href='https://wa.me/237678657567?text=Paid%20'+a+'F%20to%20678657567'},1200)
+}
+</script>
+</head>
+<body>
+<div id="home" class="page active">
+<div class="top">
+<div style="opacity:.7;font-size:13px">Total Available Assets</div>
+<div class="b">XAF200</div>
+<div style="background:gold;color:#000;display:inline-block;padding:3px 10px;border-radius:15px;font-size:11px;font-weight:800;margin-top:5px">MoMo: 678657567</div>
+</div>
+<div class="box">
+<div onclick="pay(5000)"><div class="i" style="background:#dbeafe">💳</div>Recharge</div>
+<div onclick="location.href='https://wa.me/237678657567?text=Withdraw'"><div class="i" style="background:#dcfce7">🏧</div>Withdrawal</div>
+<div onclick="alert('Invite bonus 500F')"><div class="i" style="background:#ffedd5">🎁</div>Free cash</div>
+<div onclick="alert('Mary 7500F PAID\nJohn 16000F PAID')"><div class="i" style="background:#f3e8ff">📄</div>Proof</div>
+</div>
+<div class="h">How to Earn?</div>
+<div class="s"><div style="background:green;color:#fff;padding:6px 12px;border-radius:20px">01</div><div><b>Earn Now</b><br><small>Invest in logistics</small></div><div style="margin-left:auto">›</div></div>
+<div class="s" style="border-left-color:orange"><div style="background:orange;color:#fff;padding:6px 12px;border-radius:20px">02</div><div><b>Invite Friends</b><br><small>10% commission</small></div><div style="margin-left:auto">›</div></div>
+<div class="s"><div style="background:green;color:#fff;padding:6px 12px;border-radius:20px">03</div><div><b>Unlock Rewards</b><br><small>More bonuses</small></div><div style="margin-left:auto">›</div></div>
+<div class="h">Popular Investment Projects</div>
+<div class="c"><div class="p">Price:<br>XAF5,000</div><div style="flex:1"><b>Freight Link</b><br><small>Daily 1,200F | Cycle 5 | Total 6,000F</small><br><button class="btn" onclick="pay(5000)">INVEST</button></div></div>
+<div class="c"><div class="p" style="background:#8a4a00">Price:<br>XAF10,000</div><div style="flex:1"><b>Express Route</b><br><small>Daily 2,500F | Cycle 5 | Total 12,500F</small><br><button class="btn" style="background:orange;color:#000" onclick="pay(10000)">INVEST</button></div></div>
+<div class="c"><div class="p" style="background:green">Price:<br>XAF20,000</div><div style="flex:1"><b>VIP Cargo</b><br><small>Daily 5,200F | Cycle 5 | Total 26,000F</small><br><button class="btn" style="background:gold;color:#000" onclick="pay(20000)">INVEST</button></div></div>
+</div>
+<div id="team" class="page">
+<div style="padding:15px;text-align:center">
+<h3>Team Referral</h3>
+<div style="background:#fff;color:#222;padding:12px;border-radius:10px;margin:10px 0;font-weight:900">CAMI-678657567</div>
+<p>L1 15% | L2 2% | L3 1%</p>
+</div>
+</div>
+<div class="bot">
+<div class="on" onclick="go('home')">🏠<br>Home</div>
+<div onclick="go('home')">📋<br>Order</div>
+<div onclick="location.href='https://wa.me/237678657567'">💬<br>Service</div>
+<div onclick="go('team')">👥<br>Team</div>
+<div onclick="go('team')">👤<br>Me</div>
+</div>
+</body>
+</html>
