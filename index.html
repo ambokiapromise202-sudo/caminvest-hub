@@ -125,3 +125,13 @@ update();
 </script>
 </body>
 </html>
+<div style="background:#fff;color:#111;border-radius:16px;margin:12px;padding:14px;border:2px dashed gold">
+<b>🔗 Your Referral Link - Earn 15%</b><br>
+<small>Share to friends, get 15% when they invest 200F or 500F</small>
+<div id="refLinkBox" style="background:#0a1931;color:#ffd400;padding:10px;border-radius:10px;margin:8px 0;font-weight:900;word-break:break-all;font-size:12px"></div>
+<div style="display:flex;gap:8px">
+<button onclick="copyRef()" style="flex:1;padding:10px;border-radius:20px;border:0;background:#ffd400;font-weight:900">📋 COPY LINK</button>
+<button onclick="shareRef()" style="flex:1;padding:10px;border-radius:20px;border:0;background:#0a1931;color:#fff;font-weight:900">📤 SHARE</button>
+</div>
+<div style="margin-top:8px;font-size:12px">Your Code: <b id="refCode"></b> | L1: <b id="teamCount">0</b> friends</div>
+</div>
