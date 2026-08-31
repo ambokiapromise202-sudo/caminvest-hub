@@ -1,31 +1,368 @@
-CAMINVEST HUB
-│
-├── Website / Frontend
-│   ├── Home
-│   ├── Register
-│   ├── Login
-│   └── User Dashboard
-│
-├── Supabase Authentication
-│   ├── User accounts
-│   ├── Email/phone verification
-│   └── Secure sessions
-│
-├── Supabase PostgreSQL Database
-│   ├── profiles
-│   ├── investment_products
-│   ├── investments
-│   ├── deposits
-│   ├── withdrawals
-│   ├── transactions
-│   ├── daily_tasks
-│   ├── task_completions
-│   ├── referrals
-│   └── commissions
-│
-└── Supabase Edge Functions
-    ├── create-payment
-    ├── payment-webhook
-    ├── request-withdrawal
-    ├── process-withdrawal
-    └── calculate-commission
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CamInvest Hub</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7f6;
+    color:#17231f;
+}
+
+header{
+    background:#063d2e;
+    color:white;
+    padding:16px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#5ed39a;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.hero{
+    background:linear-gradient(135deg,#063d2e,#087c58);
+    color:white;
+    padding:75px 7%;
+}
+
+.hero h1{
+    font-size:45px;
+    max-width:700px;
+    line-height:1.15;
+    margin-bottom:18px;
+}
+
+.hero p{
+    max-width:650px;
+    font-size:18px;
+    color:#e0f2ea;
+    margin-bottom:25px;
+}
+
+.btn{
+    border:0;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.btn-primary{
+    background:white;
+    color:#063d2e;
+}
+
+.btn-green{
+    background:#087653;
+    color:white;
+}
+
+.btn-gold{
+    background:#b78100;
+    color:white;
+}
+
+section{
+    padding:55px 7%;
+}
+
+.title{
+    text-align:center;
+    color:#063d2e;
+    margin-bottom:30px;
+    font-size:30px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+}
+
+.card{
+    background:white;
+    border:1px solid #dce6e1;
+    padding:25px;
+    border-radius:13px;
+    box-shadow:0 5px 20px rgba(0,0,0,.05);
+}
+
+.card h3{
+    color:#087653;
+    margin-bottom:10px;
+}
+
+.dashboard{
+    max-width:1200px;
+    margin:auto;
+}
+
+.balance{
+    background:linear-gradient(135deg,#063d2e,#087653);
+    color:white;
+    padding:30px;
+    border-radius:15px;
+    margin-bottom:20px;
+}
+
+.balance small{
+    color:#d5eee4;
+}
+
+.balance h2{
+    font-size:38px;
+    margin:8px 0;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.stat{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    border:1px solid #dce6e1;
+}
+
+.stat small{
+    color:#66736e;
+}
+
+.stat strong{
+    display:block;
+    color:#075d44;
+    font-size:22px;
+    margin-top:7px;
+}
+
+.panel{
+    background:white;
+    padding:25px;
+    border-radius:13px;
+    border:1px solid #dce6e1;
+    margin-top:20px;
+}
+
+.panel h2{
+    color:#063d2e;
+    margin-bottom:18px;
+}
+
+.form{
+    display:grid;
+    gap:12px;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccd8d3;
+    border-radius:8px;
+    outline:none;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.task,.transaction{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 0;
+    border-top:1px solid #e0e7e4;
+}
+
+.badge{
+    background:#e6f6ed;
+    color:#08704f;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+.pending{
+    background:#fff1c9;
+    color:#806000;
+}
+
+.referral{
+    background:#edf8f3;
+    padding:18px;
+    border-radius:9px;
+}
+
+.refcode{
+    font-size:20px;
+    font-weight:bold;
+    color:#075d44;
+    margin-top:8px;
+}
+
+.notice{
+    background:#fff6dd;
+    border-left:5px solid #d19a12;
+    padding:18px;
+    border-radius:8px;
+    margin-bottom:20px;
+    color:#654d16;
+}
+
+footer{
+    background:#08251e;
+    color:#d3e2dd;
+    padding:35px 7%;
+    text-align:center;
+}
+
+footer p{
+    margin:5px;
+}
+
+.small{
+    font-size:13px;
+    color:#9fb5ad;
+}
+
+@media(max-width:900px){
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    nav{
+        display:none;
+    }
+
+    .hero{
+        padding:55px 6%;
+    }
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    section{
+        padding:45px 6%;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .balance h2{
+        font-size:30px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+CamInvest <span>Hub</span>
+</div>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#plans">Plans</a>
+<a href="#dashboard">Dashboard</a>
+<a href="#contact">Contact</a>
+</nav>
+
+</header>
+
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+
+<h1>
+Build your financial future with informed decisions.
+</h1>
+
+<p>
+CamInvest Hub provides investment information,
+financial education and tools for responsible financial planning.
+</p>
+
+<a href="#dashboard" class="btn btn-primary">
+Open Dashboard
+</a>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section>
+
+<h2 class="title">
+Why CamInvest Hub?
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>📊 Investment Information</h3>
+<p>
+Learn about different investment opportunities,
+risk and diversification.
+</p>
+</div>
+
+<div class="card">
+<h3>🔐 Secure Accounts</h3>
+<p>
+User accounts will be connected to a secure
+backend when the platform goes live.
+</p>
+</div>
+
+<div class="card">
+<h3>💳 Payment Options</h3>
