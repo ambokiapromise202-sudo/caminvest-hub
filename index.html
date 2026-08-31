@@ -135,3 +135,8 @@ update();
 </div>
 <div style="margin-top:8px;font-size:12px">Your Code: <b id="refCode"></b> | L1: <b id="teamCount">0</b> friends</div>
 </div>
+<div id="refLinkBox" onclick="copyRef()" style="background:#0a1931;color:#ffd400;padding:12px;border-radius:10px;margin:8px 0;font-weight:900;word-break:break-all;font-size:13px;border:2px solid gold;cursor:pointer">
+CLICK TO COPY 👆<br>
+<span style="font-size:11px;color:#fff" id="refLinkText"></span>
+</div>document.getElementById('refLinkText').innerText = getRefLink();
+document.getElementById('refLinkBox').innerText = getRefLink();
