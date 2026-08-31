@@ -1,100 +1,330 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Caminvest Hub</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0b2a4a;color:#fff;padding-bottom:70px}
-.top{padding:20px;background:#0b2a4a}
-.b{font-size:30px;font-weight:900}
-.box{background:#fff;color:#222;border-radius:18px;display:flex;justify-content:space-around;padding:12px;margin:12px;text-align:center}
-.i{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:auto;font-size:20px}
-.h{margin:15px;border-left:4px solid gold;padding-left:10px;font-weight:800}
-.s{background:rgba(255,255,255,0.08);margin:8px 12px;border-radius:25px;padding:10px;display:flex;align-items:center;gap:10px;border-left:4px solid gold}
-.c{background:#fff;color:#222;border-radius:16px;margin:10px 12px;padding:10px;display:flex;gap:10px}
-.p{background:#0b2a4a;color:#fff;padding:8px;border-radius:8px;text-align:center;min-width:90px;font-weight:800}
-.btn{background:#0b2a4a;color:#fff;border:0;padding:12px;width:100%;border-radius:25px;font-weight:800;margin-top:8px}
-.bot{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;color:#888;font-size:11px;text-align:center}
-.on{color:#0b2a4a;font-weight:800}
-.page{display:none}.active{display:block}
-</style>
-<script>
-function go(id){document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));document.getElementById(id).classList.add('active')}
-function pay(a){
-let m=confirm('Pay XAF'+a+' to 678657567?\nOK=MTN\nCancel=Orange');
-if(m){location.href='tel:*126*1*678657567*'+a+'%23'}else{location.href='tel:%23150%23'}
-setTimeout(()=>{location.href='https://wa.me/237678657567?text=Paid%20'+a+'F%20to%20678657567'},1000)
-}
-</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CamInvest Hub | Smart Investment</title>
+
+  <meta name="description"
+        content="CamInvest Hub provides investment information, financial education and responsible planning tools.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f8f7;
+      color: #17231f;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #063d2e;
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #61d39d;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #61d39d;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #063d2e, #087653);
+      color: white;
+      padding: 90px 7%;
+    }
+
+    .hero-content {
+      max-width: 760px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: #e1f3eb;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 8px;
+      margin-bottom: 10px;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #063d2e;
+    }
+
+    .btn-secondary {
+      border: 1px solid white;
+      color: white;
+    }
+
+    section {
+      padding: 70px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 12px;
+      color: #063d2e;
+    }
+
+    .section-text {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      color: #5b6863;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 14px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+    }
+
+    .card h3 {
+      color: #087653;
+      margin-bottom: 10px;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+    }
+
+    .plan {
+      background: white;
+      padding: 30px;
+      border-radius: 14px;
+      border: 1px solid #dce8e3;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .plan h3 {
+      color: #063d2e;
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .amount {
+      font-size: 25px;
+      font-weight: bold;
+      color: #087653;
+      margin-bottom: 15px;
+    }
+
+    .plan ul {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .plan li {
+      margin: 8px 0;
+    }
+
+    .plan li::before {
+      content: "✓ ";
+      color: #087653;
+      font-weight: bold;
+    }
+
+    .warning {
+      background: #fff6dd;
+      border-left: 5px solid #d29a00;
+      padding: 22px;
+      border-radius: 8px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .contact-box {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 13px;
+      margin: 8px 0 18px;
+      border: 1px solid #ccd8d3;
+      border-radius: 7px;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    button {
+      background: #063d2e;
+      color: white;
+      border: none;
+      padding: 13px 22px;
+      border-radius: 7px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    footer {
+      background: #09251e;
+      color: #cfe0da;
+      text-align: center;
+      padding: 35px 7%;
+    }
+
+    footer p {
+      margin: 5px;
+    }
+
+    .small {
+      font-size: 13px;
+      color: #9fb5ad;
+    }
+
+    @media (max-width: 650px) {
+
+      header {
+        padding: 16px 5%;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 65px 6%;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      section {
+        padding: 55px 6%;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="home" class="page active">
-<div class="top">
-<div style="opacity:.7;font-size:13px">Total Available Assets on Platform</div>
-<div class="b">XAF200</div>
-<div style="background:gold;color:#000;display:inline-block;padding:3px 10px;border-radius:15px;font-size:11px;font-weight:800;margin-top:5px">MoMo: 678657567 - Ambokia Promise</div>
-</div>
+<header>
+  <div class="logo">
+    CamInvest <span>Hub</span>
+  </div>
 
-<div class="box">
-<div onclick="pay(5000)"><div class="i" style="background:#dbeafe">💳</div>Recharge</div>
-<div onclick="location.href='https://wa.me/237678657567?text=Withdraw'"><div class="i" style="background:#dcfce7">🏧</div>Withdrawal</div>
-<div onclick="alert('Bonus 500F for invite')"><div class="i" style="background:#ffedd5">🎁</div>Free cash</div>
-<div onclick="alert('Mary - 7500F PAID\nJohn - 16000F PAID')"><div class="i" style="background:#f3e8ff">📄</div>Proof</div>
-</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#plans">Plans</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-<div class="h">How to Earn?</div>
-<div class="s"><div style="background:green;color:#fff;padding:6px 12px;border-radius:20px">01</div><div><b>Earn Now</b><br><small>Invest in logistics</small></div><div style="margin-left:auto">›</div></div>
-<div class="s" style="border-left-color:orange"><div style="background:orange;color:#fff;padding:6px 12px;border-radius:20px">02</div><div><b>Invite Friends</b><br><small>Earn 10% commission</small></div><div style="margin-left:auto">›</div></div>
-<div class="s"><div style="background:green;color:#fff;padding:6px 12px;border-radius:20px">03</div><div><b>Unlock Rewards</b><br><small>More bonuses</small></div><div style="margin-left:auto">›</div></div>
 
-<div class="h">🔥 Popular investment projects</div>
+<!-- HERO -->
 
-<div class="c"><div class="p">Price:<br>XAF5,000</div><div><b>Freight Link</b><br><small>Daily: 1,200F<br>Cycle: 5<br>Total: 6,000F</small><br><button class="btn" onclick="pay(5000)">⚡ INVEST</button></div></div>
+<section class="hero" id="home">
 
-<div class="c"><div class="p" style="background:#8a4a00">Price:<br>XAF10,000</div><div><b>Express Route</b><br><small>Daily: 2,500F<br>Cycle: 5<br>Total: 12,500F</small><br><button class="btn" style="background:orange;color:#000" onclick="pay(10000)">⚡ INVEST</button></div></div>
+  <div class="hero-content">
 
-<div class="c"><div class="p" style="background:green">Price:<br>XAF20,000</div><div><b>VIP Cargo</b><br><small>Daily: 5,200F<br>Cycle: 5<br>Total: 26,000F</small><br><button class="btn" style="background:gold;color:#000" onclick="pay(20000)">⚡ INVEST</button></div></div>
+    <h1>
+      Make informed decisions about your financial future.
+    </h1>
 
-<div class="c"><div class="p">Price:<br>XAF100,000</div><div><b>Fleet Growth</b><br><small>Daily: 6,720F<br>Cycle: 60<br>Total: 403,200F</small><br><button class="btn" onclick="pay(100000)">⚡ INVEST</button></div></div>
+    <p>
+      CamInvest Hub helps users understand investment opportunities,
+      financial planning, diversification and investment risks.
+    </p>
 
-</div>
+    <a href="#plans" class="btn btn-primary">
+      Explore Plans
+    </a>
 
-<div id="team" class="page">
-<div style="padding:15px">
-<div style="background:#082040;border-radius:15px;padding:15px;border:1px solid gold;text-align:center">
-<h3>⭐ Team Referral</h3>
-<div style="background:#fff;color:#222;padding:10px;border-radius:10px;margin:10px 0;font-weight:900">CAMI-678657567</div>
-<button style="padding:8px 15px;border-radius:20px;border:0" onclick="navigator.clipboard.writeText('CAMI-678657567');alert('Copied!')">📋 Copy</button>
-<button style="padding:8px 15px;border-radius:20px;border:0;background:orange;color:#fff;margin-left:5px" onclick="alert(location.href)">↗ Share</button>
-<div style="display:flex;gap:8px;margin-top:12px">
-<div style="flex:1;background:linear-gradient(gold,#8a6d00);border-radius:10px;padding:10px"><b>L1 15%</b><br><small>Direct</small></div>
-<div style="flex:1;background:linear-gradient(#3498db,#0b2a4a);border-radius:10px;padding:10px"><b>L2 2%</b><br><small>Second</small></div>
-<div style="flex:1;background:linear-gradient(#a569bd,#4a235a);border-radius:10px;padding:10px"><b>L3 1%</b><br><small>Third</small></div>
-</div>
-</div>
-</div>
-</div>
+    <a href="#contact" class="btn btn-secondary">
+      Contact Us
+    </a>
 
-<div id="me" class="page">
-<div style="padding:15px">
-<b>678657567</b><br><small>Invitation: CAMI-678657567</small><br><br>
-<div style="background:rgba(255,255,255,.1);padding:12px;border-radius:12px;display:flex;justify-content:space-between">Balance XAF <b>200</b> <button style="background:orange;border:0;padding:5px 12px;border-radius:15px" onclick="pay(1000)">Wallet</button></div>
-<br>
-<div>Customer Service: <a href="https://wa.me/237678657567" style="color:gold">WhatsApp 678657567</a></div>
-<br><div>Team: Ambokia Promise (Founder Buea), Micheal N., Sarah B.</div>
-</div>
-</div>
+  </div>
 
-<div class="bot">
-<div class="on" onclick="go('home')">🏠<br>Home</div>
-<div onclick="alert('Orders: 1 active')">📋<br>Order</div>
-<div onclick="location.href='https://wa.me/237678657567'">💬<br>Service client</div>
-<div onclick="go('team')">👥<br>Team</div>
-<div onclick="go('me')">👤<br>Me</div>
-</div>
+</section>
 
-</body>
-</html>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+  <h2 class="section-title">
+    About CamInvest Hub
+  </h2>
+
+  <p class="section-text">
+    Our goal is to provide clear information that helps people
+    understand investments and make responsible financial decisions.
+  </p>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>Financial Education</h3>
+      <p>
+        Learn about investment concepts, diversification,
+        time horizons and financial planning
