@@ -1,25 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caminvest Hub - Buea</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#f2f4f8}
+.header{background:#0a1931;color:white;padding:12px;text-align:center}
+.momo{background:white;margin:12px;border-radius:16px;padding:16px;text-align:center;border:2px solid gold;box-shadow:0 5px 15px rgba(0,0,0,0.1)}
+.num{font-size:30px;font-weight:900;background:gold;padding:8px 20px;border-radius:30px;display:inline-block;margin:8px}
+.card{background:white;margin:12px;border-radius:12px;padding:15px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+.btn{width:100%;padding:14px;border:none;border-radius:10px;font-weight:700;margin-top:8px;font-size:15px}
+.btn-buy{background:#0a1931;color:white}
+.btn-mtn{background:#ffcc00;color:black}
+.btn-orange{background:black;color:white}
+.plan{border:1px solid #ddd;padding:10px;border-radius:10px;margin:8px 0;display:flex;justify-content:space-between}
+</style>
 <script>
 function buyPlan(amount, plan){
-  if(confirm('You want to invest '+amount+' FCFA in '+plan+' plan?\n\nChoose payment:\nOK = MTN MoMo\nCancel = Orange Money')){
-    // MTN
-    window.location.href = 'tel:*126*1*678657567*'+amount+'%23';
-  } else {
-    // Orange - #150#
-    window.location.href = 'tel:%23150*1*1*678657567*'+amount+'%23';
+  let mtn = confirm(plan+" - "+amount+"F\n\nOK = Pay with MTN MoMo\nCancel = Pay with Orange Money");
+  if(mtn){
+    window.location.href = "tel:*126*1*678657567*"+amount+"%23";
+  }else{
+    window.location.href = "tel:%23150%23";
   }
   setTimeout(()=>{
-    if(confirm('Did payment go? Click OK to send proof on WhatsApp')){
-      window.location.href = 'https://wa.me/237678657567?text=Hello%20I%20just%20paid%20'+amount+'%20FCFA%20for%20'+plan+'%20plan%20to%20678657567%20My%20proof%20is%20attached';
-    }
-  }, 3000);
+    window.location.href = "https://wa.me/237678657567?text=Hello%20I%20paid%20"+amount+"F%20for%20"+plan+"%20to%20678657567";
+  }, 2000);
 }
-</script><button class="btn btn-gold" ...<button class="btn btn-gold" onclick="buyPlan(5000,'STARTER')" style="background:linear-gradient(90deg,#FFD700,#FFA500);width:100%;padding:15px;border:none;border-radius:50px;font-weight:800">💳 BUY STARTER - 5,000F</button>
+</script>
+</head>
+<body>
+<div class="header"><b>CAMINVEST HUB</b> - Buea Based Investment</div>
 
-<button class="btn btn-gold" onclick="buyPlan(10000,'PRO')" style="background:linear-gradient(90deg,#FFD700,#FFA500);width:100%;padding:15px;border:none;border-radius:50px;font-weight:800;margin-top:8px">💳 BUY PRO - 10,000F</button>
+<div class="momo">
+<b style="color:red">OFFICIAL PAYMENT</b><br>
+<div class="num">678657567</div><br>
+<b>Ambokia Promise - MTN MoMo</b><br>
+<small>Orange also accepted to same number</small>
+</div>
 
-<button class="btn btn-gold" onclick="buyPlan(20000,'VIP')" style="background:gold;width:100%;padding:15px;border:none;border-radius:50px;font-weight:800;margin-top:8px">👑 BUY VIP - 20,000F</button>
+<div class="card">
+<h3>Choose Plan</h3>
+<div class="plan"><div><b>Starter</b><br>5,000F → 6,000F (7 days)</div><div>20%</div></div>
+<button class="btn btn-buy" onclick="buyPlan(5000,'Starter')">BUY STARTER - 5,000F</button>
+
+<div class="plan"><div><b>Pro</b><br>10,000F → 12,500F (7 days)</div><div>25%</div></div>
+<button class="btn btn-buy" onclick="buyPlan(10000,'Pro')">BUY PRO - 10,000F</button>
+
+<div class="plan"><div><b>VIP</b><br>20,000F → 26,000F (7 days)</div><div>30%</div></div>
+<button class="btn btn-buy" onclick="buyPlan(20000,'VIP')">BUY VIP - 20,000F</button>
 
 <div style="display:flex;gap:8px;margin-top:12px">
-<a href="tel:*126%23" style="flex:1;background:#ffcc00;color:black;padding:12px;text-align:center;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px">📞 MTN *126#</a>
-<a href="tel:%23150%23" style="flex:1;background:black;color:white;padding:12px;text-align:center;border-radius:50px;text-decoration:none;font-weight:700;font-size:13px">📞 ORANGE #150#</a>
+<a href="tel:*126%23" class="btn btn-mtn" style="text-align:center;text-decoration:none">📞 MTN *126#</a>
+<a href="tel:%23150%23" class="btn btn-orange" style="text-align:center;text-decoration:none">📞 ORANGE #150#</a>
 </div>
+</div>
+
+<div class="card">
+<h3>How to Pay</h3>
+<p style="font-size:14px;line-height:1.6">
+1. Tap BUY button above<br>
+2. Choose MTN or Orange<br>
+3. Phone dialer opens auto with number 678657567<br>
+4. Confirm and send<br>
+5. Screenshot → WhatsApp proof
+</p>
+<a href="https://wa.me/237678657567" class="btn btn-buy" style="display:block;text-align:center;text-decoration:none;background:green">💬 SEND PROOF ON WHATSAPP</a>
+</div>
+
+<div class="card">
+<h3>👥 Team</h3>
+<p style="font-size:13px"><b>Ambokia Promise</b> - Founder, Buea Town<br><b>Micheal N.</b> - Business Manager, Molyko<br><b>Sarah B.</b> - Support & Payouts</p>
+<h3 style="margin-top:10px">💸 Withdraw</h3>
+<p style="font-size:13px">Min: 1,000F - Paid in 2hrs to your MoMo<br>Tap WhatsApp to request withdrawal</p>
+</div>
+
+<div style="text-align:center;padding:15px;font-size:11px;color:#888">
+© Caminvest Hub Buea • 678657567 • Trusted
+</div>
+</body>
+</html>
