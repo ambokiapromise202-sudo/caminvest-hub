@@ -106,3 +106,42 @@ update();
 </script>
 </body>
 </html>
+<script>
+if(!localStorage.getItem('phone')){location.href='register.html';}
+</script><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Login - CamInvest</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0a1931;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:15px}
+.box{background:#fff;color:#111;width:100%;max-width:360px;border-radius:20px;padding:22px;text-align:center}
+input{width:100%;padding:13px;border-radius:12px;border:1px solid #ccc;margin:8px 0}
+button{width:100%;padding:14px;border:0;border-radius:25px;background:#0a1931;color:#fff;font-weight:900;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>🔐 Login</h2>
+<p style="font-size:12px;opacity:.7">CamInvest Hub - 678657567</p>
+<input id="phone" placeholder="MoMo Number">
+<input id="pass" type="password" placeholder="Password">
+<button onclick="login()">LOGIN</button>
+<p style="margin-top:12px;font-size:13px">No account? <a href="register.html">Register - Get 200F</a></p>
+<button onclick="location.href='index.html'" style="background:#eee;color:#111;margin-top:6px">Skip Login (Demo)</button>
+</div>
+<script>
+function login(){
+let p=document.getElementById('phone').value.trim();
+let pw=document.getElementById('pass').value.trim();
+let savedPhone=localStorage.getItem('phone');
+let savedPass=localStorage.getItem('pass');
+if(!savedPhone){alert('No account found, please Register first');location.href='register.html';return;}
+if(p===savedPhone && pw===savedPass){alert('Welcome '+p);location.href='index.html';}
+else{alert('Wrong phone or password! Try: '+savedPhone);}
+}
+</script>
+</body>
+</html>
