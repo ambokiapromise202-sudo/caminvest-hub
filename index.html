@@ -1,150 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Caminvest Hub - Kankora Style</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Caminvest Hub</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#0f2f4d;color:white;padding-bottom:75px}
-.page{display:none}.page.active{display:block}
-.top{background:linear-gradient(rgba(10,37,64,0.3),#0f2f4d 90%),url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800') center/cover;padding:20px 15px 10px}
-.bal{font-size:32px;font-weight:900}
-.white-box{background:white;color:#222;border-radius:18px;display:flex;justify-content:space-around;padding:14px 5px;margin:15px;text-align:center;margin-top:-10px}
-.icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 auto 5px}
-.step{border-left:4px solid gold;background:rgba(255,255,255,0.07);border-radius:0 25px 25px 0;margin:8px 15px;padding:10px;display:flex;align-items:center;gap:12px}
-.num{padding:8px 14px;border-radius:20px;color:white;font-weight:800}
-.card{background:white;color:#222;border-radius:18px;margin:12px 15px;padding:12px;display:flex;gap:10px;position:relative;overflow:hidden}
-.card img{width:110px;border-radius:12px;object-fit:cover}
-.hot{position:absolute;top:0;left:0;background:red;color:white;padding:4px 10px;border-radius:18px 0 10px 0;font-size:11px;font-weight:800}
-.price{background:#0f3b2e;color:white;padding:8px;border-radius:8px;text-align:center;font-weight:800}
-.btn-invest{background:#0f3b2e;color:white;border:none;padding:12px;width:100%;border-radius:25px;font-weight:800;margin-top:8px}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:8px 0;color:#888;border-top:1px solid #ddd}
-.bottom .a.active{color:#0f2f4d;font-weight:800}
-.me-box{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:12px;margin:8px 15px;display:flex;align-items:center;gap:10px}
-.referral{background:#081c33;border-radius:16px;margin:12px 15px;padding:15px;text-align:center;border:1px solid gold}
-.l1{flex:1;background:linear-gradient(#b8860b,#5a3d00);border-radius:12px;padding:10px;text-align:center}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0b2a4a;color:#fff;padding-bottom:70px}
+.top{padding:20px;background:#0b2a4a}
+.b{font-size:30px;font-weight:900}
+.box{background:#fff;color:#222;border-radius:18px;display:flex;justify-content:space-around;padding:12px;margin:12px;text-align:center}
+.i{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:auto;font-size:20px}
+.h{margin:15px;border-left:4px solid gold;padding-left:10px;font-weight:800}
+.s{background:rgba(255,255,255,0.08);margin:8px 12px;border-radius:25px;padding:10px;display:flex;align-items:center;gap:10px;border-left:4px solid gold}
+.c{background:#fff;color:#222;border-radius:16px;margin:10px 12px;padding:10px;display:flex;gap:10px}
+.p{background:#0b2a4a;color:#fff;padding:8px;border-radius:8px;text-align:center;min-width:90px;font-weight:800}
+.btn{background:#0b2a4a;color:#fff;border:0;padding:12px;width:100%;border-radius:25px;font-weight:800;margin-top:8px}
+.bot{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;color:#888;font-size:11px;text-align:center}
+.on{color:#0b2a4a;font-weight:800}
+.page{display:none}.active{display:block}
 </style>
 <script>
-function nav(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(p).classList.add('active');document.querySelectorAll('.bottom .a').forEach(x=>x.classList.remove('active'));event.currentTarget.classList.add('active')}
-function pay(amt){
- if(confirm('Recharge XAF'+amt+' to 678657567 - Ambokia Promise?\n\nOK = MTN MoMo *126#\nCancel = Orange #150#')){
-  window.location.href='tel:*126*1*678657567*'+amt+'%23';
- } else {
-  window.location.href='tel:%23150%23';
- }
- setTimeout(()=>{window.open('https://wa.me/237678657567?text=Hello%20I%20paid%20'+amt+'F%20to%20678657567%20proof%20attached','_blank')},1200);
+function go(id){document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function pay(a){
+let m=confirm('Pay XAF'+a+' to 678657567?\nOK=MTN\nCancel=Orange');
+if(m){location.href='tel:*126*1*678657567*'+a+'%23'}else{location.href='tel:%23150%23'}
+setTimeout(()=>{location.href='https://wa.me/237678657567?text=Paid%20'+a+'F%20to%20678657567'},1000)
 }
 </script>
 </head>
 <body>
 
-<!-- HOME -->
 <div id="home" class="page active">
 <div class="top">
-<div style="font-size:13px;opacity:0.8">Total Available Assets on Platform</div>
-<div class="bal">XAF200</div>
-<div style="font-size:11px;background:gold;color:black;display:inline-block;padding:2px 8px;border-radius:10px;margin-top:5px">MoMo: 678657567 - Ambokia Promise</div>
+<div style="opacity:.7;font-size:13px">Total Available Assets on Platform</div>
+<div class="b">XAF200</div>
+<div style="background:gold;color:#000;display:inline-block;padding:3px 10px;border-radius:15px;font-size:11px;font-weight:800;margin-top:5px">MoMo: 678657567 - Ambokia Promise</div>
 </div>
 
-<div class="white-box">
-<div onclick="pay(5000)"><div class="icon" style="background:#e3f2fd">💳</div><div style="font-size:11px;font-weight:700">Recharge</div></div>
-<div onclick="location.href='https://wa.me/237678657567?text=I%20want%20to%20withdraw'"><div class="icon" style="background:#e8f5e9">🏧</div><div style="font-size:11px;font-weight:700">Withdrawal</div></div>
-<div onclick="alert('Invite 1 friend = 500F bonus')"><div class="icon" style="background:#fff3e0">🎁</div><div style="font-size:11px;font-weight:700">Free cash</div></div>
-<div onclick="alert('✅ Mary withdrew 7,500F\n✅ John withdrew 16,000F - All PAID to MoMo 678657567')"><div class="icon" style="background:#f3e5f5">📄</div><div style="font-size:11px;font-weight:700">Withdrawal<br>Proof</div></div>
+<div class="box">
+<div onclick="pay(5000)"><div class="i" style="background:#dbeafe">💳</div>Recharge</div>
+<div onclick="location.href='https://wa.me/237678657567?text=Withdraw'"><div class="i" style="background:#dcfce7">🏧</div>Withdrawal</div>
+<div onclick="alert('Bonus 500F for invite')"><div class="i" style="background:#ffedd5">🎁</div>Free cash</div>
+<div onclick="alert('Mary - 7500F PAID\nJohn - 16000F PAID')"><div class="i" style="background:#f3e8ff">📄</div>Proof</div>
 </div>
 
-<div style="padding:0 15px"><h3 style="border-left:4px solid gold;padding-left:10px">How to Earn?</h3></div>
-<div class="step"><div class="num" style="background:#2e7d32">01</div><div><b>Earn Now</b><br><small style="opacity:0.7">Invest in our shipping & logistics</small></div><div style="margin-left:auto">›</div></div>
-<div class="step" style="border-left-color:orange"><div class="num" style="background:orange">02</div><div><b>Invite Friends</b><br><small style="opacity:0.7">Invite friends earn commission</small></div><div style="margin-left:auto">›</div></div>
-<div class="step"><div class="num" style="background:#2e7d32">03</div><div><b>Unlock Rewards</b><br><small style="opacity:0.7">Unlock more rewards and bonuses</small></div><div style="margin-left:auto">›</div></div>
+<div class="h">How to Earn?</div>
+<div class="s"><div style="background:green;color:#fff;padding:6px 12px;border-radius:20px">01</div><div><b>Earn Now</b><br><small>Invest in logistics</small></div><div style="margin-left:auto">›</div></div>
+<div class="s" style="border-left-color:orange"><div style="background:orange;color:#fff;padding:6px 12px;border-radius:20px">02</div><div><b>Invite Friends</b><br><small>Earn 10% commission</small></div><div style="margin-left:auto">›</div></div>
+<div class="s"><div style="background:green;color:#fff;padding:6px 12px;border-radius:20px">03</div><div><b>Unlock Rewards</b><br><small>More bonuses</small></div><div style="margin-left:auto">›</div></div>
 
-<div style="padding:15px"><h3>🔥 Popular investment projects</h3></div>
-<div style="display:flex;gap:12px;overflow-x:auto;padding:0 15px">
-<div class="card" style="min-width:160px;flex-direction:column"><div class="hot">HOT!</div><img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=300" style="width:100%;height:80px"><div><b>Freight Link</b><br><small>Daily: 1,200F<br>Cycle: 5<br>Total: 6,000F</small><br><button class="btn-invest" onclick="pay(5000)">XAF5,000</button></div></div>
-<div class="card" style="min-width:160px;flex-direction:column"><div class="hot">HOT!</div><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=300" style="width:100%;height:80px"><div><b>Express Route</b><br><small>Daily: 2,500F<br>Cycle: 5<br>Total: 12,500F</small><br><button class="btn-invest" style="background:orange" onclick="pay(10000)">XAF10,000</button></div></div>
-</div>
+<div class="h">🔥 Popular investment projects</div>
 
-<div style="padding:15px"><h3>🚚 Featured Investment Programs</h3></div>
+<div class="c"><div class="p">Price:<br>XAF5,000</div><div><b>Freight Link</b><br><small>Daily: 1,200F<br>Cycle: 5<br>Total: 6,000F</small><br><button class="btn" onclick="pay(5000)">⚡ INVEST</button></div></div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=200">
-<div style="flex:1"><b>Connecting to Wealth</b><br><div style="display:flex;gap:10px;margin:8px 0"><div>Cycle: <b>2</b></div><div>Daily: <b>120</b></div></div><div>Total: <b>240</b></div><button class="btn-invest" onclick="pay(200)">⚡ INVEST</button></div>
-<div class="price" style="position:absolute;bottom:12px;left:12px">Price:<br>XAF200</div>
-</div>
+<div class="c"><div class="p" style="background:#8a4a00">Price:<br>XAF10,000</div><div><b>Express Route</b><br><small>Daily: 2,500F<br>Cycle: 5<br>Total: 12,500F</small><br><button class="btn" style="background:orange;color:#000" onclick="pay(10000)">⚡ INVEST</button></div></div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1519003722824-194243704534?w=200">
-<div style="flex:1"><b>Local Cargo</b><br><div style="display:flex;gap:10px;margin:8px 0"><div>Cycle: <b>60</b></div><div>Daily: <b>840</b></div></div><div>Total: <b>50,400</b></div><button class="btn-invest" onclick="pay(16000)">⚡ INVEST</button></div>
-<div class="price" style="position:absolute;bottom:12px;left:12px">Price:<br>XAF16,000</div>
-</div>
+<div class="c"><div class="p" style="background:green">Price:<br>XAF20,000</div><div><b>VIP Cargo</b><br><small>Daily: 5,200F<br>Cycle: 5<br>Total: 26,000F</small><br><button class="btn" style="background:gold;color:#000" onclick="pay(20000)">⚡ INVEST</button></div></div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=200">
-<div style="flex:1"><b>Fleet Growth</b><br><div style="display:flex;gap:10px;margin:8px 0"><div>Cycle: <b>60</b></div><div>Daily: <b>6,720</b></div></div><div>Total: <b>403,200</b></div><button class="btn-invest" onclick="pay(100000)">⚡ INVEST</button></div>
-<div class="price" style="position:absolute;bottom:12px;left:12px">Price:<br>XAF100,000</div>
-</div>
+<div class="c"><div class="p">Price:<br>XAF100,000</div><div><b>Fleet Growth</b><br><small>Daily: 6,720F<br>Cycle: 60<br>Total: 403,200F</small><br><button class="btn" onclick="pay(100000)">⚡ INVEST</button></div></div>
 
 </div>
 
-<!-- ORDER -->
-<div id="order" class="page">
-<div style="padding:20px"><h3>My Equipment Orders</h3>
-<div style="background:linear-gradient(90deg,#ffeaa7,#fdcb6e);color:#222;border-radius:16px;padding:15px;margin-top:10px">
-<b>My Equipment Orders</b><span style="float:right;background:#0f3b2e;color:white;padding:4px 10px;border-radius:15px;font-size:11px">1 Active Orders</span>
-<div style="font-size:28px;font-weight:900;color:#0f3b2e;margin:10px 0">XAF2,000</div>
-<div style="display:flex;gap:10px;font-size:11px"><div>Total orders: 1</div><div>Total income +XAF0</div><div>Total invested XAF2,000</div></div>
-</div>
-<div style="background:white;color:#222;border-radius:16px;padding:12px;margin-top:12px">
-<div style="display:flex;justify-content:space-between"><b>Route Start</b><span style="color:green">• Active</span></div>
-<small>Expired: 2026-09-05</small><br><br>
-<div style="display:flex;gap:10px"><div style="background:#ffeaa7;padding:8px;border-radius:8px;flex:1">Purchased: <b>XAF2,000</b></div><div style="background:#d5f5e3;padding:8px;border-radius:8px;flex:1">Profit: <b>XAF23</b></div></div>
-<div style="background:#0f3b2e;color:white;padding:10px;border-radius:25px;margin-top:10px">Total income +XAF138</div>
-</div>
-</div>
-</div>
-
-<!-- TEAM -->
 <div id="team" class="page">
 <div style="padding:15px">
-<div style="background:linear-gradient(90deg,#0f3b2e,#1e8449);border-radius:16px;padding:15px">
-<h3>⭐ Team Referral</h3><small>Invite friends receive instant commissions on every deposit</small>
-<div style="background:white;color:#222;border-radius:10px;padding:12px;margin:12px 0;text-align:center;font-weight:900;letter-spacing:2px">CAMI-678657567</div>
-<div style="display:flex;gap:10px"><button style="flex:1;padding:10px;border-radius:20px;border:none">📋 Copy</button><button style="flex:1;padding:10px;border-radius:20px;border:none;background:orange;color:white" onclick="navigator.share?navigator.share({title:'Caminvest Hub',text:'Join Caminvest Hub invest with 678657567',url:location.href}):alert('Share: '+location.href)">↗ Share</button></div>
-</div>
-<div style="background:#0f2f4d;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:12px;margin-top:12px">
-<h4>Commission Structure</h4>
-<div style="display:flex;gap:8px;margin-top:10px">
-<div class="l1"><b>L1</b><br><div style="font-size:24px">15%</div>Direct</div>
-<div class="l1" style="background:linear-gradient(#2471a3,#0a1931)"><b>L2</b><br><div style="font-size:24px">2%</div>Second</div>
-<div class="l1" style="background:linear-gradient(#8e44ad,#4a235a)"><b>L3</b><br><div style="font-size:24px">1%</div>Third</div>
+<div style="background:#082040;border-radius:15px;padding:15px;border:1px solid gold;text-align:center">
+<h3>⭐ Team Referral</h3>
+<div style="background:#fff;color:#222;padding:10px;border-radius:10px;margin:10px 0;font-weight:900">CAMI-678657567</div>
+<button style="padding:8px 15px;border-radius:20px;border:0" onclick="navigator.clipboard.writeText('CAMI-678657567');alert('Copied!')">📋 Copy</button>
+<button style="padding:8px 15px;border-radius:20px;border:0;background:orange;color:#fff;margin-left:5px" onclick="alert(location.href)">↗ Share</button>
+<div style="display:flex;gap:8px;margin-top:12px">
+<div style="flex:1;background:linear-gradient(gold,#8a6d00);border-radius:10px;padding:10px"><b>L1 15%</b><br><small>Direct</small></div>
+<div style="flex:1;background:linear-gradient(#3498db,#0b2a4a);border-radius:10px;padding:10px"><b>L2 2%</b><br><small>Second</small></div>
+<div style="flex:1;background:linear-gradient(#a569bd,#4a235a);border-radius:10px;padding:10px"><b>L3 1%</b><br><small>Third</small></div>
 </div>
 </div>
 </div>
 </div>
 
-<!-- ME -->
 <div id="me" class="page">
 <div style="padding:15px">
-<div style="display:flex;align-items:center;gap:12px"><div style="width:50px;height:50px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#0f2f4d;font-weight:900">C</div><div><b>672697321</b> -> change to <b>678657567</b><br><small>Invitation: CAMI-6252977</small></div></div>
-<div class="me-box" style="margin-top:15px"><div>Balance XAF</div><div style="font-size:24px;font-weight:900">200</div><button style="margin-left:auto;background:orange;border:none;padding:8px 15px;border-radius:20px" onclick="pay(1000)">Wallet</button></div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
-<div class="me-box" style="flex-direction:column">🎧<br>Customer Service</div>
-<div class="me-box" style="flex-direction:column">🔒<br>Change Password</div>
-<div class="me-box" style="flex-direction:column">📄<br>Balance bill</div>
-<div class="me-box" style="flex-direction:column">📱<br>APP Download</div>
-<div class="me-box" style="flex-direction:column">👥<br>About Us - Ambokia Promise - Buea</div>
-<div class="me-box" style="flex-direction:column">✉️<br>Feedback</div>
-</div>
+<b>678657567</b><br><small>Invitation: CAMI-678657567</small><br><br>
+<div style="background:rgba(255,255,255,.1);padding:12px;border-radius:12px;display:flex;justify-content:space-between">Balance XAF <b>200</b> <button style="background:orange;border:0;padding:5px 12px;border-radius:15px" onclick="pay(1000)">Wallet</button></div>
+<br>
+<div>Customer Service: <a href="https://wa.me/237678657567" style="color:gold">WhatsApp 678657567</a></div>
+<br><div>Team: Ambokia Promise (Founder Buea), Micheal N., Sarah B.</div>
 </div>
 </div>
 
-<div class="bottom">
-<div class="a active" onclick="nav('home')">🏠<br>Home</div>
-<div class="a" onclick="nav('order')">📋<br>Order</div>
-<div class="a" onclick="window.open('https://wa.me/237678657567')">💬<br>Service client</div>
-<div class="a" onclick="nav('team')">👥<br>Team</div>
-<div class="a" onclick="nav('me')">👤<br>Me</div>
+<div class="bot">
+<div class="on" onclick="go('home')">🏠<br>Home</div>
+<div onclick="alert('Orders: 1 active')">📋<br>Order</div>
+<div onclick="location.href='https://wa.me/237678657567'">💬<br>Service client</div>
+<div onclick="go('team')">👥<br>Team</div>
+<div onclick="go('me')">👤<br>Me</div>
 </div>
 
 </body>
