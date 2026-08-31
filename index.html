@@ -3,82 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Caminvest Hub - Buea</title>
+<title>Caminvest Hub</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#f2f4f8}
-.header{background:#0a1931;color:white;padding:12px;text-align:center}
-.momo{background:white;margin:12px;border-radius:16px;padding:16px;text-align:center;border:2px solid gold;box-shadow:0 5px 15px rgba(0,0,0,0.1)}
-.num{font-size:30px;font-weight:900;background:gold;padding:8px 20px;border-radius:30px;display:inline-block;margin:8px}
-.card{background:white;margin:12px;border-radius:12px;padding:15px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
-.btn{width:100%;padding:14px;border:none;border-radius:10px;font-weight:700;margin-top:8px;font-size:15px}
-.btn-buy{background:#0a1931;color:white}
-.btn-mtn{background:#ffcc00;color:black}
-.btn-orange{background:black;color:white}
-.plan{border:1px solid #ddd;padding:10px;border-radius:10px;margin:8px 0;display:flex;justify-content:space-between}
+body{background:#0a2540;color:white;padding-bottom:80px}
+.top-bg{background:linear-gradient(rgba(0,0,0,0.6),#0a2540),url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600');background-size:cover;padding:20px}
+.assets{font-size:14px;opacity:0.8}
+.balance{font-size:36px;font-weight:900;margin:5px 0}
+.actions{background:white;border-radius:20px;display:flex;justify-content:space-around;padding:15px 10px;margin:15px;color:#222;text-align:center}
+.action-icon{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 5px}
+.section{padding:15px}
+.step{display:flex;align-items:center;background:rgba(255,255,255,0.08);margin:10px 0;border-radius:50px;padding:8px;border-left:4px solid #ffcc00}
+.step-num{padding:6px 12px;border-radius:20px;font-weight:700;margin-right:10px}
+.projects{display:flex;gap:10px;overflow-x:auto}
+.project{background:white;color:#222;min-width:160px;border-radius:16px;padding:10px;position:relative}
+.hot{position:absolute;top:-8px;left:-5px;background:red;color:white;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:800;transform:rotate(-10deg)}
+.momo-banner{background:linear-gradient(90deg,#ff0000,#cc0000);margin:10px 15px;border-radius:12px;padding:12px;text-align:center}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0;color:#888;border-top:1px solid #eee}
+.bottom-nav div{text-align:center;font-size:11px}
+.bottom-nav .active{color:#0a2540;font-weight:700}
 </style>
 <script>
-function buyPlan(amount, plan){
-  let mtn = confirm(plan+" - "+amount+"F\n\nOK = Pay with MTN MoMo\nCancel = Pay with Orange Money");
-  if(mtn){
-    window.location.href = "tel:*126*1*678657567*"+amount+"%23";
-  }else{
-    window.location.href = "tel:%23150%23";
-  }
-  setTimeout(()=>{
-    window.location.href = "https://wa.me/237678657567?text=Hello%20I%20paid%20"+amount+"F%20for%20"+plan+"%20to%20678657567";
-  }, 2000);
+function recharge(a){
+ let amt=a||0;
+ if(confirm('Recharge '+amt+'F to 678657567?\nOK=MTN *126#\nCancel=Orange #150#')){
+   location.href='tel:*126*1*678657567*'+amt+'%23';
+ }else{
+   location.href='tel:%23150%23';
+ }
+ setTimeout(()=>{location.href='https://wa.me/237678657567?text=I%20paid%20'+amt+'F%20to%20678657567'},1500);
 }
 </script>
 </head>
 <body>
-<div class="header"><b>CAMINVEST HUB</b> - Buea Based Investment</div>
-
-<div class="momo">
-<b style="color:red">OFFICIAL PAYMENT</b><br>
-<div class="num">678657567</div><br>
-<b>Ambokia Promise - MTN MoMo</b><br>
-<small>Orange also accepted to same number</small>
+<div class="top-bg">
+<div class="assets">Total Available Assets on Platform</div>
+<div class="balance">XAF <span id="bal">200</span></div>
+<div style="font-size:12px;opacity:0.7">Official MoMo: 678657567 - Ambokia Promise</div>
 </div>
 
-<div class="card">
-<h3>Choose Plan</h3>
-<div class="plan"><div><b>Starter</b><br>5,000F → 6,000F (7 days)</div><div>20%</div></div>
-<button class="btn btn-buy" onclick="buyPlan(5000,'Starter')">BUY STARTER - 5,000F</button>
-
-<div class="plan"><div><b>Pro</b><br>10,000F → 12,500F (7 days)</div><div>25%</div></div>
-<button class="btn btn-buy" onclick="buyPlan(10000,'Pro')">BUY PRO - 10,000F</button>
-
-<div class="plan"><div><b>VIP</b><br>20,000F → 26,000F (7 days)</div><div>30%</div></div>
-<button class="btn btn-buy" onclick="buyPlan(20000,'VIP')">BUY VIP - 20,000F</button>
-
-<div style="display:flex;gap:8px;margin-top:12px">
-<a href="tel:*126%23" class="btn btn-mtn" style="text-align:center;text-decoration:none">📞 MTN *126#</a>
-<a href="tel:%23150%23" class="btn btn-orange" style="text-align:center;text-decoration:none">📞 ORANGE #150#</a>
-</div>
+<div class="momo-banner">
+<b>💰 MTN MoMo: 678657567 - Ambokia Promise</b><br><small>Tap Recharge to pay auto</small>
 </div>
 
-<div class="card">
-<h3>How to Pay</h3>
-<p style="font-size:14px;line-height:1.6">
-1. Tap BUY button above<br>
-2. Choose MTN or Orange<br>
-3. Phone dialer opens auto with number 678657567<br>
-4. Confirm and send<br>
-5. Screenshot → WhatsApp proof
-</p>
-<a href="https://wa.me/237678657567" class="btn btn-buy" style="display:block;text-align:center;text-decoration:none;background:green">💬 SEND PROOF ON WHATSAPP</a>
+<div class="actions">
+<div onclick="recharge(5000)"><div class="action-icon" style="background:#e3f2fd">💳</div><b style="font-size:11px">Recharge</b></div>
+<div onclick="location.href='https://wa.me/237678657567?text=I%20want%20to%20withdraw'"><div class="action-icon" style="background:#e8f5e9">🏧</div><b style="font-size:11px">Withdrawal</b></div>
+<div onclick="alert('Invite friend get 500F bonus! Share: caminvest-hub.vercel.app')"><div class="action-icon" style="background:#fff3e0">🎁</div><b style="font-size:11px">Free cash</b></div>
+<div onclick="alert('Recent: 13:30 Mary withdrew 7,500F - PAID\n12:15 John withdrew 16,000F - PAID')"><div class="action-icon" style="background:#f3e5f5">📄</div><b style="font-size:11px">Withdrawal Proof</b></div>
 </div>
 
-<div class="card">
-<h3>👥 Team</h3>
-<p style="font-size:13px"><b>Ambokia Promise</b> - Founder, Buea Town<br><b>Micheal N.</b> - Business Manager, Molyko<br><b>Sarah B.</b> - Support & Payouts</p>
-<h3 style="margin-top:10px">💸 Withdraw</h3>
-<p style="font-size:13px">Min: 1,000F - Paid in 2hrs to your MoMo<br>Tap WhatsApp to request withdrawal</p>
+<div class="section">
+<h3 style="border-left:4px solid gold;padding-left:10px">How to Earn?</h3>
+<div class="step"><div class="step-num" style="background:#4caf50;color:white">01</div><div><b>Earn Now</b><br><small style="opacity:0.7">Invest in our Buea business projects</small></div><div style="margin-left:auto">›</div></div>
+<div class="step" style="border-left-color:orange"><div class="step-num" style="background:orange;color:white">02</div><div><b>Invite Friends</b><br><small style="opacity:0.7">Invite friends and earn 10% commission</small></div><div style="margin-left:auto">›</div></div>
+<div class="step"><div class="step-num" style="background:#4caf50;color:white">03</div><div><b>Unlock Rewards</b><br><small style="opacity:0.7">Unlock more rewards and bonuses</small></div><div style="margin-left:auto">›</div></div>
 </div>
 
-<div style="text-align:center;padding:15px;font-size:11px;color:#888">
-© Caminvest Hub Buea • 678657567 • Trusted
+<div class="section">
+<h3>⭐ Popular investment projects</h3>
+<div class="projects" style="margin-top:12px">
+<div class="project">
+<div class="hot">HOT!</div>
+<div style="background:#e3f2fd;height:70px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:40px">🏗️</div>
+<b style="font-size:13px">Freight Link</b><br>
+<small style="font-size:11px">Daily income(XAF): <b style="color:orange">1,200</b><br>Cycle(Day): <b>5</b><br>Total income: 6,000F</small><br>
+<button onclick="recharge(5000)" style="width:100%;background:#0a2540;color:white;border:none;padding:8px;border-radius:20px;margin-top:6px;font-size:11px">Invest 5,000F</button>
+</div>
+<div class="project">
+<div class="hot">HOT!</div>
+<div style="background:#fff9c4;height:70px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:40px">🚚</div>
+<b style="font-size:13px">Express Route</b><br>
+<small style="font-size:11px">Daily income(XAF): <b style="color:orange">2,500</b><br>Cycle(Day): <b>5</b><br>Total income: 12,500F</small><br>
+<button onclick="recharge(10000)" style="width:100%;background:#0a2540;color:white;border:none;padding:8px;border-radius:20px;margin-top:6px;font-size:11px">Invest 10,000F</button>
+</div>
+<div class="project">
+<div class="hot">HOT!</div>
+<div style="background:#e8f5e9;height:70px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:40px">🚛</div>
+<b style="font-size:13px">VIP Cargo</b><br>
+<small style="font-size:11px">Daily income(XAF): <b style="color:orange">5,200</b><br>Cycle(Day): <b>5</b><br>Total income: 26,000F</small><br>
+<button onclick="recharge(20000)" style="width:100%;background:gold;color:black;border:none;padding:8px;border-radius:20px;margin-top:6px;font-weight:700;font-size:11px">Invest 20,000F</button>
+</div>
+</div>
+</div>
+
+<div class="bottom-nav">
+<div class="active" onclick="location.reload()">🏠<br>Home</div>
+<div onclick="alert('Your orders will show here')">📋<br>Order</div>
+<div onclick="location.href='https://wa.me/237678657567'">💬<br>Service client</div>
+<div onclick="alert('Team: Ambokia Promise (Founder)\nMicheal N. (Manager)\nSarah B. (Support)')">👥<br>Team</div>
+<div onclick="alert('Your profile: Balance 200F\nMoMo: 678657567\nCall: 678657567')">👤<br>Me</div>
 </div>
 </body>
 </html>
