@@ -3,208 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CamInvest Hub</title>
+<title>Caminvest Hub - Invest & Earn</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f5f5f5;padding-bottom:80px;overflow-x:hidden}
-.login-page{position:fixed;top:0;left:0;right:0;bottom:0;background:#ff2a2a;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;color:white}
-.login-page input{width:100%;max-width:300px;padding:15px;border-radius:10px;border:none;margin:10px 0}
-.login-page button{width:100%;max-width:300px;padding:15px;background:black;color:white;border:none;border-radius:10px;font-weight:bold;margin-top:10px}
-.header{background:#ff2a2a;color:white;padding:12px 15px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
-.drawer{position:fixed;top:0;left:-280px;width:280px;height:100%;background:white;z-index:10000;transition:0.3s;box-shadow:2px 0 10px rgba(0,0,0,0.3);overflow-y:auto}
-.drawer.open{left:0}
-.drawer-head{background:#ff2a2a;color:white;padding:20px}
-.drawer a{display:block;padding:15px 20px;text-decoration:none;color:#333;border-bottom:1px solid #eee}
-.drawer a span{margin-right:10px}
-.overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:9999;display:none}
-.overlay.show{display:block}
-.balance-card{background:white;margin:15px;border-radius:15px;padding:15px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
-.balance-card h2{color:#ff2a2a;font-size:26px}
-.video-modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:9998;display:none;flex-direction:column;justify-content:center;padding:15px}
-.video-modal video{width:100%;border-radius:15px;max-height:70vh}
-.video-modal button{margin-top:15px;padding:15px;background:#ff2a2a;color:white;border:none;border-radius:10px;font-weight:bold}
-.page{display:none;padding:15px}
-.page.active{display:block}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;z-index:999}
-.bottom-nav a{text-decoration:none;color:gray;text-align:center;font-size:11px}
-.bottom-nav a.active{color:#ff2a2a}
-.task{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #eee;background:white;margin-bottom:10px;border-radius:10px;padding:15px}
-.task button{background:#ff2a2a;color:white;border:none;padding:8px 15px;border-radius:20px}
+body{margin:0;font-family:Arial;background:#0a0a0a;color:white}
+.header{background:gold;color:black;padding:15px;text-align:center;font-weight:bold;font-size:22px}
+.momo-banner{background:red;color:white;padding:20px;text-align:center;font-size:22px;font-weight:bold;position:sticky;top:0;z-index:999}
+.momo-banner span{background:yellow;color:black;padding:5px 15px;border-radius:10px}
+.card{background:#1a1a1a;margin:15px;padding:20px;border-radius:15px;border:1px solid gold}
+.btn{background:gold;color:black;padding:15px;width:100%;border:none;border-radius:10px;font-size:18px;font-weight:bold;margin-top:10px}
+input{width:90%;padding:12px;margin:8px;border-radius:8px;border:none}
 </style>
 </head>
 <body>
 
-<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+<div class="header">💰 CAMINVEST HUB 💰</div>
 
-<div class="drawer" id="drawer">
-<div class="drawer-head">
-<h3>💎 CamInvest Hub</h3>
-<p id="drawerUser" style="font-size:12px;margin-top:5px">Welcome Learner</p>
-<p style="font-size:11px;margin-top:10px">MTN MoMo: 680 72 65 14</p>
-</div>
-<a onclick="openPage('home');closeDrawer()"><span>🏠</span> Home</a>
-<a onclick="openPage('earn');closeDrawer()"><span>📊</span> Earn - Watch Videos</a>
-<a onclick="openPage('team');closeDrawer()"><span>👥</span> Team - Invite Friends</a>
-<a onclick="openPage('mine');closeDrawer()"><span>👤</span> Mine - My Profile</a>
-<a onclick="openPage('recharge');closeDrawer()"><span>💳</span> Recharge - Buy Class</a>
-<a onclick="openPage('withdraw');closeDrawer()"><span>💰</span> Withdraw - Get Money</a>
-<a onclick="openPage('rules');closeDrawer()"><span>📜</span> Platform Rules</a>
-<a onclick="openPage('help');closeDrawer()"><span>🎧</span> Help Center</a>
-<a style="color:#ff2a2a;font-weight:bold" onclick="logout()"><span>🚪</span> Logout</a>
+<div class="momo-banner">
+  PAY HERE 👉 MTN MoMo: <span>678657567</span><br>
+  Name: Ambokia Promise<br>
+  <small>Send proof to WhatsApp after payment</small>
 </div>
 
-<div id="loginPage" class="login-page">
-<div style="font-size:50px">📦</div>
-<h2>CamInvest Hub</h2>
-<input type="tel" id="phoneInput" placeholder="Phone 6XXXXXXXX" maxlength="9">
-<input type="password" id="pinInput" placeholder="PIN 1234" maxlength="4">
-<button onclick="login()">LOGIN</button>
+<div class="card">
+  <h2>🚀 Investment Plans</h2>
+  <p>✅ 5000 FCFA = 7500 FCFA in 7 days</p>
+  <p>✅ 10000 FCFA = 16000 FCFA in 7 days</p>
+  <p>✅ 20000 FCFA = 35000 FCFA in 7 days</p>
+  <button class="btn" onclick="alert('Pay to MoMo 678657567 then WhatsApp proof to Ambokia Promise')">INVEST NOW</button>
 </div>
 
-<div id="videoModal" class="video-modal">
-<video id="popVideo" controls playsinline>
-<source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-</video>
-<button onclick="claimPoints()">CLAIM +200 POINTS</button>
-<button onclick="closeVideo()" style="background:gray">Close</button>
+<div class="card">
+  <h2>💳 How to Pay</h2>
+  <p>1. Dial *126#</p>
+  <p>2. Send Money to <b style="color:gold">678657567</b></p>
+  <p>3. Name: <b>Ambokia Promise</b></p>
+  <p>4. Screenshot and send to WhatsApp</p>
+  <button class="btn" onclick="navigator.clipboard.writeText('678657567');alert('MoMo number 678657567 copied!')">COPY MOMO NUMBER</button>
 </div>
 
-<div class="header">
-<span style="font-size:24px" onclick="openDrawer()">☰</span>
-<b>💎 CamInvest Hub</b>
-<span>🔔</span>
-</div>
-
-<!-- HOME PAGE -->
-<div id="home" class="page active">
-<div class="balance-card">
-<small>Points Balance</small>
-<h2 id="pointsBal">0 Points</h2>
-<small>Money Value</small>
-<h2 id="moneyBal" style="color:green">FCFA 2,060</h2>
-<small id="userDisplay">Welcome!</small>
-<p style="background:#ffcc00;padding:8px;border-radius:8px;margin-top:8px;font-size:11px;font-weight:bold;text-align:center">1 Point = 10 FCFA | MoMo: 680726514</p>
-</div>
-
-<div style="background:white;margin:15px;border-radius:15px;overflow:hidden">
-<video autoplay muted loop playsinline style="width:100%;height:200px;object-fit:cover">
-<source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4">
-</video>
-<div style="padding:15px;text-align:center">
-<h3 style="color:#ff2a2a">POP MART Labubu Learning</h3>
-<p style="font-size:12px;color:gray">All tasks work inside website!</p>
-<button onclick="openVideo(200)" style="margin-top:10px;background:#ff2a2a;color:white;border:none;padding:10px 20px;border-radius:20px;font-weight:bold">▶️ WATCH & EARN 200 POINTS</button>
-</div>
-</div>
-
-<div class="task"><div><b>Watch Video</b><br><small>+200 = FCFA 2000</small></div><button onclick="openVideo(200)">GO</button></div>
-<div class="task"><div><b>Daily Check-in</b><br><small>+50 = FCFA 500</small></div><button onclick="addPoints(50)">GO</button></div>
-</div>
-
-<!-- EARN PAGE -->
-<div id="earn" class="page">
-<h2>📊 Earn Center - All Inside Website</h2>
-<div class="task"><div><b>Watch Investment Lesson 1</b><br><small>Reward: 200 Points</small></div><button onclick="openVideo(200)">WATCH</button></div>
-<div class="task"><div><b>Watch Pop Mart Toy Story</b><br><small>Reward: 150 Points</small></div><button onclick="openVideo(150)">WATCH</button></div>
-<div class="task"><div><b>Complete Quiz</b><br><small>Reward: 100 Points</small></div><button onclick="addPoints(100)">START</button></div>
-<p style="margin-top:15px;padding:15px;background:white;border-radius:10px">Your Points: <b id="earnPoints">0</b> | Money: <b id="earnMoney" style="color:green">FCFA 0</b></p>
-</div>
-
-<!-- TEAM PAGE -->
-<div id="team" class="page">
-<h2>👥 My Team</h2>
-<div style="background:white;padding:15px;border-radius:10px;margin-top:15px">
-<p>Invite Link (Your Referral):</p>
-<input id="inviteLink" value="https://caminvest-hub.vercel.app/?ref=680726514" style="width:100%;padding:10px;margin:10px 0;border:1px solid #ddd;border-radius:8px" readonly>
-<button onclick="copyLink()" style="width:100%;background:#ff2a2a;color:white;border:none;padding:12px;border-radius:10px;font-weight:bold">COPY LINK</button>
-<p style="margin-top:15px;font-size:12px">Team Members: 0 | Team Points: 0 | When friend joins you get 500 Points automatically!</p>
-<button onclick="addPoints(500)" style="margin-top:10px;background:green;color:white;border:none;padding:10px 20px;border-radius:20px">SIMULATE INVITE +500</button>
-</div>
-</div>
-
-<!-- MINE PAGE -->
-<div id="mine" class="page">
-<h2>👤 My Profile</h2>
-<div style="background:white;padding:15px;border-radius:10px;margin-top:15px">
-<p>Phone: <b id="minePhone">Not logged</b></p>
-<p style="margin-top:10px">Points: <b id="minePoints">0</b></p>
-<p>Balance: <b id="mineMoney" style="color:green">FCFA 2,060</b></p>
-<p style="margin-top:15px;font-size:12px;color:gray">Everything works inside website. No need to contact unless question.</p>
-<button onclick="openPage('help')" style="margin-top:15px;background:#25D366;color:white;border:none;padding:12px;width:100%;border-radius:10px;font-weight:bold">Contact Only If Question</button>
-</div>
-</div>
-
-<!-- OTHER PAGES -->
-<div id="recharge" class="page">
-<h2>💳 Recharge</h2>
-<div style="background:white;padding:15px;border-radius:10px;margin-top:15px">
-<p>Buy Learning Class:</p>
-<button onclick="buyClass(5000)" style="width:100%;padding:15px;margin:10px 0;background:white;border:2px solid #ff2a2a;border-radius:10px;font-weight:bold">FCFA 5,000 - Beginner Class</button>
-<button onclick="buyClass(10000)" style="width:100%;padding:15px;margin:10px 0;background:white;border:2px solid #ff2a2a;border-radius:10px;font-weight:bold">FCFA 10,000 - Pro Class</button>
-<p style="font-size:11px;color:gray;margin-top:10px">After you select, your balance will increase inside website (Demo Mode). For real MoMo payment, contact support.</p>
-</div>
-</div>
-
-<div id="withdraw" class="page">
-<h2>💰 Withdraw</h2>
-<div style="background:white;padding:15px;border-radius:10px;margin-top:15px">
-<p>Your Balance: <b id="wdMoney" style="color:green">FCFA 0</b></p>
-<input id="wdAmount" placeholder="Amount to withdraw e.g. 5000" style="width:100%;padding:12px;margin:15px 0;border:1px solid #ddd;border-radius:8px">
-<button onclick="doWithdraw()" style="width:100%;background:green;color:white;border:none;padding:12px;border-radius:10px;font-weight:bold">WITHDRAW NOW</button>
-<p style="font-size:11px;color:gray;margin-top:10px">Demo: Money will deduct from website balance. Minimum FCFA 5,000</p>
-</div>
-</div>
-
-<div id="rules" class="page"><h2>📜 Rules</h2><div style="background:white;padding:15px;border-radius:10px;margin-top:15px;font-size:13px;line-height:1.6"><p>1. This is a learning demo app.</p><p>2. 1 Point = 10 FCFA (Demo value).</p><p>3. Watch videos to earn points inside website.</p><p>4. Everything works inside website.</p><p>5. Contact only if question: 680726514</p><p>6. Safe, Legal, Educational Purpose.</p></div></div>
-
-<div id="help" class="page"><h2>🎧 Help Center</h2><div style="background:white;padding:15px;border-radius:10px;margin-top:15px"><p>Need help? Contact only when question:</p><p style="margin:10px 0;font-weight:bold">📞 MTN MoMo: 680 72 65 14</p><p>Ambokia Promise - Douala</p><button onclick="window.open('https://wa.me/237680726514?text=Hello%20CamInvest%20I%20have%20a%20question','_blank')" style="width:100%;background:#25D366;color:white;border:none;padding:12px;border-radius:10px;margin-top:15px;font-weight:bold">💬 Chat on WhatsApp</button></div></div>
-
-<div class="bottom-nav">
-<a class="active" id="nav-home" onclick="openPage('home')"><span>🏠</span>Home</a>
-<a id="nav-earn" onclick="openPage('earn')"><span>📊</span>Earn</a>
-<a id="nav-team" onclick="openPage('team')"><span>👥</span>Team</a>
-<a id="nav-mine" onclick="openPage('mine')"><span>👤</span>Mine</a>
+<div class="card">
+  <h2>📞 Contact</h2>
+  <p>WhatsApp: Chat after payment</p>
+  <p>MoMo: 678657567 - Ambokia Promise</p>
+  <a href="https://wa.me/237678657567?text=Hello%20I%20paid%20to%20678657567"><button class="btn" style="background:green;color:white">WHATSAPP PROOF</button></a>
 </div>
 
 <script>
-let points=parseInt(localStorage.getItem('myPoints')||'0');
-let base=2060;
-let currentReward=0;
-function updateAll(){
-let total=base+(points*10);
-document.getElementById('pointsBal').innerText=points+' Points';
-document.getElementById('moneyBal').innerText='FCFA '+total.toLocaleString();
-document.getElementById('earnPoints').innerText=points;
-document.getElementById('earnMoney').innerText='FCFA '+total.toLocaleString();
-document.getElementById('minePoints').innerText=points;
-document.getElementById('mineMoney').innerText='FCFA '+total.toLocaleString();
-document.getElementById('wdMoney').innerText='FCFA '+total.toLocaleString();
-localStorage.setItem('myPoints',points);
-}
-updateAll();
-function login(){let p=document.getElementById('phoneInput').value;let pin=document.getElementById('pinInput').value;if(p.length<9||pin.length!=4){alert('Phone 9 digits, PIN 4 digits');return}localStorage.setItem('phone',p);document.getElementById('loginPage').style.display='none';document.getElementById('userDisplay').innerText='User: 6'+p.slice(-8);document.getElementById('drawerUser').innerText='User: 6'+p.slice(-8);document.getElementById('minePhone').innerText='6'+p.slice(-8);}
-if(localStorage.getItem('phone')){document.getElementById('loginPage').style.display='none';let p=localStorage.getItem('phone');document.getElementById('userDisplay').innerText='User: 6'+p.slice(-8);document.getElementById('drawerUser').innerText='User: 6'+p.slice(-8);document.getElementById('minePhone').innerText='6'+p.slice(-8);}
-function openDrawer(){document.getElementById('drawer').classList.add('open');document.getElementById('overlay').classList.add('show');}
-function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.getElementById('overlay').classList.remove('show');}
-function openPage(id){
-document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-document.getElementById(id).classList.add('active');
-document.querySelectorAll('.bottom-nav a').forEach(a=>a.classList.remove('active'));
-if(document.getElementById('nav-'+id))document.getElementById('nav-'+id).classList.add('active');
-window.scrollTo(0,0);
-}
-function openVideo(r){currentReward=r;document.getElementById('videoModal').style.display='flex';document.getElementById('popVideo').play();}
-function closeVideo(){document.getElementById('videoModal').style.display='none';document.getElementById('popVideo').pause();}
-function claimPoints(){addPoints(currentReward);closeVideo();}
-function addPoints(n){points+=n;updateAll();alert('🎉 +'+n+' Points added! Now: '+points+' Points = FCFA '+(base+points*10));}
-function buyClass(amt){points+=amt/10;updateAll();alert('✅ Class bought! +'+amt/10+' Points added inside website!');openPage('home');}
-function doWithdraw(){let v=parseInt(document.getElementById('wdAmount').value);let total=base+points*10;if(!v||v<5000){alert('Minimum 5000');return}if(v>total){alert('Not enough balance. You have FCFA '+total);return}points-=Math.ceil(v/10);if(points<0)points=0;updateAll();alert('✅ Withdraw success! FCFA '+v+' deducted. New balance: FCFA '+(base+points*10));}
-function copyLink(){navigator.clipboard.writeText(document.getElementById('inviteLink').value);alert('Link copied!');}
-function logout(){localStorage.clear();location.reload();}
+function showAlert(){ alert('Pay to MTN MoMo: 678657567 - Ambokia Promise'); }
 </script>
 </body>
 </html>
-<div style="background:gold; padding:20px; text-align:center; font-size:20px; margin:20px;">
-  <b>Pay via MTN MoMo: 678657567 - Ambokia Promise</b><br>
-  Send proof to WhatsApp after payment
-</div>
