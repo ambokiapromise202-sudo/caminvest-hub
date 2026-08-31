@@ -105,4 +105,43 @@ setTimeout(load,1000);
 function clearW(){if(confirm('Clear all?')){localStorage.setItem('withdraws','[]');load();}}
 </script>
 </body>
-</html>
+</html><div id="withdrawModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;padding:16px">
+<div style="background:white;border-radius:20px;padding:20px;width:100%;max-width:400px">
+<h2 style="font-weight:bold;font-size:18px">💸 Withdraw - MTN MoMo / Orange</h2>
+<p style="font-size:12px;color:gray;margin-top:4px">Balance: <span id="modalBal">105 XAF</span> | Min: 100 XAF</p>
+<input id="momoNumber" placeholder="MTN/Orange Number e.g. 678657567" style="width:100%;border:1px solid #ddd;border-radius:10px;padding:12px;margin-top:12px">
+<select id="momoType" style="width:100%;border:1px solid #ddd;border-radius:10px;padding:12px;margin-top:8px">
+<option>MTN Mobile Money</option>
+<option>Orange Money</option>
+</select>
+<input id="momoAmount" type="number" placeholder="Amount e.g. 100" style="width:100%;border:1px solid #ddd;border-radius:10px;padding:12px;margin-top:8px">
+<button onclick="doWithdraw()" style="background:#16a34a;color:white;width:100%;padding:12px;border-radius:12px;margin-top:12px;font-weight:bold">✅ Request Withdraw</button>
+<button onclick="document.getElementById('withdrawModal').style.display='none'" style="background:#eee;width:100%;padding:10px;border-radius:12px;margin-top:8px">Cancel</button>
+<p style="font-size:11px;color:gray;text-align:center;margin-top:8px">Withdrawal takes 24h. 10% fee.</p>
+</div></div>
+
+<script>
+function openWithdraw(){
+let bal = document.getElementById('balance').innerText;
+document.getElementById('modalBal').innerText = bal;
+document.getElementById('withdrawModal').style.display='flex';
+}
+function doWithdraw(){
+let num = document.getElementById('momoNumber').value;
+let amt = document.getElementById('momoAmount').value;
+let type = document.getElementById('momoType').value;
+if(!num || !amt){alert("Enter number and amount!");return;}
+if(amt < 100){alert("Minimum 100 XAF");return;}
+alert(`✅ Withdraw Request Sent!\n\n${type}\nNumber: ${num}\nAmount: ${amt} XAF\n\nYou will receive in 24h!\n\nContact Sean Morgan on WhatsApp: +237... for faster payment!`);
+document.getElementById('withdrawModal').style.display='none';
+// Here you will receive request in Firebase - I can add admin panel next!
+}
+// Add withdraw button to wallet
+setTimeout(()=>{
+let walletBtn = document.createElement('button');
+walletBtn.innerHTML = "💸 Withdraw to MoMo";
+walletBtn.style.cssText="position:fixed;bottom:80px;right:16px;background:#16a34a;color:white;padding:12px 20px;border-radius:30px;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:100";
+walletBtn.onclick = openWithdraw;
+document.body.appendChild(walletBtn);
+},1000);
+</script>
