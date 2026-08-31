@@ -1,330 +1,1074 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>CamInvest Hub | Smart Investment</title>
+<title>CamInvest Hub | Dashboard</title>
 
-  <meta name="description"
-        content="CamInvest Hub provides investment information, financial education and responsible planning tools.">
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7f6;
+    color:#17221e;
+}
+
+button,input,select{
+    font:inherit;
+}
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+    width:240px;
+    background:#063d2e;
+    color:white;
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    padding:22px 15px;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+    padding:10px 12px 30px;
+}
+
+.logo span{
+    color:#65d49e;
+}
+
+.sidebar a{
+    display:block;
+    color:#e1eee9;
+    text-decoration:none;
+    padding:13px;
+    margin:5px 0;
+    border-radius:8px;
+}
+
+.sidebar a:hover,
+.sidebar a.active{
+    background:#0a6b4e;
+}
+
+.logout{
+    margin-top:25px;
+    background:#8e2d27 !important;
+}
+
+/* MAIN */
+
+.main{
+    margin-left:240px;
+    width:calc(100% - 240px);
+    padding:25px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.topbar h1{
+    font-size:28px;
+}
+
+.user{
+    background:white;
+    padding:10px 15px;
+    border:1px solid #dce5e1;
+    border-radius:9px;
+}
+
+/* NOTICE */
+
+.notice{
+    background:#fff5d8;
+    border-left:5px solid #d39b13;
+    padding:16px;
+    margin-bottom:20px;
+    border-radius:7px;
+    color:#654d16;
+}
+
+/* STAT CARDS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.stat{
+    background:white;
+    border:1px solid #dce5e1;
+    border-radius:13px;
+    padding:20px;
+}
+
+.stat small{
+    color:#68756f;
+}
+
+.stat strong{
+    display:block;
+    color:#075d44;
+    font-size:24px;
+    margin-top:7px;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:18px;
+    margin-top:18px;
+}
+
+.panel{
+    background:white;
+    border:1px solid #dce5e1;
+    border-radius:13px;
+    padding:22px;
+}
+
+.panel h2{
+    font-size:19px;
+    color:#063d2e;
+    margin-bottom:18px;
+}
+
+/* FORMS */
+
+.form{
+    display:grid;
+    gap:11px;
+}
+
+.form input,
+.form select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccd8d3;
+    border-radius:8px;
+    outline:none;
+}
+
+.form input:focus,
+.form select:focus{
+    border-color:#0a7957;
+}
+
+.btn{
+    border:0;
+    padding:12px 16px;
+    background:#075d44;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#064b39;
+}
+
+.gold{
+    background:#a87900;
+}
+
+.secondary{
+    background:#eaf3ef;
+    color:#075d44;
+}
+
+/* TASKS */
+
+.task,
+.transaction{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    border-top:1px solid #e0e7e4;
+    padding:14px 0;
+}
+
+.badge{
+    padding:6px 9px;
+    border-radius:20px;
+    background:#e7f6ee;
+    color:#08704f;
+    font-size:12px;
+}
+
+.pending{
+    background:#fff1c9;
+    color:#806000;
+}
+
+/* REFERRAL */
+
+.referral{
+    background:#edf8f3;
+    padding:15px;
+    border-radius:9px;
+    word-break:break-all;
+}
+
+.referral-code{
+    font-weight:bold;
+    color:#075d44;
+    margin-top:7px;
+}
+
+/* HISTORY */
+
+.history{
+    margin-top:18px;
+}
+
+/* MOBILE */
+
+.mobile-button{
+    display:none;
+    background:#075d44;
+    color:white;
+    border:0;
+    padding:9px 12px;
+    border-radius:7px;
+}
+
+@media(max-width:900px){
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    html {
-      scroll-behavior: smooth;
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    .sidebar{
+        width:0;
+        padding:0;
+        overflow:hidden;
+        transition:.2s;
     }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f5f8f7;
-      color: #17231f;
-      line-height: 1.6;
+    .sidebar.open{
+        width:240px;
+        padding:22px 15px;
+        z-index:999;
     }
 
-    header {
-      background: #063d2e;
-      color: white;
-      padding: 18px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    .main{
+        margin-left:0;
+        width:100%;
+        padding:15px;
     }
 
-    .logo {
-      font-size: 23px;
-      font-weight: bold;
+    .mobile-button{
+        display:inline-block;
+        margin-right:8px;
     }
 
-    .logo span {
-      color: #61d39d;
+    .topbar h1{
+        font-size:22px;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 15px;
+    .stats{
+        grid-template-columns:1fr 1fr;
     }
 
-    nav a:hover {
-      color: #61d39d;
+    .stat strong{
+        font-size:19px;
     }
-
-    .hero {
-      background: linear-gradient(135deg, #063d2e, #087653);
-      color: white;
-      padding: 90px 7%;
-    }
-
-    .hero-content {
-      max-width: 760px;
-    }
-
-    .hero h1 {
-      font-size: 48px;
-      line-height: 1.15;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 18px;
-      margin-bottom: 30px;
-      color: #e1f3eb;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 13px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-right: 8px;
-      margin-bottom: 10px;
-    }
-
-    .btn-primary {
-      background: white;
-      color: #063d2e;
-    }
-
-    .btn-secondary {
-      border: 1px solid white;
-      color: white;
-    }
-
-    section {
-      padding: 70px 7%;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 32px;
-      margin-bottom: 12px;
-      color: #063d2e;
-    }
-
-    .section-text {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 40px;
-      color: #5b6863;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 22px;
-    }
-
-    .card {
-      background: white;
-      padding: 28px;
-      border-radius: 14px;
-      box-shadow: 0 6px 25px rgba(0,0,0,0.07);
-    }
-
-    .card h3 {
-      color: #087653;
-      margin-bottom: 10px;
-    }
-
-    .plans {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 22px;
-    }
-
-    .plan {
-      background: white;
-      padding: 30px;
-      border-radius: 14px;
-      border: 1px solid #dce8e3;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    }
-
-    .plan h3 {
-      color: #063d2e;
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
-
-    .amount {
-      font-size: 25px;
-      font-weight: bold;
-      color: #087653;
-      margin-bottom: 15px;
-    }
-
-    .plan ul {
-      list-style: none;
-      margin-bottom: 20px;
-    }
-
-    .plan li {
-      margin: 8px 0;
-    }
-
-    .plan li::before {
-      content: "✓ ";
-      color: #087653;
-      font-weight: bold;
-    }
-
-    .warning {
-      background: #fff6dd;
-      border-left: 5px solid #d29a00;
-      padding: 22px;
-      border-radius: 8px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .contact-box {
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      padding: 30px;
-      border-radius: 14px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.06);
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 13px;
-      margin: 8px 0 18px;
-      border: 1px solid #ccd8d3;
-      border-radius: 7px;
-      font-size: 15px;
-    }
-
-    textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
-    button {
-      background: #063d2e;
-      color: white;
-      border: none;
-      padding: 13px 22px;
-      border-radius: 7px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    footer {
-      background: #09251e;
-      color: #cfe0da;
-      text-align: center;
-      padding: 35px 7%;
-    }
-
-    footer p {
-      margin: 5px;
-    }
-
-    .small {
-      font-size: 13px;
-      color: #9fb5ad;
-    }
-
-    @media (max-width: 650px) {
-
-      header {
-        padding: 16px 5%;
-      }
-
-      nav {
-        display: none;
-      }
-
-      .hero {
-        padding: 65px 6%;
-      }
-
-      .hero h1 {
-        font-size: 36px;
-      }
-
-      section {
-        padding: 55px 6%;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">
-    CamInvest <span>Hub</span>
-  </div>
+<div class="app">
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#plans">Plans</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+<!-- SIDEBAR -->
 
+<aside class="sidebar" id="sidebar">
 
-<!-- HERO -->
+    <div class="logo">
+        CamInvest <span>Hub</span>
+    </div>
 
-<section class="hero" id="home">
-
-  <div class="hero-content">
-
-    <h1>
-      Make informed decisions about your financial future.
-    </h1>
-
-    <p>
-      CamInvest Hub helps users understand investment opportunities,
-      financial planning, diversification and investment risks.
-    </p>
-
-    <a href="#plans" class="btn btn-primary">
-      Explore Plans
+    <a href="#dashboard" class="active">
+        🏠 Dashboard
     </a>
 
-    <a href="#contact" class="btn btn-secondary">
-      Contact Us
+    <a href="#payments">
+        💳 Payments
     </a>
 
-  </div>
+    <a href="#withdraw">
+        💸 Withdraw
+    </a>
+
+    <a href="#tasks">
+        📅 Daily Tasks
+    </a>
+
+    <a href="#commission">
+        🤝 Commission
+    </a>
+
+    <a href="#history">
+        📜 Transactions
+    </a>
+
+    <button class="btn logout" onclick="resetDemo()">
+        Reset Demo
+    </button>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+<div class="topbar">
+
+    <div>
+        <button
+            class="mobile-button"
+            onclick="toggleSidebar()">
+            ☰
+        </button>
+
+        <span style="font-size:28px;font-weight:bold;">
+            My Dashboard
+        </span>
+    </div>
+
+    <div class="user">
+        👤 Demo User
+    </div>
+
+</div>
+
+
+<!-- DEMO NOTICE -->
+
+<div class="notice">
+
+    <strong>DEMO MODE:</strong>
+
+    This dashboard is a front-end demonstration.
+    Deposits and withdrawals shown here do not move real money.
+    Real payment processing must be connected through an approved
+    payment provider and a secure server.
+
+</div>
+
+
+<!-- BALANCES -->
+
+<section id="dashboard">
+
+<div class="stats">
+
+    <div class="stat">
+        <small>Available Balance</small>
+        <strong id="balance">
+            0 FCFA
+        </strong>
+    </div>
+
+    <div class="stat">
+        <small>Total Deposits</small>
+        <strong id="deposits">
+            0 FCFA
+        </strong>
+    </div>
+
+    <div class="stat">
+        <small>Total Withdrawals</small>
+        <strong id="withdrawals">
+            0 FCFA
+        </strong>
+    </div>
+
+    <div class="stat">
+        <small>Commission</small>
+        <strong id="commission">
+            0 FCFA
+        </strong>
+    </div>
+
+</div>
 
 </section>
 
 
-<!-- ABOUT -->
+<!-- PAYMENT + WITHDRAW -->
 
-<section id="about">
+<div class="grid">
 
-  <h2 class="section-title">
-    About CamInvest Hub
-  </h2>
+<section class="panel" id="payments">
 
-  <p class="section-text">
-    Our goal is to provide clear information that helps people
-    understand investments and make responsible financial decisions.
-  </p>
+<h2>
+    💳 Deposit / Payment
+</h2>
 
-  <div class="cards">
+<form
+    class="form"
+    onsubmit="demoDeposit(event)"
+>
 
-    <div class="card">
-      <h3>Financial Education</h3>
-      <p>
-        Learn about investment concepts, diversification,
-        time horizons and financial planning
+<select id="paymentMethod">
+
+<option>
+MTN Mobile Money
+</option>
+
+<option>
+Orange Money
+</option>
+
+<option>
+Bank Card
+</option>
+
+</select>
+
+<input
+    id="depositAmount"
+    type="number"
+    min="500"
+    placeholder="Amount in FCFA"
+    required
+>
+
+<input
+    id="depositPhone"
+    type="tel"
+    placeholder="Mobile number"
+    required
+>
+
+<button class="btn">
+    Create Demo Payment
+</button>
+
+</form>
+
+<p style="margin-top:15px;color:#68756f;font-size:13px;">
+
+For real MTN payments, the secure backend should use
+MTN's approved Collections integration.
+
+</p>
+
+</section>
+
+
+<section class="panel" id="withdraw">
+
+<h2>
+    💸 Withdrawal Request
+</h2>
+
+<form
+    class="form"
+    onsubmit="demoWithdraw(event)"
+>
+
+<select id="withdrawMethod">
+
+<option>
+MTN Mobile Money
+</option>
+
+<option>
+Orange Money
+</option>
+
+</select>
+
+<input
+    id="withdrawAmount"
+    type="number"
+    min="500"
+    placeholder="Amount in FCFA"
+    required
+>
+
+<input
+    id="withdrawPhone"
+    type="tel"
+    placeholder="Wallet number"
+    required
+>
+
+<button class="btn gold">
+    Submit Demo Withdrawal
+</button>
+
+</form>
+
+</section>
+
+</div>
+
+
+<!-- TASKS + COMMISSION -->
+
+<div class="grid">
+
+<section class="panel" id="tasks">
+
+<h2>
+    📅 Daily Tasks
+</h2>
+
+<div class="task">
+
+<span>
+Daily Login
+</span>
+
+<button
+    class="btn secondary"
+    onclick="completeTask(this)"
+>
+Complete
+</button>
+
+</div>
+
+
+<div class="task">
+
+<span>
+Read Investment Lesson
+</span>
+
+<button
+    class="btn secondary"
+    onclick="completeTask(this)"
+>
+Complete
+</button>
+
+</div>
+
+
+<div class="task">
+
+<span>
+Review Risk Information
+</span>
+
+<button
+    class="btn secondary"
+    onclick="completeTask(this)"
+>
+Complete
+</button>
+
+</div>
+
+<p style="margin-top:15px;color:#68756f;font-size:13px;">
+
+Tasks shown here are demonstration tasks.
+Do not represent guaranteed earnings.
+
+</p>
+
+</section>
+
+
+<section class="panel" id="commission">
+
+<h2>
+    🤝 Referral Commission
+</h2>
+
+<div class="referral">
+
+    Your referral code:
+
+    <div
+        class="referral-code"
+        id="referralCode"
+    >
+        CAMINVEST-DEMO
+    </div>
+
+</div>
+
+
+<div class="task">
+
+<span>
+Successful Referrals
+</span>
+
+<strong id="referrals">
+0
+</strong>
+
+</div>
+
+
+<div class="task">
+
+<span>
+Commission Earned
+</span>
+
+<strong id="commission2">
+0 FCFA
+</strong>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- HISTORY -->
+
+<section
+    class="panel history"
+    id="history"
+>
+
+<h2>
+    📜 Transaction History
+</h2>
+
+<div id="historyList">
+
+<p style="color:#68756f;">
+No transactions yet.
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<script>
+
+/*
+====================================================
+CAMINVEST HUB DEMO DATABASE
+====================================================
+
+This uses browser localStorage only.
+
+It is NOT a real financial database.
+
+For production:
+- Use a secure backend
+- Authenticate users server-side
+- Store transactions server-side
+- Verify payment callbacks
+- Never trust balance values sent by the browser
+====================================================
+*/
+
+
+const STORAGE_KEY =
+"caminvest_hub_demo";
+
+
+let data =
+JSON.parse(
+localStorage.getItem(STORAGE_KEY)
+)
+||
+{
+    balance:0,
+    deposits:0,
+    withdrawals:0,
+    commission:0,
+    referrals:0,
+    transactions:[]
+};
+
+
+/* SAVE */
+
+function save(){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(data)
+    );
+
+    render();
+
+}
+
+
+/* MONEY FORMAT */
+
+function money(amount){
+
+    return Number(amount)
+    .toLocaleString("en-US")
+    + " FCFA";
+
+}
+
+
+/* RENDER DASHBOARD */
+
+function render(){
+
+    document.getElementById("balance")
+    .textContent =
+    money(data.balance);
+
+
+    document.getElementById("deposits")
+    .textContent =
+    money(data.deposits);
+
+
+    document.getElementById("withdrawals")
+    .textContent =
+    money(data.withdrawals);
+
+
+    document.getElementById("commission")
+    .textContent =
+    money(data.commission);
+
+
+    document.getElementById("commission2")
+    .textContent =
+    money(data.commission);
+
+
+    document.getElementById("referrals")
+    .textContent =
+    data.referrals;
+
+
+    document.getElementById("referralCode")
+    .textContent =
+    "CAM-" +
+    Math.random()
+    .toString(36)
+    .substring(2,8)
+    .toUpperCase() +
+    "-2026";
+
+
+    const list =
+    document.getElementById(
+        "historyList"
+    );
+
+
+    if(data.transactions.length === 0){
+
+        list.innerHTML =
+        "<p style='color:#68756f;'>No transactions yet.</p>";
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+    data.transactions
+    .slice()
+    .reverse()
+    .map(transaction => `
+
+        <div class="transaction">
+
+            <div>
+
+                <strong>
+                    ${transaction.type}
+                </strong>
+
+                <br>
+
+                <small>
+                    ${transaction.method}
+                    •
+                    ${transaction.date}
+                </small>
+
+            </div>
+
+            <div>
+
+                <strong>
+                    ${money(transaction.amount)}
+                </strong>
+
+                <br>
+
+                <span class="badge pending">
+                    ${transaction.status}
+                </span>
+
+            </div>
+
+        </div>
+
+    `)
+    .join("");
+
+}
+
+
+/* DEMO DEPOSIT */
+
+function demoDeposit(event){
+
+    event.preventDefault();
+
+
+    const amount =
+    Number(
+        document.getElementById(
+            "depositAmount"
+        ).value
+    );
+
+
+    const method =
+    document.getElementById(
+        "paymentMethod"
+    ).value;
+
+
+    if(amount < 500){
+
+        alert(
+            "Minimum demo amount is 500 FCFA."
+        );
+
+        return;
+
+    }
+
+
+    /*
+    DEMO ONLY:
+    This increases the local browser balance.
+
+    It does NOT send money to MTN,
+    Orange or a bank.
+    */
+
+
+    data.balance += amount;
+
+    data.deposits += amount;
+
+
+    data.transactions.push({
+
+        type:"Demo Deposit",
+
+        method:method,
+
+        amount:amount,
+
+        status:"Demo",
+
+        date:new Date()
+        .toLocaleString()
+
+    });
+
+
+    save();
+
+
+    event.target.reset();
+
+
+    alert(
+        "Demo payment recorded. " +
+        "No real money was transferred."
+    );
+
+}
+
+
+/* DEMO WITHDRAWAL */
+
+function demoWithdraw(event){
+
+    event.preventDefault();
+
+
+    const amount =
+    Number(
+        document.getElementById(
+            "withdrawAmount"
+        ).value
+    );
+
+
+    const method =
+    document.getElementById(
+        "withdrawMethod"
+    ).value;
+
+
+    if(amount < 500){
+
+        alert(
+            "Minimum demo withdrawal is 500 FCFA."
+        );
+
+        return;
+
+    }
+
+
+    if(amount > data.balance){
+
+        alert(
+            "The requested amount is greater " +
+            "than the demo balance."
+        );
+
+        return;
+
+    }
+
+
+    data.balance -= amount;
+
+    data.withdrawals += amount;
+
+
+    data.transactions.push({
+
+        type:"Demo Withdrawal",
+
+        method:method,
+
+        amount:amount,
+
+        status:"Pending",
+
+        date:new Date()
+        .toLocaleString()
+
+    });
+
+
+    save();
+
+
+    event.target.reset();
+
+
+    alert(
+        "Demo withdrawal request created. " +
+        "No real money was transferred."
+    );
+
+}
+
+
+/* DAILY TASK */
+
+function completeTask(button){
+
+    button.textContent =
+    "Completed";
+
+    button.disabled =
+    true;
+
+    button.style.opacity =
+    "0.6";
+
+}
+
+
+/* RESET */
+
+function resetDemo(){
+
+    const confirmReset =
+    confirm(
+        "Reset all demo data?"
+    );
+
+
+    if(!confirmReset){
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        STORAGE_KEY
+    );
+
+
+    location.reload();
+
+}
+
+
+/* MOBILE MENU */
+
+function toggleSidebar(){
+
+    document
+    .getElementById("sidebar")
+    .classList
+    .toggle("open");
+
+}
+
+
+/* START */
+
+render();
+
+</script>
+
+</body>
+</html>
