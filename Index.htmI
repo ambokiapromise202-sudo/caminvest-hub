@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CamInvest Hub</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#f5f5f5;padding-bottom:80px}
+.header{background:#0a8f4a;color:#fff;padding:15px;text-align:center;position:sticky;top:0;z-index:10}
+.page{display:none;padding:15px}
+.page.active{display:block}
+.card{background:#fff;padding:15px;border-radius:10px;margin-bottom:10px;box-shadow:0 1px 3px #ccc}
+button{background:#0a8f4a;color:#fff;border:0;padding:12px;border-radius:8px;width:100%;margin-top:8px;font-weight:bold}
+input{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;margin-top:8px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px;border-top:1px solid #ddd;z-index:20}
+.bottom div{font-size:12px;text-align:center}
+.bottom .active{color:#0a8f4a;font-weight:bold}
+.whitebox{background:#fff;padding:20px;border-radius:10px;max-width:400px;margin:50px auto}
+</style>
+</head>
+<body>
+<div class="header">
+<h3>CamInvest Hub</h3>
+<div>Balance: <span id="bal">0</span> F | <span id="myPh"></span></div>
+</div>
+
+<div id="home" class="page active"><div id="prodList"></div></div>
+<div id="orders" class="page"><h3>My Orders</h3><div id="orderList"></div></div>
+<div id="tasks" class="page">
+<div class="card"><b>Daily Tasks - Earn 100F per video</b><p>Watch 10 videos daily</p><button onclick="watchVid()">▶️ Watch Video</button><p>Today: <span id="vidCount">0</span>/10</p></div>
+</div>
+<div id="team" class="page">
+<div class="card">
+<b>My Team & Referral</b>
+<p style="margin-top:10px">Your referral link:</p>
+<p id="myLink" style="word-break:break-all;background:#eee;padding:10px;border-radius:6px;margin:10px 0;font-size:13px"></p>
+<button onclick="copyLink()">📋 Copy Link</button>
+<button onclick="shareWA()" style="background:#25D366">📱 Share on WhatsApp</button>
+</div>
+<div id="teamList"></div>
+</div>
+<div id="me" class="page">
+<div class="card"><b>Me</b><p>Phone: <span id="myPh2"></span></p><button onclick="openAdmin()">🔑 Admin Login (678657567)</button><button onclick="if(confirm('Logout?')){localStorage.clear();location.reload()}" style="background:#999">Logout</button></div>
+<div class="card"><b>💰 Recharge</b><input id="depAmt" placeholder="Amount e.g 5000" type="number"><button onclick="doRecharge()">Submit Recharge</button><div id="depList" style="margin-top:10px"></div></div>
+<div class="card"><b>🏦 Withdraw</b><input id="withAmt" placeholder="Amount" type="number"><button onclick="doWithdraw()">Withdraw</button><div id="withList" style="margin-top:10px"></div></div>
+</div>
+
+<div id="adminModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:99;overflow:auto"><div class="whitebox"><h3>Admin - 678657567</h3><input id="adminPin" placeholder="Enter PIN" type="password"><button onclick="checkPin()">Login</button><div id="adminContent" style="margin-top:15px;word-break:break-all"></div><button onclick="closeAdmin()" style="background:#999">Close</button></div></div>
+
+<div class="bottom"><div class="active" onclick="go('home')" id="bHome">🏠<br>Home</div><div onclick="go('orders')" id="bOrders">📦<br>Orders</div><div onclick="go('tasks')" id="bTasks">✅<br>Tasks</div><div onclick="go('team')" id="bTeam">👥<br>Team</div><div onclick="go('me')" id="bMe">👤<br>Me</div></div>
+
+<script>
+let bal=parseInt(localStorage.getItem('bal')||'0');
+let products=[{name:'Rice Investment 200F/day',price:5000,daily:600},{name:'Plan 10K - 1300F/day',price:10000,daily:1300},{name:'Plan 25K - 3500F/day',price:25000,daily:3500},{name:'Plan 50K - 8000F/day',price:50000,daily:8000}];
+let orders=JSON.parse(localStorage.getItem('orders')||'[]');
+let vids=parseInt(localStorage.getItem('vids')||'0');
+let myPhone=localStorage.getItem('myPhone')||'678657567';
+let ref=new URLSearchParams(location.search).get('ref');
+function getRefLink(){let ph=myPhone||'678657567';return `${location.origin}?ref=${ph}`;}
+function renderProducts(){let h='';products.forEach((p,i)=>{h+=`<div class=card><b>${p.name}</b><p>Price: ${p.price}F - Daily Income: ${p.daily}F</p><button onclick="buy(${p.price},'${p.name}')">Buy Now</button></div>`});document.getElementById('prodList').innerHTML=h;}
+function updateBal(){document.getElementById('bal').innerText=bal;document.getElementById('myPh').innerText=myPhone;document.getElementById('myPh2').innerText=myPhone;document.getElementById('myLink').innerText=getRefLink();document.getElementById('vidCount').innerText=vids;localStorage.setItem('bal',bal);}
+function go(p){document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));document.getElementById(p).classList.add('active');document.querySelectorAll('.bottom div').forEach(e=>e.classList.remove('active'));document.getElementById('b'+p.charAt(0).toUpperCase()+p.slice(1)).classList.add('active');if(p=='orders')renderOrders();if(p=='me'){renderDeps();renderWiths();}}
+function buy(price,name){if(bal<price)return alert('Low balance, please recharge first');bal-=price;orders.push({name,price,date:new Date().toLocaleString()});localStorage.setItem('orders',JSON.stringify(orders));localStorage.setItem('bal',bal);updateBal();alert('Success! You bought '+name);}
+function renderOrders(){let el=document.getElementById('orderList');let h='';orders.forEach(o=>h+=`<div class=card>${o.name} - ${o.price}F<br><small>${o.date}</small></div>`);el.innerHTML=h||'<div class=card>No orders yet</div>';}
+function watchVid(){if(vids>=10)return alert('Max 10 videos today, come tomorrow');vids++;bal+=100;localStorage.setItem('vids',vids);localStorage.setItem('bal',bal);updateBal();alert('You earned 100F!');}
+function doRecharge(){let a=document.getElementById('depAmt').value;if(!a)return alert('Enter amount');let deps=JSON.parse(localStorage.getItem('deps')||'[]');deps.push({amt:a,status:'pending',date:new Date().toLocaleString(),phone:myPhone});localStorage.setItem('deps',JSON.stringify(deps));alert('Recharge submitted! Admin will approve soon. Send screenshot to 678657567 on WhatsApp');renderDeps();}
+function renderDeps(){let h='<b>Deposit History</b>';let deps=JSON.parse(localStorage.getItem('deps')||'[]');deps.forEach(d=>h+=`<div style=margin-top:5px;padding:5px;background:#f9f9f9>${d.amt}F - ${d.status} - ${d.date}</div>`);document.getElementById('depList').innerHTML=h;}
+function doWithdraw(){let a=parseInt(document.getElementById('withAmt').value);if(!a)return;if(bal<a)return alert('Low balance');let withs=JSON.parse(localStorage.getItem('withs')||'[]');withs.push({amt:a,status:'pending',date:new Date().toLocaleString(),phone:myPhone});bal-=a;localStorage.setItem('withs',JSON.stringify(withs));localStorage.setItem('bal',bal);updateBal();renderWiths();alert('Withdraw request sent!');}
+function renderWiths(){let h='<b>Withdraw History</b>';let withs=JSON.parse(localStorage.getItem('withs')||'[]');withs.forEach(w=>h+=`<div style=margin-top:5px;padding:5px;background:#f9f9f9>${w.amt}F - ${w.status} - ${w.date}</div>`);document.getElementById('withList').innerHTML=h;}
+function openAdmin(){document.getElementById('adminModal').style.display='block';}
+function closeAdmin(){document.getElementById('adminModal').style.display='none';}
+function checkPin(){if(document.getElementById('adminPin').value=='67865'){let deps=localStorage.getItem('deps')||'none';let withs=localStorage.getItem('withs')||'none';document.getElementById('adminContent').innerHTML=`<p><b>All Deposits:</b><br>${deps}</p><p style=margin-top:10px><b>All Withdraws:</b><br>${withs}</p><p style=margin-top:10px;color:green>To approve: Go to browser console and run localStorage code</p>`;}else alert('Wrong PIN - PIN is 67865');}
+function shareWA(){let l=getRefLink();window.open('https://wa.me/?text='+encodeURIComponent('🔥 Join CamInvest Hub! Invest 5000F get 600F daily! My link: '+l));}
+function copyLink(){let l=getRefLink();navigator.clipboard.writeText(l);alert('Copied: '+l);}
+if(!localStorage.getItem('myPhone')){let p=ref||prompt('Enter your phone number (MTN/Orange)');if(p&&p.length>=9){localStorage.setItem('myPhone',p);myPhone=p;if(ref&&ref!=p){let team=JSON.parse(localStorage.getItem('team')||'[]');if(!team.includes(ref)){team.push(ref);localStorage.setItem('team',JSON.stringify(team));}}}}
+renderProducts();updateBal();
+</script>
+</body>
+</html>
