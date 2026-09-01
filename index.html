@@ -3,213 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CamInvest Hub - Licensed Investment</title>
+<title>CamInvest</title>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial}
-body{background:#f8fafc;color:#1e293b;padding-bottom:80px}
-.top{background:#0f172a;color:#fff;padding:16px}
-.top-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.logo{font-weight:800;font-size:18px;letter-spacing:-0.5px} .logo span{color:#38bdf8}
-.verified{background:#10b981;color:#fff;padding:3px 8px;border-radius:10px;font-size:10px}
-.bal-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.bal-box{background:#1e293b;padding:12px;border-radius:12px;text-align:center}
-.bal-box small{opacity:.6;font-size:11px} .bal-box b{font-size:16px;display:block;margin-top:4px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.actions button{padding:12px;border-radius:12px;border:0;font-weight:600;font-size:14px}
-.btn-dep{background:#fff;color:#0f172a} .btn-with{background:#38bdf8;color:#000}
-.tabs{display:flex;background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:5}
-.tabs div{flex:1;text-align:center;padding:14px 0;font-size:13px;font-weight:600;color:#64748b;border-bottom:2px solid transparent;cursor:pointer}
-.tabs .active{color:#0f172a;border-bottom-color:#0f172a}
-.card{background:#fff;margin:10px;border-radius:16px;padding:16px;border:1px solid #e2e8f0}
-.card h4{font-size:14px;margin-bottom:4px}
-.muted{color:#64748b;font-size:12px;line-height:1.4}
-.pack-row{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
-.returns{background:#f0fdf4;color:#15803d;padding:6px 10px;border-radius:8px;font-size:11px;font-weight:600}
-.buy-btn{background:#0f172a;color:#fff;border:0;padding:10px 20px;border-radius:10px;font-weight:600;font-size:13px}
-.risk{background:#fef3c7;border:1px solid #fde68a;padding:10px;border-radius:10px;font-size:11px;color:#92400e;margin:10px}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #e2e8f0;z-index:10}
-.bottom div{text-align:center;font-size:10px;color:#94a3b8;cursor:pointer}
-.bottom .active{color:#0f172a;font-weight:600}
-.modal{position:fixed;inset:0;background:#0006;display:none;justify-content:center;align-items:center;z-index:99;padding:16px;backdrop-filter:blur(4px)}
-.modalBox{background:#fff;width:100%;max-width:380px;border-radius:20px;padding:20px}
-.modalBox input, .modalBox select{width:100%;padding:13px;margin:7px 0;border:1px solid #e2e8f0;border-radius:10px;font-size:14px}
-.video-wrap{border-radius:12px;overflow:hidden;background:#000;margin-top:10px}
-</style>
-</head>
-<body>
-
-<div class="top">
-  <div class="top-head">
-    <div class="logo">CamInvest <span>HUB</span></div>
-    <div class="verified">✓ Verified & Licensed</div>
-  </div>
-  <div class="bal-grid">
-    <div class="bal-box"><small>Available Balance</small><b>XAF <span id="bal">105</span></b></div>
-    <div class="bal-box"><small>Total Earnings</small><b>XAF <span id="income">0</span></b></div>
-    <div class="bal-box"><small>Active Plans</small><b id="activePlans">0</b></div>
-  </div>
-  <div class="actions">
-    <button class="btn-dep" onclick="openDep()">↓ Deposit Funds</button>
-    <button class="btn-with" onclick="openWith()">↑ Withdraw</button>
-  </div>
-</div>
-
-<div class="risk">⚠️ <b>Risk Disclosure:</b> Investments involve risk. Returns are not guaranteed. Invest only what you can afford. Licensed under Cameroon Financial Regulations.</div>
-
-<div class="tabs">
-  <div id="tab-plans" class="active" onclick="showTab('plans')">Investment Plans</div>
-  <div id="tab-tasks" onclick="showTab('tasks')">Learn & Earn</div>
-  <div id="tab-invite" onclick="showTab('invite')">Referral</div>
-  <div id="tab-me" onclick="showTab('me')">Account</div>
-</div>
-
-<!-- PLANS - REALISTIC & COMPLIANT FROM 200F -->
-<div id="view-plans">
-  <div class="card">
-    <h4>🌱 Starter - Low Risk <span style="background:#e0f2fe;color:#0369a1;padding:2px 6px;border-radius:6px;font-size:10px">BEGINNER</span></h4>
-    <p class="muted">Suitable for new investors. Capital protected. Daily returns credited.</p>
-    <div class="pack-row">
-      <div><b>XAF 200</b> <small class="muted">min investment</small><br><div class="returns">3.5% daily • 10 days • Total 270F</div></div>
-      <button class="buy-btn" onclick="buyPack('Starter',200,7,10)">Invest</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <h4>📈 Growth - Balanced</h4>
-    <p class="muted">Medium term growth plan. Diversified portfolio.</p>
-    <div class="pack-row">
-      <div><b>XAF 2,000</b><br><div class="returns">4.2% daily • 15 days • Total 3,260F</div></div>
-      <button class="buy-btn" onclick="buyPack('Growth',2000,84,15)">Invest</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <h4>💼 Professional - High Yield</h4>
-    <p class="muted">For experienced investors. Requires KYC verification.</p>
-    <div class="pack-row">
-      <div><b>XAF 10,000</b><br><div class="returns">5.0% daily • 20 days • Total 20,000F</div></div>
-      <button class="buy-btn" onclick="buyPack('Professional',10000,500,20)">Invest</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <h4>🏢 Enterprise - Institutional</h4>
-    <p class="muted">Maximum investment limit XAF 100,000. Contract based.</p>
-    <div class="pack-row">
-      <div><b>XAF 25,000</b><br><div class="returns">5.5% daily • 30 days • Total 66,250F</div></div>
-      <button class="buy-btn" onclick="buyPack('Enterprise',25000,1375,30)">Invest</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <p class="muted" style="font-size:11px">✓ All plans regulated • ✓ Daily profit 3.5%-5.5% (industry standard) • ✓ Capital return at maturity • ✓ Withdraw anytime after 24h • Terms apply</p>
-  </div>
-</div>
-
-<!-- TASKS - REAL EDUCATIONAL VIDEOS -->
-<div id="view-tasks" style="display:none">
-  <div class="card">
-    <h4>🎓 Financial Education - Earn Rewards</h4>
-    <p class="muted">Watch educational content to improve investment knowledge. Reward for learning.</p>
-    
-    <div class="video-wrap">
-      <div style="padding:10px;color:#fff;font-size:12px">📚 How Investments Work - Cameroon Market</div>
-      <iframe width="100%" height="200" src="https://www.youtube.com/embed/p7HKvqRI_Bo" frameborder="0" allowfullscreen></iframe>
-      <div style="padding:10px;background:#0f172a;display:flex;justify-content:space-between;align-items:center">
-        <small style="color:#94a3b8">Reward: <b style="color:#38bdf8">25F</b> for completion</small>
-        <button onclick="watchVideo(25)" style="background:#fff;color:#0f172a;border:0;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600">Claim</button>
-      </div>
-    </div>
-
-    <div class="video-wrap" style="margin-top:12px">
-      <div style="padding:10px;color:#fff;font-size:12px">📱 TikTok: @caminvest_official - Investment Tips</div>
-      <div style="background:#111;padding:20px;text-align:center;color:#fff">
-        <div style="font-size:40px">▶️</div>
-        <p style="font-size:12px;margin-top:8px">Follow us on TikTok for daily market updates</p>
-        <a href="https://www.tiktok.com" target="_blank" style="color:#38bdf8;font-size:12px">Open TikTok @caminvest_hub</a>
-      </div>
-      <div style="padding:10px;background:#0f172a;display:flex;justify-content:space-between;align-items:center">
-        <small style="color:#94a3b8">Reward: <b style="color:#38bdf8">50F</b> for following</small>
-        <button onclick="watchVideo(50)" style="background:#fe2c55;color:#fff;border:0;padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600">Verify Follow</button>
-      </div>
-    </div>
-
-    <div style="margin-top:12px">
-      <div style="display:flex;justify-content:space-between;padding:12px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:8px">
-        <div><b style="font-size:13px">Daily Check-in</b><br><small class="muted">+10F daily login bonus</small></div>
-        <button onclick="doTask(10,'Check-in')" style="background:#f1f5f9;border:0;padding:8px 14px;border-radius:8px;font-size:12px">Claim</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- INVITE - COMPLIANT 5-10% -->
-<div id="view-invite" style="display:none">
-  <div class="card" style="background:#0f172a;color:#fff">
-    <h4>👥 Referral Program - Compliant</h4>
-    <p style="font-size:12px;opacity:.7;margin:6px 0">Earn commission when friends invest. No pyramid, single-level referral as per regulations.</p>
-    <div style="background:#1e293b;padding:10px;border-radius:10px;margin:10px 0;font-size:11px;word-break:break-all" id="inviteLink">https://caminvest-hub.vercel.app?ref=YOURPHONE</div>
-    <button onclick="copyInvite()" style="background:#fff;color:#0f172a;width:100%;padding:10px;border:0;border-radius:10px;font-weight:600">Copy Referral Link</button>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px;text-align:center">
-      <div style="background:#1e293b;padding:10px;border-radius:10px"><b>5%</b><br><small style="opacity:.6">Starter</small></div>
-      <div style="background:#1e293b;padding:10px;border-radius:10px"><b>7%</b><br><small style="opacity:.6">Growth</small></div>
-      <div style="background:#1e293b;padding:10px;border-radius:10px"><b>10%</b><br><small style="opacity:.6">Pro+</small></div>
-    </div>
-    <p style="font-size:10px;opacity:.5;margin-top:8px">*Commission paid once per referral investment. Not MLM. Regulated referral fee.</p>
-  </div>
-</div>
-
-<!-- ME -->
-<div id="view-me" style="display:none">
-  <div class="card">
-    <h4>Account Verification</h4>
-    <p class="muted">KYC required for withdrawals above 5000F</p>
-    <input id="setPhone" placeholder="Mobile Money Number (e.g 678657567)" style="margin-top:10px">
-    <button onclick="saveMePhone()" style="background:#0f172a;color:#fff;width:100%;padding:12px;border:0;border-radius:10px;margin-top:8px;font-weight:600">Save & Verify</button>
-    <div style="margin-top:12px;font-size:12px">Phone: <b id="mePhone">Not set</b> • Balance: <b>XAF <span id="meBal">0</span></b></div>
-  </div>
-  <div class="card">
-    <h4>Transaction History</h4>
-    <div id="history" style="margin-top:8px;font-size:12px" class="muted">No transactions</div>
-    <div style="margin-top:12px;display:flex;gap:8px">
-      <button onclick="alert('Support: WhatsApp +237 650000000')" style="flex:1;background:#f1f5f9;border:0;padding:10px;border-radius:8px;font-size:12px">📞 Support</button>
-      <button onclick="alert('Terms: 1) Min deposit 200F 2) Withdraw min 300F 3) 24h processing')" style="flex:1;background:#f1f5f9;border:0;padding:10px;border-radius:8px;font-size:12px">📄 Terms</button>
-    </div>
-  </div>
-</div>
-
-<!-- MODALS -->
-<div id="depModal" class="modal" onclick="if(event.target==this)closeModals()"><div class="modalBox"><h4>Deposit Funds - Secure</h4><p class="muted" style="margin:6px 0">Min 200F via Mobile Money. Regulated escrow.</p><input id="depPhone" placeholder="Your MoMo Number"><input id="depAmount" type="number" value="200" placeholder="Amount (min 200F)"><select><option>MTN Mobile Money</option><option>Orange Money</option></select><div style="background:#f0fdf4;padding:10px;border-radius:10px;font-size:12px;margin:8px 0">Send to: <b>650 00 00 00</b> - CamInvest Escrow<br><small>Funds credited after confirmation (5-10 min)</small></div><button onclick="doDeposit()" style="width:100%;background:#0f172a;color:#fff;padding:13px;border:0;border-radius:10px;font-weight:600">Confirm Deposit</button><button onclick="closeModals()" style="width:100%;background:#f1f5f9;padding:10px;border:0;border-radius:10px;margin-top:8px">Cancel</button></div></div>
-<div id="withModal" class="modal" onclick="if(event.target==this)closeModals()"><div class="modalBox"><h4>Withdraw Funds</h4><p class="muted" style="margin:6px 0">Min 300F. Processed within 24h business days.</p><input id="withAmount" type="number" placeholder="Amount"><input id="withMomo" placeholder="MoMo Number to receive"><button onclick="doWithdraw()" style="width:100%;background:#0f172a;color:#fff;padding:13px;border:0;border-radius:10px;font-weight:600">Request Withdrawal</button><button onclick="closeModals()" style="width:100%;background:#f1f5f9;padding:10px;border:0;border-radius:10px;margin-top:8px">Cancel</button></div></div>
-
-<div class="bottom">
-  <div class="active" onclick="showTab('plans')">📊<br>Invest</div>
-  <div onclick="showTab('tasks')">🎓<br>Learn</div>
-  <div onclick="showTab('invite')">👥<br>Refer</div>
-  <div onclick="showTab('me')">👤<br>Account</div>
-</div>
-
-<script>
-const firebaseConfig = { apiKey:"REPLACE", authDomain:"caminvest-hub-14129.firebaseapp.com", projectId:"caminvest-hub-14129", storageBucket:"caminvest-hub-14129.firebasestorage.app", messagingSenderId:"REPLACE", appId:"REPLACE" };
-let db; try{ firebase.initializeApp(firebaseConfig); db=firebase.firestore(); }catch(e){}
-function showTab(n){ ['plans','tasks','invite','me'].forEach(x=>{ document.getElementById('view-'+x).style.display=x==n?'block':'none'; document.getElementById('tab-'+x).classList.toggle('active',x==n); }); if(n=='me')loadMe(); }
-function openDep(){ document.getElementById('depPhone').value=localStorage.getItem('ci_phone')||''; document.getElementById('depModal').style.display='flex'; }
-function openWith(){ document.getElementById('withMomo').value=localStorage.getItem('ci_phone')||''; document.getElementById('withModal').style.display='flex'; }
-function closeModals(){ document.getElementById('depModal').style.display='none'; document.getElementById('withModal').style.display='none'; }
-function getBal(p){ return parseInt(localStorage.getItem('bal_'+p)||'105'); }
-function setBal(p,b){ localStorage.setItem('bal_'+p,b); document.getElementById('bal').innerText=b; document.getElementById('meBal').innerText=b; }
-function loadAll(){ const phone=localStorage.getItem('ci_phone'); if(phone){ setBal(phone,getBal(phone)); document.getElementById('inviteLink').innerText='https://caminvest-hub.vercel.app?ref='+phone; } loadMe(); }
-function loadMe(){ const phone=localStorage.getItem('ci_phone')||''; document.getElementById('mePhone').innerText=phone||'Not set'; document.getElementById('meBal').innerText=phone?getBal(phone):'0'; document.getElementById('setPhone').value=phone; const hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); let h=''; hist.slice(0,10).forEach(x=>{ h+=`<div style="padding:8px 0;border-bottom:1px solid #f1f5f9;display:flex;justify-content:space-between"><span>${x.type} - ${x.amount}F</span><span class="muted">${x.time}</span></div>` }); document.getElementById('history').innerHTML=h||'No transactions yet'; }
-function saveMePhone(){ const p=document.getElementById('setPhone').value.trim(); if(!p) return alert('Enter phone'); localStorage.setItem('ci_phone',p); if(!localStorage.getItem('bal_'+p)) localStorage.setItem('bal_'+p,'105'); loadAll(); alert('Verified: '+p); showTab('plans'); }
-async function doDeposit(){ const phone=document.getElementById('depPhone').value.trim(); const amount=parseInt(document.getElementById('depAmount').value); if(!phone||!amount||amount<200) return alert('Min deposit 200F required'); localStorage.setItem('ci_phone',phone); let bal=getBal(phone); bal+=amount; setBal(phone,bal); let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount,type:'Deposit',time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist)); if(db){ try{ await db.collection('users').doc(phone).set({phone,balance:firebase.firestore.FieldValue.increment(amount)},{merge:true}); await db.collection('deposits').add({phone,amount,time:Date.now()}); }catch(e){} } closeModals(); alert('Deposit of '+amount+'F received. Pending verification (5-10 min).'); loadMe(); }
-async function doWithdraw(){ const amount=parseInt(document.getElementById('withAmount').value); const momo=document.getElementById('withMomo').value.trim(); const phone=localStorage.getItem('ci_phone')||''; if(!phone||!amount||!momo) return alert('Fill all'); if(amount<300) return alert('Min withdraw 300F'); let bal=getBal(phone); if(bal<amount) return alert('Insufficient: '+bal+'F'); bal-=amount; setBal(phone,bal); let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount,type:'Withdrawal to '+momo,time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist)); if(db){ try{ await db.collection('users').doc(phone).set({balance:firebase.firestore.FieldValue.increment(-amount)},{merge:true}); await db.collection('withdrawals').add({phone,amount,momo,time:Date.now(),status:'pending'}); }catch(e){} } closeModals(); alert('Withdrawal request '+amount+'F to '+momo+' - Processing within 24h'); loadMe(); }
-function buyPack(name,price,daily,days){ const phone=localStorage.getItem('ci_phone'); if(!phone){ openDep(); return alert('Please deposit min 200F first'); } let bal=getBal(phone); if(bal<price) return alert('Need '+price+'F, have '+bal+'F. Please deposit.'); bal-=price; setBal(phone,bal); let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount:price,type:'Invested in '+name,time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist)); alert('Invested in '+name+' Plan: '+price+'F\nDaily: '+daily+'F x '+days+' days\nTotal return: '+(daily*days)+'F\nContract started!'); loadMe(); }
-function watchVideo(r){ const phone=localStorage.getItem('ci_phone'); if(!phone) return alert('Verify phone in Account'); let bal=getBal(phone); bal+=r; setBal(phone,bal); let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount:r,type:'Education Reward',time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist)); alert('+'+r+'F education reward credited!'); loadMe(); }
-function doTask(r,t){ const phone=localStorage.getItem('ci_phone'); if(!phone) return alert('Verify phone'); let bal=getBal(phone); bal+=r; setBal(phone,bal); let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount:r,type:t,time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist)); alert('+'+r+'F '+t+' reward!'); loadMe(); }
-function copyInvite(){ navigator.clipboard.writeText(document.getElementById('inviteLink').innerText); alert('Referral link copied! Share to earn 5-10% compliant commission.'); }
-loadAll();
-</script>
-</body>
-</html>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Arial}
+body{background:#0a0a0b;color:#fff;padding-bottom:80px}
+.header{padding:18px 16px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:900;font-size:20px} .logo i{color:#a3ff12;font-style:normal}
+ pill{background:#1a1a1d;padding:6px 12px;border-radius:20px;font-size:11px;border:1px solid #2a2a2e}
+.bal-card{margin:0 16px;background:linear-gradient(135deg,#1a1a1d,#121214);border:1px solid #2a2a2e;border-radius:20px;padding:18px}
+.bal-top{display:flex;justify-content:space-between}
+.bal-top small{color:#8a8a8e;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+.bal-top b{font-size:26px;margin-top:4px;display:block}
+.stats{display:flex;gap:10px;margin-top:16px}
+.stat{flex:1;background:#0a0a0b;border:1px solid #2a2a2e;padding:10px;border-radius:12px;text-align:center}
+.stat small{color:#8a8a8e;font-size:10px} .stat b{font-size:13px;display:block;margin-top:2px;color:#a3ff12}
+.btns{display:flex;gap:10px;margin:16px}
+.btns button{flex:1;padding:14px;border-radius:14px;border:0;font-weight:700}
+.d{background:#a3ff12;color:#000} .w{background:#1a1a1d;color:#fff;border:1px solid #2a2a2e !important}
+.nav{display:flex
