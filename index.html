@@ -1,63 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CamInvest Hub</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0a0a0b;color:#fff}
-.header{padding:16px;display:flex;justify-content:space-between}
-.logo{font-weight:900;font-size:20px} .logo i{color:#a3ff12;font-style:normal}
-.bal{margin:12px;background:#121214;border:1px solid #2a2a2e;border-radius:16px;padding:16px}
-.btns{display:flex;gap:10px;margin:12px}
-.btns button{flex:1;padding:14px;border-radius:12px;border:0;font-weight:700}
-.d{background:#a3ff12;color:#000} .w{background:#1a1a1d;color:#fff;border:1px solid #2a2a2e}
-.card{margin:10px 12px;background:#121214;border:1px solid #2a2a2e;border-radius:14px;padding:14px}
-.buy{background:#fff;color:#000;border:0;padding:10px 16px;border-radius:10px;font-weight:700;width:100%;margin-top:8px}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#0a0a0b;border-top:1px solid #2a2a2e;display:flex;justify-content:space-around;padding:10px 0}
-.bottom div{font-size:11px;color:#888}
-</style>
-</head>
-<body>
-<div class="header"><div class="logo">CAM<i>INVEST</i></div><div>🟢 Live</div></div>
-<div class="bal"><div>Balance</div><div style="font-size:28px;font-weight:800">XAF <span id="bal">105</span></div></div>
-<div class="btns"><button class="d" onclick="deposit()">Deposit 200F</button><button class="w" onclick="withdraw()">Withdraw</button></div>
-
-<div class="card">
-<b>🌱 Micro Pack - 200F</b><br>
-<small style="color:#888">8% daily • 5 days = 280F • Profit 80F</small>
-<button class="buy" onclick="buyPack(200)">Invest 200F</button>
-</div>
-
-<div class="card">
-<b>🔥 Starter - 1000F</b><br>
-<small style="color:#888">9% daily • 10 days = 1900F</small>
-<button class="buy" onclick="buyPack(1000)">Invest 1000F</button>
-</div>
-
-<div class="card">
-<b>🎬 TikTok Task</b><br>
-<small style="color:#888">Watch TikTok → Earn 75F daily</small>
-<button class="buy" onclick="watchTask()" style="background:#a3ff12">Watch & Earn 75F</button>
-</div>
-
-<div class="card">
-<b>👥 Invite 15% Commission</b><br>
-<small style="color:#888" id="link">https://caminvest-hub.vercel.app</small><br>
-<button class="buy" onclick="copyLink()">Copy Invite Link</button>
-</div>
-
-<div class="bottom"><div>📊 Plans</div><div>🎬 TikTok</div><div>👥 Invite</div><div>👤 Me</div></div>
-
-<script>
-let bal = parseInt(localStorage.getItem('bal')||'105');
-document.getElementById('bal').innerText=bal;
-function deposit(){ let a=parseInt(prompt('Amount min 200F','200')); if(!a||a<200) return alert('Min 200F'); bal+=a; localStorage.setItem('bal',bal); document.getElementById('bal').innerText=bal; alert(a+'F added! New balance '+bal+'F'); }
-function withdraw(){ let a=parseInt(prompt('Amount to withdraw','200')); if(!a||a>bal) return alert('Low balance '+bal+'F'); let m=prompt('MoMo Number'); if(!m) return; bal-=a; localStorage.setItem('bal',bal); document.getElementById('bal').innerText=bal; alert('Withdraw '+a+'F to '+m+' requested!'); }
-function buyPack(p){ if(bal<p) return alert('Need '+p+'F, you have '+bal+'F - Deposit!'); bal-=p; localStorage.setItem('bal',bal); document.getElementById('bal').innerText=bal; alert('Invested '+p+'F! You will earn daily!'); }
-function watchTask(){ bal+=75; localStorage.setItem('bal',bal); document.getElementById('bal').innerText=bal; alert('+75F TikTok reward! Balance '+bal+'F'); }
-function copyLink(){ navigator.clipboard.writeText('https://caminvest-hub.vercel.app'); alert('Link copied!'); }
-</script>
-</body>
-</html>
+CamInvest Hub
+├── Frontend
+│   ├── Home page
+│   ├── Register / Login
+│   ├── User dashboard
+│   ├── Investment plans
+│   ├── Deposit
+│   ├── Withdrawal
+│   ├── Transaction history
+│   └── Referral system
+│
+├── Supabase Backend
+│   ├── Users
+│   ├── Profiles
+│   ├── Investments
+│   ├── Deposits
+│   ├── Withdrawals
+│   ├── Transactions
+│   └── Referrals
+│
+└── Payment integration
+    └── MTN Mobile Money / other supported provider
