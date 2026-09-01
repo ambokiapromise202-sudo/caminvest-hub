@@ -1,80 +1,117 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CamInvest Hub</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#f5f5f5;padding-bottom:80px}
-.header{background:#0a8f4a;color:#fff;padding:15px;text-align:center;position:sticky;top:0;z-index:10}
-.page{display:none;padding:15px}
-.page.active{display:block}
-.card{background:#fff;padding:15px;border-radius:10px;margin-bottom:10px;box-shadow:0 1px 3px #ccc}
-button{background:#0a8f4a;color:#fff;border:0;padding:12px;border-radius:8px;width:100%;margin-top:8px;font-weight:bold}
-input{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;margin-top:8px}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px;border-top:1px solid #ddd;z-index:20}
-.bottom div{font-size:12px;text-align:center}
-.bottom .active{color:#0a8f4a;font-weight:bold}
-.whitebox{background:#fff;padding:20px;border-radius:10px;max-width:400px;margin:50px auto}
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#0a1931;color:white;padding-bottom:80px}
+.top{background:#13294b;padding:10px;text-align:center;font-size:13px;position:sticky;top:0;z-index:99}
+.live{color:#00ff88;animation:blink 1s infinite}@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.btns{display:flex;gap:10px;padding:12px}
+.btns button{flex:1;padding:12px;border-radius:25px;border:none;font-weight:bold;color:white}
+.green{background:#00c851}.yellow{background:#ffbb00;color:#000}
+.nav2{display:flex;background:white;border-radius:15px;margin:0 12px;padding:10px;justify-content:space-around;color:#333}
+.nav2 div{text-align:center;font-size:12px}
+.hero{margin:15px;background:linear-gradient(135deg,#1e3c72,#2a5298);border-radius:15px;padding:20px;text-align:center}
+.card{background:white;color:#333;margin:12px;border-radius:15px;display:flex;overflow:hidden}
+.card img{width:100px;height:100px;object-fit:cover}
+.info{padding:10px;flex:1}
+.buy{width:100%;background:#0a1931;color:white;border:none;padding:10px;border-radius:20px;margin-top:8px;font-weight:bold}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:8px 0;color:#888}
+.bottom div.active{color:#0a1931}.bottom div{font-size:11px;text-align:center}
+.page{display:none;padding:10px}.page.active{display:block}
+.whitebox{background:white;color:#333;border-radius:12px;padding:15px;margin:10px 0}
+.input{width:100%;padding:12px;margin:8px 0;border:1px solid #ccc;border-radius:8px}
+.action{background:#0a1931;color:white;border:none;width:100%;padding:12px;border-radius:8px;font-weight:bold;margin-top:8px}
+.admin-btn{background:#ffbb00;color:#000;border:2px solid #000;width:100%;padding:12px;border-radius:8px;font-weight:bold;margin-top:12px}
 </style>
 </head>
 <body>
-<div class="header">
-<h3>CamInvest Hub</h3>
-<div>Balance: <span id="bal">0</span> F | <span id="myPh"></span></div>
+
+<div id="auth" style="position:fixed;inset:0;background:#0a1931;z-index:9999;padding:20px;display:flex;align-items:center;justify-content:center">
+<div class="whitebox" style="width:100%;max-width:350px">
+<h2 style="text-align:center;color:#0a1931">CamInvest Hub</h2>
+<p style="text-align:center;font-size:12px">Receiver: 678657567 Ambokia Promise</p>
+<div style="display:flex;gap:10px;margin:12px 0">
+<button id="tabR" class="action" style="flex:1" onclick="showReg()">Register</button>
+<button id="tabL" class="action" style="flex:1;background:#ddd;color:#333" onclick="showLog()">Login</button>
+</div>
+<div id="regBox">
+<input id="regPhone" class="input" placeholder="Phone 6XXXXXXXX">
+<input id="regPass" class="input" type="password" placeholder="Password">
+<input id="regPass2" class="input" type="password" placeholder="Confirm Password">
+<button class="action" onclick="doRegister()">Register & Enter</button>
+</div>
+<div id="logBox" style="display:none">
+<input id="logPhone" class="input" placeholder="Phone">
+<input id="logPass" class="input" type="password" placeholder="Password">
+<button class="action" onclick="doLogin()">Login & Enter</button>
+</div>
+</div>
 </div>
 
-<div id="home" class="page active"><div id="prodList"></div></div>
-<div id="orders" class="page"><h3>My Orders</h3><div id="orderList"></div></div>
-<div id="tasks" class="page">
-<div class="card"><b>Daily Tasks - Earn 100F per video</b><p>Watch 10 videos daily</p><button onclick="watchVid()">▶️ Watch Video</button><p>Today: <span id="vidCount">0</span>/10</p></div>
-</div>
-<div id="team" class="page">
-<div class="card">
-<b>My Team & Referral</b>
-<p style="margin-top:10px">Your referral link:</p>
-<p id="myLink" style="word-break:break-all;background:#eee;padding:10px;border-radius:6px;margin:10px 0;font-size:13px"></p>
-<button onclick="copyLink()">📋 Copy Link</button>
-<button onclick="shareWA()" style="background:#25D366">📱 Share on WhatsApp</button>
-</div>
-<div id="teamList"></div>
-</div>
-<div id="me" class="page">
-<div class="card"><b>Me</b><p>Phone: <span id="myPh2"></span></p><button onclick="openAdmin()">🔑 Admin Login (678657567)</button><button onclick="if(confirm('Logout?')){localStorage.clear();location.reload()}" style="background:#999">Logout</button></div>
-<div class="card"><b>💰 Recharge</b><input id="depAmt" placeholder="Amount e.g 5000" type="number"><button onclick="doRecharge()">Submit Recharge</button><div id="depList" style="margin-top:10px"></div></div>
-<div class="card"><b>🏦 Withdraw</b><input id="withAmt" placeholder="Amount" type="number"><button onclick="doWithdraw()">Withdraw</button><div id="withList" style="margin-top:10px"></div></div>
+<div class="top"><span class="live">● LIVE</span> | <span id="balTop">90F</span> | <span id="vidTop">4/10</span> | 678657567</div>
+<div class="btns"><button class="green" onclick="shareWA()">WhatsApp Share</button><button class="yellow" onclick="copyLink()">COPY LINK</button></div>
+<div class="nav2">
+<div onclick="go('recharge')">💳<br>Recharge</div>
+<div onclick="go('withdraw')">🏧<br>Withdraw</div>
+<div onclick="go('tasks')">📋<br>Tasks</div>
+<div onclick="go('team')">👥<br>Team</div>
+<div onclick="go('terms')">📄<br>Terms</div>
 </div>
 
-<div id="adminModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:99;overflow:auto"><div class="whitebox"><h3>Admin - 678657567</h3><input id="adminPin" placeholder="Enter PIN" type="password"><button onclick="checkPin()">Login</button><div id="adminContent" style="margin-top:15px;word-break:break-all"></div><button onclick="closeAdmin()" style="background:#999">Close</button></div></div>
+<div id="home" class="page active">
+<div class="hero"><p>To: 678657567</p><h1 id="balHero">90 F</h1><p>All Deposits TO 678657567</p></div>
+<div id="products"></div>
+</div>
 
-<div class="bottom"><div class="active" onclick="go('home')" id="bHome">🏠<br>Home</div><div onclick="go('orders')" id="bOrders">📦<br>Orders</div><div onclick="go('tasks')" id="bTasks">✅<br>Tasks</div><div onclick="go('team')" id="bTeam">👥<br>Team</div><div onclick="go('me')" id="bMe">👤<br>Me</div></div>
+<div id="orders" class="page"><h3>Orders</h3><div id="ordersList" class="whitebox">No orders</div></div>
+<div id="tasks" class="page"><h3>Tasks</h3><div class="whitebox">Video <span id="vid">4</span>/10 - 50F each<br><button class="action" onclick="watchVid()">Watch +50F</button></div></div>
+<div id="team" class="page"><h3>Team</h3><div class="whitebox">Link:<br><b id="teamLink">https://hub.vercel.app?ref=678657567</b><br><br><button class="action" onclick="shareWA()">Share</button></div></div>
+<div id="terms" class="page"><h3>Terms & Risk</h3><div class="whitebox" style="font-size:13px">1. All deposits TO 678657567 Ambokia Promise<br>2. Withdrawals FROM 678657567 in 24h<br>3. High-risk, profits are estimates<br>4. Only invest what you can lose<br><button class="action" style="background:#888" onclick="go('home')">Back</button></div></div>
+<div id="me" class="page"><h3>Me</h3><div class="whitebox">Phone: <b id="myPhone">678657567</b><br>Balance: <b id="balMe">90F</b><br>Receiver: 678657567<br><br><button class="action" style="background:#00c851" onclick="go('recharge')">Recharge to 678657567</button><button class="action" onclick="go('withdraw')">Withdraw</button><button class="admin-btn" onclick="openAdmin()">Admin PIN 6786</button><button class="action" style="background:#ddd;color:#333" onclick="doLogout()">Logout</button></div></div>
+<div id="recharge" class="page"><h3>Recharge TO 678657567</h3><div class="whitebox"><p>Receiver: <b>678657567 - MTN MoMo</b></p><input id="rAmount" class="input" placeholder="Amount"><input id="rTrans" class="input" placeholder="Transaction ID"><button class="action" onclick="doRecharge()">Submit</button><div id="rList" style="margin-top:10px"></div><button class="action" style="background:#888" onclick="go('home')">Back</button></div></div>
+<div id="withdraw" class="page"><h3>Withdraw FROM 678657567</h3><div class="whitebox">Balance: <b id="balW">90F</b><br><input id="wAmount" class="input" placeholder="Amount"><input id="wPhone" class="input" placeholder="Your MoMo"><button class="action" onclick="doWithdraw()">Request</button><div id="wList" style="margin-top:10px"></div><button class="action" style="background:#888" onclick="go('home')">Back</button></div></div>
+
+<div id="adminModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:999;padding:15px;overflow:auto">
+<div class="whitebox"><h2>Admin 678657567</h2><input id="pin" class="input" placeholder="PIN 6786" type="password"><button class="action" onclick="checkPin()">Unlock</button><div id="adminContent" style="display:none;margin-top:15px"><div id="allDeposits"></div><div id="allWithdraws"></div><button class="action" style="background:red" onclick="closeAdmin()">Close</button></div></div>
+</div>
+
+<div class="bottom">
+<div class="active" onclick="go('home')" id="bHome">🏠<br>Home</div>
+<div onclick="go('orders')" id="bOrders">📦<br>Orders</div>
+<div onclick="go('tasks')" id="bTasks">📋<br>Tasks</div>
+<div onclick="go('team')" id="bTeam">👥<br>Team</div>
+<div onclick="go('me')" id="bMe">👤<br>Me</div>
+</div>
 
 <script>
-let bal=parseInt(localStorage.getItem('bal')||'0');
-let products=[{name:'Rice Investment 200F/day',price:5000,daily:600},{name:'Plan 10K - 1300F/day',price:10000,daily:1300},{name:'Plan 25K - 3500F/day',price:25000,daily:3500},{name:'Plan 50K - 8000F/day',price:50000,daily:8000}];
-let orders=JSON.parse(localStorage.getItem('orders')||'[]');
-let vids=parseInt(localStorage.getItem('vids')||'0');
-let myPhone=localStorage.getItem('myPhone')||'678657567';
-let ref=new URLSearchParams(location.search).get('ref');
-function getRefLink(){let ph=myPhone||'678657567';return `${location.origin}?ref=${ph}`;}
-function renderProducts(){let h='';products.forEach((p,i)=>{h+=`<div class=card><b>${p.name}</b><p>Price: ${p.price}F - Daily Income: ${p.daily}F</p><button onclick="buy(${p.price},'${p.name}')">Buy Now</button></div>`});document.getElementById('prodList').innerHTML=h;}
-function updateBal(){document.getElementById('bal').innerText=bal;document.getElementById('myPh').innerText=myPhone;document.getElementById('myPh2').innerText=myPhone;document.getElementById('myLink').innerText=getRefLink();document.getElementById('vidCount').innerText=vids;localStorage.setItem('bal',bal);}
-function go(p){document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));document.getElementById(p).classList.add('active');document.querySelectorAll('.bottom div').forEach(e=>e.classList.remove('active'));document.getElementById('b'+p.charAt(0).toUpperCase()+p.slice(1)).classList.add('active');if(p=='orders')renderOrders();if(p=='me'){renderDeps();renderWiths();}}
-function buy(price,name){if(bal<price)return alert('Low balance, please recharge first');bal-=price;orders.push({name,price,date:new Date().toLocaleString()});localStorage.setItem('orders',JSON.stringify(orders));localStorage.setItem('bal',bal);updateBal();alert('Success! You bought '+name);}
-function renderOrders(){let el=document.getElementById('orderList');let h='';orders.forEach(o=>h+=`<div class=card>${o.name} - ${o.price}F<br><small>${o.date}</small></div>`);el.innerHTML=h||'<div class=card>No orders yet</div>';}
-function watchVid(){if(vids>=10)return alert('Max 10 videos today, come tomorrow');vids++;bal+=100;localStorage.setItem('vids',vids);localStorage.setItem('bal',bal);updateBal();alert('You earned 100F!');}
-function doRecharge(){let a=document.getElementById('depAmt').value;if(!a)return alert('Enter amount');let deps=JSON.parse(localStorage.getItem('deps')||'[]');deps.push({amt:a,status:'pending',date:new Date().toLocaleString(),phone:myPhone});localStorage.setItem('deps',JSON.stringify(deps));alert('Recharge submitted! Admin will approve soon. Send screenshot to 678657567 on WhatsApp');renderDeps();}
-function renderDeps(){let h='<b>Deposit History</b>';let deps=JSON.parse(localStorage.getItem('deps')||'[]');deps.forEach(d=>h+=`<div style=margin-top:5px;padding:5px;background:#f9f9f9>${d.amt}F - ${d.status} - ${d.date}</div>`);document.getElementById('depList').innerHTML=h;}
-function doWithdraw(){let a=parseInt(document.getElementById('withAmt').value);if(!a)return;if(bal<a)return alert('Low balance');let withs=JSON.parse(localStorage.getItem('withs')||'[]');withs.push({amt:a,status:'pending',date:new Date().toLocaleString(),phone:myPhone});bal-=a;localStorage.setItem('withs',JSON.stringify(withs));localStorage.setItem('bal',bal);updateBal();renderWiths();alert('Withdraw request sent!');}
-function renderWiths(){let h='<b>Withdraw History</b>';let withs=JSON.parse(localStorage.getItem('withs')||'[]');withs.forEach(w=>h+=`<div style=margin-top:5px;padding:5px;background:#f9f9f9>${w.amt}F - ${w.status} - ${w.date}</div>`);document.getElementById('withList').innerHTML=h;}
+let bal=parseInt(localStorage.getItem('bal')||'90');let vids=parseInt(localStorage.getItem('vids')||'4');let orders=JSON.parse(localStorage.getItem('orders')||'[]');let deps=JSON.parse(localStorage.getItem('deps')||'[]');let withs=JSON.parse(localStorage.getItem('withs')||'[]');
+let products=[{name:'Rice 200F',price:200,img:'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=200',desc:'Rice',profit:'40F/day'},{name:'Shop 500F',price:500,img:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=200',desc:'Shop',profit:'165F/day'},{name:'Phone 1,000F',price:1000,img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200',desc:'Phone',profit:'350F/day'},{name:'Moto 5,000F',price:5000,img:'https://images.unsplash.com/photo-1558981852-426c6c22a060?w=200',desc:'Moto',profit:'800F/day'},{name:'Car 20,000F',price:20000,img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=200',desc:'Car',profit:'2,500F/day'},{name:'House 100,000F',price:100000,img:'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=200',desc:'House',profit:'8,000F/day'},{name:'Company 400,000F',price:400000,img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200',desc:'Company',profit:'25,000F/day'}];
+function renderProducts(){let h='';products.forEach(p=>{h+=`<div class="card"><img src="${p.img}"><div class="info"><b>${p.name}</b><br><small>${p.desc} - ${p.profit}</small><br><button class="buy" onclick="buy(${p.price},'${p.name}')">BUY ${p.price}F</button></div></div>`});document.getElementById('products').innerHTML=h;}
+function updateBal(){document.getElementById('balTop').innerText=bal+'F';document.getElementById('balHero').innerText=bal+' F';document.getElementById('balMe').innerText=bal+'F';document.getElementById('balW').innerText=bal+'F';document.getElementById('vidTop').innerText=vids+'/10';document.getElementById('vid').innerText=vids;localStorage.setItem('bal',bal);localStorage.setItem('vids',vids);}
+function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(p).classList.add('active');document.querySelectorAll('.bottom div').forEach(x=>x.classList.remove('active'));let b=document.getElementById('b'+p.charAt(0).toUpperCase()+p.slice(1));if(b)b.classList.add('active');if(p=='orders')renderOrders();if(p=='recharge')renderDeps();if(p=='withdraw')renderWiths();}
+function buy(price,name){if(bal<price){alert('Low! Recharge TO 678657567');go('recharge');return}bal-=price;orders.push({name,price,date:new Date().toLocaleString()});localStorage.setItem('orders',JSON.stringify(orders));updateBal();alert('Bought '+name);go('orders');}
+function renderOrders(){let el=document.getElementById('ordersList');if(orders.length==0){el.innerHTML='No orders';return}el.innerHTML=orders.map(o=>`<div style="border-bottom:1px solid #eee;padding:8px 0"><b>${o.name}</b> - ${o.price}F - ${o.date}</div>`).join('');}
+function watchVid(){if(vids>=10){alert('Limit 10/day');return}vids++;bal+=50;updateBal();alert('+50F');}
+function doRecharge(){let a=document.getElementById('rAmount').value;let t=document.getElementById('rTrans').value;if(!a||!t){alert('Enter amount and ID');return}deps.push({amount:a,trans:t,date:new Date().toLocaleString()});localStorage.setItem('deps',JSON.stringify(deps));alert('Submitted to 678657567!');renderDeps();document.getElementById('rAmount').value='';document.getElementById('rTrans').value='';}
+function renderDeps(){let h='<b>Deposits TO 678657567:</b><br>';if(deps.length==0)h+='None';else deps.forEach(d=>{h+=`<div>${d.amount}F - ${d.trans} - ${d.date}</div>`});document.getElementById('rList').innerHTML=h;}
+function doWithdraw(){let a=document.getElementById('wAmount').value;let p=document.getElementById('wPhone').value;if(!a||!p){alert('Enter amount and phone');return}if(parseInt(a)>bal){alert('Low balance');return}bal-=parseInt(a);withs.push({amount:a,phone:p,date:new Date().toLocaleString()});localStorage.setItem('withs',JSON.stringify(withs));localStorage.setItem('bal',bal);updateBal();alert('Request FROM 678657567!');renderWiths();}
+function renderWiths(){let h='<b>Withdrawals:</b><br>';if(withs.length==0)h+='None';else withs.forEach(w=>{h+=`<div>${w.amount}F to ${w.phone} - ${w.date}</div>`});document.getElementById('wList').innerHTML=h;}
 function openAdmin(){document.getElementById('adminModal').style.display='block';}
 function closeAdmin(){document.getElementById('adminModal').style.display='none';}
-function checkPin(){if(document.getElementById('adminPin').value=='67865'){let deps=localStorage.getItem('deps')||'none';let withs=localStorage.getItem('withs')||'none';document.getElementById('adminContent').innerHTML=`<p><b>All Deposits:</b><br>${deps}</p><p style=margin-top:10px><b>All Withdraws:</b><br>${withs}</p><p style=margin-top:10px;color:green>To approve: Go to browser console and run localStorage code</p>`;}else alert('Wrong PIN - PIN is 67865');}
-function shareWA(){let l=getRefLink();window.open('https://wa.me/?text='+encodeURIComponent('🔥 Join CamInvest Hub! Invest 5000F get 600F daily! My link: '+l));}
-function copyLink(){let l=getRefLink();navigator.clipboard.writeText(l);alert('Copied: '+l);}
-if(!localStorage.getItem('myPhone')){let p=ref||prompt('Enter your phone number (MTN/Orange)');if(p&&p.length>=9){localStorage.setItem('myPhone',p);myPhone=p;if(ref&&ref!=p){let team=JSON.parse(localStorage.getItem('team')||'[]');if(!team.includes(ref)){team.push(ref);localStorage.setItem('team',JSON.stringify(team));}}}}
+function checkPin(){if(document.getElementById('pin').value=='6786'){document.getElementById('adminContent').style.display='block';let dh='Deposits TO 678657567:<br>';deps.forEach((d,i)=>{dh+=`<div style="border:1px solid #ccc;padding:5px;margin:5px 0">${d.amount}F - ${d.trans}<br><button onclick="approveDep(${i})">Approve +${d.amount}F</button></div>`});document.getElementById('allDeposits').innerHTML=dh;let wh='Withdraws FROM 678657567:<br>';withs.forEach(w=>{wh+=`<div style="border:1px solid #ccc;padding:5px">${w.amount}F to ${w.phone}</div>`});document.getElementById('allWithdraws').innerHTML=wh;}else alert('Wrong PIN 6786');}
+function approveDep(i){bal+=parseInt(deps[i].amount);localStorage.setItem('bal',bal);updateBal();alert('Approved');checkPin();}
+function shareWA(){window.open('https://wa.me/?text=Join CamInvest Hub https://hub.vercel.app?ref=678657567');}
+function copyLink(){navigator.clipboard.writeText('https://hub.vercel.app?ref=678657567');alert('Copied!');}
+function showReg(){document.getElementById('regBox').style.display='block';document.getElementById('logBox').style.display='none';}
+function showLog(){document.getElementById('regBox').style.display='none';document.getElementById('logBox').style.display='block';}
+function doRegister(){let ph=document.getElementById('regPhone').value;let p=document.getElementById('regPass').value;let p2=document.getElementById('regPass2').value;if(!ph||!p){alert('Enter phone and pass');return}if(p!=p2){alert('Not match');return}let users=JSON.parse(localStorage.getItem('c_users')||'[]');if(users.find(u=>u.phone==ph)){alert('Exists, login');showLog();return}users.push({phone:ph,pass:p});localStorage.setItem('c_users',JSON.stringify(users));localStorage.setItem('c_current',ph);document.getElementById('myPhone').innerText=ph;document.getElementById('auth').style.display='none';}
+function doLogin(){let ph=document.getElementById('logPhone').value;let p=document.getElementById('logPass').value;let users=JSON.parse(localStorage.getItem('c_users')||'[]');let u=users.find(u=>u.phone==ph&&u.pass==p);if(!u){alert('Wrong');return}localStorage.setItem('c_current',ph);document.getElementById('myPhone').innerText=ph;document.getElementById('auth').style.display='none';}
+function doLogout(){localStorage.removeItem('c_current');location.reload();}
+(function(){let cur=localStorage.getItem('c_current');if(cur){document.getElementById('auth').style.display='none';document.getElementById('myPhone').innerText=cur;}})();
 renderProducts();updateBal();
 </script>
 </body>
