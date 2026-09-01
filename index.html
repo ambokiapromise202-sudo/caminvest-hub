@@ -8,140 +8,202 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0a0f1e;color:#fff;padding:15px}
-.card{background:#1a233d;padding:20px;border-radius:15px;margin:12px 0;border:1px solid #2a3a5a}
-input,button{width:100%;padding:15px;margin:8px 0;border-radius:10px;border:0;font-size:16px}
-button{background:#00ff88;color:#000;font-weight:bold}
-.balance{font-size:40px;color:#00ff88;text-align:center;font-weight:bold}
+body{background:#f5f5f5;color:#000}
+.top{background:linear-gradient(90deg,#000,#c92a2a);color:#fff;padding:15px}
+.top-bal{display:flex;justify-content:space-between;font-weight:bold;margin-bottom:12px}
+.btn-row{display:flex;gap:10px}
+.btn-row button{flex:1;padding:12px;border-radius:20px;border:0;font-weight:bold;font-size:15px}
+.dep{background:#fff;color:#e91e63}
+.with{background:#00c853;color:#fff}
+.tabs{display:flex;background:#fff;padding:10px;justify-content:space-around;border-bottom:1px solid #ddd}
+.tabs div{padding:5px 10px;cursor:pointer;opacity:.6}
+.tabs .active{color:#e91e63;opacity:1;font-weight:bold}
+.card{background:#fff;margin:10px;padding:15px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 5px #0001}
+.card small{color:#666}
+.card .green{color:#00c853;font-size:13px;font-weight:bold}
+.buy{background:#e91e63;color:#fff;border:0;padding:10px 20px;border-radius:20px;font-weight:bold}
+.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:#000a;display:none;justify-content:center;align-items:center;padding:20px;z-index:99}
+.modalBox{background:#fff;padding:20px;border-radius:15px;width:100%;max-width:400px}
+.modalBox input{width:100%;padding:14px;margin:8px 0;border:1px solid #ddd;border-radius:10px}
+.hidden{display:none}
 </style>
 </head>
 <body>
-<div class="card">
-<h2 style="color:#00ff88;text-align:center">CamInvest Hub</h2>
-<p style="text-align:center;opacity:.6">Invest 10% Daily</p>
-<input id="phone" placeholder="Phone e.g 678657567" oninput="savePhone()">
-<div class="balance"><span id="bal">0</span> FCFA</div>
-<p style="text-align:center;font-size:12px;opacity:.5" id="status">Ready</p>
+
+<div class="top">
+  <div class="top-bal">
+    <span>XAF <span id="bal">105.0</span></span>
+    <span>XAF <span id="earn">0.0</span></span>
+    <span>0/10</span>
+  </div>
+  <div class="btn-row">
+    <button class="dep" onclick="openDep()">💳 Deposit</button>
+    <button class="with" onclick="openWith()">💸 Withdraw</button>
+  </div>
 </div>
 
-<div class="card">
-<h3>Deposit</h3>
-<input id="depAmount" type="number" value="500">
-<button onclick="doDeposit()">DEPOSIT NOW</button>
-<p style="font-size:12px;opacity:.6">Send to: 650000000 - Ambokia</p>
+<div class="tabs">
+  <div class="active">📦 Plans</div>
+  <div onclick="alert('Tasks coming')">🎬 Tasks</div>
+  <div onclick="openMe()">👤 Me</div>
 </div>
 
-<div class="card">
-<h3>Withdraw</h3>
-<input id="withAmount" type="number" placeholder="Amount">
-<input id="withPhone" placeholder="MoMo Number">
-<button onclick="doWithdraw()" style="background:#fff">WITHDRAW NOW</button>
+<div id="plans">
+  <div class="card">
+    <div>
+      <div>🔥</div>
+      <b>Starter Pack</b><br>
+      <small>Price: 2000F</small><br>
+      <span class="green">400F/day x 10 days = 4000F</span>
+    </div>
+    <button class="buy" onclick="buyPack('Starter',2000,400,10)">Buy</button>
+  </div>
+
+  <div class="card">
+    <div>
+      <div>⚡</div>
+      <b>Booster Pack</b><br>
+      <small>Price: 5000F</small><br>
+      <span class="green">1000F/day x 12 days = 12000F</span>
+    </div>
+    <button class="buy" onclick="buyPack('Booster',5000,1000,12)">Buy</button>
+  </div>
+
+  <div class="card">
+    <div>
+      <div>💎</div>
+      <b>Pro Pack</b><br>
+      <small>Price: 10000F</small><br>
+      <span class="green">2500F/day x 15 days = 37500F</span>
+    </div>
+    <button class="buy" onclick="buyPack('Pro',10000,2500,15)">Buy</button>
+  </div>
+
+  <div class="card">
+    <div>
+      <div>👑</div>
+      <b>VIP Pack</b><br>
+      <small>Price: 25000F</small><br>
+      <span class="green">7000F/day x 20 days = 140000F</span>
+    </div>
+    <button class="buy" onclick="buyPack('VIP',25000,7000,20)">Buy</button>
+  </div>
 </div>
 
-<div class="card"><h3>History</h3><div id="history"></div></div>
+<!-- DEPOSIT MODAL -->
+<div id="depModal" class="modal" onclick="if(event.target==this)closeModals()">
+  <div class="modalBox">
+    <h3>Deposit - Easy</h3>
+    <input id="phone" placeholder="Your Phone e.g 678657567">
+    <input id="depAmount" type="number" placeholder="Amount Min 500" value="2000">
+    <select id="method" style="width:100%;padding:14px;margin:8px 0;border-radius:10px;border:1px solid #ddd">
+      <option>MTN MoMo</option><option>Orange Money</option>
+    </select>
+    <div style="background:#f5f5f5;padding:10px;border-radius:8px;font-size:13px">
+      Send to: <b>650000000</b> - Ambokia Promise<br>After sending, click below
+    </div>
+    <button onclick="doDeposit()" style="background:#00c853;color:#fff;padding:14px;border-radius:10px;border:0;width:100%;margin-top:10px;font-weight:bold">I HAVE SENT - CREDIT NOW</button>
+    <button onclick="closeModals()" style="background:#eee;width:100%;padding:12px;border:0;border-radius:10px;margin-top:8px">Cancel</button>
+  </div>
+</div>
+
+<!-- WITHDRAW MODAL -->
+<div id="withModal" class="modal" onclick="if(event.target==this)closeModals()">
+  <div class="modalBox">
+    <h3>Withdraw - Fast</h3>
+    <input id="withAmount" type="number" placeholder="Amount to withdraw">
+    <input id="withPhone" placeholder="MoMo Number to receive">
+    <button onclick="doWithdraw()" style="background:#00c853;color:#fff;padding:14px;border-radius:10px;border:0;width:100%;margin-top:10px;font-weight:bold">WITHDRAW NOW</button>
+    <button onclick="closeModals()" style="background:#eee;width:100%;padding:12px;border:0;border-radius:10px;margin-top:8px">Cancel</button>
+  </div>
+</div>
 
 <script>
-// === REAL CONFIG - YOU MUST PASTE YOURS FROM FIREBASE ===
+// FIREBASE - Paste real config from your screenshot
 const firebaseConfig = {
-  apiKey: "AIzaSy...PUT REAL KEY HERE FROM YOUR SCREENSHOT",
+  apiKey: "AIzaSy...PUT REAL HERE",
   authDomain: "caminvest-hub-14129.firebaseapp.com",
   projectId: "caminvest-hub-14129",
   storageBucket: "caminvest-hub-14129.firebasestorage.app",
-  messagingSenderId: "PUT REAL ID HERE",
-  appId: "PUT REAL APP ID HERE"
+  messagingSenderId: "PUT REAL",
+  appId: "PUT REAL"
 };
 let db;
-try{
-  firebase.initializeApp(firebaseConfig);
-  db=firebase.firestore();
-  document.getElementById('status').innerText='Connected to Firebase';
-}catch(e){
-  document.getElementById('status').innerText='Offline mode - Works local';
+try{ firebase.initializeApp(firebaseConfig); db=firebase.firestore(); }catch(e){}
+
+function openDep(){ document.getElementById('depModal').style.display='flex'; }
+function openWith(){ document.getElementById('withModal').style.display='flex'; }
+function closeModals(){ document.getElementById('depModal').style.display='none'; document.getElementById('withModal').style.display='none'; }
+function openMe(){
+  const p=localStorage.getItem('ci_phone')||'Not set';
+  const b=localStorage.getItem('bal_'+p)||'105';
+  alert('Phone: '+p+'\nBalance: '+b+'F\n\nDeposit to increase balance!');
 }
 
-function getPhone(){ return document.getElementById('phone').value.trim() || localStorage.getItem('ci_phone') || ''; }
-function savePhone(){
-  const p=document.getElementById('phone').value.trim();
-  if(p){ localStorage.setItem('ci_phone',p); document.getElementById('withPhone').value=p; loadLocal(); }
-}
-function getBalKey(p){ return 'bal_'+p; }
-function getHistKey(p){ return 'hist_'+p; }
-
-function loadLocal(){
-  const p=getPhone();
-  if(!p) return;
-  const bal=parseInt(localStorage.getItem(getBalKey(p))||'0');
-  document.getElementById('bal').innerText=bal;
-  const hist=JSON.parse(localStorage.getItem(getHistKey(p))||'[]');
-  let h=''; hist.forEach(x=>{ h+=`<div style="padding:8px;border-bottom:1px solid #222;display:flex;justify-content:space-between"><span>${x.amount}F</span><span>${x.type}</span></div>` });
-  document.getElementById('history').innerHTML=h||'No history';
+function loadBal(){
+  const phone=localStorage.getItem('ci_phone')||'';
+  if(!phone) { document.getElementById('bal').innerText='105.0'; return; }
+  const bal=localStorage.getItem('bal_'+phone) || '105';
+  document.getElementById('bal').innerText=bal+'.0';
+  document.getElementById('phone').value=phone;
+  document.getElementById('withPhone').value=phone;
 }
 
 async function doDeposit(){
-  const phone=getPhone();
+  const phone=document.getElementById('phone').value.trim();
   const amount=parseInt(document.getElementById('depAmount').value);
-  if(!phone) return alert('Enter phone first at top!');
-  if(!amount||amount<100) return alert('Enter valid amount');
-  
-  // LOCAL - INSTANT
-  let bal=parseInt(localStorage.getItem(getBalKey(phone))||'0');
-  bal+=amount;
-  localStorage.setItem(getBalKey(phone), bal);
-  let hist=JSON.parse(localStorage.getItem(getHistKey(phone))||'[]');
-  hist.unshift({amount, type:'Deposit OK', time:Date.now()});
-  localStorage.setItem(getHistKey(phone), JSON.stringify(hist));
+  if(!phone) return alert('Enter phone');
+  if(!amount||amount<500) return alert('Min 500F');
   localStorage.setItem('ci_phone',phone);
   
-  document.getElementById('bal').innerText=bal;
-  loadLocal();
+  let bal=parseInt(localStorage.getItem('bal_'+phone)||'105');
+  bal+=amount;
+  localStorage.setItem('bal_'+phone, bal);
+  document.getElementById('bal').innerText=bal+'.0';
   
-  // TRY FIREBASE (if config correct)
   if(db){
     try{
-      await db.collection('users').doc(phone).set({phone, balance: firebase.firestore.FieldValue.increment(amount)}, {merge:true});
-      await db.collection('deposits').add({phone, amount, status:'approved', time:Date.now()});
-      document.getElementById('status').innerText='Saved to cloud too!';
-    }catch(e){ console.log(e); }
+      await db.collection('users').doc(phone).set({phone,balance:firebase.firestore.FieldValue.increment(amount)},{merge:true});
+      await db.collection('deposits').add({phone,amount,time:Date.now(),status:'approved'});
+    }catch(e){}
   }
-  
-  alert(amount+'F ADDED! New Balance: '+bal+'F');
+  closeModals();
+  alert(amount+'F Added! New Balance: '+bal+'F - You can now BUY packs!');
 }
 
 async function doWithdraw(){
-  const phone=getPhone();
   const amount=parseInt(document.getElementById('withAmount').value);
   const momo=document.getElementById('withPhone').value.trim();
-  if(!phone||!amount||!momo) return alert('Fill all fields');
-  
-  let bal=parseInt(localStorage.getItem(getBalKey(phone))||'0');
-  if(bal < amount) return alert('Low balance. You have: '+bal+'F');
-  
+  const phone=localStorage.getItem('ci_phone')||'';
+  if(!phone||!amount||!momo) return alert('Fill all');
+  let bal=parseInt(localStorage.getItem('bal_'+phone)||'0');
+  if(bal<amount) return alert('Low balance: '+bal+'F');
   bal-=amount;
-  localStorage.setItem(getBalKey(phone), bal);
-  let hist=JSON.parse(localStorage.getItem(getHistKey(phone))||'[]');
-  hist.unshift({amount, type:'Withdraw to '+momo, time:Date.now()});
-  localStorage.setItem(getHistKey(phone), JSON.stringify(hist));
-  
-  document.getElementById('bal').innerText=bal;
-  loadLocal();
+  localStorage.setItem('bal_'+phone, bal);
+  document.getElementById('bal').innerText=bal+'.0';
   
   if(db){
     try{
-      await db.collection('users').doc(phone).set({balance: firebase.firestore.FieldValue.increment(-amount)}, {merge:true});
-      await db.collection('withdrawals').add({phone, amount, momo, status:'pending', time:Date.now()});
+      await db.collection('users').doc(phone).set({balance:firebase.firestore.FieldValue.increment(-amount)},{merge:true});
+      await db.collection('withdrawals').add({phone,amount,momo,status:'pending',time:Date.now()});
     }catch(e){}
   }
-  
-  alert('Withdraw '+amount+'F to '+momo+' requested! You have '+bal+'F left');
+  closeModals();
+  alert('Withdraw '+amount+'F to '+momo+' requested! Paid soon!');
 }
 
-// Load on start
-const saved=localStorage.getItem('ci_phone');
-if(saved){
-  document.getElementById('phone').value=saved;
-  document.getElementById('withPhone').value=saved;
-  loadLocal();
+function buyPack(name,price,daily,days){
+  const phone=localStorage.getItem('ci_phone')||'';
+  if(!phone) { openDep(); return alert('Enter phone & deposit first!'); }
+  let bal=parseInt(localStorage.getItem('bal_'+phone)||'0');
+  if(bal<price) return alert('Low balance! You have '+bal+'F, need '+price+'F. Click Deposit!');
+  bal-=price;
+  localStorage.setItem('bal_'+phone, bal);
+  document.getElementById('bal').innerText=bal+'.0';
+  alert('Success! You bought '+name+' Pack!\nYou will earn '+daily+'F daily for '+days+' days!');
 }
+
+loadBal();
 </script>
 </body>
 </html>
