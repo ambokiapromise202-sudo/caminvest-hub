@@ -1,5 +1,66 @@
-{
-  "rewrites": [
-    { "source": "/admin", "destination": "/admin.html" }
-  ]
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CamInvest Admin</title>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<style>
+body{font-family:Arial;background:#111;color:#fff;padding:20px}
+.card{background:#222;padding:15px;margin:10px 0;border-radius:10px}
+button{background:#00ff88;border:0;padding:10px 20px;border-radius:5px;font-weight:bold;cursor:pointer;margin:5px}
+button.reject{background:#ff4444;color:#fff}
+h2{color:#00ff88}
+</style>
+</head>
+<body>
+<h2>CamInvest Admin - Deposits</h2>
+<div id="list">Loading...</div>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyB5...",
+  authDomain: "caminvest-hub-14129.firebaseapp.com",
+  projectId: "caminvest-hub-14129",
+  storageBucket: "caminvest-hub-14129.appspot.com",
+  messagingSenderId: "YOUR_ID",
+  appId: "YOUR_APP_ID"
+};
+// Use your full config from Firebase console
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+async function loadDeposits(){
+  const snap = await db.collection("deposits").where("status","==","pending").get();
+  let html="";
+  snap.forEach(doc=>{
+    const d=doc.data();
+    html+=`<div class="card">
+      <b>${d.userName||d.email}</b> - ${d.amount}F - ${d.method}<br>
+      Phone: ${d.phone||''}<br>
+      <button onclick="approve('${doc.id}','${d.userId}',${d.amount})">APPROVE</button>
+      <button class="reject" onclick="reject('${doc.id}')">REJECT</button>
+    </div>`;
+  });
+  document.getElementById("list").innerHTML=html||"No pending deposits";
 }
+async function approve(depId,userId,amount){
+  if(!confirm("Approve "+amount+"F?")) return;
+  await db.collection("users").doc(userId).update({
+    balance: firebase.firestore.FieldValue.increment(amount),
+    packageActive: true,
+    packageAmount: amount
+  });
+  await db.collection("deposits").doc(depId).update({status:"approved"});
+  alert("Approved!"); loadDeposits();
+}
+async function reject(id){
+  if(!confirm("Reject?")) return;
+  await db.collection("deposits").doc(id).update({status:"rejected"});
+  loadDeposits();
+}
+loadDeposits();
+</script>
+</body>
+</html>
