@@ -62,7 +62,15 @@ h2{color:#00ff88;text-align:center;margin-bottom:10px}
     <button onclick="doDeposit()">I HAVE SENT MONEY</button>
     <button onclick="hideBoxes()" style="background:#333;color:#fff">Cancel</button>
   </div>
-
+// --- PASTE YOUR FIREBASE CONFIG HERE ---
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",   <-- DELETE THIS
+  authDomain: "caminvest-hub-14129.firebaseapp.com",
+  projectId: "caminvest-hub-14129",
+  storageBucket: "caminvest-hub-14129.appspot.com",
+  messagingSenderId: "123456789",  <-- DELETE THIS
+  appId: "1:123456:web:abcd..."  <-- DELETE THIS
+};
   <div id="withdraw" class="card hidden">
     <h3>Withdraw Money</h3>
     <input id="withAmount" type="number" placeholder="Amount to withdraw">
