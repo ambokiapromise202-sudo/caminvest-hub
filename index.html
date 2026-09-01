@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,16 +9,16 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0f172a;color:#fff;padding:15px}
-.card{background:#1e293b;padding:20px;border-radius:15px;margin:10px 0}
-input,select,button{width:100%;padding:14px;margin:8px 0;border-radius:10px;border:0;font-size:16px}
+body{background:#0a0f1e;color:#fff;padding:15px}
+.card{background:#1a233d;padding:20px;border-radius:15px;margin:12px 0;border:1px solid #2a3a5a}
+input,select,button{width:100%;padding:15px;margin:8px 0;border-radius:10px;border:0;font-size:16px}
 button{background:#00ff88;color:#000;font-weight:bold}
-button:disabled{background:#555}
-.balance{font-size:32px;color:#00ff88;font-weight:bold;text-align:center}
+.balance{font-size:36px;color:#00ff88;font-weight:bold;text-align:center;margin:10px}
 .row{display:flex;gap:10px}
 .row button{flex:1}
-.admin{background:#ff44441a;border:1px solid #ff4444}
 .hidden{display:none}
+small{opacity:.6}
+h2{color:#00ff88;text-align:center;margin-bottom:10px}
 </style>
 </head>
 <body>
@@ -26,158 +26,179 @@ button:disabled{background:#555}
 <div id="auth">
   <div class="card">
     <h2>CamInvest Hub</h2>
-    <input id="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Password">
-    <input id="name" placeholder="Full Name (for signup)">
-    <button onclick="login()">Login</button>
-    <button onclick="signup()" style="background:#333;color:#fff">Create Account</button>
+    <small>Invest & Earn 10% Daily</small>
+    <input id="name" placeholder="Full Name e.g Sean Morgap">
+    <input id="phone" type="tel" placeholder="Phone Number e.g 650123456">
+    <input id="password" type="password" placeholder="Password (min 6)">
+    <button onclick="signup()">CREATE ACCOUNT</button>
+    <button onclick="login()" style="background:#2a3a5a;color:#fff">LOGIN WITH PHONE</button>
+    <p id="msg" style="color:#ff6666;text-align:center;margin-top:10px"></p>
   </div>
 </div>
 
 <div id="app" class="hidden">
   <div class="card">
-    <p>Welcome, <span id="userName"></span></p>
-    <div class="balance"><span id="bal">0</span> F</div>
-    <p style="text-align:center;opacity:.7">Daily Profit: 10%</p>
+    <p>Hi, <b id="userName"></b> - <span id="userPhone"></span></p>
+    <div class="balance"><span id="bal">0</span> FCFA</div>
+    <p style="text-align:center">Daily: 10% | Min: 500F</p>
     <div class="row">
-      <button onclick="show('deposit')">Deposit</button>
-      <button onclick="show('withdraw')" style="background:#fff">Withdraw</button>
+      <button onclick="showBox('deposit')">DEPOSIT</button>
+      <button onclick="showBox('withdraw')" style="background:#fff">WITHDRAW</button>
     </div>
-    <button onclick="logout()" style="background:#333;color:#fff;margin-top:10px">Logout</button>
+    <button onclick="logout()" style="background:#111;color:#888;margin-top:10px">Logout</button>
   </div>
 
   <div id="deposit" class="card hidden">
-    <h3>Deposit</h3>
-    <input id="depAmount" type="number" placeholder="Amount e.g 1000">
+    <h3>Deposit Money</h3>
+    <input id="depAmount" type="number" placeholder="Amount - Min 500">
     <select id="depMethod">
-      <option>MTN MoMo</option>
+      <option>MTN Mobile Money</option>
       <option>Orange Money</option>
     </select>
-    <input id="depPhone" placeholder="Your MoMo Number">
-    <p style="font-size:13px;opacity:.7">Send to: 650000000 - Ambokia Promise<br>After sending, click below</p>
-    <button onclick="doDeposit()">I HAVE SENT - CREDIT ME</button>
+    <div style="background:#000;padding:10px;border-radius:8px;margin:8px 0">
+      Send to: <b style="color:#00ff88">650000000</b><br>
+      Name: Ambokia Promise
+    </div>
+    <button onclick="doDeposit()">I HAVE SENT MONEY</button>
+    <button onclick="hideBoxes()" style="background:#333;color:#fff">Cancel</button>
   </div>
 
   <div id="withdraw" class="card hidden">
-    <h3>Withdraw</h3>
-    <input id="withAmount" type="number" placeholder="Amount">
+    <h3>Withdraw Money</h3>
+    <input id="withAmount" type="number" placeholder="Amount to withdraw">
     <input id="withPhone" placeholder="MoMo Number to receive">
-    <button onclick="doWithdraw()">Request Withdrawal</button>
-  </div>
-
-  <div id="admin" class="card admin hidden">
-    <h3>ADMIN - Pending</h3>
-    <div id="adminList">Loading...</div>
+    <button onclick="doWithdraw()">REQUEST WITHDRAWAL</button>
+    <button onclick="hideBoxes()" style="background:#333;color:#fff">Cancel</button>
   </div>
 
   <div class="card">
-    <h3>History</h3>
-    <div id="history">Loading...</div>
+    <h3>My History</h3>
+    <div id="history">No history yet</div>
   </div>
 </div>
 
 <script>
-// === PUT YOUR FIREBASE CONFIG HERE ===
+// --- PASTE YOUR FIREBASE CONFIG HERE ---
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
+  apiKey: "AIzaSyC8k5p4nXxY...REPLACE...",
   authDomain: "caminvest-hub-14129.firebaseapp.com",
   projectId: "caminvest-hub-14129",
-  appId: "YOUR_APP_ID"
+  storageBucket: "caminvest-hub-14129.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "1:123456:web:abcd..."
 };
 firebase.initializeApp(firebaseConfig);
 const auth=firebase.auth();
 const db=firebase.firestore();
 
-const ADMIN_EMAIL="ambokiapromise@gmail.com"; // CHANGE TO YOUR EMAIL
+function phoneToEmail(phone){ return phone.replace(/\D/g,'') + "@caminvest.com"; }
 
-function show(id){
+function showBox(id){
   document.getElementById('deposit').classList.add('hidden');
   document.getElementById('withdraw').classList.add('hidden');
   document.getElementById(id).classList.remove('hidden');
 }
+function hideBoxes(){
+  document.getElementById('deposit').classList.add('hidden');
+  document.getElementById('withdraw').classList.add('hidden');
+}
 
 auth.onAuthStateChanged(async user=>{
-  if(!user){authDiv();return}
+  if(!user){ 
+    document.getElementById('auth').classList.remove('hidden');
+    document.getElementById('app').classList.add('hidden');
+    return;
+  }
   document.getElementById('auth').classList.add('hidden');
   document.getElementById('app').classList.remove('hidden');
   const doc=await db.collection('users').doc(user.uid).get();
   const data=doc.data();
-  document.getElementById('userName').innerText=data?.name||user.email;
-  document.getElementById('bal').innerText=data?.balance||0;
-  
-  if(user.email===ADMIN_EMAIL){
-    document.getElementById('admin').classList.remove('hidden');
-    loadAdmin();
+  if(data){
+    document.getElementById('userName').innerText=data.name;
+    document.getElementById('userPhone').innerText=data.phone;
+    document.getElementById('bal').innerText=data.balance||0;
+    document.getElementById('withPhone').value=data.phone;
   }
   loadHistory(user.uid);
 });
 
-function authDiv(){
-  document.getElementById('auth').classList.remove('hidden');
-  document.getElementById('app').classList.add('hidden');
+async function signup(){
+  try{
+    const name=document.getElementById('name').value.trim();
+    const phone=document.getElementById('phone').value.trim();
+    const pass=document.getElementById('password').value.trim();
+    if(!name||!phone||!pass) return setMsg('Fill all fields');
+    if(pass.length<6) return setMsg('Password min 6 characters');
+    if(phone.length<9) return setMsg('Enter valid phone');
+    
+    const email=phoneToEmail(phone);
+    setMsg('Creating account...');
+    const cred=await auth.createUserWithEmailAndPassword(email,pass);
+    await db.collection('users').doc(cred.user.uid).set({
+      name, phone, email, balance:0, created:Date.now()
+    });
+    setMsg('Account created! Loading...');
+  }catch(e){ setMsg(e.message); }
 }
 
-async function signup(){
-  const email=document.getElementById('email').value;
-  const pass=document.getElementById('password').value;
-  const name=document.getElementById('name').value;
-  const cred=await auth.createUserWithEmailAndPassword(email,pass);
-  await db.collection('users').doc(cred.user.uid).set({email,name,balance:0,created:Date.now()});
-}
 async function login(){
-  const email=document.getElementById('email').value;
-  const pass=document.getElementById('password').value;
-  await auth.signInWithEmailAndPassword(email,pass);
+  try{
+    const phone=document.getElementById('phone').value.trim();
+    const pass=document.getElementById('password').value.trim();
+    if(!phone||!pass) return setMsg('Enter phone and password');
+    const email=phoneToEmail(phone);
+    setMsg('Logging in...');
+    await auth.signInWithEmailAndPassword(email,pass);
+  }catch(e){ setMsg('Wrong phone or password'); }
 }
+
+function setMsg(t){document.getElementById('msg').innerText=t}
 function logout(){auth.signOut();}
 
-// EASY DEPOSIT - AUTO CREDIT FOR NOW (No admin needed)
 async function doDeposit(){
   const amount=parseInt(document.getElementById('depAmount').value);
-  const method=document.getElementById('depMethod').value;
-  const phone=document.getElementById('depPhone').value;
-  if(!amount||amount<500) return alert('Min 500F');
+  if(!amount||amount<500) return alert('Minimum 500F');
   const user=auth.currentUser;
-  // 1. Save deposit record
-  await db.collection('deposits').add({userId:user.uid,email:user.email,amount,method,phone,status:'approved',time:Date.now()});
-  // 2. INSTANT CREDIT - No waiting!
-  await db.collection('users').doc(user.uid).update({balance:firebase.firestore.FieldValue.increment(amount),packageActive:true});
-  alert('Deposited! '+amount+'F credited instantly!');
+  const method=document.getElementById('depMethod').value;
+  
+  // Instant credit - easy for user
+  await db.collection('deposits').add({
+    userId:user.uid, amount, method, status:'approved', time:Date.now()
+  });
+  await db.collection('users').doc(user.uid).update({
+    balance: firebase.firestore.FieldValue.increment(amount)
+  });
+  alert('Success! '+amount+' FCFA added to your balance!');
   location.reload();
 }
 
-// EASY WITHDRAW
 async function doWithdraw(){
   const amount=parseInt(document.getElementById('withAmount').value);
-  const phone=document.getElementById('withPhone').value;
+  const momo=document.getElementById('withPhone').value.trim();
+  if(!amount||amount<500) return alert('Min 500F');
+  if(!momo) return alert('Enter MoMo number');
   const user=auth.currentUser;
-  const userDoc=await db.collection('users').doc(user.uid).get();
-  if(userDoc.data().balance < amount) return alert('Insufficient balance');
-  await db.collection('withdrawals').add({userId:user.uid,email:user.email,amount,phone,status:'pending',time:Date.now()});
-  await db.collection('users').doc(user.uid).update({balance:firebase.firestore.FieldValue.increment(-amount)});
-  alert('Withdrawal request sent! You will receive '+amount+'F to '+phone);
+  const snap=await db.collection('users').doc(user.uid).get();
+  if((snap.data().balance||0) < amount) return alert('Low balance');
+  
+  await db.collection('withdrawals').add({
+    userId:user.uid, amount, phone:momo, status:'pending', time:Date.now(), email:snap.data().email
+  });
+  await db.collection('users').doc(user.uid).update({
+    balance: firebase.firestore.FieldValue.increment(-amount)
+  });
+  alert('Withdrawal request sent! You will receive '+amount+'F at '+momo+' soon!');
   location.reload();
 }
 
 async function loadHistory(uid){
-  const snap=await db.collection('deposits').where('userId','==',uid).orderBy('time','desc').limit(10).get();
-  let h='';
-  snap.forEach(d=>{h+=`<div style="padding:8px;border-bottom:1px solid #333">${d.data().amount}F - ${d.data().status} - ${new Date(d.data().time).toLocaleDateString()}</div>`});
-  document.getElementById('history').innerHTML=h||'No history';
-}
-
-async function loadAdmin(){
-  const snap=await db.collection('withdrawals').where('status','==','pending').get();
+  const snap=await db.collection('deposits').where('userId','==',uid).orderBy('time','desc').limit(20).get();
   let html='';
-  snap.forEach(doc=>{
-    const d=doc.data();
-    html+=`<div style="padding:10px;border:1px solid #555;margin:5px 0">${d.email} - ${d.amount}F to ${d.phone}<br><button onclick="approveW('${doc.id}')">Approve Sent</button></div>`;
+  snap.forEach(d=>{
+    const x=d.data();
+    html+=`<div style="padding:8px;border-bottom:1px solid #222;display:flex;justify-content:space-between"><span>${x.amount}F</span><span style="color:#00ff88">${x.status}</span></div>`;
   });
-  document.getElementById('adminList').innerHTML=html||'No pending withdrawals';
-}
-async function approveW(id){
-  await db.collection('withdrawals').doc(id).update({status:'paid'});
-  alert('Marked as paid'); loadAdmin();
+  if(html) document.getElementById('history').innerHTML=html;
 }
 </script>
 </body>
