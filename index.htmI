@@ -1,38 +1,18 @@
-
-<div class="bottom">
-<div class="active" onclick="go('home')" id="bHome">🏠<br>Home</div>
-<div onclick="go('orders')" id="bOrders">📦<br>Orders</div>
-<div onclick="go('tasks')" id="bTasks">📋<br>Tasks</div>
-<div onclick="go('team')" id="bTeam">👥<br>Team</div>
-<div onclick="go('me')" id="bMe">👤<br>Me</div>
-</div>
-
-<script>
-let bal=parseInt(localStorage.getItem('bal')||'90');let vids=parseInt(localStorage.getItem('vids')||'4');let orders=JSON.parse(localStorage.getItem('orders')||'[]');let deps=JSON.parse(localStorage.getItem('deps')||'[]');let withs=JSON.parse(localStorage.getItem('withs')||'[]');
-let products=[{name:'Rice 200F',price:200,img:'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=200',desc:'Rice',profit:'40F/day'},{name:'Shop 500F',price:500,img:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=200',desc:'Shop',profit:'165F/day'},{name:'Phone 1,000F',price:1000,img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200',desc:'Phone',profit:'350F/day'},{name:'Moto 5,000F',price:5000,img:'https://images.unsplash.com/photo-1558981852-426c6c22a060?w=200',desc:'Moto',profit:'800F/day'},{name:'Car 20,000F',price:20000,img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=200',desc:'Car',profit:'2,500F/day'},{name:'House 100,000F',price:100000,img:'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=200',desc:'House',profit:'8,000F/day'},{name:'Company 400,000F',price:400000,img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200',desc:'Company',profit:'25,000F/day'}];
-function renderProducts(){let h='';products.forEach(p=>{h+=`<div class="card"><img src="${p.img}"><div class="info"><b>${p.name}</b><br><small>${p.desc} - ${p.profit}</small><br><button class="buy" onclick="buy(${p.price},'${p.name}')">BUY ${p.price}F</button></div></div>`});document.getElementById('products').innerHTML=h;}
-function updateBal(){document.getElementById('balTop').innerText=bal+'F';document.getElementById('balHero').innerText=bal+' F';document.getElementById('balMe').innerText=bal+'F';document.getElementById('balW').innerText=bal+'F';document.getElementById('vidTop').innerText=vids+'/10';document.getElementById('vid').innerText=vids;localStorage.setItem('bal',bal);localStorage.setItem('vids',vids);}
-function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(p).classList.add('active');document.querySelectorAll('.bottom div').forEach(x=>x.classList.remove('active'));let b=document.getElementById('b'+p.charAt(0).toUpperCase()+p.slice(1));if(b)b.classList.add('active');if(p=='orders')renderOrders();if(p=='recharge')renderDeps();if(p=='withdraw')renderWiths();}
-function buy(price,name){if(bal<price){alert('Low! Recharge TO 678657567');go('recharge');return}bal-=price;orders.push({name,price,date:new Date().toLocaleString()});localStorage.setItem('orders',JSON.stringify(orders));updateBal();alert('Bought '+name);go('orders');}
-function renderOrders(){let el=document.getElementById('ordersList');if(orders.length==0){el.innerHTML='No orders';return}el.innerHTML=orders.map(o=>`<div style="border-bottom:1px solid #eee;padding:8px 0"><b>${o.name}</b> - ${o.price}F - ${o.date}</div>`).join('');}
-function watchVid(){if(vids>=10){alert('Limit 10/day');return}vids++;bal+=50;updateBal();alert('+50F');}
-function doRecharge(){let a=document.getElementById('rAmount').value;let t=document.getElementById('rTrans').value;if(!a||!t){alert('Enter amount and ID');return}deps.push({amount:a,trans:t,date:new Date().toLocaleString()});localStorage.setItem('deps',JSON.stringify(deps));alert('Submitted to 678657567!');renderDeps();document.getElementById('rAmount').value='';document.getElementById('rTrans').value='';}
-function renderDeps(){let h='<b>Deposits TO 678657567:</b><br>';if(deps.length==0)h+='None';else deps.forEach(d=>{h+=`<div>${d.amount}F - ${d.trans} - ${d.date}</div>`});document.getElementById('rList').innerHTML=h;}
-function doWithdraw(){let a=document.getElementById('wAmount').value;let p=document.getElementById('wPhone').value;if(!a||!p){alert('Enter amount and phone');return}if(parseInt(a)>bal){alert('Low balance');return}bal-=parseInt(a);withs.push({amount:a,phone:p,date:new Date().toLocaleString()});localStorage.setItem('withs',JSON.stringify(withs));localStorage.setItem('bal',bal);updateBal();alert('Request FROM 678657567!');renderWiths();}
-function renderWiths(){let h='<b>Withdrawals:</b><br>';if(withs.length==0)h+='None';else withs.forEach(w=>{h+=`<div>${w.amount}F to ${w.phone} - ${w.date}</div>`});document.getElementById('wList').innerHTML=h;}
-function openAdmin(){document.getElementById('adminModal').style.display='block';}
-function closeAdmin(){document.getElementById('adminModal').style.display='none';}
-function checkPin(){if(document.getElementById('pin').value=='6786'){document.getElementById('adminContent').style.display='block';let dh='Deposits TO 678657567:<br>';deps.forEach((d,i)=>{dh+=`<div style="border:1px solid #ccc;padding:5px;margin:5px 0">${d.amount}F - ${d.trans}<br><button onclick="approveDep(${i})">Approve +${d.amount}F</button></div>`});document.getElementById('allDeposits').innerHTML=dh;let wh='Withdraws FROM 678657567:<br>';withs.forEach(w=>{wh+=`<div style="border:1px solid #ccc;padding:5px">${w.amount}F to ${w.phone}</div>`});document.getElementById('allWithdraws').innerHTML=wh;}else alert('Wrong PIN 6786');}
-function approveDep(i){bal+=parseInt(deps[i].amount);localStorage.setItem('bal',bal);updateBal();alert('Approved');checkPin();}
-function shareWA(){window.open('https://wa.me/?text=Join CamInvest Hub https://hub.vercel.app?ref=678657567');}
-function copyLink(){navigator.clipboard.writeText('https://hub.vercel.app?ref=678657567');alert('Copied!');}
-function showReg(){document.getElementById('regBox').style.display='block';document.getElementById('logBox').style.display='none';}
-function showLog(){document.getElementById('regBox').style.display='none';document.getElementById('logBox').style.display='block';}
-function doRegister(){let ph=document.getElementById('regPhone').value;let p=document.getElementById('regPass').value;let p2=document.getElementById('regPass2').value;if(!ph||!p){alert('Enter phone and pass');return}if(p!=p2){alert('Not match');return}let users=JSON.parse(localStorage.getItem('c_users')||'[]');if(users.find(u=>u.phone==ph)){alert('Exists, login');showLog();return}users.push({phone:ph,pass:p});localStorage.setItem('c_users',JSON.stringify(users));localStorage.setItem('c_current',ph);document.getElementById('myPhone').innerText=ph;document.getElementById('auth').style.display='none';}
-function doLogin(){let ph=document.getElementById('logPhone').value;let p=document.getElementById('logPass').value;let users=JSON.parse(localStorage.getItem('c_users')||'[]');let u=users.find(u=>u.phone==ph&&u.pass==p);if(!u){alert('Wrong');return}localStorage.setItem('c_current',ph);document.getElementById('myPhone').innerText=ph;document.getElementById('auth').style.display='none';}
-function doLogout(){localStorage.removeItem('c_current');location.reload();}
-(function(){let cur=localStorage.getItem('c_current');if(cur){document.getElementById('auth').style.display='none';document.getElementById('myPhone').innerText=cur;}})();
-renderProducts();updateBal();
-</script>
-</body>
-</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CamInvest Hub</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#f2f4f7;padding-bottom:70px}
+.header{background:#0b8a42;color:#fff;padding:15px;text-align:center;font-weight:bold;font-size:20px}
+.card{background:#fff;margin:10px;border-radius:12px;padding:15px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.balance{font-size:28px;font-weight:bold;color:#0b8a42}
+.btn{width:100%;padding:12px;border:0;border-radius:8px;font-weight:bold;cursor:pointer;margin-top:8px}
+.btn-green{background:#0b8a42;color:#fff}
+.btn-orange{background:#ff9800;color:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.prod{border:1px solid #eee;border-radius:10px;padding:12px;text-align:center}
+.prod b{color:#0b8a42}
