@@ -2,146 +2,65 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Admin - CamInvest</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CamInvest Admin</title>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0a1931;color:#fff;padding:15px;min-height:100vh}
-.box{background:#fff;color:#111;padding:14px;border-radius:14px;margin:10px 0}
-input{width:100%;padding:12px;border-radius:10px;border:1px solid #ccc;margin:6px 0}
-button{padding:12px 16px;border:0;border-radius:10px;font-weight:900;cursor:pointer}
-.btnDark{background:#0a1931;color:#fff;width:100%}.btnGold{background:gold;color:#000}
-h3{margin:15px 0 5px}
-small{color:#666}
+body{font-family:Arial;background:#111;color:#fff;padding:20px}
+.card{background:#222;padding:15px;margin:10px 0;border-radius:10px}
+button{background:#00ff88;border:0;padding:10px 20px;border-radius:5px;font-weight:bold;cursor:pointer;margin:5px}
+button.reject{background:#ff4444;color:#fff}
+h2{color:#00ff88}
 </style>
 </head>
 <body>
-<div style="max-width:420px;margin:0 auto">
-<h2 style="text-align:center">🔐 Admin Panel<br><small style="color:gold">678657567 - Ambokia Promise</small></h2>
-
-<div id="loginBox" class="box">
-<h3>Admin Login</h3>
-<input id="pass" type="password" placeholder="Password: Promise123">
-<button class="btnDark" onclick="login()">LOGIN</button>
-<p style="font-size:11px;margin-top:6px">Keep this page secret! Link: /admin.html</p>
-</div>
-
-<div id="panel" style="display:none">
-<div class="box">
-<h3>💰 Add Balance (When user pays you)</h3>
-<small>User must have registered on this same phone to work for demo. Real system uses database.</small>
-<input id="uPhone" placeholder="User Phone e.g. 678...">
-<input id="uAmt" type="number" placeholder="Amount e.g. 500">
-<button class="btnDark" onclick="addBalance()">Add Balance + Confirm</button>
-<p style="font-size:11px;margin-top:6px">In real production, you check your MoMo 678657567, then add here.</p>
-</div>
-
-<div class="box">
-<h3>🏧 Withdraw Requests</h3>
-<div id="wList"></div>
-<button class="btnGold" onclick="load()" style="margin-top:8px">Refresh</button>
-<button class="btnDark" style="margin-top:8px;background:red" onclick="clearW()">Clear All</button>
-</div>
-
-<div class="box">
-<h3>👥 Current User On This Phone</h3>
-<div id="userInfo"></div>
-</div>
-
-<div class="box">
-<h3>📊 Stats</h3>
-<div id="stats"></div>
-</div>
-</div>
-</div>
+<h2>CamInvest Admin - Deposits</h2>
+<div id="list">Loading...</div>
 
 <script>
-function login(){
-if(document.getElementById('pass').value==='Promise123'){
-document.getElementById('loginBox').style.display='none';
-document.getElementById('panel').style.display='block';
-load();
-}else alert('Wrong password! Use Promise123');
-}
-function load(){
-let w=JSON.parse(localStorage.getItem('withdraws')||'[]');
-document.getElementById('wList').innerHTML=w.length?w.map((x,i)=>`
-<div style="border:1px solid #ccc;padding:10px;border-radius:10px;margin:6px 0">
-<b>${x.phone}</b> wants <b>${x.amt}F</b><br>
-<small>${x.date}</small><br>
-<button onclick="pay(${i})" style="background:#25D366;color:#fff;padding:8px 12px;border-radius:20px;margin-top:5px">✅ Mark Paid & Send MoMo</button>
-</div>
-`).join(''):'<p>No withdraw requests on this device.<br><small>Real requests come via WhatsApp to 678657567 because each phone has its own storage. Later we connect database.</small></p>';
+const firebaseConfig = {
+  apiKey: "AIzaSyB5...",
+  authDomain: "caminvest-hub-14129.firebaseapp.com",
+  projectId: "caminvest-hub-14129",
+  storageBucket: "caminvest-hub-14129.appspot.com",
+  messagingSenderId: "YOUR_ID",
+  appId: "YOUR_APP_ID"
+};
+// Use your full config from Firebase console
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-let phone=localStorage.getItem('phone')||'None';
-let bal=localStorage.getItem('bal')||'0';
-document.getElementById('userInfo').innerHTML=`Phone: ${phone}<br>Balance: ${bal}F<br>Orders: ${(JSON.parse(localStorage.getItem('orders')||'[]')).length}`;
-
-let totalRecharge=w.reduce((s,x)=>s+0,0);
-document.getElementById('stats').innerHTML=`Total Withdraw Requests: ${w.length}<br>MoMo Admin: 678657567`;
+async function loadDeposits(){
+  const snap = await db.collection("deposits").where("status","==","pending").get();
+  let html="";
+  snap.forEach(doc=>{
+    const d=doc.data();
+    html+=`<div class="card">
+      <b>${d.userName||d.email}</b> - ${d.amount}F - ${d.method}<br>
+      Phone: ${d.phone||''}<br>
+      <button onclick="approve('${doc.id}','${d.userId}',${d.amount})">APPROVE</button>
+      <button class="reject" onclick="reject('${doc.id}')">REJECT</button>
+    </div>`;
+  });
+  document.getElementById("list").innerHTML=html||"No pending deposits";
 }
-
-function addBalance(){
-let ph=document.getElementById('uPhone').value.trim();
-let amt=parseInt(document.getElementById('uAmt').value);
-if(!ph||!amt)return alert('Fill phone and amount');
-if(ph!==localStorage.getItem('phone'))return alert('DEMO LIMIT: This phone can only add to current user '+localStorage.getItem('phone')+'\n\nIn real app with database, you can add to any user.\n\nFor now, tell user to use same phone, or you add via database.');
-let bal=parseInt(localStorage.getItem('bal')||'0');
-bal+=amt;
-localStorage.setItem('bal',bal);
-alert(amt+'F added to '+ph+'. New balance: '+bal+'F');
-load();
+async function approve(depId,userId,amount){
+  if(!confirm("Approve "+amount+"F?")) return;
+  await db.collection("users").doc(userId).update({
+    balance: firebase.firestore.FieldValue.increment(amount),
+    packageActive: true,
+    packageAmount: amount
+  });
+  await db.collection("deposits").doc(depId).update({status:"approved"});
+  alert("Approved!"); loadDeposits();
 }
-function pay(i){
-let w=JSON.parse(localStorage.getItem('withdraws')||'[]');
-let req=w[i];
-if(confirm('You sent '+req.amt+'F to '+req.phone+' via MoMo?\nClick OK to remove request.')){
-w.splice(i,1);
-localStorage.setItem('withdraws',JSON.stringify(w));
-window.location.href='https://wa.me/'+req.phone+'?text=Your withdrawal of '+req.amt+'F has been sent! Thanks for using CamInvest Hub';
-setTimeout(load,1000);
+async function reject(id){
+  if(!confirm("Reject?")) return;
+  await db.collection("deposits").doc(id).update({status:"rejected"});
+  loadDeposits();
 }
-}
-function clearW(){if(confirm('Clear all?')){localStorage.setItem('withdraws','[]');load();}}
+loadDeposits();
 </script>
 </body>
-</html><div id="withdrawModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center;padding:16px">
-<div style="background:white;border-radius:20px;padding:20px;width:100%;max-width:400px">
-<h2 style="font-weight:bold;font-size:18px">💸 Withdraw - MTN MoMo / Orange</h2>
-<p style="font-size:12px;color:gray;margin-top:4px">Balance: <span id="modalBal">105 XAF</span> | Min: 100 XAF</p>
-<input id="momoNumber" placeholder="MTN/Orange Number e.g. 678657567" style="width:100%;border:1px solid #ddd;border-radius:10px;padding:12px;margin-top:12px">
-<select id="momoType" style="width:100%;border:1px solid #ddd;border-radius:10px;padding:12px;margin-top:8px">
-<option>MTN Mobile Money</option>
-<option>Orange Money</option>
-</select>
-<input id="momoAmount" type="number" placeholder="Amount e.g. 100" style="width:100%;border:1px solid #ddd;border-radius:10px;padding:12px;margin-top:8px">
-<button onclick="doWithdraw()" style="background:#16a34a;color:white;width:100%;padding:12px;border-radius:12px;margin-top:12px;font-weight:bold">✅ Request Withdraw</button>
-<button onclick="document.getElementById('withdrawModal').style.display='none'" style="background:#eee;width:100%;padding:10px;border-radius:12px;margin-top:8px">Cancel</button>
-<p style="font-size:11px;color:gray;text-align:center;margin-top:8px">Withdrawal takes 24h. 10% fee.</p>
-</div></div>
-
-<script>
-function openWithdraw(){
-let bal = document.getElementById('balance').innerText;
-document.getElementById('modalBal').innerText = bal;
-document.getElementById('withdrawModal').style.display='flex';
-}
-function doWithdraw(){
-let num = document.getElementById('momoNumber').value;
-let amt = document.getElementById('momoAmount').value;
-let type = document.getElementById('momoType').value;
-if(!num || !amt){alert("Enter number and amount!");return;}
-if(amt < 100){alert("Minimum 100 XAF");return;}
-alert(`✅ Withdraw Request Sent!\n\n${type}\nNumber: ${num}\nAmount: ${amt} XAF\n\nYou will receive in 24h!\n\nContact Sean Morgan on WhatsApp: +237... for faster payment!`);
-document.getElementById('withdrawModal').style.display='none';
-// Here you will receive request in Firebase - I can add admin panel next!
-}
-// Add withdraw button to wallet
-setTimeout(()=>{
-let walletBtn = document.createElement('button');
-walletBtn.innerHTML = "💸 Withdraw to MoMo";
-walletBtn.style.cssText="position:fixed;bottom:80px;right:16px;background:#16a34a;color:white;padding:12px 20px;border-radius:30px;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.2);z-index:100";
-walletBtn.onclick = openWithdraw;
-document.body.appendChild(walletBtn);
-},1000);
-</script>
+</html>
