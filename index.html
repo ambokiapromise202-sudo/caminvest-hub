@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CamInvest Hub - Official</title>
+<title>CamInvest Hub</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
 body{background:#0a1931;color:white;padding-bottom:80px}
@@ -15,10 +15,9 @@ body{background:#0a1931;color:white;padding-bottom:80px}
 .nav2{display:flex;background:white;border-radius:15px;margin:0 12px;padding:10px;justify-content:space-around;color:#333}
 .nav2 div{text-align:center;font-size:12px}
 .hero{margin:15px;background:linear-gradient(135deg,#1e3c72,#2a5298);border-radius:15px;padding:20px;text-align:center}
-.hero h1{font-size:32px}.hero p{opacity:0.8}
 .card{background:white;color:#333;margin:12px;border-radius:15px;display:flex;overflow:hidden}
 .card img{width:100px;height:100px;object-fit:cover}
-.info{padding:10px;flex:1}.info b{color:#0a1931}
+.info{padding:10px;flex:1}
 .buy{width:100%;background:#0a1931;color:white;border:none;padding:10px;border-radius:20px;margin-top:8px;font-weight:bold}
 .bottom{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:8px 0;color:#888}
 .bottom div.active{color:#0a1931}.bottom div{font-size:11px;text-align:center}
@@ -31,69 +30,53 @@ body{background:#0a1931;color:white;padding-bottom:80px}
 </head>
 <body>
 
-<div id="auth" style="position:fixed;top:0;left:0;right:0;bottom:0;background:#0a1931;z-index:9999;padding:20px;display:flex;align-items:center;justify-content:center">
+<div id="auth" style="position:fixed;inset:0;background:#0a1931;z-index:9999;padding:20px;display:flex;align-items:center;justify-content:center">
 <div class="whitebox" style="width:100%;max-width:350px">
 <h2 style="text-align:center;color:#0a1931">CamInvest Hub</h2>
-<p style="text-align:center;font-size:12px">Register to 678657567 System</p>
+<p style="text-align:center;font-size:12px">Receiver: 678657567 Ambokia Promise</p>
 <div style="display:flex;gap:10px;margin:12px 0">
 <button id="tabR" class="action" style="flex:1" onclick="showReg()">Register</button>
 <button id="tabL" class="action" style="flex:1;background:#ddd;color:#333" onclick="showLog()">Login</button>
 </div>
 <div id="regBox">
-<input id="regPhone" class="input" placeholder="Phone e.g. 6XXXXXXXX">
-<input id="regPass" class="input" type="password" placeholder="Create Password (Passport)">
+<input id="regPhone" class="input" placeholder="Phone 6XXXXXXXX">
+<input id="regPass" class="input" type="password" placeholder="Password">
 <input id="regPass2" class="input" type="password" placeholder="Confirm Password">
 <button class="action" onclick="doRegister()">Register & Enter</button>
 </div>
 <div id="logBox" style="display:none">
-<input id="logPhone" class="input" placeholder="Phone Number">
+<input id="logPhone" class="input" placeholder="Phone">
 <input id="logPass" class="input" type="password" placeholder="Password">
 <button class="action" onclick="doLogin()">Login & Enter</button>
 </div>
-<p style="font-size:10px;text-align:center;margin-top:10px">All deposits go to 678657567 - Ambokia Promise</p>
 </div>
 </div>
 
-<div class="top"><span class="live">● LIVE</span> | Total Assets: <span id="balTop">90F</span> | Video: <span id="vidTop">4/10</span> | Receiver: 678657567</div>
-<div class="btns">
-<button class="green" onclick="shareWA()">WhatsApp Share</button>
-<button class="yellow" onclick="copyLink()">COPY LINK</button>
-</div>
+<div class="top"><span class="live">● LIVE</span> | <span id="balTop">90F</span> | <span id="vidTop">4/10</span> | 678657567</div>
+<div class="btns"><button class="green" onclick="shareWA()">WhatsApp Share</button><button class="yellow" onclick="copyLink()">COPY LINK</button></div>
 <div class="nav2">
 <div onclick="go('recharge')">💳<br>Recharge</div>
 <div onclick="go('withdraw')">🏧<br>Withdraw</div>
 <div onclick="go('tasks')">📋<br>Tasks</div>
 <div onclick="go('team')">👥<br>Team</div>
+<div onclick="go('terms')">📄<br>Terms</div>
 </div>
 
 <div id="home" class="page active">
-<div class="hero"><p>To: 678657567 Ambokia Promise</p><h1 id="balHero">90 F</h1><p>Balance - All Deposits TO 678657567</p></div>
-<div style="padding:0 12px;font-weight:bold">🔥 Products 200F - 400,000F</div>
+<div class="hero"><p>To: 678657567</p><h1 id="balHero">90 F</h1><p>All Deposits TO 678657567</p></div>
 <div id="products"></div>
 </div>
 
-<div id="orders" class="page"><h3>📦 My Orders</h3><div id="ordersList" class="whitebox">No orders yet</div></div>
-<div id="tasks" class="page"><h3>📋 Tasks</h3><div class="whitebox">Video <span id="vid">4</span>/10 - 50F per video<br><button class="action" onclick="watchVid()">▶️ Watch +50F</button></div></div>
-<div id="team" class="page"><h3>👥 Team</h3><div class="whitebox">Invite Link:<br><b id="teamLink">https://hub.vercel.app?ref=678657567</b><br><br><button class="action" onclick="shareWA()">Share WhatsApp</button></div></div>
+<div id="orders" class="page"><h3>Orders</h3><div id="ordersList" class="whitebox">No orders</div></div>
+<div id="tasks" class="page"><h3>Tasks</h3><div class="whitebox">Video <span id="vid">4</span>/10 - 50F each<br><button class="action" onclick="watchVid()">Watch +50F</button></div></div>
+<div id="team" class="page"><h3>Team</h3><div class="whitebox">Link:<br><b id="teamLink">https://hub.vercel.app?ref=678657567</b><br><br><button class="action" onclick="shareWA()">Share</button></div></div>
+<div id="terms" class="page"><h3>Terms & Risk</h3><div class="whitebox" style="font-size:13px">1. All deposits TO 678657567 Ambokia Promise<br>2. Withdrawals FROM 678657567 in 24h<br>3. High-risk, profits are estimates<br>4. Only invest what you can lose<br><button class="action" style="background:#888" onclick="go('home')">Back</button></div></div>
+<div id="me" class="page"><h3>Me</h3><div class="whitebox">Phone: <b id="myPhone">678657567</b><br>Balance: <b id="balMe">90F</b><br>Receiver: 678657567<br><br><button class="action" style="background:#00c851" onclick="go('recharge')">Recharge to 678657567</button><button class="action" onclick="go('withdraw')">Withdraw</button><button class="admin-btn" onclick="openAdmin()">Admin PIN 6786</button><button class="action" style="background:#ddd;color:#333" onclick="doLogout()">Logout</button></div></div>
+<div id="recharge" class="page"><h3>Recharge TO 678657567</h3><div class="whitebox"><p>Receiver: <b>678657567 - MTN MoMo</b></p><input id="rAmount" class="input" placeholder="Amount"><input id="rTrans" class="input" placeholder="Transaction ID"><button class="action" onclick="doRecharge()">Submit</button><div id="rList" style="margin-top:10px"></div><button class="action" style="background:#888" onclick="go('home')">Back</button></div></div>
+<div id="withdraw" class="page"><h3>Withdraw FROM 678657567</h3><div class="whitebox">Balance: <b id="balW">90F</b><br><input id="wAmount" class="input" placeholder="Amount"><input id="wPhone" class="input" placeholder="Your MoMo"><button class="action" onclick="doWithdraw()">Request</button><div id="wList" style="margin-top:10px"></div><button class="action" style="background:#888" onclick="go('home')">Back</button></div></div>
 
-<div id="me" class="page">
-<h3>👤 Me</h3>
-<div class="whitebox">
-Phone: <b id="myPhone">678657567</b><br>
-Balance: <b id="balMe">90F</b><br>
-Receiver: <b>678657567 - Ambokia Promise</b><br><br>
-<button class="action" style="background:#00c851" onclick="go('recharge')">Recharge to 678657567</button>
-<button class="action" onclick="go('withdraw')">Withdraw FROM 678657567</button>
-<button class="admin-btn" onclick="openAdmin()">🔐 Admin - View Deposits to 678657567</button>
-<button class="action" style="background:#ddd;color:#333" onclick="doLogout()">Logout</button>
-</div>
-</div>
-
-<div id="recharge" class="page"><h3>💳 Recharge TO 678657567</h3><div class="whitebox"><p>Receiver: <b>678657567 - Ambokia Promise (MTN MoMo)</b></p><input id="rAmount" class="input" placeholder="Amount"><input id="rTrans" class="input" placeholder="Transaction ID"><button class="action" onclick="doRecharge()">Submit to 678657567</button><div id="rList" style="margin-top:15px"></div><button class="action" style="background:#888" onclick="go('home')">Back</button></div></div>
-<div id="withdraw" class="page"><h3>🏧 Withdraw FROM 678657567</h3><div class="whitebox">Balance: <b id="balW">90F</b><br><input id="wAmount" class="input" placeholder="Amount"><input id="wPhone" class="input" placeholder="Your MoMo to receive FROM 678657567"><button class="action" onclick="doWithdraw()">Request FROM 678657567</button><div id="wList" style="margin-top:15px"></div><button class="action" style="background:#888" onclick="go('home')">Back</button></div></div>
-
-<div id="adminModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:999;padding:15px;overflow:auto">
-<div class="whitebox"><h2>🔐 Admin - 678657567</h2><input id="pin" class="input" placeholder="PIN 6786" type="password"><button class="action" onclick="checkPin()">Unlock</button><div id="adminContent" style="display:none;margin-top:15px"><h3>Deposits TO 678657567:</h3><div id="allDeposits"></div><h3 style="margin-top:15px">Withdraws FROM 678657567:</h3><div id="allWithdraws"></div><button class="action" style="background:red;margin-top:15px" onclick="closeAdmin()">Close</button></div></div>
+<div id="adminModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:999;padding:15px;overflow:auto">
+<div class="whitebox"><h2>Admin 678657567</h2><input id="pin" class="input" placeholder="PIN 6786" type="password"><button class="action" onclick="checkPin()">Unlock</button><div id="adminContent" style="display:none;margin-top:15px"><div id="allDeposits"></div><div id="allWithdraws"></div><button class="action" style="background:red" onclick="closeAdmin()">Close</button></div></div>
 </div>
 
 <div class="bottom">
@@ -105,43 +88,31 @@ Receiver: <b>678657567 - Ambokia Promise</b><br><br>
 </div>
 
 <script>
-let bal=parseInt(localStorage.getItem('bal')||'90');
-let vids=parseInt(localStorage.getItem('vids')||'4');
-let orders=JSON.parse(localStorage.getItem('orders')||'[]');
-let deps=JSON.parse(localStorage.getItem('deps')||'[]');
-let withs=JSON.parse(localStorage.getItem('withs')||'[]');
-let products=[
-{name:'Rice Investment 200F',price:200,img:'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=200',desc:'Rice business',profit:'40F/day x 365D',net:'Profit 14,400F'},
-{name:'Small Shop 500F',price:500,img:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=200',desc:'Shop',profit:'165F/day x 30D',net:'Profit 4,450F'},
-{name:'Phone Business 1,000F',price:1000,img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200',desc:'Phone',profit:'350F/day x 30D',net:'Profit 9,500F'},
-{name:'Moto 5,000F',price:5000,img:'https://images.unsplash.com/photo-1558981852-426c6c22a060?w=200',desc:'Okada',profit:'800F/day x 30D',net:'Profit 19,000F'},
-{name:'Car 20,000F',price:20000,img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=200',desc:'Car rental',profit:'2,500F/day x 30D',net:'Profit 55,000F'},
-{name:'House 100,000F',price:100000,img:'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=200',desc:'House',profit:'8,000F/day x 60D',net:'Profit 380,000F'},
-{name:'Company 400,000F',price:400000,img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200',desc:'Company',profit:'25,000F/day x 90D',net:'Profit 1.85M F'}
-];
-function renderProducts(){let h='';products.forEach(p=>{h+=`<div class="card"><img src="${p.img}"><div class="info"><b>${p.name}</b><br><small>${p.desc}</small><br><small style="color:green">${p.profit}<br><b>${p.net}</b></small><br><button class="buy" onclick="buy(${p.price},'${p.name}')">BUY ${p.price}F</button></div></div>`});document.getElementById('products').innerHTML=h;}
+let bal=parseInt(localStorage.getItem('bal')||'90');let vids=parseInt(localStorage.getItem('vids')||'4');let orders=JSON.parse(localStorage.getItem('orders')||'[]');let deps=JSON.parse(localStorage.getItem('deps')||'[]');let withs=JSON.parse(localStorage.getItem('withs')||'[]');
+let products=[{name:'Rice 200F',price:200,img:'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=200',desc:'Rice',profit:'40F/day'},{name:'Shop 500F',price:500,img:'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=200',desc:'Shop',profit:'165F/day'},{name:'Phone 1,000F',price:1000,img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200',desc:'Phone',profit:'350F/day'},{name:'Moto 5,000F',price:5000,img:'https://images.unsplash.com/photo-1558981852-426c6c22a060?w=200',desc:'Moto',profit:'800F/day'},{name:'Car 20,000F',price:20000,img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=200',desc:'Car',profit:'2,500F/day'},{name:'House 100,000F',price:100000,img:'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=200',desc:'House',profit:'8,000F/day'},{name:'Company 400,000F',price:400000,img:'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200',desc:'Company',profit:'25,000F/day'}];
+function renderProducts(){let h='';products.forEach(p=>{h+=`<div class="card"><img src="${p.img}"><div class="info"><b>${p.name}</b><br><small>${p.desc} - ${p.profit}</small><br><button class="buy" onclick="buy(${p.price},'${p.name}')">BUY ${p.price}F</button></div></div>`});document.getElementById('products').innerHTML=h;}
 function updateBal(){document.getElementById('balTop').innerText=bal+'F';document.getElementById('balHero').innerText=bal+' F';document.getElementById('balMe').innerText=bal+'F';document.getElementById('balW').innerText=bal+'F';document.getElementById('vidTop').innerText=vids+'/10';document.getElementById('vid').innerText=vids;localStorage.setItem('bal',bal);localStorage.setItem('vids',vids);}
 function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(p).classList.add('active');document.querySelectorAll('.bottom div').forEach(x=>x.classList.remove('active'));let b=document.getElementById('b'+p.charAt(0).toUpperCase()+p.slice(1));if(b)b.classList.add('active');if(p=='orders')renderOrders();if(p=='recharge')renderDeps();if(p=='withdraw')renderWiths();}
 function buy(price,name){if(bal<price){alert('Low! Recharge TO 678657567');go('recharge');return}bal-=price;orders.push({name,price,date:new Date().toLocaleString()});localStorage.setItem('orders',JSON.stringify(orders));updateBal();alert('Bought '+name);go('orders');}
-function renderOrders(){let el=document.getElementById('ordersList');if(orders.length==0){el.innerHTML='No orders';return}el.innerHTML=orders.map(o=>`<div style="border-bottom:1px solid #eee;padding:8px 0"><b>${o.name}</b><br>${o.price}F - ${o.date}</div>`).join('');}
-function watchVid(){if(vids>=10){alert('10/day limit');return}vids++;bal+=50;updateBal();alert('+50F');}
-function doRecharge(){let a=document.getElementById('rAmount').value;let t=document.getElementById('rTrans').value;if(!a||!t){alert('Enter amount and ID');return}deps.push({amount:a,trans:t,date:new Date().toLocaleString(),status:'Pending'});localStorage.setItem('deps',JSON.stringify(deps));alert('Submitted to 678657567!');renderDeps();document.getElementById('rAmount').value='';document.getElementById('rTrans').value='';}
-function renderDeps(){let h='<b>Your Deposits TO 678657567:</b><br>';if(deps.length==0)h+='None';else deps.forEach(d=>{h+=`<div style="border-bottom:1px solid #eee;padding:5px 0">${d.amount}F - ${d.trans} - ${d.date}</div>`});document.getElementById('rList').innerHTML=h;}
-function doWithdraw(){let a=document.getElementById('wAmount').value;let p=document.getElementById('wPhone').value;if(!a||!p){alert('Enter amount and phone');return}if(parseInt(a)>bal){alert('Insufficient');return}bal-=parseInt(a);withs.push({amount:a,phone:p,date:new Date().toLocaleString()});localStorage.setItem('withs',JSON.stringify(withs));localStorage.setItem('bal',bal);updateBal();alert('Withdraw FROM 678657567 requested!');renderWiths();}
-function renderWiths(){let h='<b>Withdrawals FROM 678657567:</b><br>';if(withs.length==0)h+='None';else withs.forEach(w=>{h+=`<div style="border-bottom:1px solid #eee;padding:5px 0">${w.amount}F to ${w.phone} - ${w.date}</div>`});document.getElementById('wList').innerHTML=h;}
+function renderOrders(){let el=document.getElementById('ordersList');if(orders.length==0){el.innerHTML='No orders';return}el.innerHTML=orders.map(o=>`<div style="border-bottom:1px solid #eee;padding:8px 0"><b>${o.name}</b> - ${o.price}F - ${o.date}</div>`).join('');}
+function watchVid(){if(vids>=10){alert('Limit 10/day');return}vids++;bal+=50;updateBal();alert('+50F');}
+function doRecharge(){let a=document.getElementById('rAmount').value;let t=document.getElementById('rTrans').value;if(!a||!t){alert('Enter amount and ID');return}deps.push({amount:a,trans:t,date:new Date().toLocaleString()});localStorage.setItem('deps',JSON.stringify(deps));alert('Submitted to 678657567!');renderDeps();document.getElementById('rAmount').value='';document.getElementById('rTrans').value='';}
+function renderDeps(){let h='<b>Deposits TO 678657567:</b><br>';if(deps.length==0)h+='None';else deps.forEach(d=>{h+=`<div>${d.amount}F - ${d.trans} - ${d.date}</div>`});document.getElementById('rList').innerHTML=h;}
+function doWithdraw(){let a=document.getElementById('wAmount').value;let p=document.getElementById('wPhone').value;if(!a||!p){alert('Enter amount and phone');return}if(parseInt(a)>bal){alert('Low balance');return}bal-=parseInt(a);withs.push({amount:a,phone:p,date:new Date().toLocaleString()});localStorage.setItem('withs',JSON.stringify(withs));localStorage.setItem('bal',bal);updateBal();alert('Request FROM 678657567!');renderWiths();}
+function renderWiths(){let h='<b>Withdrawals:</b><br>';if(withs.length==0)h+='None';else withs.forEach(w=>{h+=`<div>${w.amount}F to ${w.phone} - ${w.date}</div>`});document.getElementById('wList').innerHTML=h;}
 function openAdmin(){document.getElementById('adminModal').style.display='block';}
 function closeAdmin(){document.getElementById('adminModal').style.display='none';}
-function checkPin(){if(document.getElementById('pin').value=='6786'){document.getElementById('adminContent').style.display='block';let dh='';if(deps.length==0)dh='No deposits';else deps.forEach((d,i)=>{dh+=`<div style="border:1px solid #ccc;padding:8px;margin:5px 0">${d.amount}F - ID:${d.trans}<br>${d.date}<br><button onclick="approveDep(${i})">Approve +${d.amount}F</button></div>`});document.getElementById('allDeposits').innerHTML=dh;let wh='';if(withs.length==0)wh='None';else withs.forEach(w=>{wh+=`<div style="border:1px solid #ccc;padding:8px;margin:5px 0">${w.amount}F to ${w.phone}<br>${w.date}</div>`});document.getElementById('allWithdraws').innerHTML=wh;}else alert('Wrong PIN! 6786');}
-function approveDep(i){let amt=parseInt(deps[i].amount);bal+=amt;deps[i].status='Approved';localStorage.setItem('deps',JSON.stringify(deps));localStorage.setItem('bal',bal);updateBal();alert('Approved '+amt+'F');checkPin();}
-function shareWA(){let link='https://hub.vercel.app?ref='+document.getElementById('myPhone').innerText;window.open('https://wa.me/?text=Join CamInvest Hub! '+encodeURIComponent(link));}
+function checkPin(){if(document.getElementById('pin').value=='6786'){document.getElementById('adminContent').style.display='block';let dh='Deposits TO 678657567:<br>';deps.forEach((d,i)=>{dh+=`<div style="border:1px solid #ccc;padding:5px;margin:5px 0">${d.amount}F - ${d.trans}<br><button onclick="approveDep(${i})">Approve +${d.amount}F</button></div>`});document.getElementById('allDeposits').innerHTML=dh;let wh='Withdraws FROM 678657567:<br>';withs.forEach(w=>{wh+=`<div style="border:1px solid #ccc;padding:5px">${w.amount}F to ${w.phone}</div>`});document.getElementById('allWithdraws').innerHTML=wh;}else alert('Wrong PIN 6786');}
+function approveDep(i){bal+=parseInt(deps[i].amount);localStorage.setItem('bal',bal);updateBal();alert('Approved');checkPin();}
+function shareWA(){window.open('https://wa.me/?text=Join CamInvest Hub https://hub.vercel.app?ref=678657567');}
 function copyLink(){navigator.clipboard.writeText('https://hub.vercel.app?ref=678657567');alert('Copied!');}
-function showReg(){document.getElementById('regBox').style.display='block';document.getElementById('logBox').style.display='none';document.getElementById('tabR').style.background='#0a1931';document.getElementById('tabL').style.background='#ddd';document.getElementById('tabL').style.color='#333';document.getElementById('tabR').style.color='white';}
-function showLog(){document.getElementById('regBox').style.display='none';document.getElementById('logBox').style.display='block';document.getElementById('tabL').style.background='#0a1931';document.getElementById('tabR').style.background='#ddd';document.getElementById('tabL').style.color='white';document.getElementById('tabR').style.color='#333';}
-function doRegister(){let ph=document.getElementById('regPhone').value;let p=document.getElementById('regPass').value;let p2=document.getElementById('regPass2').value;if(!ph||!p){alert('Enter phone and password');return}if(p!=p2){alert('Passwords not match');return}let users=JSON.parse(localStorage.getItem('c_users')||'[]');if(users.find(u=>u.phone==ph)){alert('Already registered! Login');showLog();return}users.push({phone:ph,pass:p});localStorage.setItem('c_users',JSON.stringify(users));localStorage.setItem('c_current',ph);document.getElementById('myPhone').innerText=ph;document.getElementById('auth').style.display='none';alert('Welcome! Registered TO 678657567!');}
-function doLogin(){let ph=document.getElementById('logPhone').value;let p=document.getElementById('logPass').value;let users=JSON.parse(localStorage.getItem('c_users')||'[]');let u=users.find(u=>u.phone==ph&&u.pass==p);if(!u){alert('Wrong phone or password');return}localStorage.setItem('c_current',ph);document.getElementById('myPhone').innerText=ph;document.getElementById('auth').style.display='none';alert('Welcome back!');}
+function showReg(){document.getElementById('regBox').style.display='block';document.getElementById('logBox').style.display='none';}
+function showLog(){document.getElementById('regBox').style.display='none';document.getElementById('logBox').style.display='block';}
+function doRegister(){let ph=document.getElementById('regPhone').value;let p=document.getElementById('regPass').value;let p2=document.getElementById('regPass2').value;if(!ph||!p){alert('Enter phone and pass');return}if(p!=p2){alert('Not match');return}let users=JSON.parse(localStorage.getItem('c_users')||'[]');if(users.find(u=>u.phone==ph)){alert('Exists, login');showLog();return}users.push({phone:ph,pass:p});localStorage.setItem('c_users',JSON.stringify(users));localStorage.setItem('c_current',ph);document.getElementById('myPhone').innerText=ph;document.getElementById('auth').style.display='none';}
+function doLogin(){let ph=document.getElementById('logPhone').value;let p=document.getElementById('logPass').value;let users=JSON.parse(localStorage.getItem('c_users')||'[]');let u=users.find(u=>u.phone==ph&&u.pass==p);if(!u){alert('Wrong');return}localStorage.setItem('c_current',ph);document.getElementById('myPhone').innerText=ph;document.getElementById('auth').style.display='none';}
 function doLogout(){localStorage.removeItem('c_current');location.reload();}
 (function(){let cur=localStorage.getItem('c_current');if(cur){document.getElementById('auth').style.display='none';document.getElementById('myPhone').innerText=cur;}})();
-renderProducts();updateBal();renderDeps();renderWiths();
+renderProducts();updateBal();
 </script>
 </body>
 </html>
