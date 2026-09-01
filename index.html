@@ -1,7 +1,12 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CamInvest Hub</title><style>body{margin:0;font-family:sans-serif;background:#f2f4f8;padding-bottom:80px}.header{background:linear-gradient(90deg,#000,#ff0050);color:#fff;padding:18px}.card{background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,.07)}.tab{flex:1;padding:14px;text-align:center;background:#fff;border:none;font-weight:bold}.tab.active{color:#ff0050;border-bottom:3px solid #ff0050}.btn-buy{background:#ff0050;color:#fff;border:none;padding:10px 20px;border-radius:20px;font-weight:bold}</style></head><body>
-<div class="header"><div style="display:flex;justify-content:space-between"><b>CamInvest Hub 🇨🇲</b><a href="admin.html" style="background:rgba(255,255,255,.2);color:#fff;padding:6px 12px;border-radius:20px;text-decoration:none;font-size:12px">Admin</a></div><div style="font-size:12px;margin-top:4px">Sean Morgan @ambokiapromise792</div><div style="background:rgba(255,255,255,.15);border-radius:16px;padding:14px;margin-top:12px;display:flex;justify-content:space-between"><div><small>Balance</small><br><b id="bal">XAF 105</b></div><div><small>Total Earned</small><br><b id="earn">XAF 0</b></div><div><small>Tasks</small><br><b id="done">0/10</b></div></div><div style="display:flex;gap:10px;margin-top:14px"><button onclick="alert('Deposit: Send MoMo to 678657567 - AMBOKIA PROMISE, then WhatsApp proof')" style="flex:1;background:#fff;color:#ff0050;border:none;padding:12px;border-radius:24px;font-weight:bold">💳 Deposit</button><button onclick="alert('Withdraw: WhatsApp 678657567 with your number and amount')" style="flex:1;background:#16a34a;color:#fff;border:none;padding:12px;border-radius:24px;font-weight:bold">💸 Withdraw</button></div></div>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CamInvest Hub</title><style>body{margin:0;font-family:sans-serif;background:#f2f4f8;padding-bottom:90px}.header{background:linear-gradient(90deg,#000,#ff0050);color:#fff;padding:18px}.card{background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 6px rgba(0,0,0,.07)}.tab{flex:1;padding:14px;text-align:center;background:#fff;border:none;font-weight:bold}.tab.active{color:#ff0050;border-bottom:3px solid #ff0050}.btn-buy{background:#ff0050;color:#fff;border:none;padding:10px 20px;border-radius:20px;font-weight:bold}.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:16px;z-index:99}.box{background:#fff;border-radius:16px;padding:20px;width:100%;max-width:380px}</style></head><body>
+<div class="header"><div style="display:flex;justify-content:space-between"><b>CamInvest Hub 🇨🇲</b><a href="admin.html" style="background:rgba(255,255,255,.2);color:#fff;padding:6px 12px;border-radius:20px;text-decoration:none;font-size:12px">Admin</a></div><div style="font-size:12px;margin-top:4px">Sean Morgan @ambokiapromise792</div><div style="background:rgba(255,255,255,.15);border-radius:16px;padding:14px;margin-top:12px;display:flex;justify-content:space-between"><div><small>Balance</small><br><b id="bal">XAF 105</b></div><div><small>Earned</small><br><b id="earn">XAF 0</b></div><div><small>Tasks</small><br><b id="done">0/10</b></div></div><div style="display:flex;gap:10px;margin-top:14px"><button id="depBtn" style="flex:1;background:#fff;color:#ff0050;border:none;padding:12px;border-radius:24px;font-weight:bold">💳 Deposit</button><button id="wdBtn" style="flex:1;background:#16a34a;color:#fff;border:none;padding:12px;border-radius:24px;font-weight:bold">💸 Withdraw</button></div></div>
 <div style="display:flex;position:sticky;top:0;z-index:5"><button class="tab active" data-t="plans">📦 Plans</button><button class="tab" data-t="tasks">🎬 Tasks</button><button class="tab" data-t="me">👤 Me</button></div>
-<div style="padding:16px"><div id="plansTab"></div><div id="tasksTab" style="display:none"></div><div id="meTab" style="display:none"><div style="background:#fff;border-radius:16px;padding:16px"><b>My Wallet</b><p>Support: MTN MoMo 678657567</p><p style="font-size:13px">Daily commission starts after you buy plan!</p></div></div></div>
+<div style="padding:16px"><div id="plansTab"></div><div id="tasksTab" style="display:none"></div><div id="meTab" style="display:none"><div style="background:#fff;border-radius:16px;padding:16px"><b>My Wallet</b><p style="font-size:13px">Deposits & Withdraws go to Firebase - Check admin.html</p><p style="font-size:12px;margin-top:8px">MTN MoMo: <b>678657567</b></p></div></div></div>
+
+<div id="depModal" class="modal"><div class="box"><h3>💳 Deposit - Real</h3><p style="font-size:12px;background:#f3f4f6;padding:8px;border-radius:8px">Send to MTN: <b>678657567</b> - AMBOKIA PROMISE</p><input id="depNum" placeholder="Your MoMo Number" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:10px"><input id="depAmt" type="number" placeholder="Amount e.g 500" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px"><input id="depTid" placeholder="Transaction ID (optional)" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px"><button id="sendDep" style="width:100%;background:#ff0050;color:#fff;border:none;padding:12px;border-radius:10px;margin-top:12px;font-weight:bold">Submit to Firebase</button><button onclick="document.getElementById('depModal').style.display='none'" style="width:100%;background:#eee;border:none;padding:10px;border-radius:10px;margin-top:8px">Cancel</button></div></div>
+
+<div id="wdModal" class="modal"><div class="box"><h3>💸 Withdraw - Real</h3><input id="wdNum" placeholder="Your MoMo Number to receive" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:10px"><select id="wdType" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px"><option>MTN MoMo</option><option>Orange Money</option></select><input id="wdAmt" type="number" placeholder="Amount e.g 1000" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:8px"><button id="sendWd" style="width:100%;background:#16a34a;color:#fff;border:none;padding:12px;border-radius:10px;margin-top:12px;font-weight:bold">Send Withdraw Request</button><button onclick="document.getElementById('wdModal').style.display='none'" style="width:100%;background:#eee;border:none;padding:10px;border-radius:10px;margin-top:8px">Cancel</button></div></div>
+
 <script>
 let balance=105,earned=0,taskCount=0;
 const plans=[
@@ -17,44 +22,30 @@ const plans=[
 {id:10,name:"Ultimate 400K",price:400000,daily:170000,days:90,total:15300000,emoji:"🦁"}
 ];
 const tiktok="https://vm.tiktok.com/ZS9BbLLrWKNaH-MGPcs/";
-function renderPlans(){
-let c=document.getElementById('plansTab');c.innerHTML="";
-plans.forEach(p=>{
-let d=document.createElement('div');d.className="card";
-d.innerHTML=`<div><div style="font-size:22px">${p.emoji}</div><b>${p.name}</b><div style="font-size:12px;color:#666">Price: ${p.price}F</div><div style="font-size:12px;color:#16a34a;font-weight:bold">${p.daily}F/day x ${p.days} days</div><div style="font-size:11px;color:#ff0050">Total: ${p.total}F</div></div><button class="btn-buy" onclick="buyPlan(${p.id})">Buy</button>`;
-c.appendChild(d);
-});
-}
-function buyPlan(id){
-let p=plans.find(x=>x.id===id);
-if(balance<p.price){alert("Need "+p.price+"F! Please Deposit via MoMo 678657567 first");return;}
-balance-=p.price;earned+=p.total;
-document.getElementById('bal').innerText="XAF "+balance;
-document.getElementById('earn').innerText="XAF "+earned;
-alert("✅ You bought "+p.name+"! You will earn "+p.daily+"F daily for "+p.days+" days. Total "+p.total+"F");
-}
-function renderTasks(){
-let c=document.getElementById('tasksTab');
-for(let i=1;i<=10;i++){
-let d=document.createElement('div');d.className="card";d.style.display="block";
-d.innerHTML=`<b>Task ${i}: Watch Sean Morgan</b><div style="background:#000;color:#fff;border-radius:12px;padding:14px;margin-top:8px;text-align:center"><a href="${tiktok}" target="_blank" style="background:#ff0050;color:#fff;padding:8px 14px;border-radius:8px;text-decoration:none;display:inline-block">▶️ Open TikTok</a><div style="font-size:11px;margin-top:6px">@ambokiapromise792</div></div><button class="btn-claim" style="background:#ff0050;color:#fff;width:100%;padding:12px;border:none;border-radius:10px;margin-top:10px;font-weight:bold">Watch 30s & Claim 10.5 XAF</button>`;
-c.appendChild(d);
-}
-c.addEventListener('click',e=>{
-if(!e.target.classList.contains('btn-claim'))return;
-let btn=e.target;let s=30;btn.disabled=true;
-let iv=setInterval(()=>{s--;btn.innerText="Watching... "+s+"s";if(s<=0){clearInterval(iv);btn.innerText="✅ Claimed +10.5 XAF";btn.style.background="#16a34a";taskCount++;balance+=10.5;earned+=10.5;document.getElementById('bal').innerText="XAF "+balance.toFixed(1);document.getElementById('earn').innerText="XAF "+earned.toFixed(1);document.getElementById('done').innerText=taskCount+"/10";}},1000);
-window.open(tiktok,"_blank");
-});
-}
-document.querySelectorAll('.tab').forEach(b=>{
-b.onclick=()=>{
-document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
-b.classList.add('active');
-document.getElementById('plansTab').style.display=b.dataset.t==='plans'?'block':'none';
-document.getElementById('tasksTab').style.display=b.dataset.t==='tasks'?'block':'none';
-document.getElementById('meTab').style.display=b.dataset.t==='me'?'block':'none';
-};
-});
+function renderPlans(){let c=document.getElementById('plansTab');c.innerHTML="";plans.forEach(p=>{let d=document.createElement('div');d.className="card";d.innerHTML=`<div><div style="font-size:22px">${p.emoji}</div><b>${p.name}</b><div style="font-size:12px;color:#666">Price: ${p.price}F</div><div style="font-size:12px;color:#16a34a;font-weight:bold">${p.daily}F/day x ${p.days}</div><div style="font-size:11px;color:#ff0050">Total: ${p.total}F</div></div><button class="btn-buy" onclick="buyPlan(${p.id})">Buy</button>`;c.appendChild(d);});}
+function buyPlan(id){let p=plans.find(x=>x.id===id);if(balance<p.price){alert("Need "+p.price+"F! Deposit first");document.getElementById('depModal').style.display='flex';return;}balance-=p.price;earned+=p.daily;document.getElementById('bal').innerText="XAF "+balance;document.getElementById('earn').innerText="XAF "+earned;alert("✅ Bought "+p.name);}
+function renderTasks(){let c=document.getElementById('tasksTab');for(let i=1;i<=10;i++){let d=document.createElement('div');d.className="card";d.style.display="block";d.innerHTML=`<b>Task ${i}</b><div style="background:#000;color:#fff;border-radius:12px;padding:14px;margin-top:8px;text-align:center"><a href="${tiktok}" target="_blank" style="background:#ff0050;color:#fff;padding:8px 14px;border-radius:8px;text-decoration:none;display:inline-block">▶️ TikTok</a></div><button class="btn-claim" style="background:#ff0050;color:#fff;width:100%;padding:12px;border:none;border-radius:10px;margin-top:10px;font-weight:bold">Claim 10.5 XAF</button>`;c.appendChild(d);}c.addEventListener('click',e=>{if(!e.target.classList.contains('btn-claim'))return;let btn=e.target,s=30;btn.disabled=true;let iv=setInterval(()=>{s--;btn.innerText="Watching "+s+"s";if(s<=0){clearInterval(iv);btn.innerText="✅ +10.5 XAF";btn.style.background="#16a34a";taskCount++;balance+=10.5;earned+=10.5;document.getElementById('bal').innerText="XAF "+balance.toFixed(1);document.getElementById('earn').innerText="XAF "+earned.toFixed(1);document.getElementById('done').innerText=taskCount+"/10";}},1000);window.open(tiktok,"_blank");});}
+document.querySelectorAll('.tab').forEach(b=>{b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('plansTab').style.display=b.dataset.t==='plans'?'block':'none';document.getElementById('tasksTab').style.display=b.dataset.t==='tasks'?'block':'none';document.getElementById('meTab').style.display=b.dataset.t==='me'?'block':'none';};});
+document.getElementById('depBtn').onclick=()=>document.getElementById('depModal').style.display='flex';
+document.getElementById('wdBtn').onclick=()=>document.getElementById('wdModal').style.display='flex';
 renderPlans();renderTasks();
-</script></body></html>
+</script>
+
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";import{getFirestore,collection,addDoc}from"https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+const firebaseConfig={apiKey:"AIzaSyBhMWKR7UBD4zaXCCn08WLeOrD2yvWlicY",authDomain:"caminvest-hub-14129.firebaseapp.com",projectId:"caminvest-hub-14129",storageBucket:"caminvest-hub-14129.firebasestorage.app",messagingSenderId:"992533738944",appId:"1:992533738944:web:9776d1a82b840f33378425"};
+try{
+const app=initializeApp(firebaseConfig);const db=getFirestore(app);
+document.getElementById('sendDep').onclick=async()=>{
+let num=document.getElementById('depNum').value,amt=document.getElementById('depAmt').value,tid=document.getElementById('depTid').value;
+if(!num||!amt){alert("Enter number & amount");return;}
+try{await addDoc(collection(db,"deposits"),{phone:num,amount:Number(amt),txId:tid,status:"pending",createdAt:new Date()});alert("✅ Deposit "+amt+"F submitted! Check admin.html");document.getElementById('depModal').style.display='none';}catch(e){alert("Firebase error: Create Firestore DB! "+e.message);}
+};
+document.getElementById('sendWd').onclick=async()=>{
+let num=document.getElementById('wdNum').value,amt=document.getElementById('wdAmt').value,type=document.getElementById('wdType').value;
+if(!num||!amt){alert("Enter");return;}
+try{await addDoc(collection(db,"withdrawals"),{phone:num,amount:Number(amt),method:type,status:"pending",createdAt:new Date()});alert("✅ Withdraw "+amt+"F to "+num+" sent! Check admin.html");document.getElementById('wdModal').style.display='none';}catch(e){alert(e.message);}
+};
+}catch(e){console.log("Firebase not ready",e);}
+</script>
+</body></html>
