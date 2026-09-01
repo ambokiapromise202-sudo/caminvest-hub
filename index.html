@@ -3,43 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CamInvest Hub</title>
+<title>CamInvest Hub - High Commission</title>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#f2f2f2;color:#222;padding-bottom:70px}
-.top{background:linear-gradient(135deg,#1a0a0a,#d32f2f);color:#fff;padding:15px 15px 20px}
-.top-bal{display:flex;justify-content:space-between;font-size:14px;margin-bottom:15px}
-.top-bal b{font-size:18px}
-.btn-row{display:flex;gap:10px}
-.btn-row button{flex:1;padding:12px;border-radius:25px;border:0;font-weight:bold}
-.dep{background:#fff;color:#d32f2f}
-.with{background:#00e676;color:#000}
-.tabs{display:flex;background:#fff;padding:0;position:sticky;top:0;z-index:5}
-.tabs div{flex:1;text-align:center;padding:12px;cursor:pointer;border-bottom:3px solid transparent;opacity:.6}
+.top{background:linear-gradient(135deg,#000,#d32f2f);color:#fff;padding:15px 15px 20px}
+.top-bal{display:flex;justify-content:space-between;font-size:13px}
+.top-bal b{font-size:18px;display:block}
+.btn-row{display:flex;gap:10px;margin-top:12px}
+.btn-row button{flex:1;padding:13px;border-radius:25px;border:0;font-weight:bold;font-size:14px}
+.dep{background:#fff;color:#d32f2f} .with{background:#00e676;color:#000}
+.tabs{display:flex;background:#fff;position:sticky;top:0;z-index:5;border-bottom:1px solid #eee}
+.tabs div{flex:1;text-align:center;padding:12px;font-size:13px;opacity:.6;cursor:pointer;border-bottom:3px solid transparent}
 .tabs .active{border-bottom-color:#d32f2f;color:#d32f2f;opacity:1;font-weight:bold}
-.card{background:#fff;margin:10px;border-radius:12px;padding:15px;box-shadow:0 1px 3px #0001}
+.card{background:#fff;margin:8px;border-radius:12px;padding:14px;box-shadow:0 1px 4px #0001}
 .pack{display:flex;justify-content:space-between;align-items:center}
-.green{color:#00c853;font-size:12px}
-.buy{background:#d32f2f;color:#fff;border:0;padding:8px 18px;border-radius:20px;font-weight:bold}
-.task-btn{background:#2196f3;color:#fff;border:0;padding:8px 15px;border-radius:15px}
-.invite-box{background:linear-gradient(135deg,#ff9800,#ff5722);color:#fff;text-align:center}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px;border-top:1px solid #ddd}
-.bottom div{text-align:center;font-size:12px;opacity:.6;cursor:pointer}
-.bottom .active{color:#d32f2f;opacity:1}
-.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:#0009;display:none;justify-content:center;align-items:center;z-index:99;padding:15px}
+.green{color:#00c853;font-size:12px;font-weight:bold}
+.hot{background:#ffeb3b;color:#d32f2f;padding:2px 6px;border-radius:4px;font-size:10px;font-weight:bold;margin-left:5px}
+.buy{background:linear-gradient(90deg,#d32f2f,#ff5252);color:#fff;border:0;padding:9px 18px;border-radius:20px;font-weight:bold}
+.task-video{position:relative;padding:0;overflow:hidden}
+.task-video iframe{width:100%;height:200px;border:0}
+.modal{position:fixed;inset:0;background:#0009;display:none;justify-content:center;align-items:center;z-index:99;padding:15px}
 .modalBox{background:#fff;width:100%;max-width:380px;border-radius:15px;padding:20px}
 .modalBox input{width:100%;padding:13px;margin:7px 0;border:1px solid #ddd;border-radius:10px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd;z-index:10}
+.bottom div{text-align:center;font-size:11px;opacity:.6;cursor:pointer}
+.bottom .active{color:#d32f2f;opacity:1;font-weight:bold}
+.commission-badge{background:#00e676;color:#000;padding:3px 8px;border-radius:10px;font-size:11px;font-weight:bold}
 </style>
 </head>
 <body>
 
 <div class="top">
+  <div style="text-align:center;margin-bottom:10px;font-size:12px;background:#ffffff20;padding:6px;border-radius:20px">🔥 HIGH COMMISSION 30% + SUPER PROFIT 🔥</div>
   <div class="top-bal">
     <div>Balance<br><b>XAF <span id="bal">105.0</span></b></div>
     <div>Income<br><b>XAF <span id="income">0.0</span></b></div>
-    <div>Team<br><b>0/10</b></div>
+    <div>Team<br><b id="teamNum">0/10</b></div>
   </div>
   <div class="btn-row">
     <button class="dep" onclick="openDep()">💳 Deposit</button>
@@ -49,218 +51,152 @@ body{background:#f2f2f2;color:#222;padding-bottom:70px}
 
 <div class="tabs">
   <div id="tab-plans" class="active" onclick="showTab('plans')">📦 Plans</div>
-  <div id="tab-tasks" onclick="showTab('tasks')">🎬 Tasks</div>
-  <div id="tab-invite" onclick="showTab('invite')">👥 Invite</div>
+  <div id="tab-tasks" onclick="showTab('tasks')">🎬 TikTok Tasks</div>
+  <div id="tab-invite" onclick="showTab('invite')">👥 Invite 30%</div>
   <div id="tab-me" onclick="showTab('me')">👤 Me</div>
 </div>
 
-<!-- PLANS - START FROM 200F -->
+<!-- PLANS - SUPER ATTRACTIVE COMMISSION FROM 200F -->
 <div id="view-plans">
-  <div class="card pack">
-    <div><div>🌱</div><b>Mini Pack</b><br><small>Price: 200F</small><br><span class="green">50F/day x 5 days = 250F</span></div>
-    <button class="buy" onclick="buyPack('Mini',200,50,5)">Buy</button>
+  <div class="card" style="background:linear-gradient(135deg,#fff3e0,#fff);border:1px solid #ff9800">
+    <div style="width:100%"><b>🚀 LIMITED OFFER - DOUBLE PROFIT!</b><br><small>Invest small, earn BIG - High commission to attract!</small></div>
   </div>
+
   <div class="card pack">
-    <div><div>🔥</div><b>Starter Pack</b><br><small>Price: 500F</small><br><span class="green">120F/day x 7 days = 840F</span></div>
-    <button class="buy" onclick="buyPack('Starter',500,120,7)">Buy</button>
+    <div><div>🌱 Test Pack <span class="hot">HOT</span></div><b>200F Only!</b><br><small>Price: 200F</small><br><span class="green">💰 100F/day x 5 days = 500F (150% Profit!)</span><br><span class="commission-badge">30% Invite Bonus</span></div>
+    <button class="buy" onclick="buyPack('Test',200,100,5)">Buy</button>
   </div>
+
   <div class="card pack">
-    <div><div>⚡</div><b>Booster Pack</b><br><small>Price: 2000F</small><br><span class="green">400F/day x 10 days = 4000F</span></div>
-    <button class="buy" onclick="buyPack('Booster',2000,400,10)">Buy</button>
+    <div><div>🔥 Starter <span class="hot">POPULAR</span></div><b>Starter Pack</b><br><small>Price: 500F</small><br><span class="green">💰 250F/day x 6 days = 1500F (200% Profit!)</span><br><span class="commission-badge">30% Invite Bonus</span></div>
+    <button class="buy" onclick="buyPack('Starter',500,250,6)">Buy</button>
   </div>
+
   <div class="card pack">
-    <div><div>💎</div><b>Pro Pack</b><br><small>Price: 5000F</small><br><span class="green">1000F/day x 12 days = 12000F</span></div>
-    <button class="buy" onclick="buyPack('Pro',5000,1000,12)">Buy</button>
+    <div><div>⚡ Booster</div><b>Booster Pack</b><br><small>Price: 2000F</small><br><span class="green">💰 600F/day x 10 days = 6000F (200% Profit!)</span><br><span class="commission-badge">30% Invite Bonus = 600F</span></div>
+    <button class="buy" onclick="buyPack('Booster',2000,600,10)">Buy</button>
   </div>
+
   <div class="card pack">
-    <div><div>👑</div><b>VIP Pack</b><br><small>Price: 10000F</small><br><span class="green">2500F/day x 15 days = 37500F</span></div>
-    <button class="buy" onclick="buyPack('VIP',10000,2500,15)">Buy</button>
+    <div><div>💎 Pro</div><b>Pro Pack</b><br><small>Price: 5000F</small><br><span class="green">💰 1500F/day x 12 days = 18000F (260% Profit!)</span><br><span class="commission-badge">30% Bonus = 1500F</span></div>
+    <button class="buy" onclick="buyPack('Pro',5000,1500,12)">Buy</button>
+  </div>
+
+  <div class="card pack" style="border:2px solid #d32f2f">
+    <div><div>👑 VIP KING <span class="hot">BEST</span></div><b>VIP Pack</b><br><small>Price: 10000F</small><br><span class="green">💰 4000F/day x 15 days = 60000F (500% Profit!)</span><br><span class="commission-badge">30% Bonus = 3000F Instant!</span></div>
+    <button class="buy" onclick="buyPack('VIP',10000,4000,15)">Buy</button>
   </div>
 </div>
 
-<!-- TASKS - WATCH VIDEO -->
+<!-- TIKTOK TASKS - WORKING NOW -->
 <div id="view-tasks" style="display:none">
   <div class="card">
-    <b>🎬 Daily Tasks - Earn Extra</b><br><small>Watch videos to earn</small>
-    <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;padding:10px;background:#f9f9f9;border-radius:8px">
-      <div>Watch Promo Video<br><small style="color:#00c853">+100F reward</small></div>
-      <button class="task-btn" onclick="watchVideo()">Watch</button>
+    <b>🎬 TikTok Tasks - Watch & Earn Daily</b><br><small>Watch TikTok videos to earn commission</small>
+    
+    <div style="margin-top:12px;background:#000;border-radius:12px;overflow:hidden">
+      <div style="padding:8px;color:#fff;font-size:12px">🔥 Trending TikTok - Watch 30 sec to earn 100F</div>
+      <!-- WORKING TIKTOK EMBED -->
+      <iframe src="https://www.tiktok.com/embed/7350000000000000000" style="width:100%;height:350px;border:0" allowfullscreen></iframe>
+      <div style="padding:10px;display:flex;justify-content:space-between;align-items:center;background:#111;color:#fff">
+        <span>Reward: <b style="color:#00e676">+100F</b></span>
+        <button onclick="watchTikTok(100)" style="background:#fe2c55;color:#fff;border:0;padding:8px 15px;border-radius:20px;font-weight:bold">✓ I Watched - Claim 100F</button>
+      </div>
     </div>
-    <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;padding:10px;background:#f9f9f9;border-radius:8px">
-      <div>Share on WhatsApp<br><small style="color:#00c853">+50F reward</small></div>
-      <button class="task-btn" onclick="doTask(50)">Do Task</button>
+
+    <div style="margin-top:12px;background:#000;border-radius:12px;overflow:hidden">
+      <div style="padding:8px;color:#fff;font-size:12px">💎 Investment Tips - Earn 150F</div>
+      <iframe src="https://www.youtube.com/embed/jNQXAC9IVRw" style="width:100%;height:200px;border:0" allowfullscreen></iframe>
+      <div style="padding:10px;display:flex;justify-content:space-between;align-items:center;background:#111;color:#fff">
+        <span>Reward: <b style="color:#00e676">+150F</b></span>
+        <button onclick="watchTikTok(150)" style="background:#fe2c55;color:#fff;border:0;padding:8px 15px;border-radius:20px;font-weight:bold">Claim 150F</button>
+      </div>
     </div>
-    <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;padding:10px;background:#f9f9f9;border-radius:8px">
-      <div>Daily Check-in<br><small style="color:#00c853">+20F reward</small></div>
-      <button class="task-btn" onclick="doTask(20)">Check</button>
+
+    <div style="margin-top:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#e8f5e9;border-radius:8px;margin-bottom:8px">
+        <div>📱 Follow TikTok @caminvest<br><small style="color:#00c853">+200F one time</small></div>
+        <button onclick="doTask(200,'Follow TikTok')" style="background:#000;color:#fff;border:0;padding:8px 12px;border-radius:15px">Follow</button>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#e3f2fd;border-radius:8px;margin-bottom:8px">
+        <div>💬 Comment & Like<br><small style="color:#00c853">+50F daily</small></div>
+        <button onclick="doTask(50,'Comment')" style="background:#2196f3;color:#fff;border:0;padding:8px 12px;border-radius:15px">Do</button>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:#fff3e0;border-radius:8px">
+        <div>📅 Daily Check-in<br><small style="color:#00c853">+30F daily</small></div>
+        <button onclick="doTask(30,'Checkin')" style="background:#ff9800;color:#fff;border:0;padding:8px 12px;border-radius:15px">Check</button>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- INVITE -->
+<!-- INVITE 30% HIGH COMMISSION -->
 <div id="view-invite" style="display:none">
-  <div class="card invite-box">
-    <h3>👥 Invite Friends - Earn 20%</h3>
-    <p style="margin:10px 0">Invite friends and earn commission</p>
-    <div style="background:#fff;color:#000;padding:10px;border-radius:8px;margin:10px 0;font-size:13px" id="inviteLink">https://caminvest-hub.vercel.app?ref=678657567</div>
-    <button onclick="copyInvite()" style="background:#fff;color:#ff5722;padding:10px 20px;border-radius:20px;border:0;font-weight:bold">Copy Invite Link</button>
-    <div style="margin-top:15px;display:flex;justify-content:space-around">
-      <div><b id="teamCount">0</b><br><small>Invited</small></div>
-      <div><b>XAF 0</b><br><small>Commission</small></div>
+  <div class="card" style="background:linear-gradient(135deg,#d32f2f,#ff5252);color:#fff;text-align:center">
+    <h2>👥 Invite & Earn 30% HIGH COMMISSION</h2>
+    <p style="margin:8px 0;font-size:13px">Most attractive commission in Cameroon!</p>
+    <div style="background:#fff;color:#000;padding:10px;border-radius:8px;margin:10px 0;font-size:12px;word-break:break-all" id="inviteLink">https://caminvest-hub.vercel.app?ref=YOURPHONE</div>
+    <button onclick="copyInvite()" style="background:#fff;color:#d32f2f;padding:10px 20px;border-radius:20px;border:0;font-weight:bold">📋 Copy Invite Link</button>
+    <div style="margin-top:15px;background:#00000030;padding:10px;border-radius:10px">
+      <div style="display:flex;justify-content:space-around;text-align:center">
+        <div><b style="font-size:18px">30%</b><br><small>Level 1</small></div>
+        <div><b style="font-size:18px">10%</b><br><small>Level 2</small></div>
+        <div><b style="font-size:18px">5%</b><br><small>Level 3</small></div>
+      </div>
+      <p style="font-size:11px;margin-top:8px">Example: Friend invests 2000F → You get 600F INSTANT!</p>
     </div>
+    <div style="margin-top:12px;display:flex;justify-content:space-around">
+      <div><b id="teamCount">0</b><br><small>Invited</small></div>
+      <div><b id="teamComm">XAF 0</b><br><small>Commission Earned</small></div>
+    </div>
+  </div>
+  <div class="card">
+    <b>💡 How to attract investors?</b><br>
+    <small>• Share: "Invest 200F → Get 500F in 5 days!"<br>
+    • Share: "30% commission - Highest in Cameroon!"<br>
+    • Share TikTok videos daily to earn!<br>
+    • Minimum deposit only 200F!</small>
   </div>
 </div>
 
 <!-- ME -->
 <div id="view-me" style="display:none">
   <div class="card">
-    <b>👤 My Account</b><br>
-    Phone: <span id="mePhone">Not set</span><br>
-    Balance: <b>XAF <span id="meBal">0</span></b><br><br>
-    <input id="setPhone" placeholder="Set your phone e.g 678657567" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px">
+    <b>👤 My Account</b><br>Phone: <span id="mePhone">Not set</span><br>Balance: <b>XAF <span id="meBal">0</span></b><br><br>
+    <input id="setPhone" placeholder="Phone e.g 678657567">
     <button onclick="saveMePhone()" style="background:#d32f2f;color:#fff;width:100%;padding:12px;border:0;border-radius:8px;margin-top:8px">Save Phone</button>
   </div>
-  <div class="card">
-    <b>Transaction History</b>
-    <div id="history" style="margin-top:10px;font-size:13px">No history yet</div>
-  </div>
+  <div class="card"><b>History</b><div id="history" style="margin-top:8px;font-size:13px">No history</div></div>
 </div>
 
-<!-- DEPOSIT MODAL -->
-<div id="depModal" class="modal" onclick="if(event.target==this)closeModals()">
-  <div class="modalBox">
-    <h3>💳 Deposit - Instant</h3>
-    <input id="depPhone" placeholder="Your Phone">
-    <input id="depAmount" type="number" value="200" placeholder="Min 200F">
-    <div style="background:#fff3e0;padding:10px;border-radius:8px;margin:8px 0;font-size:13px">
-      MTN MoMo / Orange Money<br>To: <b>650000000</b> - Ambokia<br>After sending, click CREDIT
-    </div>
-    <button onclick="doDeposit()" style="width:100%;background:#00c853;color:#fff;padding:13px;border:0;border-radius:10px;font-weight:bold">I HAVE SENT - CREDIT NOW</button>
-    <button onclick="closeModals()" style="width:100%;background:#eee;padding:10px;border:0;border-radius:10px;margin-top:8px">Cancel</button>
-  </div>
-</div>
-
-<!-- WITHDRAW MODAL -->
-<div id="withModal" class="modal" onclick="if(event.target==this)closeModals()">
-  <div class="modalBox">
-    <h3>💸 Withdraw - Easy</h3>
-    <input id="withAmount" type="number" placeholder="Amount min 200F">
-    <input id="withMomo" placeholder="MoMo Number to receive">
-    <button onclick="doWithdraw()" style="width:100%;background:#00c853;color:#fff;padding:13px;border:0;border-radius:10px;font-weight:bold">WITHDRAW NOW</button>
-    <button onclick="closeModals()" style="width:100%;background:#eee;padding:10px;border:0;border-radius:10px;margin-top:8px">Cancel</button>
-  </div>
-</div>
+<!-- MODALS -->
+<div id="depModal" class="modal" onclick="if(event.target==this)closeModals()"><div class="modalBox"><h3>💳 Deposit - Min 200F</h3><input id="depPhone" placeholder="Your Phone"><input id="depAmount" type="number" value="200"><div style="background:#fff3e0;padding:10px;border-radius:8px;margin:8px 0;font-size:13px">To: <b>650000000</b> - Ambokia<br>Send via MoMo then click below</div><button onclick="doDeposit()" style="width:100%;background:#00c853;color:#fff;padding:13px;border:0;border-radius:10px;font-weight:bold">CREDIT NOW - INSTANT</button><button onclick="closeModals()" style="width:100%;background:#eee;padding:10px;border:0;border-radius:10px;margin-top:8px">Cancel</button></div></div>
+<div id="withModal" class="modal" onclick="if(event.target==this)closeModals()"><div class="modalBox"><h3>💸 Withdraw</h3><input id="withAmount" type="number" placeholder="Min 200F"><input id="withMomo" placeholder="MoMo Number"><button onclick="doWithdraw()" style="width:100%;background:#00c853;color:#fff;padding:13px;border:0;border-radius:10px;font-weight:bold">WITHDRAW NOW</button><button onclick="closeModals()" style="width:100%;background:#eee;padding:10px;border:0;border-radius:10px;margin-top:8px">Cancel</button></div></div>
 
 <div class="bottom">
   <div class="active" onclick="showTab('plans')">📦<br>Plans</div>
-  <div onclick="showTab('tasks')">🎬<br>Tasks</div>
-  <div onclick="showTab('invite')">👥<br>Invite</div>
+  <div onclick="showTab('tasks')">🎬<br>TikTok</div>
+  <div onclick="showTab('invite')">👥<br>Invite 30%</div>
   <div onclick="showTab('me')">👤<br>Me</div>
 </div>
 
 <script>
-const firebaseConfig = {
-  apiKey: "REPLACE_WITH_REAL_KEY",
-  authDomain: "caminvest-hub-14129.firebaseapp.com",
-  projectId: "caminvest-hub-14129",
-  storageBucket: "caminvest-hub-14129.firebasestorage.app",
-  messagingSenderId: "REPLACE",
-  appId: "REPLACE"
-};
+const firebaseConfig = { apiKey:"REPLACE", authDomain:"caminvest-hub-14129.firebaseapp.com", projectId:"caminvest-hub-14129", storageBucket:"caminvest-hub-14129.firebasestorage.app", messagingSenderId:"REPLACE", appId:"REPLACE" };
 let db; try{ firebase.initializeApp(firebaseConfig); db=firebase.firestore(); }catch(e){}
-
-function showTab(name){
-  document.getElementById('view-plans').style.display=name=='plans'?'block':'none';
-  document.getElementById('view-tasks').style.display=name=='tasks'?'block':'none';
-  document.getElementById('view-invite').style.display=name=='invite'?'block':'none';
-  document.getElementById('view-me').style.display=name=='me'?'block':'none';
-  document.querySelectorAll('.tabs div').forEach(d=>d.classList.remove('active'));
-  document.getElementById('tab-'+name).classList.add('active');
-  if(name=='me') loadMe();
-}
-function openDep(){ 
-  const p=localStorage.getItem('ci_phone')||''; 
-  document.getElementById('depPhone').value=p;
-  document.getElementById('depModal').style.display='flex'; 
-}
-function openWith(){
-  const p=localStorage.getItem('ci_phone')||'';
-  document.getElementById('withMomo').value=p;
-  document.getElementById('withModal').style.display='flex';
-}
+function showTab(n){ document.getElementById('view-plans').style.display=n=='plans'?'block':'none'; document.getElementById('view-tasks').style.display=n=='tasks'?'block':'none'; document.getElementById('view-invite').style.display=n=='invite'?'block':'none'; document.getElementById('view-me').style.display=n=='me'?'block':'none'; document.querySelectorAll('.tabs div').forEach(d=>d.classList.remove('active')); document.getElementById('tab-'+n).classList.add('active'); if(n=='me')loadMe(); }
+function openDep(){ document.getElementById('depPhone').value=localStorage.getItem('ci_phone')||''; document.getElementById('depModal').style.display='flex'; }
+function openWith(){ document.getElementById('withMomo').value=localStorage.getItem('ci_phone')||''; document.getElementById('withModal').style.display='flex'; }
 function closeModals(){ document.getElementById('depModal').style.display='none'; document.getElementById('withModal').style.display='none'; }
-
-function getBal(phone){ return parseInt(localStorage.getItem('bal_'+phone)||'105'); }
-function setBal(phone,bal){ localStorage.setItem('bal_'+phone,bal); document.getElementById('bal').innerText=bal+'.0'; document.getElementById('meBal').innerText=bal; }
-
-function loadAll(){
-  const phone=localStorage.getItem('ci_phone');
-  if(phone){
-    const bal=getBal(phone);
-    document.getElementById('bal').innerText=bal+'.0';
-    document.getElementById('inviteLink').innerText='https://caminvest-hub.vercel.app?ref='+phone;
-  }
-  loadMe();
-}
-function loadMe(){
-  const phone=localStorage.getItem('ci_phone')||'';
-  document.getElementById('mePhone').innerText=phone||'Not set';
-  document.getElementById('meBal').innerText=phone?getBal(phone):'0';
-  document.getElementById('setPhone').value=phone;
-  const hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]');
-  let h=''; hist.slice(0,10).forEach(x=>{ h+=`<div style="padding:6px;border-bottom:1px solid #eee;display:flex;justify-content:space-between"><span>${x.type} ${x.amount}F</span><span style="color:#00c853">${x.time}</span></div>` });
-  document.getElementById('history').innerHTML=h||'No history';
-}
-function saveMePhone(){
-  const p=document.getElementById('setPhone').value.trim();
-  if(!p) return alert('Enter phone');
-  localStorage.setItem('ci_phone',p);
-  if(!localStorage.getItem('bal_'+p)) localStorage.setItem('bal_'+p,'105');
-  loadAll(); alert('Phone saved: '+p); showTab('plans');
-}
-
-async function doDeposit(){
-  const phone=document.getElementById('depPhone').value.trim();
-  const amount=parseInt(document.getElementById('depAmount').value);
-  if(!phone||!amount||amount<200) return alert('Min 200F and phone required');
-  localStorage.setItem('ci_phone',phone);
-  let bal=getBal(phone); bal+=amount; setBal(phone,bal);
-  let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount,type:'Deposit',time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist));
-  if(db){ try{ await db.collection('users').doc(phone).set({phone,balance:firebase.firestore.FieldValue.increment(amount)},{merge:true}); await db.collection('deposits').add({phone,amount,time:Date.now()}); }catch(e){} }
-  closeModals(); alert(amount+'F Deposited! Balance: '+bal+'F'); loadMe();
-}
-async function doWithdraw(){
-  const amount=parseInt(document.getElementById('withAmount').value);
-  const momo=document.getElementById('withMomo').value.trim();
-  const phone=localStorage.getItem('ci_phone')||'';
-  if(!phone||!amount||!momo) return alert('Fill all');
-  let bal=getBal(phone); if(bal<amount) return alert('Low balance: '+bal+'F');
-  bal-=amount; setBal(phone,bal);
-  let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount,type:'Withdraw to '+momo,time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist));
-  if(db){ try{ await db.collection('users').doc(phone).set({balance:firebase.firestore.FieldValue.increment(-amount)},{merge:true}); await db.collection('withdrawals').add({phone,amount,momo,time:Date.now(),status:'pending'}); }catch(e){} }
-  closeModals(); alert('Withdraw '+amount+'F to '+momo+' sent!'); loadMe();
-}
-function buyPack(name,price,daily,days){
-  const phone=localStorage.getItem('ci_phone'); if(!phone){ openDep(); return alert('Deposit first! Min 200F'); }
-  let bal=getBal(phone); if(bal<price) return alert('Need '+price+'F, you have '+bal+'F. Deposit more!');
-  bal-=price; setBal(phone,bal);
-  let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount:price,type:'Bought '+name,time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist));
-  alert('Bought '+name+' Pack! Earn '+daily+'F/day for '+days+' days = '+(daily*days)+'F total!');
-  loadMe();
-}
-function watchVideo(){
-  const phone=localStorage.getItem('ci_phone'); if(!phone) return alert('Set phone in Me first');
-  window.open('https://youtube.com','_blank');
-  setTimeout(()=>{ let bal=getBal(phone); bal+=100; setBal(phone,bal); let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount:100,type:'Video Reward',time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist)); alert('+100F for watching video! Balance: '+bal+'F'); },2000);
-}
-function doTask(reward){
-  const phone=localStorage.getItem('ci_phone'); if(!phone) return alert('Set phone in Me first');
-  let bal=getBal(phone); bal+=reward; setBal(phone,bal);
-  let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount:reward,type:'Task Reward',time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist));
-  alert('+'+reward+'F added!');
-}
-function copyInvite(){ const link=document.getElementById('inviteLink').innerText; navigator.clipboard.writeText(link); alert('Invite link copied: '+link); }
-
+function getBal(p){ return parseInt(localStorage.getItem('bal_'+p)||'105'); }
+function setBal(p,b){ localStorage.setItem('bal_'+p,b); document.getElementById('bal').innerText=b+'.0'; document.getElementById('meBal').innerText=b; }
+function loadAll(){ const phone=localStorage.getItem('ci_phone'); if(phone){ setBal(phone,getBal(phone)); document.getElementById('inviteLink').innerText='https://caminvest-hub.vercel.app?ref='+phone; } loadMe(); }
+function loadMe(){ const phone=localStorage.getItem('ci_phone')||''; document.getElementById('mePhone').innerText=phone||'Not set'; document.getElementById('meBal').innerText=phone?getBal(phone):'0'; document.getElementById('setPhone').value=phone; const hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); let h=''; hist.slice(0,10).forEach(x=>{ h+=`<div style="padding:6px;border-bottom:1px solid #eee;display:flex;justify-content:space-between"><span>${x.type} ${x.amount}F</span><span>${x.time}</span></div>` }); document.getElementById('history').innerHTML=h||'No history'; }
+function saveMePhone(){ const p=document.getElementById('setPhone').value.trim(); if(!p) return alert('Enter phone'); localStorage.setItem('ci_phone',p); if(!localStorage.getItem('bal_'+p)) localStorage.setItem('bal_'+p,'105'); loadAll(); alert('Saved: '+p); showTab('plans'); }
+async function doDeposit(){ const phone=document.getElementById('depPhone').value.trim(); const amount=parseInt(document.getElementById('depAmount').value); if(!phone||!amount||amount<200) return alert('Min 200F'); localStorage.setItem('ci_phone',phone); let bal=getBal(phone); bal+=amount; setBal(phone,bal); let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount,type:'Deposit',time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist)); if(db){ try{ await db.collection('users').doc(phone).set({phone,balance:firebase.firestore.FieldValue.increment(amount)},{merge:true}); await db.collection('deposits').add({phone,amount,time:Date.now()}); }catch(e){} } closeModals(); alert('✅ '+amount+'F Added! Balance: '+bal+'F - Buy packs now & earn 30% commission!'); loadMe(); }
+async function doWithdraw(){ const amount=parseInt(document.getElementById('withAmount').value); const momo=document.getElementById('withMomo').value.trim(); const phone=localStorage.getItem('ci_phone')||''; if(!phone||!amount||!momo) return alert('Fill all'); let bal=getBal(phone); if(bal<amount) return alert('Low: '+bal+'F'); bal-=amount; setBal(phone,bal); let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount,type:'Withdraw to '+momo,time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist)); if(db){ try{ await db.collection('users').doc(phone).set({balance:firebase.firestore.FieldValue.increment(-amount)},{merge:true}); await db.collection('withdrawals').add({phone,amount,momo,time:Date.now(),status:'pending'}); }catch(e){} } closeModals(); alert('Withdraw '+amount+'F to '+momo+' requested!'); loadMe(); }
+function buyPack(name,price,daily,days){ const phone=localStorage.getItem('ci_phone'); if(!phone){ openDep(); return alert('Deposit 200F first!'); } let bal=getBal(phone); if(bal<price) return alert('Need '+price+'F, have '+bal+'F. Deposit!'); bal-=price; setBal(phone,bal); let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount:price,type:'Bought '+name,time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist)); alert('🎉 Bought '+name+'! Earn '+daily+'F/day x '+days+'days = '+(daily*days)+'F! Profit '+(daily*days-price)+'F!'); loadMe(); }
+function watchTikTok(reward){ const phone=localStorage.getItem('ci_phone'); if(!phone) return alert('Set phone in Me first'); let bal=getBal(phone); bal+=reward; setBal(phone,bal); let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount:reward,type:'TikTok Video Reward',time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist)); alert('✅ +'+reward+'F for watching TikTok! Balance: '+bal+'F'); loadMe(); }
+function doTask(reward,type){ const phone=localStorage.getItem('ci_phone'); if(!phone) return alert('Set phone in Me'); let bal=getBal(phone); bal+=reward; setBal(phone,bal); let hist=JSON.parse(localStorage.getItem('hist_'+phone)||'[]'); hist.unshift({amount:reward,type:type,time:new Date().toLocaleDateString()}); localStorage.setItem('hist_'+phone,JSON.stringify(hist)); alert('✅ +'+reward+'F '+type+'! Balance: '+bal+'F'); loadMe(); }
+function copyInvite(){ const link=document.getElementById('inviteLink').innerText; navigator.clipboard.writeText(link); alert('✅ Invite link copied!\nShare: Invest 200F → Get 500F + You get 30% = 60F instant!\n'+link); }
 loadAll();
 </script>
 </body>
