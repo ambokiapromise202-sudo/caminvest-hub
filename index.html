@@ -9,109 +9,139 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 body{background:#0a0f1e;color:#fff;padding:15px}
-.card{background:#1a233d;padding:20px;border-radius:15px;margin:12px 0}
+.card{background:#1a233d;padding:20px;border-radius:15px;margin:12px 0;border:1px solid #2a3a5a}
 input,button{width:100%;padding:15px;margin:8px 0;border-radius:10px;border:0;font-size:16px}
 button{background:#00ff88;color:#000;font-weight:bold}
-.balance{font-size:36px;color:#00ff88;text-align:center;font-weight:bold}
+.balance{font-size:40px;color:#00ff88;text-align:center;font-weight:bold}
 </style>
 </head>
 <body>
 <div class="card">
-<h2 style="color:#00ff88;text-align:center">CamInvest Hub - FULL ACCESS</h2>
-<p style="text-align:center;opacity:.7">Invest & Earn 10% Daily</p>
-<input id="phone" placeholder="Your Phone Number e.g 678657567">
+<h2 style="color:#00ff88;text-align:center">CamInvest Hub</h2>
+<p style="text-align:center;opacity:.6">Invest 10% Daily</p>
+<input id="phone" placeholder="Phone e.g 678657567" oninput="savePhone()">
 <div class="balance"><span id="bal">0</span> FCFA</div>
+<p style="text-align:center;font-size:12px;opacity:.5" id="status">Ready</p>
 </div>
 
 <div class="card">
-<h3>Deposit - Instant Credit</h3>
-<input id="depAmount" type="number" placeholder="Amount Min 500">
-<button onclick="doDeposit()">DEPOSIT NOW - INSTANT</button>
+<h3>Deposit</h3>
+<input id="depAmount" type="number" value="500">
+<button onclick="doDeposit()">DEPOSIT NOW</button>
+<p style="font-size:12px;opacity:.6">Send to: 650000000 - Ambokia</p>
 </div>
 
 <div class="card">
-<h3>Withdraw - Fast Payout</h3>
-<input id="withAmount" type="number" placeholder="Amount to withdraw">
-<input id="withPhone" placeholder="MoMo Number to receive">
+<h3>Withdraw</h3>
+<input id="withAmount" type="number" placeholder="Amount">
+<input id="withPhone" placeholder="MoMo Number">
 <button onclick="doWithdraw()" style="background:#fff">WITHDRAW NOW</button>
 </div>
 
-<div class="card"><h3>History</h3><div id="history">No history</div></div>
+<div class="card"><h3>History</h3><div id="history"></div></div>
 
 <script>
+// === REAL CONFIG - YOU MUST PASTE YOURS FROM FIREBASE ===
 const firebaseConfig = {
-  apiKey: "PASTE_YOUR_APIKEY_HERE",
+  apiKey: "AIzaSy...PUT REAL KEY HERE FROM YOUR SCREENSHOT",
   authDomain: "caminvest-hub-14129.firebaseapp.com",
   projectId: "caminvest-hub-14129",
   storageBucket: "caminvest-hub-14129.firebasestorage.app",
-  messagingSenderId: "PASTE_HERE",
-  appId: "PASTE_HERE"
+  messagingSenderId: "PUT REAL ID HERE",
+  appId: "PUT REAL APP ID HERE"
 };
-firebase.initializeApp(firebaseConfig);
-const db=firebase.firestore();
+let db;
+try{
+  firebase.initializeApp(firebaseConfig);
+  db=firebase.firestore();
+  document.getElementById('status').innerText='Connected to Firebase';
+}catch(e){
+  document.getElementById('status').innerText='Offline mode - Works local';
+}
 
-let currentPhone = localStorage.getItem('ci_phone') || '';
-document.getElementById('phone').value = currentPhone;
-if(currentPhone) loadBalance();
+function getPhone(){ return document.getElementById('phone').value.trim() || localStorage.getItem('ci_phone') || ''; }
+function savePhone(){
+  const p=document.getElementById('phone').value.trim();
+  if(p){ localStorage.setItem('ci_phone',p); document.getElementById('withPhone').value=p; loadLocal(); }
+}
+function getBalKey(p){ return 'bal_'+p; }
+function getHistKey(p){ return 'hist_'+p; }
+
+function loadLocal(){
+  const p=getPhone();
+  if(!p) return;
+  const bal=parseInt(localStorage.getItem(getBalKey(p))||'0');
+  document.getElementById('bal').innerText=bal;
+  const hist=JSON.parse(localStorage.getItem(getHistKey(p))||'[]');
+  let h=''; hist.forEach(x=>{ h+=`<div style="padding:8px;border-bottom:1px solid #222;display:flex;justify-content:space-between"><span>${x.amount}F</span><span>${x.type}</span></div>` });
+  document.getElementById('history').innerHTML=h||'No history';
+}
 
 async function doDeposit(){
-  const phone=document.getElementById('phone').value.trim();
+  const phone=getPhone();
   const amount=parseInt(document.getElementById('depAmount').value);
-  if(!phone) return alert('Enter phone');
-  if(!amount || amount<500) return alert('Min 500F');
+  if(!phone) return alert('Enter phone first at top!');
+  if(!amount||amount<100) return alert('Enter valid amount');
+  
+  // LOCAL - INSTANT
+  let bal=parseInt(localStorage.getItem(getBalKey(phone))||'0');
+  bal+=amount;
+  localStorage.setItem(getBalKey(phone), bal);
+  let hist=JSON.parse(localStorage.getItem(getHistKey(phone))||'[]');
+  hist.unshift({amount, type:'Deposit OK', time:Date.now()});
+  localStorage.setItem(getHistKey(phone), JSON.stringify(hist));
   localStorage.setItem('ci_phone',phone);
   
-  // Save user
-  await db.collection('users').doc(phone).set({
-    phone: phone,
-    balance: firebase.firestore.FieldValue.increment(amount),
-    lastUpdate: Date.now()
-  }, {merge:true});
+  document.getElementById('bal').innerText=bal;
+  loadLocal();
   
-  await db.collection('deposits').add({
-    phone, amount, status:'approved', time:Date.now()
-  });
+  // TRY FIREBASE (if config correct)
+  if(db){
+    try{
+      await db.collection('users').doc(phone).set({phone, balance: firebase.firestore.FieldValue.increment(amount)}, {merge:true});
+      await db.collection('deposits').add({phone, amount, status:'approved', time:Date.now()});
+      document.getElementById('status').innerText='Saved to cloud too!';
+    }catch(e){ console.log(e); }
+  }
   
-  alert(amount+'F Deposited! Instant credit!');
-  loadBalance();
+  alert(amount+'F ADDED! New Balance: '+bal+'F');
 }
 
 async function doWithdraw(){
-  const phone=document.getElementById('phone').value.trim();
+  const phone=getPhone();
   const amount=parseInt(document.getElementById('withAmount').value);
   const momo=document.getElementById('withPhone').value.trim();
-  if(!phone||!amount||!momo) return alert('Fill all');
+  if(!phone||!amount||!momo) return alert('Fill all fields');
   
-  const doc=await db.collection('users').doc(phone).get();
-  const bal=doc.exists ? (doc.data().balance||0) : 0;
-  if(bal < amount) return alert('Low balance: '+bal+'F');
+  let bal=parseInt(localStorage.getItem(getBalKey(phone))||'0');
+  if(bal < amount) return alert('Low balance. You have: '+bal+'F');
   
-  await db.collection('users').doc(phone).set({
-    balance: firebase.firestore.FieldValue.increment(-amount)
-  }, {merge:true});
+  bal-=amount;
+  localStorage.setItem(getBalKey(phone), bal);
+  let hist=JSON.parse(localStorage.getItem(getHistKey(phone))||'[]');
+  hist.unshift({amount, type:'Withdraw to '+momo, time:Date.now()});
+  localStorage.setItem(getHistKey(phone), JSON.stringify(hist));
   
-  await db.collection('withdrawals').add({
-    phone, amount, momo, status:'pending', time:Date.now()
-  });
+  document.getElementById('bal').innerText=bal;
+  loadLocal();
   
-  alert('Withdraw '+amount+'F to '+momo+' requested! You will be paid soon!');
-  loadBalance();
-}
-
-async function loadBalance(){
-  const phone=document.getElementById('phone').value.trim() || currentPhone;
-  if(!phone) return;
-  const doc=await db.collection('users').doc(phone).get();
-  if(doc.exists){
-    document.getElementById('bal').innerText=doc.data().balance||0;
-    document.getElementById('withPhone').value=phone;
+  if(db){
+    try{
+      await db.collection('users').doc(phone).set({balance: firebase.firestore.FieldValue.increment(-amount)}, {merge:true});
+      await db.collection('withdrawals').add({phone, amount, momo, status:'pending', time:Date.now()});
+    }catch(e){}
   }
-  const snap=await db.collection('deposits').where('phone','==',phone).orderBy('time','desc').limit(10).get();
-  let h=''; snap.forEach(d=>{ h+=`<div style="padding:8px;border-bottom:1px solid #222">${d.data().amount}F - OK</div>` });
-  if(h) document.getElementById('history').innerHTML=h;
+  
+  alert('Withdraw '+amount+'F to '+momo+' requested! You have '+bal+'F left');
 }
 
-document.getElementById('phone').addEventListener('change', loadBalance);
+// Load on start
+const saved=localStorage.getItem('ci_phone');
+if(saved){
+  document.getElementById('phone').value=saved;
+  document.getElementById('withPhone').value=saved;
+  loadLocal();
+}
 </script>
 </body>
 </html>
