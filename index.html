@@ -2,78 +2,69 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CamInvest Hub - Build Your Financial Future</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CamInvest Hub - Educational Platform</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,Arial}
-body{background:#f0f7f2;color:#222}
-nav{background:#fff;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.05);position:sticky;top:0}
-nav b{color:#0a7a42;font-size:18px}
-.hero{background:#0a7a42;color:#fff;padding:50px 20px;text-align:center}
-.hero h1{font-size:28px;max-width:600px;margin:auto;line-height:1.3}
-.hero p{margin:12px auto;opacity:.9;max-width:500px}
-.card{background:#fff;border-radius:14px;padding:20px;margin:14px;box-shadow:0 4px 15px rgba(0,0,0,.06)}
-.badge{background:#e6f5ec;color:#0a7a42;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;padding:10px}
-.btn{padding:13px;border-radius:10px;border:0;font-weight:700;cursor:pointer;width:100%}
-.btn-green{background:#0a7a42;color:#fff}
-.btn-outline{border:1px solid #0a7a42;color:#0a7a42;background:#fff;margin-top:8px}
-input,select{width:100%;padding:12px;border-radius:8px;border:1px solid #ddd;margin-top:8px}
-.footer{text-align:center;padding:25px;color:#777;font-size:12px}
-.notice{background:#fff3cd;border:1px solid #ffe69c;padding:12px;border-radius:10px;font-size:13px;margin-top:12px}
+body{font-family:Arial;margin:0;background:#f0fdf4;color:#111}
+header{background:#065f46;color:white;padding:18px;text-align:center}
+nav a{color:#a7f3d0;margin:0 10px;text-decoration:none;font-weight:bold}
+.hero{padding:40px 20px;text-align:center;background:white}
+.card{background:white;margin:15px auto;padding:20px;border-radius:12px;max-width:600px;box-shadow:0 4px 10px rgba(0,0,0,0.1)}
+.btn{background:#059669;color:white;padding:12px 22px;border:none;border-radius:8px;font-weight:bold}
+.warning{background:#fef3c7;border-left:5px solid #f59e0b;padding:15px;margin:20px auto;max-width:600px}
+input,select{width:100%;padding:10px;margin:8px 0;border-radius:6px;border:1px solid #ccc}
 </style>
 </head>
 <body>
-<nav><b>CamInvest Hub</b><span style="font-size:12px">About | Services | Contact</span></nav>
+<header>
+<h1>CamInvest Hub</h1>
+<p>EDUCATIONAL PLATFORM</p>
+<nav><a href="#">Learn</a><a href="#">Risk Awareness</a><a href="#">Plan</a></nav>
+</header>
 
 <div class="hero">
-<span class="badge" style="background:#fff;color:#0a7a42">EDUCATIONAL PLATFORM</span>
-<h1>Build your financial future with informed decisions.</h1>
-<p>CamInvest Hub is a concept platform for investment education, providing investment information, financial planning guidance, and risk awareness.</p>
+<h2>Build your financial future with knowledge</h2>
+<p>Simulation only - No real money. Learn before you invest.</p>
 </div>
 
-<div class="grid">
-<div class="card">
-<h3>📚 Learn</h3>
-<p>Understand saving, budgeting, and how investments work.</p>
-</div>
-<div class="card">
-<h3>🛡️ Risk Awareness</h3>
-<p>Learn to spot scams. High daily returns = high risk of losing money.</p>
-</div>
-<div class="card">
-<h3>💡 Plan</h3>
-<p>Create a simple monthly savings plan. Simulation only, no real money.</p>
-</div>
+<div class="warning">
+<b>⚠️ Educational Warning:</b> This is a learning simulation. No deposits, no withdrawals. Learn how savings, risk, and compound interest work.
 </div>
 
 <div class="card">
-<h3>💰 Savings Calculator</h3>
-<input id="inc" type="number" placeholder="Monthly Income FCFA e.g 100000">
-<input id="per" type="number" placeholder="Save % e.g 20">
-<button class="btn btn-green" style="margin-top:12px" onclick="calc()">Calculate My Plan</button>
-<div id="out" style="margin-top:12px;font-weight:bold;color:#0a7a42"></div>
-<div class="notice"><b>⚠️ Disclaimer:</b> This is for education only. We do not collect money or promise returns. Never invest money you cannot afford to lose.</div>
+<h3>Savings Calculator (Simulation)</h3>
+<label>Monthly Saving (FCFA)</label>
+<input id="amount" type="number" value="10000">
+<label>Months</label>
+<input id="months" type="number" value="12">
+<button class="btn" onclick="calc()">Calculate</button>
+<p id="result" style="font-weight:bold;margin-top:15px"></p>
 </div>
 
-<div class="card" style="text-align:center">
-<h3>Join Learning Community</h3>
-<p>Get free financial education on WhatsApp.</p>
-<br>
-<a href="https://wa.me/237000000000" style="text-decoration:none"><button class="btn btn-green">Join WhatsApp Group</button></a>
-<button class="btn btn-outline">info@caminvesthub.com</button>
+<div class="card">
+<h3>What You Will Learn</h3>
+<p>✅ Budgeting ✅ Saving habits ✅ Risk vs Return ✅ How scams work</p>
+<a href="https://wa.me/237000000000"><button class="btn">Join Learning Community on WhatsApp</button></a>
 </div>
 
-<div class="footer">© 2026 CamInvest Hub - Educational Only. Not a financial institution.<br>legendary-sawine-a4981d.netlify.app • caminvest-hub.vercel.app</div>
+<div class="card">
+<h3>Referral Learning Points (No Cash)</h3>
+<p>Invite friends to LEARN. Your link:</p>
+<input id="refLink" readonly>
+<p>Top learners get certificates, not money.</p>
+</div>
+
+<footer style="text-align:center;padding:20px;color:#666">© 2026 CamInvest Hub - Education Only - Buea, Cameroon</footer>
 
 <script>
 function calc(){
- let i=parseFloat(document.getElementById('inc').value);
- let p=parseFloat(document.getElementById('per').value);
- if(!i||!p){alert('Enter income and %');return;}
- let s=i*p/100;
- document.getElementById('out').innerHTML='You can save '+s.toLocaleString()+' FCFA / month. Remaining: '+(i-s).toLocaleString()+' FCFA';
+ let a=Number(document.getElementById('amount').value);
+ let m=Number(document.getElementById('months').value);
+ let total=a*m;
+ document.getElementById('result').innerText="After "+m+" months, you would save: "+total.toLocaleString()+" FCFA (Simulation)";
 }
+let user="learner"+Math.floor(Math.random()*9999);
+document.getElementById('refLink').value=location.origin+"/?ref="+user;
 </script>
 </body>
 </html>
