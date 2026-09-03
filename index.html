@@ -3,61 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CamInvest Hub - Educational Platform</title>
+<title>CamInvest Hub - Products & Education</title>
 <style>
 body{font-family:Arial;margin:0;background:#f0fdf4;color:#111}
 header{background:#065f46;color:white;padding:18px;text-align:center}
-nav a{color:#a7f3d0;margin:0 10px;text-decoration:none;font-weight:bold}
-.hero{padding:40px 20px;text-align:center;background:white}
-.card{background:white;margin:15px auto;padding:20px;border-radius:12px;max-width:600px;box-shadow:0 4px 10px rgba(0,0,0,0.1)}
+.hero{padding:30px 20px;text-align:center;background:white}
+.card{background:white;margin:15px auto;padding:20px;border-radius:12px;max-width:700px;box-shadow:0 4px 10px rgba(0,0,0,0.1)}
 .btn{background:#059669;color:white;padding:12px 22px;border:none;border-radius:8px;font-weight:bold;cursor:pointer}
-.warning{background:#fef3c7;border-left:5px solid #f59e0b;padding:15px;margin:20px auto;max-width:600px}
+.warning{background:#fef3c7;border-left:5px solid #f59e0b;padding:15px;margin:20px auto;max-width:700px}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.product{border:1px solid #d1fae5;border-radius:10px;padding:15px;text-align:center;background:#fff}
+.product h4{margin:10px 0}
+.price{color:#059669;font-weight:bold;font-size:18px}
 input{width:100%;padding:10px;margin:8px 0;border-radius:6px;border:1px solid #ccc;box-sizing:border-box}
 </style>
 </head>
 <body>
 <header>
 <h1>CamInvest Hub</h1>
-<p>EDUCATIONAL PLATFORM - Buea, Cameroon</p>
+<p>Education + Real Products - Buea</p>
 </header>
+
 <div class="hero">
-<h2>Build your financial future with knowledge</h2>
-<p>Simulation only - No real money. Learn before you invest.</p>
+<h2>Learn. Save. Shop Smart.</h2>
+<p>Educational platform + Your real business products</p>
 </div>
-<div class="warning">
-<b>⚠️ Educational Warning:</b> This is a learning simulation. No deposits, no withdrawals. Learn how savings, risk, and compound interest work.
-</div>
+
 <div class="card">
-<h3>Savings Calculator (Simulation)</h3>
-<label>Monthly Saving (FCFA)</label>
-<input id="amount" type="number" value="10000">
-<label>Months</label>
-<input id="months" type="number" value="12">
+<h3>🛒 Our Products</h3>
+<div class="product-grid">
+<div class="product">
+<h4>📱 Phone Accessories</h4>
+<p>Chargers, Cables, Pouch</p>
+<div class="price">5,000 FCFA</div>
+<a href="https://wa.me/237000000000?text=Hi, I want to buy Phone Accessories"><button class="btn">Order on WhatsApp</button></a>
+</div>
+<div class="product">
+<h4>👕 Fashion Wear</h4>
+<p>Quality T-shirts & Caps</p>
+<div class="price">8,500 FCFA</div>
+<a href="https://wa.me/237000000000?text=Hi, I want to buy Fashion Wear"><button class="btn">Order on WhatsApp</button></a>
+</div>
+<div class="product">
+<h4>📚 Training Course</h4>
+<p>Business & Saving Class</p>
+<div class="price">10,000 FCFA</div>
+<a href="https://wa.me/237000000000?text=Hi, I want to join the Training Course"><button class="btn">Join Now</button></a>
+</div>
+<div class="product">
+<h4>💼 Business Plan</h4>
+<p>We help you start business</p>
+<div class="price">15,000 FCFA</div>
+<a href="https://wa.me/237000000000?text=Hi, I need a Business Plan"><button class="btn">Order</button></a>
+</div>
+</div>
+<p style="margin-top:15px;font-size:13px;color:#666">*Change product names, prices, and WhatsApp number inside the code</p>
+</div>
+
+<div class="card">
+<h3>Savings Calculator (Learning)</h3>
+<input id="amount" type="number" value="10000" placeholder="Monthly Saving">
+<input id="months" type="number" value="12" placeholder="Months">
 <button class="btn" onclick="calc()">Calculate</button>
 <p id="result" style="font-weight:bold;margin-top:15px"></p>
 </div>
-<div class="card">
-<h3>Referral Learning Points (No Cash)</h3>
-<p>Invite friends to LEARN:</p>
-<input id="refLink" readonly>
-<p>Top learners get certificates, not money.</p>
+
+<div class="warning">
+<b>⚠️ Notice:</b> Products are real (order via WhatsApp). Investment calculator is simulation for learning only.
 </div>
-<div class="card">
-<h3>What You Will Learn</h3>
-<p>✅ Budgeting ✅ Saving habits ✅ Risk vs Return ✅ How scams work</p>
-<a href="https://wa.me/237000000000"><button class="btn">Join WhatsApp Learning Group</button></a>
-</div>
-<footer style="text-align:center;padding:20px;color:#666">© 2026 CamInvest Hub - Education Only</footer>
+
+<footer style="text-align:center;padding:20px;color:#666">© 2026 CamInvest Hub - Buea, Cameroon<br>WhatsApp: 237 000 000 000</footer>
+
 <script>
 function calc(){
  let a=Number(document.getElementById('amount').value);
  let m=Number(document.getElementById('months').value);
  let total=a*m;
- document.getElementById('result').innerText="After "+m+" months: "+total.toLocaleString()+" FCFA (Simulation)";
+ document.getElementById('result').innerText="Total saved: "+total.toLocaleString()+" FCFA";
 }
-let user="learner"+Math.floor(Math.random()*9999);
-let origin=location.origin.includes('github')?'https://caminvest-hub.vercel.app':location.origin;
-document.getElementById('refLink').value=origin+"/?ref="+user;
 </script>
 </body>
 </html>
