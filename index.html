@@ -3,116 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buea Palm Oil Production - Invest Real</title>
+<title>Buea Palm Oil - Full Investor App</title>
 <style>
 body{margin:0;font-family:Arial;background:#0f172a;color:white}
-.top{background:#0f172a;padding:10px;text-align:center;color:#22c55e;font-weight:bold;font-size:13px;border-bottom:1px solid #1e293b}
-.btns{display:flex;gap:10px;padding:12px}
-.btn-g{flex:1;background:#22c55e;color:white;padding:14px;border:none;border-radius:30px;font-weight:bold}
-.btn-y{flex:1;background:#fbbf24;color:#111;padding:14px;border:none;border-radius:30px;font-weight:bold}
-.banner{background:linear-gradient(135deg,#14532d,#22c55e);margin:10px;padding:25px;border-radius:15px;text-align:center}
+.top{background:#14532d;padding:12px;text-align:center;color:#22c55e;font-weight:bold;font-size:12px}
+.balance{background:linear-gradient(135deg,#14532d,#22c55e);margin:12px;padding:20px;border-radius:15px}
+.balance h2{margin:5px 0;font-size:32px}
+.btns{display:flex;gap:10px;margin-top:12px}
+.btn{flex:1;padding:12px;border:none;border-radius:25px;font-weight:bold}
+.btn-re{background:white;color:#14532d} .btn-wd{background:#fbbf24;color:#111}
 .menu{display:flex;justify-content:space-around;background:#1e293b;padding:12px;border-radius:15px;margin:10px}
-.menu div{text-align:center;font-size:11px}
+.menu div{text-align:center;font-size:11px;cursor:pointer}
 .card{background:white;color:#111;margin:12px;border-radius:15px;padding:15px}
 .prod{display:flex;gap:12px;align-items:center}
-.prod img{width:100px;height:85px;border-radius:10px;object-fit:cover}
-.price{color:#16a34a;font-weight:bold}
+.prod img{width:90px;height:75px;border-radius:10px;object-fit:cover}
 .buy{width:100%;background:#0f172a;color:white;border:none;padding:12px;border-radius:25px;margin-top:8px;font-weight:bold}
-.badge{background:#dcfce7;color:#14532d;padding:4px 8px;border-radius:10px;font-size:10px;font-weight:bold}
-.footer{text-align:center;padding:20px;color:#94a3b8;font-size:11px;padding-bottom:90px}
+input,select{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #ccc;box-sizing:border-box}
+.tab{display:none} .tab.active{display:block}
+.order-item{background:#f8fafc;padding:10px;border-radius:10px;margin:8px 0;border-left:4px solid #22c55e;color:#111}
+.badge{background:#dcfce7;color:#14532d;padding:3px 8px;border-radius:10px;font-size:10px}
 .bottom{position:fixed;bottom:0;width:100%;background:#1e293b;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #334155}
+.bottom div{text-align:center;font-size:11px;cursor:pointer}
 </style>
 </head>
 <body>
-<div class="top">● LIVE | BUEA PALM OIL PRODUCTION | MoMo: 678657567 | Real Business</div>
+<div class="top">📍 BUEA PALM OIL PRODUCTION | MoMo: 678657567 | Real Business</div>
+
+<div class="balance">
+<div style="display:flex;justify-content:space-between"><span>My Investment Balance</span><span style="background:rgba(0,0,0,0.2);padding:3px 8px;border-radius:10px;font-size:11px">REAL</span></div>
+<h2 id="bal">0 FCFA</h2>
+<small>Invested in palm oil production</small>
 <div class="btns">
-<a style="flex:1;text-decoration:none" href="https://wa.me/237678657567?text=Hi, I want to invest in Palm Oil Production"><button class="btn-g">WhatsApp Investor</button></a>
-<button class="btn-y" onclick="navigator.clipboard.writeText(location.href);alert('Investment Link Copied!')">COPY INVEST LINK</button>
+<button class="btn btn-re" onclick="showTab('recharge')">💳 Recharge / Deposit</button>
+<button class="btn btn-wd" onclick="showTab('withdraw')">🏧 Withdraw Profit</button>
 </div>
+</div>
+
 <div class="menu">
-<a style="color:white;text-decoration:none" href="#"><div>💳<br>Invest</div></a>
-<a style="color:white;text-decoration:none" href="#"><div>🏧<br>Profit</div></a>
-<div>🌴<br>Farm</div><div>👥<br>Investors</div><div>📄<br>Terms</div>
+<div onclick="showTab('home')">🌴<br>Farm</div>
+<div onclick="showTab('recharge')">💳<br>Recharge</div>
+<div onclick="showTab('withdraw')">🏧<br>Withdraw</div>
+<div onclick="showTab('orders')">📦<br>Orders</div>
+<div onclick="showTab('team')">👥<br>Team</div>
 </div>
 
-<div class="banner">
-<b>BUREA PALM OIL PRODUCTION COMPANY</b><br>
-<span style="font-size:28px;font-weight:bold">REAL INVESTMENT</span><br>
-<small>Invest in Palm Oil Production - Profit from Real Sales in Buea</small><br><br>
-<div style="background:rgba(0,0,0,0.3);padding:10px;border-radius:10px;font-size:12px">
-📍 Location: Buea, SW Cameroon<br>
-🌴 Product: Pure Palm Oil<br>
-💼 Company Reg: Production Company
-</div>
-</div>
-
+<!-- HOME / INVEST -->
+<div id="home" class="tab active">
 <div class="card">
-<b>🌴 How Real Investment Works (Not Fake Daily)</b><br>
-<small>Your money buys palm fruits, we process, we sell oil in Buea markets. Profit is shared from REAL sales. Harvest cycle is 1-3 months. Risk: price can go up/down. No fixed daily income - real business profit.</small>
+<b>🌴 Buea Palm Oil - From 1,000F to 1,000,000F</b><br>
+<small>Your deposit buys palm fruits, we process & sell in Buea. Profit shared from real sales. Cycle 90 days. No fake daily income.</small>
+</div>
+<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?w=200"><div><b>Starter 1,000F</b> <span class="badge">1K-9K</span><br><small>5L production</small><br><button class="buy" onclick="invest(1000,'Starter')">INVEST 1,000F</button></div></div></div>
+<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1474979266404-7eaac2924a38?w=200"><div><b>Grower 10,000F</b> <span class="badge">POPULAR</span><br><small>50L production</small><br><button class="buy" onclick="invest(10000,'Grower')">INVEST 10,000F</button></div></div></div>
+<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=200"><div><b>Producer 50,000F</b><br><small>250L production</small><br><button class="buy" onclick="invest(50000,'Producer')">INVEST 50,000F</button></div></div></div>
+<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=200"><div><b>Partner 100K-1M</b><br><small>1000L+ production</small><br><button class="buy" onclick="invest(100000,'Partner')">INVEST 100,000F+</button></div></div></div>
 </div>
 
+<!-- RECHARGE -->
+<div id="recharge" class="tab">
 <div class="card">
-<div class="prod">
-<img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?w=200">
-<div>
-<b>Starter - 1,000F</b> <span class="badge">1000F - 9000F</span><br>
-<small>Supports 5L production. Estimated profit share: 15-25% per cycle from sales.</small>
-<div class="price">Invest: 1,000 FCFA</div>
-<a href="https://wa.me/237678657567?text=I want to INVEST Starter 1000F Palm Oil"><button class="buy">INVEST 1,000F</button></a>
-</div>
+<h3>💳 Recharge / Deposit</h3>
+<p><b>Step 1:</b> Send MoMo to: <b style="color:green">678657567</b> (Name: Buea Palm Oil)</p>
+<p><b>Step 2:</b> Enter amount & MoMo transaction ID</p>
+<input id="depAmount" type="number" placeholder="Amount (1000 to 1000000)">
+<input id="depId" placeholder="MoMo Transaction ID (e.g. 123456789)">
+<button class="buy" onclick="deposit()">Submit Deposit Order</button>
+<small>We verify MoMo manually in 30 mins, then update your balance. Contact WhatsApp if delay.</small>
+<div style="margin-top:15px;background:#fef3c7;padding:10px;border-radius:10px"><small>⚠️ Only send to official number 678657567. Keep MoMo SMS as proof.</small></div>
 </div>
 </div>
 
+<!-- WITHDRAW -->
+<div id="withdraw" class="tab">
 <div class="card">
-<div class="prod">
-<img src="https://images.unsplash.com/photo-1474979266404-7eaac2924a38?w=200">
-<div>
-<b>Grower - 10,000F</b> <span class="badge">POPULAR</span><br>
-<small>Supports 50L production. Certificate + Farm visit.</small>
-<div class="price">Invest: 10,000 FCFA</div>
-<a href="https://wa.me/237678657567?text=I want to INVEST Grower 10000F Palm Oil"><button class="buy">INVEST 10,000F</button></a>
-</div>
+<h3>🏧 Withdraw / Profit Request</h3>
+<p>Balance: <b id="bal2">0 FCFA</b></p>
+<p>Profit is available after 90-day cycle and palm oil sales. Request via WhatsApp.</p>
+<input id="wdAmount" type="number" placeholder="Amount to withdraw">
+<input id="wdMomo" placeholder="Your MoMo Number to receive">
+<button class="buy" style="background:#f59e0b;color:#111" onclick="withdraw()">Request Withdraw</button>
+<small>This sends request to admin WhatsApp. Payment is manual after sales verification.</small>
 </div>
 </div>
 
+<!-- ORDERS -->
+<div id="orders" class="tab">
 <div class="card">
-<div class="prod">
-<img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=200">
-<div>
-<b>Producer - 50,000F</b><br>
-<small>Supports 250L. Profit share + Monthly report + WhatsApp group.</small>
-<div class="price">Invest: 50,000 FCFA</div>
-<a href="https://wa.me/237678657567?text=I want to INVEST Producer 50000F Palm Oil"><button class="buy">INVEST 50,000F</button></a>
-</div>
+<h3>📦 My Orders / Deposits</h3>
+<div id="orderList"><small>No orders yet. Invest or deposit first.</small></div>
 </div>
 </div>
 
+<!-- TEAM -->
+<div id="team" class="tab">
 <div class="card">
-<div class="prod">
-<img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=200">
-<div>
-<b>Partner - 100,000F to 1,000,000F</b><br>
-<small>Large scale partner. Contract, farm visit, full profit statement.</small>
-<div class="price">Invest: 100K - 1M FCFA</div>
-<a href="https://wa.me/237678657567?text=I want to be PARTNER 100000F to 1000000F Palm Oil"><button class="buy">BECOME PARTNER</button></a>
-</div>
+<h3>👥 My Team / Referral</h3>
+<p>Your Invite Link:</p>
+<input id="refLink" readonly>
+<button class="buy" onclick="copyRef()">COPY LINK</button>
+<p><small>Invite friends to invest in palm oil. You get 5% bonus when they invest (from admin profit, not their capital). Real referral.</small></p>
 </div>
 </div>
 
-<div class="card" style="background:#fef3c7;border-left:5px solid #f59e0b">
-<b>⚠️ Real Investment Disclosure (Required by Law)</b><br>
-<small>This is real agricultural business. Returns are NOT fixed daily. Profit depends on palm oil market price in Buea, production cost, and sales. You may gain profit or face loss. Minimum lock is 90 days (one production cycle). All investors sign agreement via WhatsApp. Location: Buea.</small>
-</div>
-
-<div class="footer">
-© 2026 Buea Palm Oil Production<br>
-Real Company | Real Farm | Real Profit Sharing<br>
-To change number, replace 678657567 in code<br>
-All investments via MoMo to company number with receipt
-</div>
-
+<br><br><br>
 <div class="bottom">
-<div>🏠<br>Home</div><div>🌴<br>Farm</div><div>📊<br>Invest</div><div>👥<br>Team</div><div>👤<br>Me</div>
+<div onclick="showTab('home')">🏠<br>Home</div><div onclick="showTab('orders')">📦<br>Orders</div><div onclick="showTab('recharge')">💳<br>Recharge</div><div onclick="showTab('team')">👥<br>Team</div><div onclick="showTab('withdraw')">👤<br>Me</div>
 </div>
+
+<script>
+let balance=parseInt(localStorage.getItem('palmBal')||0);
+let orders=JSON.parse(localStorage.getItem('palmOrders')||'[]');
+function updateBal(){document.getElementById('bal').innerText=balance.toLocaleString()+' FCFA';document.getElementById('bal2').innerText=balance.toLocaleString()+' FCFA';localStorage.setItem('palmBal',balance);renderOrders()}
+function showTab(id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function invest(amt,name){let o={type:'INVEST',name:name,amount:amt,time:new Date().toLocaleString(),status:'Pending Verification'};orders.unshift(o);balance+=amt;localStorage.setItem('palmOrders',JSON.stringify(orders));updateBal();alert(name+' investment order '+amt+'F created! Now go to Recharge and submit MoMo ID.');showTab('recharge')}
+function deposit(){let a=document.getElementById('depAmount').value;let id=document.getElementById('depId').value;if(!a||!id){alert('Enter amount and MoMo ID');return}let o={type:'DEPOSIT',name:'MoMo Deposit',amount:parseInt(a),tx:id,time:new Date().toLocaleString(),status:'Awaiting Verification'};orders.unshift(o);localStorage.setItem('palmOrders',JSON.stringify(orders));renderOrders();window.open('https://wa.me/237678657567?text=New DEPOSIT Order: '+a+'F TxID:'+id,'_blank')}
+function withdraw(){let a=document.getElementById('wdAmount').value;let m=document.getElementById('wdMomo').value;if(!a||!m){alert('Enter amount and MoMo');return}if(parseInt(a)>balance){alert('Insufficient balance');return}window.open('https://wa.me/237678657567?text=WITHDRAW Request: '+a+'F to MoMo:'+m,'_blank')}
+function renderOrders(){let html='';orders.forEach(o=>{html+=`<div class="order-item"><b>${o.type}: ${o.name}</b> - ${o.amount.toLocaleString()}F<br><small>${o.time} | ${o.status||''} ${o.tx?'| Tx:'+o.tx:''}</small></div>`});if(html)document.getElementById('orderList').innerHTML=html}
+function copyRef(){navigator.clipboard.writeText(document.getElementById('refLink').value);alert('Link copied')}
+let user='investor'+Math.floor(Math.random()*999);document.getElementById('refLink').value=location.origin+'/?ref='+user;
+updateBal();
+</script>
 </body>
 </html>
