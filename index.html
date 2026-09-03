@@ -3,124 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buea Palm Oil - Full Investor App</title>
+<title>GREEN INVESTMENT - Real Palm Oil</title>
 <style>
 body{margin:0;font-family:Arial;background:#0f172a;color:white}
-.top{background:#14532d;padding:12px;text-align:center;color:#22c55e;font-weight:bold;font-size:12px}
-.balance{background:linear-gradient(135deg,#14532d,#22c55e);margin:12px;padding:20px;border-radius:15px}
-.balance h2{margin:5px 0;font-size:32px}
+.top{background:#052e16;padding:10px;text-align:center;color:#22c55e;font-weight:bold;font-size:11px}
+.balance{background:linear-gradient(135deg,#052e16,#16a34a);margin:12px;padding:20px;border-radius:18px}
+.balance h2{margin:8px 0;font-size:34px}
 .btns{display:flex;gap:10px;margin-top:12px}
 .btn{flex:1;padding:12px;border:none;border-radius:25px;font-weight:bold}
-.btn-re{background:white;color:#14532d} .btn-wd{background:#fbbf24;color:#111}
-.menu{display:flex;justify-content:space-around;background:#1e293b;padding:12px;border-radius:15px;margin:10px}
-.menu div{text-align:center;font-size:11px;cursor:pointer}
-.card{background:white;color:#111;margin:12px;border-radius:15px;padding:15px}
-.prod{display:flex;gap:12px;align-items:center}
-.prod img{width:90px;height:75px;border-radius:10px;object-fit:cover}
-.buy{width:100%;background:#0f172a;color:white;border:none;padding:12px;border-radius:25px;margin-top:8px;font-weight:bold}
-input,select{width:100%;padding:10px;margin:6px 0;border-radius:8px;border:1px solid #ccc;box-sizing:border-box}
-.tab{display:none} .tab.active{display:block}
-.order-item{background:#f8fafc;padding:10px;border-radius:10px;margin:8px 0;border-left:4px solid #22c55e;color:#111}
-.badge{background:#dcfce7;color:#14532d;padding:3px 8px;border-radius:10px;font-size:10px}
-.bottom{position:fixed;bottom:0;width:100%;background:#1e293b;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #334155}
+.btn-re{background:white;color:#052e16}.btn-wd{background:#fbbf24;color:#111}
+.card{background:white;color:#111;margin:12px;border-radius:15px;padding:14px}
+.prod{display:flex;gap:10px} .prod img{width:90px;height:80px;border-radius:10px;object-fit:cover}
+.buy{width:100%;background:#052e16;color:white;border:none;padding:12px;border-radius:25px;margin-top:8px;font-weight:bold}
+input{width:100%;padding:11px;margin:6px 0;border-radius:10px;border:1px solid #ccc;box-sizing:border-box}
+.tab{display:none}.tab.active{display:block}
+.order-item{background:#f0fdf4;padding:10px;border-radius:10px;margin:6px 0;border-left:4px solid #16a34a;color:#111;font-size:13px}
+.badge{background:#dcfce7;color:#14532d;padding:3px 8px;border-radius:10px;font-size:10px;font-weight:bold}
+.bottom{position:fixed;bottom:0;width:100%;background:#1e293b;display:flex;justify-content:space-around;padding:10px 0}
 .bottom div{text-align:center;font-size:11px;cursor:pointer}
 </style>
 </head>
 <body>
-<div class="top">📍 BUEA PALM OIL PRODUCTION | MoMo: 678657567 | Real Business</div>
+<div class="top">🌿 GREEN INVESTMENT LTD | BUEA PALM OIL | MoMo: 678657567 | REAL BUSINESS</div>
 
 <div class="balance">
-<div style="display:flex;justify-content:space-between"><span>My Investment Balance</span><span style="background:rgba(0,0,0,0.2);padding:3px 8px;border-radius:10px;font-size:11px">REAL</span></div>
+<span>🌿 Green Balance - 500F to 1M</span>
 <h2 id="bal">0 FCFA</h2>
-<small>Invested in palm oil production</small>
+<small>Real production • Profit after sales cycle (30-90 days)</small>
 <div class="btns">
-<button class="btn btn-re" onclick="showTab('recharge')">💳 Recharge / Deposit</button>
-<button class="btn btn-wd" onclick="showTab('withdraw')">🏧 Withdraw Profit</button>
+<button class="btn btn-re" onclick="showTab('recharge')">💳 Recharge</button>
+<button class="btn btn-wd" onclick="showTab('withdraw')">🏧 Withdraw</button>
 </div>
 </div>
 
-<div class="menu">
-<div onclick="showTab('home')">🌴<br>Farm</div>
-<div onclick="showTab('recharge')">💳<br>Recharge</div>
-<div onclick="showTab('withdraw')">🏧<br>Withdraw</div>
-<div onclick="showTab('orders')">📦<br>Orders</div>
-<div onclick="showTab('team')">👥<br>Team</div>
+<div style="display:flex;justify-content:space-around;background:#1e293b;margin:0 12px;border-radius:12px;padding:10px">
+<div style="text-align:center;font-size:11px" onclick="showTab('home')">🌴<br>Invest</div>
+<div style="text-align:center;font-size:11px" onclick="showTab('orders')">📦<br>Orders</div>
+<div style="text-align:center;font-size:11px" onclick="showTab('recharge')">💳<br>Deposit</div>
+<div style="text-align:center;font-size:11px" onclick="showTab('team')">👥<br>Team</div>
+<div style="text-align:center;font-size:11px" onclick="showTab('admin')">🔐<br>Admin</div>
 </div>
 
-<!-- HOME / INVEST -->
 <div id="home" class="tab active">
-<div class="card">
-<b>🌴 Buea Palm Oil - From 1,000F to 1,000,000F</b><br>
-<small>Your deposit buys palm fruits, we process & sell in Buea. Profit shared from real sales. Cycle 90 days. No fake daily income.</small>
-</div>
-<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?w=200"><div><b>Starter 1,000F</b> <span class="badge">1K-9K</span><br><small>5L production</small><br><button class="buy" onclick="invest(1000,'Starter')">INVEST 1,000F</button></div></div></div>
-<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1474979266404-7eaac2924a38?w=200"><div><b>Grower 10,000F</b> <span class="badge">POPULAR</span><br><small>50L production</small><br><button class="buy" onclick="invest(10000,'Grower')">INVEST 10,000F</button></div></div></div>
-<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=200"><div><b>Producer 50,000F</b><br><small>250L production</small><br><button class="buy" onclick="invest(50000,'Producer')">INVEST 50,000F</button></div></div></div>
-<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=200"><div><b>Partner 100K-1M</b><br><small>1000L+ production</small><br><button class="buy" onclick="invest(100000,'Partner')">INVEST 100,000F+</button></div></div></div>
+<div class="card" style="background:#f0fdf4;border:1px solid #22c55e"><b>🌿 From 500F to 1,000,000F - REAL</b><br><small>500F=2.5L, 1000F=5L, 10K=50L... Profit shared after we process and sell oil in Buea market. 30 days for small, 90 days for big. Contract available.</small></div>
+
+<div class="card"><div class="prod"><img src="https://images.pexels.com/photos/10750168/pexels-photo-10750168.jpeg?w=200"><div><b>Starter 500F</b> <span class="badge">FROM 500F</span><br><small>2.5L • Est. +150F after 30 days</small><br><button class="buy" onclick="invest(500,'Starter 500F')">INVEST 500F</button></div></div></div>
+<div class="card"><div class="prod"><img src="https://images.pexels.com/photos/1482803/pexels-photo-1482803.jpeg?w=200"><div><b>Starter Plus 1,000F</b> <span class="badge">MOST USED</span><br><small>5L • Est. +300F after 30 days</small><br><button class="buy" onclick="invest(1000,'Starter 1000F')">INVEST 1,000F</button></div></div></div>
+<div class="card"><div class="prod"><img src="https://images.pexels.com/photos/1586543/pexels-photo-1586543.jpeg?w=200"><div><b>Grower 10,000F</b><br><small>50L • Est. +3,000F after 30 days</small><br><button class="buy" onclick="invest(10000,'Grower 10K')">INVEST 10,000F</button></div></div></div>
+<div class="card"><div class="prod"><img src="https://images.pexels.com/photos/2550908/pexels-photo-2550908.jpeg?w=200"><div><b>Producer 50,000F</b><br><small>250L • Est. +15K after 60 days</small><br><button class="buy" onclick="invest(50000,'Producer 50K')">INVEST 50,000F</button></div></div></div>
+<div class="card"><div class="prod"><img src="https://images.pexels.com/photos/2933243/pexels-photo-2933243.jpeg?w=200"><div><b>Partner 100K - 1,000,000F</b><br><small>500L-5000L • Est. +30% after 90 days • Contract</small><br><button class="buy" onclick="invest(100000,'Partner 100K-1M')">INVEST 100K - 1M</button></div></div></div>
 </div>
 
-<!-- RECHARGE -->
-<div id="recharge" class="tab">
-<div class="card">
-<h3>💳 Recharge / Deposit</h3>
-<p><b>Step 1:</b> Send MoMo to: <b style="color:green">678657567</b> (Name: Buea Palm Oil)</p>
-<p><b>Step 2:</b> Enter amount & MoMo transaction ID</p>
-<input id="depAmount" type="number" placeholder="Amount (1000 to 1000000)">
-<input id="depId" placeholder="MoMo Transaction ID (e.g. 123456789)">
-<button class="buy" onclick="deposit()">Submit Deposit Order</button>
-<small>We verify MoMo manually in 30 mins, then update your balance. Contact WhatsApp if delay.</small>
-<div style="margin-top:15px;background:#fef3c7;padding:10px;border-radius:10px"><small>⚠️ Only send to official number 678657567. Keep MoMo SMS as proof.</small></div>
-</div>
-</div>
+<div id="recharge" class="tab"><div class="card"><h3>💳 Deposit / Recharge</h3><p>Send MoMo to <b style="color:green">678657567</b><br>Then enter below:</p><input id="depAmount" type="number" placeholder="Amount (500 - 1000000)"><input id="depId" placeholder="MoMo Transaction ID"><button class="buy" onclick="deposit()">Submit Order</button><p><small>We verify in 30min then balance updates. Keep SMS proof.</small></p></div></div>
 
-<!-- WITHDRAW -->
-<div id="withdraw" class="tab">
-<div class="card">
-<h3>🏧 Withdraw / Profit Request</h3>
-<p>Balance: <b id="bal2">0 FCFA</b></p>
-<p>Profit is available after 90-day cycle and palm oil sales. Request via WhatsApp.</p>
-<input id="wdAmount" type="number" placeholder="Amount to withdraw">
-<input id="wdMomo" placeholder="Your MoMo Number to receive">
-<button class="buy" style="background:#f59e0b;color:#111" onclick="withdraw()">Request Withdraw</button>
-<small>This sends request to admin WhatsApp. Payment is manual after sales verification.</small>
-</div>
-</div>
+<div id="withdraw" class="tab"><div class="card"><h3>🏧 Withdraw Profit</h3><p>Balance: <b id="bal2">0 FCFA</b></p><input id="wdAmount" type="number" placeholder="Amount"><input id="wdMomo" placeholder="Your MoMo Number"><button class="buy" style="background:#fbbf24;color:#111" onclick="withdraw()">Request Withdraw on WhatsApp</button><small>Manual payout after sales. You approve in Admin.</small></div></div>
 
-<!-- ORDERS -->
-<div id="orders" class="tab">
-<div class="card">
-<h3>📦 My Orders / Deposits</h3>
-<div id="orderList"><small>No orders yet. Invest or deposit first.</small></div>
-</div>
-</div>
+<div id="orders" class="tab"><div class="card"><h3>📦 My Orders & Deposits</h3><div id="orderList"><small>No orders yet.</small></div></div></div>
 
-<!-- TEAM -->
-<div id="team" class="tab">
-<div class="card">
-<h3>👥 My Team / Referral</h3>
-<p>Your Invite Link:</p>
-<input id="refLink" readonly>
-<button class="buy" onclick="copyRef()">COPY LINK</button>
-<p><small>Invite friends to invest in palm oil. You get 5% bonus when they invest (from admin profit, not their capital). Real referral.</small></p>
-</div>
-</div>
+<div id="team" class="tab"><div class="card"><h3>👥 Team</h3><input id="refLink" readonly><button class="buy" onclick="copyRef()">COPY LINK</button><small>5% bonus from company profit when friend invests.</small></div></div>
+
+<div id="admin" class="tab"><div class="card"><h3>🔐 Admin - For YOU Only</h3><p><small>Enter admin password: green123</small></p><input id="adminPass" type="password" placeholder="Password"><button class="buy" onclick="unlockAdmin()">Unlock</button><div id="adminPanel" style="display:none"><p><b>All Orders (on this phone):</b></p><div id="allOrders"></div><button class="buy" style="background:#dc2626" onclick="clearAll()">Clear All Data</button></div></div></div>
 
 <br><br><br>
-<div class="bottom">
-<div onclick="showTab('home')">🏠<br>Home</div><div onclick="showTab('orders')">📦<br>Orders</div><div onclick="showTab('recharge')">💳<br>Recharge</div><div onclick="showTab('team')">👥<br>Team</div><div onclick="showTab('withdraw')">👤<br>Me</div>
-</div>
+<div class="bottom"><div onclick="showTab('home')">🏠<br>Home</div><div onclick="showTab('orders')">📦<br>Orders</div><div onclick="showTab('recharge')">💳<br>Recharge</div><div onclick="showTab('withdraw')">🏧<br>Withdraw</div><div onclick="showTab('admin')">👤<br>Admin</div></div>
 
 <script>
-let balance=parseInt(localStorage.getItem('palmBal')||0);
-let orders=JSON.parse(localStorage.getItem('palmOrders')||'[]');
-function updateBal(){document.getElementById('bal').innerText=balance.toLocaleString()+' FCFA';document.getElementById('bal2').innerText=balance.toLocaleString()+' FCFA';localStorage.setItem('palmBal',balance);renderOrders()}
+let balance=parseInt(localStorage.getItem('greenBal')||0);
+let orders=JSON.parse(localStorage.getItem('greenOrders')||'[]');
+function updateBal(){document.getElementById('bal').innerText=balance.toLocaleString()+' FCFA';document.getElementById('bal2').innerText=balance.toLocaleString()+' FCFA';localStorage.setItem('greenBal',balance);renderOrders()}
 function showTab(id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active')}
-function invest(amt,name){let o={type:'INVEST',name:name,amount:amt,time:new Date().toLocaleString(),status:'Pending Verification'};orders.unshift(o);balance+=amt;localStorage.setItem('palmOrders',JSON.stringify(orders));updateBal();alert(name+' investment order '+amt+'F created! Now go to Recharge and submit MoMo ID.');showTab('recharge')}
-function deposit(){let a=document.getElementById('depAmount').value;let id=document.getElementById('depId').value;if(!a||!id){alert('Enter amount and MoMo ID');return}let o={type:'DEPOSIT',name:'MoMo Deposit',amount:parseInt(a),tx:id,time:new Date().toLocaleString(),status:'Awaiting Verification'};orders.unshift(o);localStorage.setItem('palmOrders',JSON.stringify(orders));renderOrders();window.open('https://wa.me/237678657567?text=New DEPOSIT Order: '+a+'F TxID:'+id,'_blank')}
-function withdraw(){let a=document.getElementById('wdAmount').value;let m=document.getElementById('wdMomo').value;if(!a||!m){alert('Enter amount and MoMo');return}if(parseInt(a)>balance){alert('Insufficient balance');return}window.open('https://wa.me/237678657567?text=WITHDRAW Request: '+a+'F to MoMo:'+m,'_blank')}
-function renderOrders(){let html='';orders.forEach(o=>{html+=`<div class="order-item"><b>${o.type}: ${o.name}</b> - ${o.amount.toLocaleString()}F<br><small>${o.time} | ${o.status||''} ${o.tx?'| Tx:'+o.tx:''}</small></div>`});if(html)document.getElementById('orderList').innerHTML=html}
-function copyRef(){navigator.clipboard.writeText(document.getElementById('refLink').value);alert('Link copied')}
-let user='investor'+Math.floor(Math.random()*999);document.getElementById('refLink').value=location.origin+'/?ref='+user;
+function invest(amt,name){let o={type:'INVEST',name:name,amount:amt,time:new Date().toLocaleString(),status:'Pending - Go Deposit'};orders.unshift(o);localStorage.setItem('greenOrders',JSON.stringify(orders));renderOrders();alert(name+' order saved! Now go to Recharge and enter MoMo Tx ID.');showTab('recharge')}
+function deposit(){let a=document.getElementById('depAmount').value;let id=document.getElementById('depId').value;if(!a||!id){alert('Enter amount and Tx ID');return}if(parseInt(a)<500){alert('Min 500F');return}let o={type:'DEPOSIT',name:'MoMo Deposit',amount:parseInt(a),tx:id,time:new Date().toLocaleString(),status:'Awaiting Verification'};orders.unshift(o);balance+=parseInt(a);localStorage.setItem('greenOrders',JSON.stringify(orders));updateBal();window.open('https://wa.me/237678657567?text=GREEN DEPOSIT '+a+'F Tx:'+id,'_blank')}
+function withdraw(){let a=document.getElementById('wdAmount').value;let m=document.getElementById('wdMomo').value;if(!a||!m){alert('Enter amount and MoMo');return}if(parseInt(a)>balance){alert('Low balance');return}window.open('https://wa.me/237678657567?text=GREEN WITHDRAW '+a+'F to '+m,'_blank')}
+function renderOrders(){let h='';orders.forEach(o=>{h+=`<div class="order-item"><b>${o.type}: ${o.name}</b> - ${o.amount.toLocaleString()}F<br><small>${o.time} | ${o.status} ${o.tx?'| Tx:'+o.tx:''}</small></div>`});if(h){document.getElementById('orderList').innerHTML=h;document.getElementById('allOrders').innerHTML=h}}
+function copyRef(){navigator.clipboard.writeText(document.getElementById('refLink').value);alert('Copied')}
+function unlockAdmin(){if(document.getElementById('adminPass').value==='green123'){document.getElementById('adminPanel').style.display='block';renderOrders()}else alert('Wrong pass')}
+function clearAll(){if(confirm('Delete all?')){localStorage.clear();location.reload()}}
+document.getElementById('refLink').value=location.origin+'/?ref=GREEN'+Math.floor(Math.random()*999);
 updateBal();
 </script>
 </body>
