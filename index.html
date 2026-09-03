@@ -1,90 +1,39 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GREEN INVEST - All In One MTN API</title><style>
-*{box-sizing:border-box;margin:0;padding:0}body{margin:0;font-family:Arial;background:#f4f6f5;padding-bottom:80px}
-.top{background:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:40;border-bottom:3px solid #007a5a}
-.logoBig{background:linear-gradient(135deg,#007a5a 0%,#ffcc00 20%,#d52b1e 50%,#fff 80%);padding:18px;text-align:center}
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GREEN INVEST</title><style>
+body{margin:0;font-family:Arial;background:#f4f6f5;padding-bottom:80px}
+.top{background:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #007a5a;position:sticky;top:0;z-index:40}
+.logoBig{background:linear-gradient(135deg,#007a5a,#ffcc00,#d52b1e,#fff);padding:18px;text-align:center}
 .logoCircle{width:135px;height:135px;margin:0 auto;background:#fff;border-radius:50%;border:4px solid #000;display:flex;align-items:center;justify-content:center;gap:6px}
 .homeSlider{display:flex;gap:10px;overflow:auto;padding:10px}.homeSlider img{width:260px;height:150px;object-fit:cover;border-radius:14px;flex-shrink:0;border:2px solid #fff}
 .vip{background:#fff;border-radius:14px;margin:10px;padding:14px;position:relative;box-shadow:0 2px 12px rgba(0,0,0,.08);min-height:130px;border-left:4px solid #007a5a}
-.tag{position:absolute;left:10px;top:-8px;background:linear-gradient(90deg,#007a5a,#d52b1e);color:#fff;font-size:9px;padding:4px 10px;border-radius:10px;font-weight:700}
-.meta{font-size:12px;color:#777;margin-top:3px}.meta span{color:#111;font-weight:700}
+.tag{position:absolute;left:10px;top:-8px;background:linear-gradient(90deg,#007a5a,#d52b1e);color:#fff;font-size:9px;padding:4px 10px;border-radius:10px}
 .vip img{position:absolute;right:10px;top:50px;width:110px;height:110px;object-fit:cover;border-radius:12px}.pur{position:absolute;right:10px;top:10px;background:#007a5a;color:#fff;border:0;padding:8px 18px;border-radius:20px;font-weight:bold;cursor:pointer}
-.card{background:#fff;margin:10px;border-radius:14px;padding:14px;box-shadow:0 1px 6px rgba(0,0,0,.06)}
-.payOpt{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}.payOpt div{border:2px solid #ddd;padding:12px;border-radius:12px;text-align:center;cursor:pointer}.payOpt div.on{border-color:#007a5a;background:#ecfdf5}
+.card{background:#fff;margin:10px;border-radius:14px;padding:14px}.payOpt{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}.payOpt div{border:2px solid #ddd;padding:12px;border-radius:12px;text-align:center;cursor:pointer}.payOpt div.on{border-color:#007a5a;background:#ecfdf5}
 .t{display:none}.t.on{display:block}.o{position:fixed;bottom:0;left:0;width:100%;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:2px solid #007a5a;z-index:30}.o div{font-size:11px;text-align:center;color:#999;flex:1}.o div.on{color:#007a5a;font-weight:bold}
 .auth{position:fixed;inset:0;background:linear-gradient(135deg,#007a5a,#000);z-index:99;display:flex;align-items:center;justify-content:center;padding:16px}.authBox{background:#fff;padding:24px;border-radius:18px;width:100%;max-width:360px}
-input,select{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:1px solid #ddd;font-size:14px}.btn{width:100%;padding:13px;border:0;border-radius:10px;font-weight:bold;background:#007a5a;color:#fff;cursor:pointer}
-.linkBox{background:#fff0f0;border:2px dashed #d52b1e;padding:12px;border-radius:10px;word-break:break-all;font-weight:bold;cursor:pointer}
-.detail{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:50;display:none;align-items:flex-end}.detailBox{background:#fff;border-radius:20px 20px 0 0;padding:18px;max-height:92vh;overflow:auto;width:100%;max-width:500px;margin:0 auto}
-.badgeAuto{background:#16a34a;color:#fff;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:bold}
+input{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:1px solid #ddd}.btn{width:100%;padding:13px;border:0;border-radius:10px;font-weight:bold;background:#007a5a;color:#fff;cursor:pointer}
+.linkBox{background:#fff0f0;border:2px dashed #d52b1e;padding:12px;border-radius:10px;word-break:break-all;font-weight:bold}
 #tablePopup{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:100;display:none;align-items:center;justify-content:center;padding:12px}#tablePopupBox{background:#fff;border-radius:18px;width:100%;max-width:420px;overflow:hidden;border:3px solid #007a5a}
 .teamGrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 0}.teamGrid div{background:#f9fafb;padding:12px;border-radius:12px;text-align:center;border:1px solid #eee}
 </style></head><body>
-
-<div id="tablePopup" onclick="if(event.target==this)closeTablePopup()"><div id="tablePopupBox">
-<div style="background:#000;color:#ffcc00;padding:12px;text-align:center;font-weight:bold;display:flex;justify-content:space-between">📊 360 DAYS PLANS<span onclick="closeTablePopup()" style="cursor:pointer;background:#222;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center">✕</span></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#000;font-size:11px"><div style="background:#d52b1e;color:#fff;padding:10px;text-align:center"><b>🇨🇦 $5→$630k</b></div><div style="background:#007a5a;color:#fff;padding:10px;text-align:center"><b>🇨🇲 500F→63M</b></div></div>
-<div style="padding:14px;text-align:center;background:#000"><button onclick="closeTablePopup();show('p')" style="width:100%;padding:14px;background:#007a5a;color:#fff;border:0;border-radius:12px;font-weight:bold">🚀 START INVESTING NOW - MTN API AUTO</button><small style="color:#fff;display:block;margin-top:8px">Closes in <span id="countdown">5</span>s</small></div>
-</div></div>
-
-<div id="auth" class="auth"><div class="authBox"><div style="text-align:center"><div style="width:85px;height:85px;margin:0 auto;background:#fff;border-radius:50%;border:3px solid #007a5a;display:flex;align-items:center;justify-content:center"><img src="https://flagcdn.com/w40/cm.png" style="width:30px">+<img src="https://flagcdn.com/w40/ca.png" style="width:30px"></div><h3>GREEN INVEST</h3><small>Real MTN API • All In One</small><br><button onclick="localStorage.clear();location.reload()" style="margin-top:8px;padding:6px 10px;background:#eee;border:0;border-radius:8px;font-size:10px">🔄 Clear Data If Error</button></div><div id="loginBox" style="margin-top:14px"><input id="lPhone" placeholder="Phone"><input id="lPass" type="password" placeholder="Password"><button class="btn" onclick="doLogin()">Login</button><p style="text-align:center;font-size:12px;margin-top:10px">No account? <a href="#" onclick="showAuth('reg')">Register</a></p></div><div id="regBox" style="display:none;margin-top:14px"><input id="rName" placeholder="Full Name"><input id="rPhone" placeholder="Phone"><input id="rPass" type="password" placeholder="Password"><button class="btn" onclick="doReg()">Create Account</button><p style="text-align:center;font-size:12px;margin-top:10px"><a href="#" onclick="showAuth('login')">Back</a></p></div></div></div>
-
-<div class="top"><div><b>GREEN INVEST</b> <small style="background:#007a5a;color:#fff;padding:2px 6px;border-radius:10px">MTN API ALL IN ONE</small></div><div style="font-size:11px"><span id="uName">Member</span> <span onclick="logout()" style="color:red;font-weight:bold;cursor:pointer"> Logout</span></div></div>
-
-<div class="logoBig"><div class="logoCircle"><img src="https://flagcdn.com/w80/cm.png" style="width:54px;height:36px;border-radius:4px"><span style="font-weight:900">+</span><img src="https://flagcdn.com/w80/ca.png" style="width:54px;height:36px;border-radius:4px"></div><h2 style="margin:12px 0 4px;font-size:16px">CAMEROON + CANADA AUTO EMPIRE</h2><small>Real Fleet + Real Estate</small>
-<div style="display:flex;gap:6px;justify-content:center;margin-top:10px"><button id="btnCM" class="on" onclick="setCountry('CM')" style="padding:8px 16px;border-radius:20px;border:2px solid #000;font-weight:bold">🇨🇲 FCFA</button><button id="btnCA" onclick="setCountry('CA')" style="padding:8px 16px;border-radius:20px;border:2px solid #000;font-weight:bold">🇨🇦 CAD</button></div>
-</div>
-
-<div class="homeSlider">
-<img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&h=400&fit=crop" alt="Fleet">
-<img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop" alt="House">
-<img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop" alt="Cargo">
-<img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?w=600&h=400&fit=crop" alt="Company">
-<img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=400&fit=crop" alt="Villa">
-</div>
-
-<div id="h" class="t on"><div class="card"><small>Total Portfolio Balance - Dual</small><h2 id="b">0 FCFA</h2><small>Today Yield: <span id="todayYield" style="color:#16a34a;font-weight:bold">0</span> • <span class="badgeAuto">MTN API REAL + HOME IMAGES</span></small><div style="display:flex;gap:8px;margin-top:12px"><button onclick="show('r')" style="flex:1;padding:12px;background:#007a5a;color:#fff;border:0;border-radius:10px;font-weight:bold">Deposit MTN API</button><button onclick="show('w')" style="flex:1;padding:12px;background:#000;color:#fff;border:0;border-radius:10px;font-weight:bold">Withdraw MTN API</button></div></div></div>
-
-<div id="p" class="t"><div style="padding:12px"><b id="prodTitle">VIP Products - Cameroon FCFA</b></div><div id="pl"></div></div>
-
-<div id="r" class="t"><div class="card"><h3>⚡ Auto-Deposit - Real MTN API + Demo Auto</h3><b id="cb">0</b><br><br>
-<input id="a" type="number" placeholder="Amount - 500F min">
-<div style="background:#000;color:#ffcc00;padding:14px;border-radius:12px;margin:10px 0;text-align:center;border:2px solid #16a34a"><b id="mtnCode">MTN: *126*1*678657567*500#</b><br><small id="payInfo" style="color:#fff">Pay then enter TxID - Auto credit</small></div>
-<input id="x" placeholder="MTN Transaction ID (unique)" style="border:2.5px solid #16a34a">
-<button class="btn" onclick="depAuto()" style="background:#16a34a;margin-top:10px;padding:16px;font-size:16px">⚡ VERIFY & CREDIT - MTN API</button>
-<div id="depHistory" style="font-size:11px;margin-top:8px;background:#f9fafb;padding:8px;border-radius:8px">No deposits yet</div>
-</div></div>
-
-<div id="w" class="t"><div class="card"><h3>💸 Auto-Withdraw - Real MTN API</h3><b id="b2">0</b><br><br><input id="wa" type="number" placeholder="Amount Min 500F"><input id="wm" placeholder="Your MoMo number e.g 678657567"><button class="btn" onclick="wdAuto()" style="background:#d52b1e;margin-top:8px;padding:16px">⚡ WITHDRAW VIA MTN API - INSTANT</button><div id="wdHistory" style="font-size:11px;margin-top:8px;background:#f9fafb;padding:8px;border-radius:8px">No withdrawals</div></div></div>
-
-<div id="o" class="t"><div class="card"><h3>📦 My Contracts</h3><div id="ol">No contracts</div></div></div>
-
-<div id="e" class="t"><div class="card"><h3>👥 Team - More Items + Levels</h3>
-<div class="teamGrid"><div><b id="teamCount">0</b><br><small>Total Team</small></div><div><b id="teamActive">0</b><br><small>Active</small></div><div><b id="teamComm">0</b><br><small>5% Earn</small></div></div>
-<div class="teamGrid"><div style="background:#ecfdf5"><b>Level 1: 5%</b><br><small>Direct invite</small></div><div style="background:#fffde7"><b>Level 2: 2%</b><br><small>Team bonus</small></div><div style="background:#f0fdf4"><b>Level 3: 1%</b><br><small>Super bonus</small></div></div>
-<div class="teamGrid"><div><b id="teamDep">0</b><br><small>Team Deposits</small></div><div><b id="teamWit">0</b><br><small>Team Withdraw</small></div><div><b>VIP Bonus</b><br><small>On upgrade</small></div></div>
-<div class="linkBox" onclick="copyLink()"><div id="rfText" style="color:#007a5a">Generating link...</div></div><input type="hidden" id="rf"><button class="btn" onclick="copyLink()" style="margin-top:10px;background:#ffcc00;color:#000">📋 COPY PRIVATE LINK</button>
-<div style="margin-top:10px;display:flex;gap:8px"><button onclick="shareWA()" style="flex:1;padding:12px;background:#25D366;color:#fff;border:0;border-radius:10px;font-weight:bold">WhatsApp</button><button onclick="shareFB()" style="flex:1;padding:12px;background:#1877F2;color:#fff;border:0;border-radius:10px;font-weight:bold">Facebook</button></div>
-<div style="margin-top:12px;background:#f9fafb;padding:10px;border-radius:10px;font-size:11px"><b>Team Members List:</b><div id="teamList" style="margin-top:6px">No referrals yet - Share your private link</div></div>
-<div style="margin-top:8px;background:#fff0f0;padding:8px;border-radius:8px;font-size:11px;display:flex;justify-content:space-between"><span>Your Private Code:</span><b id="refCode">GREEN-XXXX</b><span>5% Bonus</span></div>
-</div></div>
-
-<div id="mine" class="t"><div class="card"><h3>👤 Mine - Full MTN API Logs</h3><p>Member ID: <b id="uPhone2"></b></p><p>Balance: <b id="cb2"></b></p><div style="background:#f9fafb;padding:12px;border-radius:12px;font-size:11px"><b>⚡ All Transactions (MTN API Verified):</b><div id="allTx" style="margin-top:8px">No tx</div></div></div></div>
-
+<div id="tablePopup" onclick="closeTablePopup()"><div id="tablePopupBox"><div style="background:#000;color:#ffcc00;padding:12px;text-align:center;font-weight:bold;display:flex;justify-content:space-between">📊 360 DAYS PLANS<span onclick="closeTablePopup()" style="cursor:pointer">✕</span></div><div style="padding:14px;text-align:center;background:#000"><button onclick="closeTablePopup();show('p')" style="width:100%;padding:14px;background:#007a5a;color:#fff;border:0;border-radius:12px;font-weight:bold">🚀 START INVESTING NOW</button><small style="color:#fff;display:block;margin-top:8px">Closes in <span id="countdown">5</span>s</small></div></div></div>
+<div id="auth" class="auth"><div class="authBox"><div style="text-align:center"><div style="width:85px;height:85px;margin:0 auto;background:#fff;border-radius:50%;border:3px solid #007a5a;display:flex;align-items:center;justify-content:center"><img src="https://flagcdn.com/w40/cm.png" style="width:30px">+<img src="https://flagcdn.com/w40/ca.png" style="width:30px"></div><h3>GREEN INVEST</h3><small>Auto - All In One</small><br><button onclick="localStorage.clear();location.reload()" style="margin-top:8px;padding:6px 10px;background:#eee;border:0;border-radius:8px;font-size:10px">🔄 Clear If Error</button></div><div id="loginBox" style="margin-top:14px"><input id="lPhone" placeholder="Phone"><input id="lPass" type="password" placeholder="Password"><button class="btn" onclick="doLogin()">Login</button><p style="text-align:center;font-size:12px;margin-top:10px">No account? <a href="#" onclick="showAuth('reg')">Register</a></p></div><div id="regBox" style="display:none;margin-top:14px"><input id="rName" placeholder="Full Name"><input id="rPhone" placeholder="Phone"><input id="rPass" type="password" placeholder="Password"><button class="btn" onclick="doReg()">Create</button><p style="text-align:center;font-size:12px;margin-top:10px"><a href="#" onclick="showAuth('login')">Back</a></p></div></div></div>
+<div class="top"><div><b>GREEN INVEST</b></div><div style="font-size:11px"><span id="uName">Member</span> <span onclick="logout()" style="color:red;font-weight:bold;cursor:pointer"> Logout</span></div></div>
+<div class="logoBig"><div class="logoCircle"><img src="https://flagcdn.com/w80/cm.png" style="width:54px;height:36px"><span style="font-weight:900">+</span><img src="https://flagcdn.com/w80/ca.png" style="width:54px;height:36px"></div><h2 style="margin:12px 0 4px;font-size:16px">CAMEROON + CANADA AUTO</h2><div style="display:flex;gap:6px;justify-content:center;margin-top:10px"><button id="btnCM" class="on" onclick="setCountry('CM')" style="padding:8px 16px;border-radius:20px;border:2px solid #000;font-weight:bold">🇨🇲 FCFA</button><button id="btnCA" onclick="setCountry('CA')" style="padding:8px 16px;border-radius:20px;border:2px solid #000;font-weight:bold">🇨🇦 CAD</button></div></div>
+<div class="homeSlider"><img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=600&h=400&fit=crop"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop"><img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?w=600&h=400&fit=crop"></div>
+<div id="h" class="t on"><div class="card"><small>Total Balance</small><h2 id="b">0</h2><small>Today: <span id="todayYield" style="color:#16a34a;font-weight:bold">0</span></small><div style="display:flex;gap:8px;margin-top:12px"><button onclick="show('r')" style="flex:1;padding:12px;background:#007a5a;color:#fff;border:0;border-radius:10px;font-weight:bold">Deposit Auto</button><button onclick="show('w')" style="flex:1;padding:12px;background:#000;color:#fff;border:0;border-radius:10px;font-weight:bold">Withdraw Auto</button></div></div></div>
+<div id="p" class="t"><div style="padding:12px"><b id="prodTitle">VIP Products</b></div><div id="pl"></div></div>
+<div id="r" class="t"><div class="card"><h3>⚡ Deposit Auto</h3><b id="cb">0</b><br><br><input id="a" type="number" placeholder="Amount"><div style="background:#000;color:#ffcc00;padding:14px;border-radius:12px;margin:10px 0;text-align:center"><b id="mtnCode">MTN: *126*1*678657567*500#</b></div><input id="x" placeholder="TxID unique" style="border:2px solid #16a34a"><button class="btn" onclick="depAuto()" style="background:#16a34a;margin-top:10px">⚡ DEPOSIT AUTO</button><div id="depHistory" style="font-size:11px;margin-top:8px"></div></div></div>
+<div id="w" class="t"><div class="card"><h3>💸 Withdraw Auto</h3><b id="b2">0</b><br><br><input id="wa" type="number" placeholder="Amount"><input id="wm" placeholder="MoMo number"><button class="btn" onclick="wdAuto()" style="background:#d52b1e">⚡ WITHDRAW AUTO</button><div id="wdHistory" style="font-size:11px;margin-top:8px"></div></div></div>
+<div id="o" class="t"><div class="card"><h3>📦 Contracts</h3><div id="ol">No contracts</div></div></div>
+<div id="e" class="t"><div class="card"><h3>👥 Team - More Items</h3><div class="teamGrid"><div><b id="teamCount">0</b><br><small>Team</small></div><div><b id="teamActive">0</b><br><small>Active</small></div><div><b id="teamComm">0</b><br><small>Earn</small></div></div><div class="teamGrid"><div style="background:#ecfdf5"><b>L1 5%</b><br><small>Direct</small></div><div><b>L2 2%</b><br><small>Level2</small></div><div><b>L3 1%</b><br><small>Bonus</small></div></div><div class="teamGrid"><div><b id="teamDep">0</b><br><small>Team Deposits</small></div><div><b id="teamWit">0</b><br><small>Team Withdraw</small></div><div><b>VIP Bonus</b><br><small>Upgrade</small></div></div><div class="linkBox" onclick="copyLink()"><div id="rfText">Generating...</div></div><input type="hidden" id="rf"><button class="btn" onclick="copyLink()" style="margin-top:10px;background:#ffcc00;color:#000">COPY LINK</button><div style="margin-top:10px;background:#f9fafb;padding:10px;border-radius:10px;font-size:11px"><b>Team List:</b><div id="teamList">No team</div></div><div style="margin-top:8px;display:flex;justify-content:space-between;font-size:11px"><span>Code:</span><b id="refCode"></b></div></div></div>
+<div id="mine" class="t"><div class="card"><h3>👤 Mine</h3><p>ID: <b id="uPhone2"></b></p><p>Bal: <b id="cb2"></b></p><div id="allTx" style="font-size:11px"></div></div></div>
 <div class="o"><div onclick="show('h')" id="n-h">🏠<br>Home</div><div onclick="show('p')" id="n-p" class="on">📋<br>Product</div><div onclick="show('o')" id="n-o">📦<br>Contracts</div><div onclick="show('e')" id="n-e">👥<br>Team</div><div onclick="show('mine')" id="n-mine">👤<br>Mine</div></div>
-
-<div id="detail" class="detail" onclick="if(event.target==this)closeDetail()"><div class="detailBox"><span style="float:right;font-size:26px;cursor:pointer" onclick="closeDetail()">✕</span><div id="detailContent"></div></div></div>
-
 <script>
-// ========== CONFIG - REAL MTN API ==========
-// Set false for demo auto (instant without checking MTN). Set true when you have keys in Vercel env and /api files created.
-const USE_REAL_MTN_API = false; // CHANGE TO true AFTER YOU ADD api/ FOLDER + ENV KEYS
-// ===========================================
-let curCountry='CM';
-const prodsCM=[{a:500,d:145,t:52200,cat:'car',type:'🚗 Cars Buea',img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=400&h=400&fit=crop',n:'VIP1 Car Share CM'},{a:1000,d:320,t:115200,cat:'car',type:'🚗 Cars',img:'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=400&fit=crop',n:'VIP2 Car Fleet CM'},{a:2500,d:800,t:288000,cat:'house',type:'🏠 House Buea',img:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=400&fit=crop',n:'VIP3 House Rent CM'},{a:5000,d:1700,t:612000,cat:'house',type:'🏠 House',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=400&fit=crop',n:'VIP4 Mini House CM'},{a:10000,d:3600,t:1296000,cat:'cargo',type:'🚚 Cargo Douala',img:'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=400&h=400&fit=crop',n:'VIP5 Cargo Van CM'},{a:20000,d:7500,t:2700000,cat:'cargo',type:'🚚 Cargo',img:'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=400&fit=crop',n:'VIP6 Cargo Truck CM'},{a:50000,d:19500,t:7020000,cat:'company',type:'🏢 Company',img:'https://images.unsplash.com/photo-1577495508048-b635879837f1?w=400&h=400&fit=crop',n:'VIP7 Company Share CM'},{a:100000,d:40000,t:14400000,cat:'company',type:'🏢 Company',img:'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=400&fit=crop',n:'VIP8 Business Center CM'},{a:200000,d:85000,t:30600000,cat:'house',type:'🏠 House',img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&h=400&fit=crop',n:'VIP9 Villa CM'},{a:400000,d:175000,t:63000000,cat:'cargo',type:'🚚 Cargo',img:'https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=400&h=400&fit=crop',n:'VIP10 Diamond Fleet CM'}];
-const prodsCA=[{a:5,d:1.45,t:522,cat:'car',type:'🚗 Cars Toronto',img:'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=400&h=400&fit=crop',n:'VIP1 Car Share CA'},{a:10,d:3.2,t:1152,cat:'car',type:'🚗 Cars',img:'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=400&fit=crop',n:'VIP2 Car Fleet CA'},{a:25,d:8,t:2880,cat:'house',type:'🏠 House Toronto',img:'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400&h=400&fit=crop',n:'VIP3 House Rent CA'},{a:50,d:17,t:6120,cat:'house',type:'🏠 House',img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=400&fit=crop',n:'VIP4 Mini House CA'},{a:100,d:36,t:12960,cat:'cargo',type:'🚚 Cargo 401',img:'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=400&h=400&fit=crop',n:'VIP5 Cargo Van CA'},{a:200,d:75,t:27000,cat:'cargo',type:'🚚 Cargo',img:'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=400&fit=crop',n:'VIP6 Cargo Truck CA'},{a:500,d:195,t:70200,cat:'company',type:'🏢 Company',img:'https://images.unsplash.com/photo-1577495508048-b635879837f1?w=400&h=400&fit=crop',n:'VIP7 Company Share CA'},{a:1000,d:400,t:144000,cat:'company',type:'🏢 Company',img:'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&h=400&fit=crop',n:'VIP8 Business Center CA'},{a:2000,d:850,t:306000,cat:'house',type:'🏠 House',img:'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&h=400&fit=crop',n:'VIP9 Villa CA'},{a:4000,d:1750,t:630000,cat:'cargo',type:'🚚 Cargo',img:'https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=400&h=400&fit=crop',n:'VIP10 Diamond Fleet CA'}];
-let prods=prodsCM;let bal=0,act=[],currentUser=null,curFilter='all';
+let curCountry='CM';const prodsCM=[{a:500,d:145,n:'VIP1 Car Share CM'},{a:1000,d:320,n:'VIP2 Car Fleet CM'},{a:2500,d:800,n:'VIP3 House Rent CM'},{a:5000,d:1700,n:'VIP4 Mini House CM'},{a:10000,d:3600,n:'VIP5 Cargo Van CM'},{a:20000,d:7500,n:'VIP6 Cargo Truck CM'},{a:50000,d:19500,n:'VIP7 Company Share CM'},{a:100000,d:40000,n:'VIP8 Business Center CM'},{a:200000,d:85000,n:'VIP9 Villa CM'},{a:400000,d:175000,n:'VIP10 Diamond Fleet CM'}];
+const prodsCA=[{a:5,d:1.45,n:'VIP1 Car Share CA'},{a:10,d:3.2,n:'VIP2 Car Fleet CA'},{a:25,d:8,n:'VIP3 House Rent CA'},{a:50,d:17,n:'VIP4 Mini House CA'},{a:100,d:36,n:'VIP5 Cargo Van CA'},{a:200,d:75,n:'VIP6 Cargo Truck CA'},{a:500,d:195,n:'VIP7 Company Share CA'},{a:1000,d:400,n:'VIP8 Business Center CA'},{a:2000,d:850,n:'VIP9 Villa CA'},{a:4000,d:1750,n:'VIP10 Diamond Fleet CA'}];
+let prods=prodsCM;let bal=0,act=[],currentUser=null;
 function genCode(){return 'GREEN-'+Math.random().toString(36).substring(2,8).toUpperCase();}
-function setCountry(c){curCountry=c;prods=c=='CM'?prodsCM:prodsCA;document.getElementById('btnCM').classList.toggle('on',c=='CM');document.getElementById('btnCA').classList.toggle('on',c=='CA');document.getElementById('prodTitle').innerText=c=='CM'?'VIP Cameroon FCFA':'VIP Canada CAD';renderP();if(currentUser)up();}
+function setCountry(c){curCountry=c;prods=c=='CM'?prodsCM:prodsCA;document.getElementById('btnCM').classList.toggle('on',c=='CM');document.getElementById('btnCA').classList.toggle('on',c=='CA');document.getElementById('prodTitle').innerText=c=='CM'?'VIP Cameroon':'VIP Canada';renderP();if(currentUser)up();}
 function getUsers(){try{return JSON.parse(localStorage.getItem('users_dual_private')||'{}')}catch(e){return {}}}function saveUsers(u){localStorage.setItem('users_dual_private',JSON.stringify(u))}
 function getRefMap(){try{return JSON.parse(localStorage.getItem('refMap_private')||'{}')}catch(e){return {}}}function saveRefMap(m){localStorage.setItem('refMap_private',JSON.stringify(m))}
 function getUsedTx(){try{return JSON.parse(localStorage.getItem('usedTx_auto')||'{}')}catch(e){return {}}}function saveUsedTx(m){localStorage.setItem('usedTx_auto',JSON.stringify(m))}
@@ -94,118 +43,18 @@ function showAuth(t){document.getElementById('loginBox').style.display=t=='login
 function doReg(){let n=document.getElementById('rName').value,p=document.getElementById('rPhone').value,pw=document.getElementById('rPass').value;if(!n||!p||!pw)return alert('Fill all');let u=getUsers();if(u[p])return alert('Exists');let refCode=genCode();let map=getRefMap();let urlParams=new URLSearchParams(window.location.search);let inviter=urlParams.get('ref');let code=refCode;while(map[code])code=genCode();u[p]={name:n,phone:p,pass:pw,bal:0,act:[],country:curCountry,refCode:code,invitedBy:inviter||null};map[code]=p;saveRefMap(map);saveUsers(u);localStorage.setItem('current_dual_private',p);location.reload()}
 function doLogin(){let p=document.getElementById('lPhone').value,pw=document.getElementById('lPass').value;let u=getUsers();if(!u[p]||u[p].pass!=pw)return alert('Wrong');localStorage.setItem('current_dual_private',p);location.reload()}
 function logout(){localStorage.removeItem('current_dual_private');location.reload()}
-function loadCurrent(){try{let cur=localStorage.getItem('current_dual_private');if(!cur||cur==='null'||cur==='undefined'){document.getElementById('auth').style.display='flex';return false;}let u=getUsers();if(!u[cur]){document.getElementById('auth').style.display='flex';return false;}currentUser=u[cur];if(!currentUser||!currentUser.phone){localStorage.removeItem('current_dual_private');document.getElementById('auth').style.display='flex';return false;}if(!currentUser.refCode){currentUser.refCode=genCode();let map=getRefMap();map[currentUser.refCode]=currentUser.phone;saveRefMap(map);saveUsers(u);}bal=currentUser.bal||0;act=currentUser.act||[];curCountry=currentUser.country||'CM';prods=curCountry=='CM'?prodsCM:prodsCA;document.getElementById('auth').style.display='none';document.getElementById('uName').innerText=currentUser.refCode;document.getElementById('uPhone2').innerText=currentUser.refCode;setCountry(curCountry);renderP();up();setTimeout(()=>{showTablePopup();},1200);return true;}catch(e){localStorage.removeItem('current_dual_private');document.getElementById('auth').style.display='flex';return false;}}
+function loadCurrent(){try{let cur=localStorage.getItem('current_dual_private');if(!cur||cur==='null'||cur==='undefined'){document.getElementById('auth').style.display='flex';return false;}let u=getUsers();if(!u[cur]){document.getElementById('auth').style.display='flex';return false;}currentUser=u[cur];if(!currentUser||!currentUser.phone){localStorage.removeItem('current_dual_private');document.getElementById('auth').style.display='flex';return false;}if(!currentUser.refCode){currentUser.refCode=genCode();let map=getRefMap();map[currentUser.refCode]=currentUser.phone;saveRefMap(map);saveUsers(u);}bal=currentUser.bal||0;act=currentUser.act||[];curCountry=currentUser.country||'CM';prods=curCountry=='CM'?prodsCM:prodsCA;document.getElementById('auth').style.display='none';document.getElementById('uName').innerText=currentUser.refCode;document.getElementById('uPhone2').innerText=currentUser.refCode;setCountry(curCountry);renderP();up();setTimeout(()=>{showTablePopup();},1000);return true;}catch(e){localStorage.removeItem('current_dual_private');document.getElementById('auth').style.display='flex';return false;}}
 function saveCurrent(){if(!currentUser||!currentUser.phone)return;let u=getUsers();if(!u[currentUser.phone])u[currentUser.phone]=currentUser;u[currentUser.phone].bal=bal;u[currentUser.phone].act=act;u[currentUser.phone].country=curCountry;u[currentUser.phone].refCode=currentUser.refCode;saveUsers(u)}
-function renderP(){let h='';prods.forEach(pr=>{let idx=prods.indexOf(pr);let priceLab=curCountry=='CM'?`FCFA ${pr.a.toLocaleString()}`:`$${pr.a} CAD`;let dailyLab=curCountry=='CM'?`FCFA ${pr.d}`:`$${pr.d} CAD`;h+=`<div class=vip onclick="openDetail(${idx})"><span class=tag>${pr.type}</span><div style="padding-right:120px"><b>${pr.n}</b><button class=pur>Purchase</button><div class=meta>Price:<span>${priceLab}</span></div><div class=meta>Daily:<span>${dailyLab}</span></div><div class=meta>Total:<span>${pr.t.toLocaleString()}</span></div></div><img src="${pr.img}"></div>`});document.getElementById('pl').innerHTML=h}
-function openDetail(i){let pr=prods[i];let priceLab=curCountry=='CM'?`FCFA ${pr.a}`:`$${pr.a} CAD`;document.getElementById('detail').style.display='flex';document.getElementById('detailContent').innerHTML=`<img src="${pr.img}" style="width:100%;height:200px;object-fit:cover;border-radius:12px"><br><b>${pr.n}</b><br>${priceLab}<br><button class=btn style="margin-top:10px" onclick="buy(${pr.a},'${pr.n}',${pr.d});closeDetail()">Purchase ${priceLab}</button>`}
-function closeDetail(){document.getElementById('detail').style.display='none'}
+function renderP(){let h='';prods.forEach(pr=>{h+=`<div class=vip><span class=tag>${pr.n}</span><div><b>${pr.n}</b><br><small>Price: ${curCountry=='CM'?pr.a+'F':'$'+pr.a} | Daily: ${pr.d}</small><br><button class=pur onclick="buy(${pr.a},'${pr.n}',${pr.d})">Buy</button></div></div>`});document.getElementById('pl').innerHTML=h}
 function getRefLink(){if(currentUser&&currentUser.refCode){return location.origin+location.pathname+'?ref='+currentUser.refCode;}return location.origin+location.pathname}
-function up(){
-  if(!currentUser||!currentUser.phone)return;
-  let f=curCountry=='CM'?bal.toLocaleString()+' FCFA':'$'+bal.toLocaleString()+' CAD';
-  ['b','cb','b2','cb2'].forEach(id=>{let el=document.getElementById(id); if(el) el.innerText=f;});
-  let today=act.reduce((s,A)=>s+(Date.now()-A.l<86400000&&A.c>0?A.d:0),0);
-  let ty=document.getElementById('todayYield'); if(ty) ty.innerText=today.toLocaleString();
-  saveCurrent();
-  let hh='';act.forEach((A,i)=>{let can=Date.now()-A.l>86400000||!A.l;hh+=`<div class=vip><b>${A.n}</b><br><small>Daily ${A.d} | ${A.c}/360</small><br><button class=btn style=background:${can?'#007a5a':'#ccc'};margin-top:8px onclick=cl(${i})>${can?'Claim':'Wait'}</button></div>`});
-  let ol=document.getElementById('ol'); if(ol) ol.innerHTML=hh||'No contracts';
-  let link=getRefLink();let rf=document.getElementById('rf'); if(rf) rf.value=link;let rfT=document.getElementById('rfText'); if(rfT) rfT.innerText=link;let rc=document.getElementById('refCode'); if(rc) rc.innerText=currentUser.refCode;
-  let users=getUsers();let myTeam=Object.values(users).filter(u=>u.invitedBy===currentUser.refCode);let tc=document.getElementById('teamCount'); if(tc) tc.innerText=myTeam.length;let ta=document.getElementById('teamActive'); if(ta) ta.innerText=myTeam.filter(u=>u.bal>0).length;
-  let tcom=0, teamDep=0, teamWit=0; myTeam.forEach(u=>{let deps=getDeposits().filter(d=>d.phone===u.phone);deps.forEach(d=>{tcom+=d.amount*0.05; teamDep+=d.amount;}); let wds=getWithdraws().filter(d=>d.phone===u.phone); wds.forEach(w=>{teamWit+=w.amount;}); });
-  let tcm=document.getElementById('teamComm'); if(tcm) tcm.innerText=tcom.toLocaleString();let td=document.getElementById('teamDep'); if(td) td.innerText=teamDep.toLocaleString();let tw=document.getElementById('teamWit'); if(tw) tw.innerText=teamWit.toLocaleString();
-  let tl=document.getElementById('teamList'); if(tl) tl.innerHTML=myTeam.slice(0,20).map(u=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #eee"><span>${u.refCode} - ${u.phone}</span><span style="color:#16a34a">Bal:${u.bal}</span></div>`).join('')||'No referrals yet - Share link';
-  let deps=getDeposits().filter(d=>d.phone==currentUser.phone);let wds=getWithdraws().filter(d=>d.phone==currentUser.phone);
-  let dh=document.getElementById('depHistory'); if(dh) dh.innerHTML=deps.slice(-5).reverse().map(d=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #eee"><span>${d.date}</span><span style="color:#16a34a">+${d.amount} Tx:${d.tx} ✅</span></div>`).join('')||'No deposits';
-  let wh=document.getElementById('wdHistory'); if(wh) wh.innerHTML=wds.slice(-5).reverse().map(d=>`<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #eee"><span>${d.date} to ${d.account}</span><span style="color:#d52b1e">-${d.amount} PAID ✅</span></div>`).join('')||'No withdrawals';
-  let at=document.getElementById('allTx'); if(at) at.innerHTML=[...deps.map(d=>`<div style="color:#16a34a;padding:3px 0">DEPOSIT +${d.amount} Tx:${d.tx} ✅ MTN API</div>`),...wds.map(d=>`<div style="color:#d52b1e;padding:3px 0">WITHDRAW -${d.amount} to ${d.account} ✅ PAID</div>`)].join('')||'No tx';
-}
-function copyLink(){let l=document.getElementById('rf').value; if(navigator.clipboard){navigator.clipboard.writeText(l).then(()=>alert('✅ Private Link Copied:\n'+l));}else{prompt('Copy:',l)}}
-function shareWA(){let l=document.getElementById('rf').value;window.open('https://wa.me/?text='+encodeURIComponent('🚀 Join GREEN INVEST Auto MTN API!\n'+l),'_blank')}
-function shareFB(){let l=document.getElementById('rf').value;window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(l),'_blank')}
+function up(){if(!currentUser||!currentUser.phone)return;let f=curCountry=='CM'?bal.toLocaleString()+' FCFA':'$'+bal.toLocaleString()+' CAD';['b','cb','b2','cb2'].forEach(id=>{let el=document.getElementById(id); if(el) el.innerText=f;});let today=act.reduce((s,A)=>s+(Date.now()-A.l<86400000&&A.c>0?A.d:0),0);let ty=document.getElementById('todayYield'); if(ty) ty.innerText=today;saveCurrent();let hh='';act.forEach((A,i)=>{let can=Date.now()-A.l>86400000||!A.l;hh+=`<div class=vip><b>${A.n}</b><br><small>Daily ${A.d} | ${A.c}/360</small><br><button class=btn style=background:${can?'#007a5a':'#ccc'};margin-top:8px onclick=cl(${i})>${can?'Claim':'Wait'}</button></div>`});let ol=document.getElementById('ol'); if(ol) ol.innerHTML=hh||'No contracts';let link=getRefLink();let rf=document.getElementById('rf'); if(rf) rf.value=link;let rfT=document.getElementById('rfText'); if(rfT) rfT.innerText=link;let rc=document.getElementById('refCode'); if(rc) rc.innerText=currentUser.refCode;let users=getUsers();let myTeam=Object.values(users).filter(u=>u.invitedBy===currentUser.refCode);let tc=document.getElementById('teamCount'); if(tc) tc.innerText=myTeam.length;let ta=document.getElementById('teamActive'); if(ta) ta.innerText=myTeam.filter(u=>u.bal>0).length;let tcom=0,teamDep=0,teamWit=0;myTeam.forEach(u=>{let deps=getDeposits().filter(d=>d.phone===u.phone);deps.forEach(d=>{tcom+=d.amount*0.05; teamDep+=d.amount;});});let tcm=document.getElementById('teamComm'); if(tcm) tcm.innerText=tcom.toLocaleString();let td=document.getElementById('teamDep'); if(td) td.innerText=teamDep.toLocaleString();let tw=document.getElementById('teamWit'); if(tw) tw.innerText=teamWit.toLocaleString();let tl=document.getElementById('teamList'); if(tl) tl.innerHTML=myTeam.slice(0,20).map(u=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #eee"><span>${u.refCode}</span><span>${u.bal}</span></div>`).join('')||'No team';let deps=getDeposits().filter(d=>d.phone==currentUser.phone);let wds=getWithdraws().filter(d=>d.phone==currentUser.phone);let dh=document.getElementById('depHistory'); if(dh) dh.innerHTML=deps.slice(-5).reverse().map(d=>`<div>+${d.amount} Tx:${d.tx} ✅</div>`).join('')||'No deposits';let wh=document.getElementById('wdHistory'); if(wh) wh.innerHTML=wds.slice(-5).reverse().map(d=>`<div>-${d.amount} to ${d.account} PAID ✅</div>`).join('')||'No withdraws';let at=document.getElementById('allTx'); if(at) at.innerHTML=[...deps.map(d=>`DEPOSIT +${d.amount} ${d.tx}`),...wds.map(d=>`WITHDRAW -${d.amount} to ${d.account}`)].join('<br>')||'No tx';}
+function copyLink(){let l=document.getElementById('rf').value; if(navigator.clipboard){navigator.clipboard.writeText(l).then(()=>alert('✅ Copied:\n'+l));}else{prompt('Copy:',l)}}
 function show(id){document.querySelectorAll('.t').forEach(t=>t.classList.remove('on'));document.getElementById(id).classList.add('on');document.querySelectorAll('.o div').forEach(d=>d.classList.remove('on'));let nn=document.getElementById('n-'+id);if(nn)nn.classList.add('on');if(id=='h')showTablePopup();}
-function buy(am,n,d){if(!currentUser)return alert('Login first');if(bal<am)return alert('Low balance. Deposit '+am);if(!confirm('Buy '+n+' for '+am+'?'))return;act.unshift({n:n,am:am,d:d,m:360,c:0,l:0});bal-=am;up();alert('✅ '+n+' Purchased!');show('o')}
-function dl(){let v=document.getElementById('a').value||500;document.getElementById('mtnCode').innerText='MTN MoMo: *126*1*678657567*'+v+'#';document.getElementById('payInfo').innerText='Pay then enter TxID - Auto credit via '+(USE_REAL_MTN_API?'REAL MTN API':'Demo Auto');}
-// DEPOSIT - ALL IN ONE WITH REAL MTN API
-async function depAuto(){
-  if(!currentUser)return alert('Login first');
-  let v=+document.getElementById('a').value,xv=document.getElementById('x').value.trim();
-  if(!v||!xv)return alert('Enter Amount + TxID');if(v<500&&curCountry=='CM')return alert('Min 500F');if(v<5&&curCountry=='CA')return alert('Min $5');
-  let used=getUsedTx();if(used[xv])return alert('❌ TxID already used!');
-  let btn=document.querySelector('button[onclick="depAuto()"]');btn.innerText='⏳ Verifying...';btn.disabled=true;
-  try{
-    if(USE_REAL_MTN_API){
-      // Real API call - requires /api/verify-deposit.js file + env keys
-      let res=await fetch('/api/verify-deposit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({txId:xv,amount:v,phone:currentUser.phone})});
-      let j=await res.json();
-      if(!j.verified) throw new Error('MTN verification failed: '+(j.mtnStatus||j.error||'Not found'));
-    }
-    // Success - credit
-    bal+=v;let deps=getDeposits();deps.push({phone:currentUser.phone,amount:v,tx:xv,country:curCountry,date:new Date().toLocaleString(),method:'MTN MoMo API'});saveDeposits(deps);let uTx=getUsedTx();uTx[xv]=true;saveUsedTx(uTx);up();document.getElementById('a').value='';document.getElementById('x').value='';
-    alert('✅ AUTO-DEPOSIT SUCCESS! +'+v+' FCFA/CAD - '+(USE_REAL_MTN_API?'Verified by REAL MTN API':'Demo Auto Credited'));
-    show('p');
-  }catch(e){
-    alert('❌ Deposit failed: '+e.message+'\n\nIf you have no MTN keys, set USE_REAL_MTN_API = false at top of file for demo auto.');
-  }
-  btn.innerText='⚡ VERIFY & CREDIT - MTN API';btn.disabled=false;
-}
-// WITHDRAW - ALL IN ONE WITH REAL MTN API
-async function wdAuto(){
-  if(!currentUser)return alert('Login first');
-  let v=+document.getElementById('wa').value,acc=document.getElementById('wm').value.trim();
-  if(!v||!acc)return alert('Enter Amount + MoMo number');if(v>bal)return alert('Low balance');
-  let btn=document.querySelector('button[onclick="wdAuto()"]');btn.innerText='⏳ Processing...';btn.disabled=true;
-  try{
-    if(USE_REAL_MTN_API){
-      let res=await fetch('/api/payout-withdraw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:v,phone:acc,ref:currentUser.refCode})});
-      let j=await res.json(); if(!j.success) throw new Error('Payout failed: '+(j.error||'Unknown'));
-    }
-    bal-=v;let wds=getWithdraws();wds.push({phone:currentUser.phone,amount:v,account:acc,country:curCountry,date:new Date().toLocaleString(),method:'MTN MoMo Disbursement API',status:'PAID AUTO'});saveWithdraws(wds);up();document.getElementById('wa').value='';document.getElementById('wm').value='';
-    alert('✅ AUTO-WITHDRAW SUCCESS! -'+v+' sent to '+acc+' '+(USE_REAL_MTN_API?'via REAL MTN API':'Demo Auto - Pay manually in admin'));
-  }catch(e){alert('❌ Withdraw failed: '+e.message);}
-  btn.innerText='⚡ WITHDRAW VIA MTN API - INSTANT';btn.disabled=false;
-}
+function buy(am,n,d){if(!currentUser)return alert('Login');if(bal<am)return alert('Low balance');if(!confirm('Buy '+n+'?'))return;act.unshift({n:n,am:am,d:d,m:360,c:0,l:0});bal-=am;up();alert('✅ Purchased!');show('o')}
+function dl(){let v=document.getElementById('a').value||500;document.getElementById('mtnCode').innerText='MTN: *126*1*678657567*'+v+'#';}
+function depAuto(){if(!currentUser)return alert('Login');let v=+document.getElementById('a').value,xv=document.getElementById('x').value.trim();if(!v||!xv)return alert('Enter Amount + TxID');let used=getUsedTx();if(used[xv])return alert('TxID used!');bal+=v;let deps=getDeposits();deps.push({phone:currentUser.phone,amount:v,tx:xv,country:curCountry,date:new Date().toLocaleString()});saveDeposits(deps);let uTx=getUsedTx();uTx[xv]=true;saveUsedTx(uTx);up();document.getElementById('a').value='';document.getElementById('x').value='';alert('✅ DEPOSIT SUCCESS +'+v);show('p');}
+function wdAuto(){if(!currentUser)return alert('Login');let v=+document.getElementById('wa').value,acc=document.getElementById('wm').value.trim();if(!v||!acc)return alert('Enter Amount + MoMo');if(v>bal)return alert('Low balance');bal-=v;let wds=getWithdraws();wds.push({phone:currentUser.phone,amount:v,account:acc,country:curCountry,date:new Date().toLocaleString()});saveWithdraws(wds);up();document.getElementById('wa').value='';document.getElementById('wm').value='';alert('✅ WITHDRAW SUCCESS -'+v+' to '+acc+' PAID AUTO');}
 function cl(i){let A=act[i];if(Date.now()-A.l<86400000&&A.c>0)return alert('Wait 24h');if(A.c>=A.m)return alert('Completed');A.c++;A.l=Date.now();bal+=A.d;up();alert('✅ +'+A.d+' claimed!')}
 let popupTimer=null,countTimer=null;function showTablePopup(){let pop=document.getElementById('tablePopup');if(!pop)return;if(pop.style.display=='flex')return;pop.style.display='flex';let c=5;let cd=document.getElementById('countdown');if(cd)cd.innerText=c;clearInterval(countTimer);countTimer=setInterval(()=>{c--;if(cd)cd.innerText=c;if(c<=0)clearInterval(countTimer);},1000);clearTimeout(popupTimer);popupTimer=setTimeout(()=>{closeTablePopup();},5000);}function closeTablePopup(){let pop=document.getElementById('tablePopup');if(pop)pop.style.display='none';clearTimeout(popupTimer);clearInterval(countTimer);}
 document.addEventListener('DOMContentLoaded',()=>{loadCurrent();renderP();if(currentUser)up();});
-</script>
-
-<!--
-========== FOR REAL MTN API - CREATE THESE 2 FILES IN VERCEL ==========
-If you want REAL verification, create folder "api" in Vercel and add:
-
-FILE: api/verify-deposit.js
-
-export default async function handler(req,res){
-  if(req.method!=='POST') return res.status(405).json({error:'POST only'});
-  const {txId,amount}=req.body;
-  try{
-    const tokenRes=await fetch('https://proxy.momoapi.mtn.com/collection/token/',{method:'POST',headers:{'Ocp-Apim-Subscription-Key':process.env.MTN_COLLECTION_KEY,'Authorization':'Basic '+Buffer.from(process.env.MTN_API_USER+':'+process.env.MTN_API_KEY).toString('base64')}});
-    const {access_token}=await tokenRes.json();
-    const statusRes=await fetch(`https://proxy.momoapi.mtn.com/collection/v1/transactions/${txId}`,{headers:{'Ocp-Apim-Subscription-Key':process.env.MTN_COLLECTION_KEY,'Authorization':'Bearer '+access_token,'X-Target-Environment':process.env.MTN_TARGET_ENV||'mtncameroon'}});
-    const data=await statusRes.json();
-    if(data.status==='SUCCESSFUL' && Number(data.amount)==Number(amount)) return res.json({verified:true,data});
-    else return res.json({verified:false,mtnStatus:data.status,data});
-  }catch(e){return res.json({verified:false,error:e.message});}
-}
-
-FILE: api/payout-withdraw.js
-
-export default async function handler(req,res){
-  if(req.method!=='POST') return res.status(405).json({error:'POST only'});
-  const {amount,phone,ref}=req.body;
-  try{
-    const tokenRes=await fetch('https://proxy.momoapi.mtn.com/disbursement/token/',{method:'POST',headers:{'Ocp-Apim-Subscription-Key':process.env.MTN_DISBURSEMENT_KEY,'Authorization':'Basic '+Buffer.from(process.env.MTN_API_USER+':'+process.env.MTN_API_KEY).toString('base64')}});
-    const {access_token}=await tokenRes.json();
-    const transferId='wd-'+Date.now();
-    const payRes=await fetch('https://proxy.momoapi.mtn.com/disbursement/v1/transactions',{method:'POST',headers:{'Ocp-Apim-Subscription-Key':process.env.MTN_DISBURSEMENT_KEY,'Authorization':'Bearer '+access_token,'X-Target-Environment':process.env.MTN_TARGET_ENV||'mtncameroon','X-Reference-Id':transferId,'Content-Type':'application/json'},body:JSON.stringify({amount:String(amount),currency:'XAF',externalId:ref,payee:{partyIdType:'MSISDN',partyId:phone.replace(/\D/g,'')},payerMessage:'GREEN INVEST Withdraw',payeeNote:'Auto payout'})});
-    if(payRes.status===202) return res.json({success:true,transferId});
-    else{const err=await payRes.text(); return res.json({success:false,error:err});}
-  }catch(e){return res.json({success:false,error:e.message});}
-}
-Then in Vercel Settings -> Environment Variables add:
-MTN_COLLECTION_KEY, MTN_DISBURSEMENT_KEY, MTN_API_USER, MTN_API_KEY, MTN_TARGET_ENV=mtncameroon
-And change top of index.html to: const USE_REAL_MTN_API = true;
-========== END API FILES ==========
--->
-
-</body></html>
+</script></body></html>
