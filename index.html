@@ -1,58 +1,42 @@
-<div id="r" class="t"><div class="c" style="background:#0f172a;color:#fff;border:0;padding:12px">
-<!-- BALANCE + CONVERTER -->
-<div style="background:#1e293b;padding:12px;border-radius:12px;margin-bottom:10px">
-<div style="font-size:11px;color:#9ca3af">Available Balance</div>
-<b id="cb" style="font-size:22px">0 FCFA</b><br>
-<small style="color:#5eead4" id="cb2">≈ $0.00 USD • ≈ €0.00 EUR</small>
-</div>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GREEN INVESTMENT - BUEA</title><style>body{margin:0;font-family:Arial;background:#0f172a;color:#fff;padding-bottom:70px}.h{background:#052e16;padding:8px;text-align:center;color:#22c55e;font-size:11px;font-weight:bold}.b{background:#16a34a;margin:10px;padding:15px;border-radius:12px}.c{background:#fff;color:#111;margin:8px 10px;padding:10px;border-radius:10px;border-left:4px solid #16a34a}.btn{width:100%;padding:12px;border:0;border-radius:20px;font-weight:bold;background:#052e16;color:#fff;margin-top:6px}.d{background:#facc15;color:#000;padding:12px;display:block;text-align:center;border-radius:10px;text-decoration:none;font-weight:bold;margin:8px 0}.t{display:none}.t.on{display:block}.m{display:flex;justify-content:space-around;background:#1e293b;margin:10px;padding:8px;border-radius:10px}.m div{font-size:11px;text-align:center;cursor:pointer}.o{position:fixed;bottom:0;left:0;width:100%;background:#1e293b;display:flex;justify-content:space-around;padding:6px 0;z-index:9}.o div{font-size:10px;text-align:center;cursor:pointer}input{width:100%;padding:10px;margin:4px 0;border-radius:8px;border:1px solid #999;box-sizing:border-box}</style></head><body>
+<div class="h">GREEN INVESTMENT | BUEA | MoMo 678657567 - 365 DAYS</div>
+<div class="b"><div>Balance</div><h1 id="b">0 FCFA</h1><small id="b3" style="color:#dcfce7">≈ $0 USD • €0 EUR</small><br><button onclick="show('r')" style="padding:8px 15px;border-radius:15px;border:0;font-weight:bold">💳 Recharge</button> <button onclick="show('w')" style="padding:8px 15px;border-radius:15px;border:0;background:#fbbf24;font-weight:bold">🏧 Withdraw</button></div>
+<div class="m"><div onclick="show('h')">🌴<br>Invest</div><div onclick="show('o')">📦<br>Orders</div><div onclick="show('r')">💳<br>Deposit</div><div onclick="show('e')">👥<br>Team</div></div>
 
-<!-- TABS -->
+<div id="h" class="t on"><div class="c" style="background:#dcfce7"><b>🌴 CAMINVEST HUB - DAILY 365 DAYS</b><br><small>Invest once, earn daily for 1 year!</small></div><div id="pl"></div></div>
+
+<div id="r" class="t"><div class="c" style="background:#0f172a;color:#fff;border:0">
+<div style="background:#1e293b;padding:12px;border-radius:12px;margin-bottom:10px"><div style="font-size:11px;color:#9ca3af">Available Balance</div><b style="font-size:20px" id="cb">0 FCFA</b><br><small style="color:#5eead4" id="cb2">≈ $0 USD • €0 EUR</small></div>
 <div style="display:flex;gap:6px;margin-bottom:10px">
 <button id="tb1" onclick="paytab('momo')" style="flex:1;padding:10px;background:#facc15;color:#000;border:0;border-radius:10px;font-weight:bold">📱 MoMo</button>
-<button id="tb2" onclick="paytab('paypal')" style="flex:1;padding:10px;background:#1e293b;color:#fff;border:1px solid #334155;border-radius:10px;font-weight:bold">🅿️ PayPal</button>
-<button id="tb3" onclick="paytab('bank')" style="flex:1;padding:10px;background:#1e293b;color:#fff;border:1px solid #334155;border-radius:10px;font-weight:bold">🏦 Bank</button>
+<button id="tb2" onclick="paytab('paypal')" style="flex:1;padding:10px;background:#1e293b;color:#fff;border:1px solid #334155;border-radius:10px">🅿️ PayPal</button>
+<button id="tb3" onclick="paytab('bank')" style="flex:1;padding:10px;background:#1e293b;color:#fff;border:1px solid #334155;border-radius:10px">🏦 Bank</button>
 </div>
+<div style="background:#1e293b;padding:10px;border-radius:10px;margin-bottom:10px"><div style="font-weight:bold;margin-bottom:6px">💱 Converter <small style="color:#9ca3af">1$=600F 1€=650F</small></div><input id="a" type="number" placeholder="Amount FCFA - Min 500" style="background:#0f172a;color:#fff;border:1px solid #334155" oninput="conv();dl()"><div style="display:flex;justify-content:space-between;font-size:11px;margin-top:6px;color:#5eead4"><span id="toUSD">≈ $0</span><span id="toEUR">≈ €0</span></div>
+<div style="display:flex;gap:6px;margin-top:8px"><button onclick="a.value=500;conv();dl()" style="flex:1;padding:8px;background:transparent;color:#22c55e;border:1px solid #22c55e;border-radius:8px">500</button><button onclick="a.value=1000;conv();dl()" style="flex:1;padding:8px;background:transparent;color:#22c55e;border:1px solid #22c55e;border-radius:8px">1000</button><button onclick="a.value=5000;conv();dl()" style="flex:1;padding:8px;background:#22c55e;color:#000;border:0;border-radius:8px;font-weight:bold">5K</button><button onclick="a.value=10000;conv();dl()" style="flex:1;padding:8px;background:transparent;color:#22c55e;border:1px solid #22c55e;border-radius:8px">10K</button></div>
+</div>
+<div id="pmomo"><div style="background:#1f2937;padding:10px;border-radius:10px;display:flex;justify-content:space-between"><div><small>MTN MoMo</small><br><b>678657567</b></div><button onclick="navigator.clipboard.writeText('678657567');alert('Copied')" style="background:#374151;color:#facc15;border:0;padding:6px 10px;border-radius:15px">Copy</button></div><a id="dl" href="tel:*126*1*678657567*500%23" class="d">📞 DIAL *126*1*678657567*500#</a></div>
+<div id="ppaypal" style="display:none"><div style="background:#1f2937;padding:10px;border-radius:10px"><b>PayPal: promiseambokia@gmail.com</b><br><small>Note your FCFA amount</small><br><a href="https://paypal.me/ambokia" target="_blank" style="background:#0070ba;color:#fff;padding:10px;display:block;text-align:center;border-radius:10px;text-decoration:none;font-weight:bold;margin-top:6px">Pay $ <span id="ppusd">0</span> via PayPal</a></div></div>
+<div id="pbank" style="display:none"><div style="background:#1f2937;padding:10px;border-radius:10px;font-size:12px"><b>Afriland First Bank</b><br>Acc: 10005 00001 12345678901 23<br>Name: AMBOKIA PROMISE<br>SWIFT: CCEICMCX<br><small style="color:#facc15">Ref: Your FCFA amount</small></div></div>
+<input id="x" placeholder="TxID / PayPal Email / Bank Ref" style="background:#0f172a;color:#fff;border:1px solid #334155;margin-top:8px"><button class="btn" onclick="dep()" style="background:#22d3ee;color:#000;padding:14px">✅ Submit Deposit</button></div></div>
 
-<!-- CONVERTER -->
-<div style="background:#1e293b;padding:10px;border-radius:10px;margin-bottom:10px">
-<div style="font-weight:bold;margin-bottom:6px">💱 Currency Converter <small style="font-weight:normal;color:#9ca3af">1 USD=600F • 1 EUR=650F</small></div>
-<input id="a" type="number" placeholder="Amount in FCFA" style="background:#0f172a;color:#fff;border:1px solid #334155" oninput="conv();dl()">
-<div style="display:flex;justify-content:space-between;font-size:12px;margin-top:6px;color:#5eead4">
-<span id="toUSD">≈ $0 USD</span><span id="toEUR">≈ €0 EUR</span>
-</div>
-</div>
+<div id="w" class="t"><div class="c"><h3>Withdraw</h3><b id="b2">0 FCFA</b><br><input id="wa" type="number" placeholder="Amount min 500"><input id="wm" placeholder="MoMo Number / PayPal / Bank"><select id="wmeth" style="width:100%;padding:10px;margin:4px 0;border-radius:8px"><option>MoMo</option><option>PayPal</option><option>Bank</option></select><button class="btn" style="background:#fbbf24;color:#111" onclick="wd()">Request Withdraw</button></div></div>
+<div id="o" class="t"><div class="c"><h3>📦 My Orders - Claim Daily</h3><div id="ol">No active investment</div></div></div>
+<div id="e" class="t"><div class="c"><h3>Team - 5% Commission</h3><input id="rf" readonly style="background:#f0fdf4"><br><button class="btn" onclick="navigator.clipboard.writeText(rf.value);alert('Link Copied!')">COPY LINK</button></div></div>
 
-<!-- MOMO PANEL -->
-<div id="pmomo">
-<div style="background:#1f2937;padding:10px;border-radius:10px;display:flex;justify-content:space-between;align-items:center">
-<div><small>MTN MoMo Pay</small><br><b style="font-size:20px">678657567</b></div>
-<button onclick="navigator.clipboard.writeText('678657567');alert('Copied')" style="background:#374151;color:#facc15;border:0;padding:6px 10px;border-radius:15px">Copy</button>
-</div>
-<a id="dl" href="tel:*126*1*678657567*500%23" style="background:#facc15;color:#000;padding:12px;display:block;text-align:center;border-radius:10px;text-decoration:none;font-weight:bold;margin:8px 0">DIAL *126*1*678657567*500#</a>
-</div>
-
-<!-- PAYPAL PANEL -->
-<div id="ppaypal" style="display:none">
-<div style="background:#1f2937;padding:10px;border-radius:10px">
-<b>PayPal: promiseambokia@gmail.com</b><br><small style="color:#9ca3af">Send as Friends & Family, put FCFA amount in note</small><br>
-<a href="https://www.paypal.me/ambokia" target="_blank" style="background:#0070ba;color:#fff;padding:10px;display:block;text-align:center;border-radius:10px;text-decoration:none;font-weight:bold;margin-top:8px">Pay via PayPal — $ <span id="ppusd">0</span></a>
-</div>
-</div>
-
-<!-- BANK PANEL -->
-<div id="pbank" style="display:none">
-<div style="background:#1f2937;padding:10px;border-radius:10px;font-size:13px">
-<b>🏦 Bank: Afriland First Bank Cameroon</b><br>
-Account: <b>10005 00001 12345678901 23</b> <button onclick="navigator.clipboard.writeText('10005000011234567890123')" style="font-size:10px">Copy</button><br>
-Name: AMBOKIA PROMISE<br>
-SWIFT: CCEICMCX<br>
-<small style="color:#facc15">Use FCFA amount as reference</small>
-</div>
-</div>
-
-<input id="x" placeholder="Transaction ID / PayPal Email / Bank Ref" style="background:#0f172a;color:#fff;border:1px solid #334155;margin-top:8px">
-<button class="btn" onclick="dep()" style="background:#22d3ee;color:#000;padding:14px;font-size:16px">Continue to Payment ✅</button>
-<div style="font-size:9px;color:#6b7280;text-align:center;margin-top:6px">Secured by SSL • BCEAO Compliant • No fee for MoMo</div>
-</div></div>
-
-<script>function paytab(t){['momo','paypal','bank'].forEach(k=>{document.getElementById('p'+k).style.display=k==t?'block':'none';document.getElementById('tb'+(k=='momo'?1:k=='paypal'?2:3)).style.background=k==t?'#facc15':'#1e293b';document.getElementById('tb'+(k=='momo'?1:k=='paypal'?2:3)).style.color=k==t?'#000':'#fff'});localStorage.setItem('pt',t)}function conv(){let v=+document.getElementById('a').value||0;let usd=(v/600).toFixed(2);let eur=(v/650).toFixed(2);document.getElementById('toUSD').innerText='≈ $'+usd+' USD';document.getElementById('toEUR').innerText='≈ €'+eur+' EUR';document.getElementById('ppusd').innerText=usd;document.getElementById('cb').innerText=bal.toLocaleString()+' FCFA';document.getElementById('cb2').innerText='≈ $'+(bal/600).toFixed(2)+' USD • ≈ €'+(bal/650).toFixed(2)+' EUR';document.getElementById('cb').innerText=bal.toLocaleString()+' FCFA'}setTimeout(()=>{paytab(localStorage.getItem('pt')||'momo');conv()},500)</script>
+<div class="o"><div onclick="show('h')">🏠<br>Home</div><div onclick="show('o')">📦<br>Orders</div><div onclick="show('r')">💳<br>Deposit</div><div onclick="show('e')">👥<br>Team</div></div>
+<script>
+const prods=[{a:500,d:100},{a:1000,d:200},{a:2000,d:400},{a:3000,d:600},{a:4000,d:800},{a:5000,d:1000},{a:10000,d:2200},{a:20000,d:4500},{a:30000,d:7000},{a:50000,d:12000},{a:100000,d:25000},{a:200000,d:52000},{a:400000,d:110000}];
+let bal=+localStorage.getItem('gb')||0;let act=JSON.parse(localStorage.getItem('ga')||'[]');
+function renderP(){let h='';prods.forEach(p=>{let tot=p.d*365;h+=`<div class=c><b>🌴 ${p.a.toLocaleString()}F Plan</b><br>Daily: <b style=color:#16a34a>${p.d.toLocaleString()}F</b> x 365 = ${tot.toLocaleString()}F<br><button class=btn onclick="buy(${p.a},'${p.a.toLocaleString()}F',${p.d})">INVEST ${p.a.toLocaleString()}F</button></div>`});document.getElementById('pl').innerHTML=h}
+function up(){let f=bal.toLocaleString()+' FCFA';b.innerText=b2.innerText=cb.innerText=f;let usd=(bal/600).toFixed(2),eur=(bal/650).toFixed(2);b3.innerText=cb2.innerText=`≈ $${usd} USD • €${eur} EUR`;localStorage.setItem('gb',bal);localStorage.setItem('ga',JSON.stringify(act));let h='';act.forEach((A,i)=>{let can=Date.now()-A.l>86400000||!A.l;let left=A.m-A.c;h+=`<div style="background:#f0fdf4;padding:10px;margin:6px 0;border-radius:8px;color:#111"><b>${A.n}</b> | ${A.d}F/day | ${A.c}/${A.m}<br>Left ${left} days | Earned ${(A.c*A.d).toLocaleString()}F<br><button class=btn style=background:${can?'#16a34a':'#999'} onclick=cl(${i})>${can?left>0?'CLAIM '+A.d+'F':'COMPLETED':'CLAIMED TODAY'}</button></div>`});ol.innerHTML=h||'No active';rf.value=location.origin+location.pathname+'?ref=GREEN'+Math.floor(Math.random()*9000+1000)}
+function show(id){document.querySelectorAll('.t').forEach(t=>t.classList.remove('on'));document.getElementById(id).classList.add('on')}
+function buy(am,n,d){act.unshift({n:n,am:am,d:d,m:365,c:0,l:0});up();alert(n+' activated! '+d+'F daily for 365 days');show('r');a.value=am;conv();dl()}
+function dl(){let v=a.value||500;let e=document.getElementById('dl');e.href='tel:*126*1*678657567*'+v+'%23';e.innerText='📞 DIAL *126*1*678657567*'+v+'#'}
+function conv(){let v=+a.value||0;let usd=(v/600).toFixed(2),eur=(v/650).toFixed(2);document.getElementById('toUSD').innerText='≈ $'+usd;document.getElementById('toEUR').innerText='≈ €'+eur;document.getElementById('ppusd').innerText=usd;up()}
+function paytab(t){['momo','paypal','bank'].forEach(k=>{document.getElementById('p'+k).style.display=k==t?'block':'none';let btn=document.getElementById('tb'+(k=='momo'?1:k=='paypal'?2:3));btn.style.background=k==t?'#facc15':'#1e293b';btn.style.color=k==t?'#000':'#fff'});localStorage.setItem('pt',t)}
+function dep(){let v=+a.value,xv=x.value;if(!v||!xv)return alert('Enter amount + Tx ID');bal+=v;up();let m=localStorage.getItem('pt')||'momo';window.open('https://wa.me/237678657567?text=DEPOSIT '+v+'FCFA via '+m.toUpperCase()+' Tx:'+xv,'_blank');show('o')}
+function wd(){let v=+wa.value;if(!v||v<500||v>bal)return alert('Min 500, check balance');bal-=v;up();window.open('https://wa.me/237678657567?text=WITHDRAW '+v+'FCFA to '+wm.value+' via '+wmeth.value,'_blank')}
+function cl(i){let A=act[i];if(Date.now()-A.l<86400000&&A.c>0)return alert('Come tomorrow!');if(A.c>=A.m)return alert('Finished');A.c++;A.l=Date.now();bal+=A.d;up();alert('Success +'+A.d+'F')}
+renderP();up();dl();conv();paytab(localStorage.getItem('pt')||'momo');
+</script></body></html>
