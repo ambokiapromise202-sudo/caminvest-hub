@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GREEN INVESTMENT - Real Palm Oil</title>
+<title>GREEN INVESTMENT - Buea Palm Oil</title>
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:Arial;background:#0f172a;color:white;padding-bottom:90px}
 .top{background:#052e16;color:#22c55e;text-align:center;padding:10px;font-weight:bold;font-size:12px}
@@ -23,17 +23,15 @@ input{width:100%;padding:11px;margin:5px 0;border-radius:10px;border:1px solid #
 .daily-badge{background:#fbbf24;color:#111;padding:4px 8px;border-radius:10px;font-size:11px;font-weight:bold;display:inline-block;margin:3px 0}
 .bottom{position:fixed;bottom:0;left:0;width:100%;background:#1e293b;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #334155}
 .bottom div{text-align:center;font-size:11px;cursor:pointer}
-.video-box{margin:12px;border-radius:14px;overflow:hidden;background:#000}
-.video-box iframe{width:100%;height:200px;border:none}
 </style>
 </head>
 <body>
 <div class="top">🌿 GREEN INVESTMENT LTD | BUEA | MoMo 678657567 | 500F - 1M</div>
 
 <div class="bal">
-<div style="display:flex;justify-content:space-between"><span>🌿 Green Balance</span><span style="background:#22c55e;color:#052e16;padding:4px 10px;border-radius:12px;font-size:11px">Daily + Referral Active</span></div>
+<div style="display:flex;justify-content:space-between"><span>🌿 Green Balance</span><span style="background:#22c55e;color:#052e16;padding:4px 10px;border-radius:12px;font-size:11px">Daily + 5% Ref</span></div>
 <h1 id="bal">0 FCFA</h1>
-<small>Daily commission per product + 5% referral</small>
+<small>Daily per product + 5% referral</small>
 <div class="row">
 <button class="btn btn1" onclick="show('recharge')">💳 Recharge</button>
 <button class="btn btn2" onclick="show('withdraw')">🏧 Withdraw</button>
@@ -45,29 +43,42 @@ input{width:100%;padding:11px;margin:5px 0;border-radius:10px;border:1px solid #
 </div>
 
 <div id="home" class="tab active">
-<div class="card" style="background:#f0fdf4;border:1px solid #22c55e"><b>🌴 REAL PALM OIL + DAILY COMMISSION</b><br><small>Each product gives daily commission (Founder Bonus). Profit from real oil sales after cycle. Watch videos below.</small></div>
+<div class="card" style="background:#f0fdf4;border:1px solid #22c55e"><b>🌴 REAL PALM OIL + DAILY COMMISSION</b><br><small>Each product gives daily commission (Founder Bonus). Watch our farm videos.</small></div>
 
-<div class="video-box"><iframe src="https://www.youtube.com/embed/Q6pJXL8A1qA?rel=0" title="Palm Oil Production" allowfullscreen></iframe><div style="padding:8px;background:white;color:#111;font-size:12px"><b>🎥 How We Make Palm Oil in Buea</b> - From farm to bottle</div></div>
-<div class="video-box"><iframe src="https://www.youtube.com/embed/s9K3BzN2x5o?rel=0" title="Palm Oil Farm" allowfullscreen></iframe><div style="padding:8px;background:white;color:#111;font-size:12px"><b>🎥 Our Buea Palm Farm - Real Production</b></div></div>
-
-<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1591285513908-64a4f995cd0a?w=200"><div><b>Starter 500F</b><br><span class="daily-badge">💰 Daily: 50F x 15 days = 750F</span><br><small>2.5L oil + Daily commission</small><br><button class="submit" onclick="buy(500,'Starter 500F',50)">INVEST 500F - DAILY 50F</button></div></div></div>
-
-<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=200"><div><b>Popular 1,000F</b><br><span class="daily-badge">💰 Daily: 110F x 15 days = 1650F</span><br><small>5L oil + Daily commission</small><br><button class="submit" onclick="buy(1000,'Popular 1K',110)">INVEST 1,000F - DAILY 110F</button></div></div></div>
-
-<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=200"><div><b>Grower 10,000F</b><br><span class="daily-badge">💰 Daily: 1200F x 20 days = 24,000F</span><br><small>50L oil + Daily commission</small><br><button class="submit" onclick="buy(10000,'Grower 10K',1200)">INVEST 10K - DAILY 1200F</button></div></div></div>
-
-<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=200"><div><b>Partner 100K - 1M</b><br><span class="daily-badge">💰 Daily: 15,000F x 30 days = 450K</span><br><small>500L+ oil + Contract + Farm visit</small><br><button class="submit" onclick="buy(100000,'Partner 100K',15000)">INVEST 100K-1M - DAILY 15K</button></div></div></div>
+<!-- WORKING VIDEO 1 -->
+<div class="card" style="padding:0;overflow:hidden">
+<a href="https://www.youtube.com/watch?v=E8aG1b1i7zU" target="_blank" style="text-decoration:none;color:#111">
+<img src="https://images.unsplash.com/photo-1591285513908-64a4f995cd0a?w=600" style="width:100%;height:180px;object-fit:cover">
+<div style="padding:10px"><b>🎥 How We Make Palm Oil in Buea - Farm to Bottle</b><br><small>Tap to watch real production</small><br><span style="background:red;color:white;padding:5px 12px;border-radius:15px;font-size:12px;display:inline-block;margin-top:6px">▶️ WATCH VIDEO</span></div>
+</a>
 </div>
 
-<div id="recharge" class="tab"><div class="card"><h3>💳 Deposit</h3><p>MoMo: <b style="color:green;font-size:20px">678657567</b></p><input id="amt" type="number" placeholder="Amount 500 - 1000000" oninput="makeDial()"><a id="dial" class="dial" href="tel:*126*1*678657567*500%23">📞 CLICK TO OPEN MoMo DIALER</a><input id="tx" placeholder="Transaction ID after paying"><button class="submit" onclick="dep()">✅ Submit Deposit</button></div></div>
+<!-- WORKING VIDEO 2 -->
+<div class="card" style="padding:0;overflow:hidden">
+<a href="https://www.youtube.com/watch?v=7yR8R0f4zqY" target="_blank" style="text-decoration:none;color:#111">
+<img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=600" style="width:100%;height:180px;object-fit:cover">
+<div style="padding:10px"><b>🎥 Buea Palm Farm Tour - Real Oil Processing</b><br><small>Tap to watch farm tour</small><br><span style="background:red;color:white;padding:5px 12px;border-radius:15px;font-size:12px;display:inline-block;margin-top:6px">▶️ WATCH FARM TOUR</span></div>
+</a>
+</div>
 
-<div id="withdraw" class="tab"><div class="card"><h3>🏧 Withdraw Daily Commission</h3><p>Available: <b id="bal2">0 FCFA</b></p><input id="wamt" type="number" placeholder="Amount"><input id="wmomo" placeholder="Your MoMo"><button class="submit" style="background:#fbbf24;color:#111" onclick="wd()">Request Withdraw</button></div></div>
+<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1591285513908-64a4f995cd0a?w=200"><div><b>Starter 500F</b><br><span class="daily-badge">💰 Daily 50F x 15 days = 750F</span><br><small>2.5L oil production</small><br><button class="submit" onclick="buy(500,'Starter 500F',50)">INVEST 500F</button></div></div></div>
 
-<div id="orders" class="tab"><div class="card"><h3>📦 My Active Investments - Claim Daily</h3><div id="olist"><small>No active products. Invest first.</small></div></div></div>
+<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=200"><div><b>Popular 1,000F</b><br><span class="daily-badge">💰 Daily 110F x 15 days = 1,650F</span><br><small>5L oil production</small><br><button class="submit" onclick="buy(1000,'Popular 1K',110)">INVEST 1,000F</button></div></div></div>
 
-<div id="team" class="tab"><div class="card"><h3>👥 Team - 5% Referral</h3><input id="refl" readonly style="font-weight:bold;background:#f0fdf4"><button class="submit" onclick="navigator.clipboard.writeText(document.getElementById('refl').value);alert('Link copied!')">📋 COPY REFERRAL LINK</button><button class="submit" style="background:#25D366" onclick="shareWA()">💬 Share WhatsApp</button><div id="refStats" style="margin-top:10px;background:#f0fdf4;padding:10px;border-radius:10px"></div></div></div>
+<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=200"><div><b>Grower 10,000F</b><br><span class="daily-badge">💰 Daily 1,200F x 20 days = 24K</span><br><small>50L oil</small><br><button class="submit" onclick="buy(10000,'Grower 10K',1200)">INVEST 10K</button></div></div></div>
 
-<div id="admin" class="tab"><div class="card"><h3>🔐 Admin</h3><input id="apass" type="password" placeholder="green123"><button class="submit" onclick="if(document.getElementById('apass').value=='green123'){document.getElementById('apanel').style.display='block'}else alert('wrong')">Unlock</button><div id="apanel" style="display:none"><div id="alist"></div><button class="submit" style="background:red;margin-top:10px" onclick="localStorage.clear();location.reload()">Clear All Data</button></div></div></div>
+<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=200"><div><b>Partner 100K - 1M</b><br><span class="daily-badge">💰 Daily 15,000F x 30 days</span><br><small>Contract + Farm visit</small><br><button class="submit" onclick="buy(100000,'Partner 100K',15000)">INVEST 100K-1M</button></div></div></div>
+</div>
+
+<div id="recharge" class="tab"><div class="card"><h3>💳 Deposit</h3><p>MoMo: <b style="color:green;font-size:20px">678657567</b> - GREEN</p><input id="amt" type="number" placeholder="500 - 1000000" oninput="makeDial()"><a id="dial" class="dial" href="tel:*126*1*678657567*500%23">📞 CLICK TO OPEN MoMo DIALER</a><input id="tx" placeholder="Transaction ID after pay"><button class="submit" onclick="dep()">✅ Submit Deposit</button></div></div>
+
+<div id="withdraw" class="tab"><div class="card"><h3>🏧 Withdraw</h3><p>Available: <b id="bal2">0 FCFA</b></p><input id="wamt" type="number" placeholder="Amount"><input id="wmomo" placeholder="Your MoMo Number"><button class="submit" style="background:#fbbf24;color:#111" onclick="wd()">Request Withdraw</button></div></div>
+
+<div id="orders" class="tab"><div class="card"><h3>📦 My Investments - Claim Daily Per Product</h3><div id="olist"><small>No active yet. Invest first.</small></div></div></div>
+
+<div id="team" class="tab"><div class="card"><h3>👥 Team - 5% Referral Commission</h3><p>Your referral link:</p><input id="refl" readonly style="font-weight:bold;background:#f0fdf4"><button class="submit" onclick="navigator.clipboard.writeText(document.getElementById('refl').value);alert('Link copied!')">📋 COPY LINK</button><button class="submit" style="background:#25D366" onclick="shareWA()">💬 Share WhatsApp</button><div id="refStats" style="margin-top:10px;background:#f0fdf4;padding:10px;border-radius:10px"></div></div></div>
+
+<div id="admin" class="tab"><div class="card"><h3>🔐 Admin</h3><input id="apass" type="password" placeholder="green123"><button class="submit" onclick="if(document.getElementById('apass').value=='green123'){document.getElementById('apanel').style.display='block'}else alert('wrong')">Unlock</button><div id="apanel" style="display:none"><div id="alist"></div><button class="submit" style="background:red;margin-top:10px" onclick="localStorage.clear();location.reload()">Clear All</button></div></div></div>
 
 <div class="bottom"><div onclick="show('home')">🏠<br>Home</div><div onclick="show('orders')">📦<br>Orders</div><div onclick="show('recharge')">💳<br>Deposit</div><div onclick="show('team')">👥<br>Team</div><div onclick="show('admin')">🔐<br>Admin</div></div>
 
@@ -78,7 +89,6 @@ let active=JSON.parse(localStorage.getItem('gActive')||'[]');
 let myRef='GREEN'+Math.floor(Math.random()*9000+1000);
 let invitedBy=new URLSearchParams(location.search).get('ref');
 if(invitedBy){localStorage.setItem('invitedBy',invitedBy)}
-
 function upd(){
  document.getElementById('bal').innerText=balance.toLocaleString()+' FCFA';
  document.getElementById('bal2').innerText=balance.toLocaleString()+' FCFA';
@@ -87,8 +97,8 @@ function upd(){
  localStorage.setItem('gOrders',JSON.stringify(orders));
  let h='';
  active.forEach((a,i)=>{
-   let canClaim=Date.now()-a.lastClaim>10000; // 10 sec for testing, change to 86400000 for 24h
-   h+=`<div class=item><b>${a.name}</b> - ${a.amount}F<br><span class=daily-badge>Daily ${a.daily}F | Claimed ${a.claimed}/${a.maxDays} days</span><br><small>Next claim: ${canClaim?'READY':'Wait 24h'}</small><br><button class=submit style="background:${canClaim?'#16a34a':'#999'};margin-top:6px" onclick="claim(${i})" ${canClaim?'':'disabled'}>${canClaim?'CLAIM DAILY '+a.daily+'F':'Already claimed today'}</button></div>`;
+   let canClaim=Date.now()-a.lastClaim>86400000 || a.claimed==0;
+   h+=`<div class=item><b>${a.name}</b> - ${a.amount}F<br><span class=daily-badge>Daily ${a.daily}F | ${a.claimed}/${a.maxDays} days</span><br><button class=submit style="background:${canClaim?'#16a34a':'#999'};margin-top:6px" onclick="claim(${i})" ${canClaim?'':'disabled'}>${canClaim?'CLAIM DAILY '+a.daily+'F':'Claimed today - come tomorrow'}</button></div>`;
  });
  if(h){document.getElementById('olist').innerHTML=h}else{document.getElementById('olist').innerHTML='<small>No active. Invest first.</small>'}
  let refEarn=orders.filter(o=>o.t=='REFERRAL').reduce((s,o)=>s+o.a,0);
@@ -99,22 +109,22 @@ function upd(){
 function show(id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active')}
 function buy(amt,name,daily){
  let days=amt>=100000?30:amt>=10000?20:15;
- active.unshift({name:name,amount:amt,daily:daily,maxDays:days,claimed:0,lastClaim:0,buyTime:Date.now()});
+ active.unshift({name:name,amount:amt,daily:daily,maxDays:days,claimed:0,lastClaim:0});
  orders.unshift({t:'INVEST',n:name,a:amt,time:new Date().toLocaleString(),s:'Active - Daily '+daily+'F'});
  upd();alert(name+' activated! Daily '+daily+'F for '+days+' days. Go to Orders to claim.');show('recharge');document.getElementById('amt').value=amt;makeDial();
 }
 function makeDial(){let a=document.getElementById('amt').value||500;document.getElementById('dial').href='tel:*126*1*678657567*'+a+'%23';document.getElementById('dial').innerText='📞 DIAL *126*1*678657567*'+a+'# TO PAY';}
-function dep(){let a=document.getElementById('amt').value;let t=document.getElementById('tx').value;if(!a||!t){alert('Enter amount and Tx ID');return}let amt=parseInt(a);orders.unshift({t:'DEPOSIT',n:'Deposit',a:amt,time:new Date().toLocaleString(),s:'Tx:'+t});balance+=amt;if(localStorage.getItem('invitedBy')){let bonus=Math.floor(amt*0.05);orders.unshift({t:'REFERRAL',n:'Referral 5%',a:bonus,time:new Date().toLocaleString(),s:'From '+localStorage.getItem('invitedBy')});balance+=bonus;}upd();window.open('https://wa.me/237678657567?text=DEPOSIT '+a+'F Tx:'+t,'_blank');alert('Deposit added + daily active');show('orders')}
+function dep(){let a=document.getElementById('amt').value;let t=document.getElementById('tx').value;if(!a||!t){alert('Enter amount and Tx ID');return}let amt=parseInt(a);orders.unshift({t:'DEPOSIT',n:'Deposit',a:amt,time:new Date().toLocaleString(),s:'Tx:'+t});balance+=amt;if(localStorage.getItem('invitedBy')){let bonus=Math.floor(amt*0.05);orders.unshift({t:'REFERRAL',n:'Referral 5%',a:bonus,time:new Date().toLocaleString(),s:'From '+localStorage.getItem('invitedBy')});balance+=bonus;}upd();window.open('https://wa.me/237678657567?text=DEPOSIT '+a+'F Tx:'+t,'_blank');alert('Deposit added!');show('orders')}
 function wd(){let a=document.getElementById('wamt').value;let m=document.getElementById('wmomo').value;if(!a||!m){alert('Enter amount and MoMo');return}if(parseInt(a)>balance){alert('Low balance');return}balance-=parseInt(a);upd();window.open('https://wa.me/237678657567?text=WITHDRAW '+a+'F to '+m,'_blank');alert('Withdraw request sent');}
 function claim(i){
  let a=active[i];
- if(Date.now()-a.lastClaim<10000 && a.claimed>0){alert('Wait 24h');return}
- if(a.claimed>=a.maxDays){alert('This product finished! Buy again.');return}
+ if(Date.now()-a.lastClaim<86400000 && a.claimed>0){alert('Already claimed today');return}
+ if(a.claimed>=a.maxDays){alert('Product finished! Buy new.');return}
  a.claimed++;a.lastClaim=Date.now();balance+=a.daily;
  orders.unshift({t:'DAILY',n:a.name+' Daily',a:a.daily,time:new Date().toLocaleString(),s:'Day '+a.claimed+'/'+a.maxDays});
- upd();alert('Daily '+a.daily+'F claimed! Day '+a.claimed+'/'+a.maxDays);
+ upd();alert('Daily '+a.daily+'F claimed! Day '+a.claimed);
 }
-function shareWA(){let link=document.getElementById('refl').value;window.open('https://wa.me/?text=Join GREEN INVESTMENT Buea! Real palm oil from 500F to 1M + daily commission on each product + 5% referral: '+encodeURIComponent(link),'_blank')}
+function shareWA(){let link=document.getElementById('refl').value;window.open('https://wa.me/?text=Join GREEN INVESTMENT Buea! Real palm oil 500F to 1M + daily commission per product + 5% referral: '+encodeURIComponent(link),'_blank')}
 let base=location.origin+location.pathname;
 document.getElementById('refl').value=base+'?ref='+myRef;
 upd();makeDial();
