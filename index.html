@@ -3,84 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CamInvest Hub - Products & Education</title>
+<title>CamInvest Hub - Real Shop</title>
 <style>
-body{font-family:Arial;margin:0;background:#f0fdf4;color:#111}
-header{background:#065f46;color:white;padding:18px;text-align:center}
-.hero{padding:30px 20px;text-align:center;background:white}
-.card{background:white;margin:15px auto;padding:20px;border-radius:12px;max-width:700px;box-shadow:0 4px 10px rgba(0,0,0,0.1)}
-.btn{background:#059669;color:white;padding:12px 22px;border:none;border-radius:8px;font-weight:bold;cursor:pointer}
-.warning{background:#fef3c7;border-left:5px solid #f59e0b;padding:15px;margin:20px auto;max-width:700px}
-.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.product{border:1px solid #d1fae5;border-radius:10px;padding:15px;text-align:center;background:#fff}
-.product h4{margin:10px 0}
-.price{color:#059669;font-weight:bold;font-size:18px}
-input{width:100%;padding:10px;margin:8px 0;border-radius:6px;border:1px solid #ccc;box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#0f172a;color:white}
+.top{background:#0f172a;padding:10px;text-align:center;color:#22c55e;font-weight:bold}
+.btns{display:flex;gap:10px;padding:10px;justify-content:center}
+.btn-g{flex:1;background:#22c55e;color:white;padding:14px;border:none;border-radius:30px;font-weight:bold}
+.btn-y{flex:1;background:#fbbf24;color:#111;padding:14px;border:none;border-radius:30px;font-weight:bold}
+.menu{display:flex;justify-content:space-around;background:#1e293b;padding:12px;border-radius:15px;margin:10px}
+.menu div{text-align:center;font-size:12px}
+.banner{background:#1e3a8a;margin:15px;padding:20px;border-radius:15px;text-align:center}
+.prod{background:white;color:#111;margin:10px;border-radius:15px;display:flex;overflow:hidden}
+.prod img{width:110px;height:90px;object-fit:cover}
+.prod-info{padding:10px;flex:1}
+.buy{background:#0f172a;color:white;border:none;padding:10px;width:100%;border-radius:20px;margin-top:6px;font-weight:bold}
+.bottom{position:fixed;bottom:0;width:100%;background:#1e293b;display:flex;justify-content:space-around;padding:10px 0}
+.bottom div{text-align:center;font-size:11px}
+a{color:inherit;text-decoration:none}
 </style>
 </head>
 <body>
-<header>
-<h1>CamInvest Hub</h1>
-<p>Education + Real Products - Buea</p>
-</header>
-
-<div class="hero">
-<h2>Learn. Save. Shop Smart.</h2>
-<p>Educational platform + Your real business products</p>
+<div class="top">● LIVE | REAL PRODUCTS | BUEA DELIVERY | 678657567</div>
+<div class="btns">
+<a style="flex:1" href="https://wa.me/237678657567?text=Hi, share my shop link"><button class="btn-g">WhatsApp Share</button></a>
+<button class="btn-y" onclick="navigator.clipboard.writeText(location.href);alert('Link Copied!')">COPY LINK</button>
+</div>
+<div class="menu">
+<div>💳<br>Recharge</div><div>🏧<br>Withdraw</div><div>📋<br>Tasks</div><div>👥<br>Team</div><div>📄<br>Terms</div>
+</div>
+<div class="banner">
+To: 678657567<br><b style="font-size:32px">REAL SHOP</b><br>All Orders via WhatsApp & MoMo
 </div>
 
-<div class="card">
-<h3>🛒 Our Products</h3>
-<div class="product-grid">
-<div class="product">
-<h4>📱 Phone Accessories</h4>
-<p>Chargers, Cables, Pouch</p>
-<div class="price">5,000 FCFA</div>
-<a href="https://wa.me/237000000000?text=Hi, I want to buy Phone Accessories"><button class="btn">Order on WhatsApp</button></a>
+<div class="prod">
+<img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=200">
+<div class="prod-info">
+<b>Rice 1kg - 200F</b><br><small>Fresh rice, delivery in Buea - Real Product</small>
+<a href="https://wa.me/237678657567?text=I want to BUY Rice 1kg 200F"><button class="buy">BUY 200F - Delivery</button></a>
 </div>
-<div class="product">
-<h4>👕 Fashion Wear</h4>
-<p>Quality T-shirts & Caps</p>
-<div class="price">8,500 FCFA</div>
-<a href="https://wa.me/237000000000?text=Hi, I want to buy Fashion Wear"><button class="btn">Order on WhatsApp</button></a>
-</div>
-<div class="product">
-<h4>📚 Training Course</h4>
-<p>Business & Saving Class</p>
-<div class="price">10,000 FCFA</div>
-<a href="https://wa.me/237000000000?text=Hi, I want to join the Training Course"><button class="btn">Join Now</button></a>
-</div>
-<div class="product">
-<h4>💼 Business Plan</h4>
-<p>We help you start business</p>
-<div class="price">15,000 FCFA</div>
-<a href="https://wa.me/237000000000?text=Hi, I need a Business Plan"><button class="btn">Order</button></a>
-</div>
-</div>
-<p style="margin-top:15px;font-size:13px;color:#666">*Change product names, prices, and WhatsApp number inside the code</p>
 </div>
 
-<div class="card">
-<h3>Savings Calculator (Learning)</h3>
-<input id="amount" type="number" value="10000" placeholder="Monthly Saving">
-<input id="months" type="number" value="12" placeholder="Months">
-<button class="btn" onclick="calc()">Calculate</button>
-<p id="result" style="font-weight:bold;margin-top:15px"></p>
+<div class="prod">
+<img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200">
+<div class="prod-info">
+<b>Shop Pack - 500F</b><br><small>Food stuff package - Real Product</small>
+<a href="https://wa.me/237678657567?text=I want to BUY Shop Pack 500F"><button class="buy">BUY 500F - Delivery</button></a>
+</div>
 </div>
 
-<div class="warning">
-<b>⚠️ Notice:</b> Products are real (order via WhatsApp). Investment calculator is simulation for learning only.
+<div class="prod">
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200">
+<div class="prod-info">
+<b>Phone Accessories - 1,000F</b><br><small>Charger + Cable - Real Product</small>
+<a href="https://wa.me/237678657567?text=I want to BUY Phone Accessories 1000F"><button class="buy">BUY 1000F - Delivery</button></a>
+</div>
 </div>
 
-<footer style="text-align:center;padding:20px;color:#666">© 2026 CamInvest Hub - Buea, Cameroon<br>WhatsApp: 237 000 000 000</footer>
+<div class="prod">
+<img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=200">
+<div class="prod-info">
+<b>Moto Delivery - 5,000F</b><br><small>Business starter package</small>
+<a href="https://wa.me/237678657567?text=I want Moto package 5000F"><button class="buy">BUY 5000F</button></a>
+</div>
+</div>
 
-<script>
-function calc(){
- let a=Number(document.getElementById('amount').value);
- let m=Number(document.getElementById('months').value);
- let total=a*m;
- document.getElementById('result').innerText="Total saved: "+total.toLocaleString()+" FCFA";
-}
-</script>
+<br><br><br>
+<div style="padding:15px;text-align:center;color:#94a3b8;font-size:12px">
+<b style="color:white">Why this is REAL?</b><br>
+No fake daily income. Customer pays, you deliver real product, you keep profit. This is real business that lasts.<br><br>
+To change number, replace 237678657567 in code with your number.
+</div>
+
+<div class="bottom">
+<div>🏠<br>Home</div><div>📦<br>Orders</div><div>📋<br>Tasks</div><div>👥<br>Team</div><div>👤<br>Me</div>
+</div>
 </body>
 </html>
