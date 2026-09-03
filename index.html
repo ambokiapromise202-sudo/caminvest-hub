@@ -1,7 +1,85 @@
-<div id="recharge" class="tab"><div class="card"><h3>💳 Deposit / Recharge</h3><p>MoMo: <b style="color:green">678657567</b> - GREEN INVESTMENT</p>
-<input id="depAmount" type="number" placeholder="Amount 500 - 1000000" oninput="updateDial()">
-<p><a id="dialBtn" href="#" style="display:inline-block;background:#ffcc00;color:#111;padding:12px 20px;border-radius:25px;text-decoration:none;font-weight:bold;width:100%;text-align:center;box-sizing:border-box">📞 OPEN MoMo DIALER</a></p>
-<input id="depId" placeholder="After paying, enter MoMo Transaction ID">
-<button class="buy" onclick="deposit()">✅ I Have Paid - Submit</button>
-<small>Step 1: Enter amount above → Click dialer → Pay on your phone → Copy Tx ID → Enter here</small>
-</div></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GREEN INVESTMENT - Buea Palm Oil</title>
+<style>
+body{margin:0;font-family:Arial;background:#0f172a;color:white}
+.top{background:#052e16;padding:10px;text-align:center;color:#22c55e;font-weight:bold;font-size:11px;letter-spacing:0.5px}
+.balance{background:linear-gradient(135deg,#052e16,#16a34a);margin:12px;padding:20px;border-radius:18px;border:1px solid #22c55e}
+.balance h2{margin:8px 0;font-size:34px}
+.btns{display:flex;gap:10px;margin-top:12px}
+.btn{flex:1;padding:12px;border:none;border-radius:25px;font-weight:bold;cursor:pointer}
+.btn-re{background:white;color:#052e16}.btn-wd{background:#fbbf24;color:#111}
+.nav{display:flex;justify-content:space-around;background:#1e293b;margin:0 12px;padding:10px;border-radius:12px}
+.nav div{text-align:center;font-size:11px;cursor:pointer}
+.card{background:white;color:#111;margin:12px;border-radius:15px;padding:14px;box-shadow:0 4px 10px rgba(0,0,0,0.2)}
+.prod{display:flex;gap:10px;align-items:center} .prod img{width:90px;height:80px;border-radius:10px;object-fit:cover;background:#eee}
+.buy{width:100%;background:#052e16;color:white;border:none;padding:12px;border-radius:25px;margin-top:8px;font-weight:bold;cursor:pointer}
+input{width:100%;padding:11px;margin:6px 0;border-radius:10px;border:1px solid #ccc;box-sizing:border-box}
+.tab{display:none}.tab.active{display:block}
+.order-item{background:#f0fdf4;padding:10px;border-radius:10px;margin:6px 0;border-left:4px solid #16a34a;color:#111;font-size:13px}
+.badge{background:#dcfce7;color:#14532d;padding:3px 8px;border-radius:10px;font-size:10px;font-weight:bold}
+.dial{display:block;background:#ffcc00;color:#111;padding:13px;text-align:center;border-radius:25px;text-decoration:none;font-weight:bold;margin:8px 0}
+.bottom{position:fixed;bottom:0;width:100%;background:#1e293b;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #334155}
+.bottom div{text-align:center;font-size:11px;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="top">🌿 GREEN INVESTMENT LTD | BUEA PALM OIL - REAL | MoMo: 678657567</div>
+
+<div class="balance">
+<div style="display:flex;justify-content:space-between"><span>🌿 Green Balance</span><span style="background:#22c55e;color:#052e16;padding:3px 9px;border-radius:12px;font-size:11px;font-weight:bold">500F - 1M</span></div>
+<h2 id="bal">0 FCFA</h2>
+<small>Real farm production • Profit after sales cycle</small>
+<div class="btns">
+<button class="btn btn-re" onclick="showTab('recharge')">💳 Recharge</button>
+<button class="btn btn-wd" onclick="showTab('withdraw')">🏧 Withdraw</button>
+</div>
+</div>
+
+<div class="nav">
+<div onclick="showTab('home')">🌴<br>Invest</div><div onclick="showTab('orders')">📦<br>Orders</div><div onclick="showTab('recharge')">💳<br>Deposit</div><div onclick="showTab('team')">👥<br>Team</div><div onclick="showTab('admin')">🔐<br>Admin</div>
+</div>
+
+<div id="home" class="tab active">
+<div class="card" style="background:#f0fdf4;border:1px solid #22c55e"><b>🌿 GREEN INVESTMENT - From 500F to 1,000,000F</b><br><small>We buy palm fruits from Buea farmers → Process to oil → Sell. You invest from 500F. Profit shared after 30-90 days sales cycle. Founder bonus available. Real business, real oil.</small></div>
+
+<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1582284540020-8acbe03f4924?w=200"><div><b>Starter 500F</b> <span class="badge">MIN 500F</span><br><small>2.5L production • Est. profit after 30 days</small><br><button class="buy" onclick="invest(500,'Starter 500F')">INVEST 500F</button></div></div></div>
+<div class="card"><div class="prod"><img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=200"><div><b>Starter Plus 1,000F</b> <span class="badge">POPULAR</span><br><small>5L production • Est. profit after 30 days</small><br><button class="buy" onclick="invest(1000,'Starter 1000F')">INVEST 1,000F</button></div></div></div>
+<div class="card"><div class="prod"><img src="https://images.pexels.com/photos/1482803/pexels-photo-1482803.jpeg?w=200"><div><b>Grower 10,000F</b><br><small>50L • Est. profit after 30 days</small><br><button class="buy" onclick="invest(10000,'Grower 10K')">INVEST 10,000F</button></div></div></div>
+<div class="card"><div class="prod"><img src="https://images.pexels.com/photos/2550908/pexels-photo-2550908.jpeg?w=200"><div><b>Partner 100K - 1,000,000F</b><br><small>500L-5000L • 90 days • Contract + Farm visit</small><br><button class="buy" onclick="invest(100000,'Partner 100K-1M')">INVEST 100K - 1M</button></div></div></div>
+</div>
+
+<div id="recharge" class="tab"><div class="card"><h3>💳 Deposit / Recharge - 500F to 1M</h3><p>Send to <b style="color:green">678657567</b> - GREEN INVESTMENT</p><input id="depAmount" type="number" placeholder="Enter Amount 500 - 1000000" oninput="updateDial()"><a id="dialBtn" class="dial" href="tel:*126*1*678657567*500%23">📞 OPEN MoMo DIALER TO PAY</a><input id="depId" placeholder="Enter MoMo Transaction ID after paying"><button class="buy" onclick="deposit()">✅ CONFIRM DEPOSIT</button><small>1. Type amount → 2. Click dialer → 3. Pay → 4. Paste Tx ID → 5. Confirm. Balance updates + Admin notified.</small></div></div>
+
+<div id="withdraw" class="tab"><div class="card"><h3>🏧 Withdraw</h3><p>Available: <b id="bal2">0 FCFA</b></p><input id="wdAmount" type="number" placeholder="Amount to withdraw"><input id="wdMomo" placeholder="Your MoMo Number for payout"><button class="buy" style="background:#fbbf24;color:#111" onclick="withdraw()">REQUEST WITHDRAW</button><small>Request goes to Admin WhatsApp. Payout after verifying sales. You can approve in Admin tab.</small></div></div>
+
+<div id="orders" class="tab"><div class="card"><h3>📦 My Orders</h3><div id="orderList"><small>No orders yet. Invest to see here.</small></div></div></div>
+
+<div id="team" class="tab"><div class="card"><h3>👥 Team - Invite Bonus</h3><input id="refLink" readonly><button class="buy" onclick="copyRef()">COPY INVITE LINK</button><small>Share link. Earn 5% when friend deposits.</small></div></div>
+
+<div id="admin" class="tab"><div class="card"><h3>🔐 Admin Panel</h3><input id="adminPass" type="password" placeholder="Password (green123)"><button class="buy" onclick="unlockAdmin()">Unlock Orders</button><div id="adminPanel" style="display:none"><h4>All Investor Orders:</h4><div id="allOrders"></div><button class="buy" style="background:#dc2626;margin-top:10px" onclick="clearAll()">Clear All</button></div></div></div>
+
+<br><br><br><br>
+<div class="bottom"><div onclick="showTab('home')">🏠<br>Home</div><div onclick="showTab('orders')">📦<br>Orders</div><div onclick="showTab('recharge')">💳<br>Recharge</div><div onclick="showTab('team')">👥<br>Team</div><div onclick="showTab('admin')">🔐<br>Admin</div></div>
+
+<script>
+let balance=parseInt(localStorage.getItem('greenBal')||0);
+let orders=JSON.parse(localStorage.getItem('greenOrders')||'[]');
+function updateBal(){document.getElementById('bal').innerText=balance.toLocaleString()+' FCFA';document.getElementById('bal2').innerText=balance.toLocaleString()+' FCFA';localStorage.setItem('greenBal',balance);renderOrders()}
+function showTab(id){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active')}
+function invest(amt,name){let o={type:'INVEST',name:name,amount:amt,time:new Date().toLocaleString(),status:'Pending Deposit'};orders.unshift(o);localStorage.setItem('greenOrders',JSON.stringify(orders));renderOrders();alert(name+' selected! Go to Deposit, enter amount, open dialer.');showTab('recharge');document.getElementById('depAmount').value=amt;updateDial()}
+function updateDial(){let a=document.getElementById('depAmount').value||500;document.getElementById('dialBtn').href='tel:*126*1*678657567*'+a+'%23';document.getElementById('dialBtn').innerText='📞 DIAL *126*1*678657567*'+a+'#'}
+function deposit(){let a=document.getElementById('depAmount').value;let id=document.getElementById('depId').value;if(!a||!id){alert('Enter amount and Tx ID');return}if(parseInt(a)<500){alert('Min 500F');return}let o={type:'DEPOSIT',name:'MoMo Deposit',amount:parseInt(a),tx:id,time:new Date().toLocaleString(),status:'Verified'};orders.unshift(o);balance+=parseInt(a);localStorage.setItem('greenOrders',JSON.stringify(orders));updateBal();window.open('https://wa.me/237678657567?text=GREEN DEPOSIT: '+a+'F Tx:'+id,'_blank');alert('Deposit confirmed! '+a+'F added.');showTab('orders')}
+function withdraw(){let a=document.getElementById('wdAmount').value;let m=document.getElementById('wdMomo').value;if(!a||!m){alert('Enter amount and MoMo');return}if(parseInt(a)>balance){alert('Low balance');return}window.open('https://wa.me/237678657567?text=GREEN WITHDRAW: '+a+'F to '+m,'_blank');alert('Withdraw request sent to Admin!')}
+function renderOrders(){let h='';orders.forEach(o=>{h+=`<div class="order-item"><b>${o.type}: ${o.name}</b> - ${o.amount.toLocaleString()}F<br><small>${o.time} | ${o.status} ${o.tx?'| Tx:'+o.tx:''}</small></div>`});if(h){document.getElementById('orderList').innerHTML=h;document.getElementById('allOrders').innerHTML=h}}
+function copyRef(){navigator.clipboard.writeText(document.getElementById('refLink').value);alert('Link copied!')}
+function unlockAdmin(){if(document.getElementById('adminPass').value==='green123'){document.getElementById('adminPanel').style.display='block';renderOrders()}else alert('Wrong password')}
+function clearAll(){if(confirm('Delete all data?')){localStorage.clear();location.reload()}}
+document.getElementById('refLink').value=location.origin+'/?ref=GREEN'+Math.floor(Math.random()*9999);
+updateBal();updateDial();
+</script>
+</body>
+</html>
