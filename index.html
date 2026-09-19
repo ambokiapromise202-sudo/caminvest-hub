@@ -1,70 +1,7 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GREEN DATA - Cheapest Data in Cameroon</title>
-<style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#f5f7f5}.top{background:#0a9a2b;color:white;padding:12px 15px;display:flex;justify-content:space-between}.balance{background:linear-gradient(135deg,#0a9a2b,#7ac74f);color:white;padding:20px;border-radius:15px;margin:10px}.card{background:white;margin:10px;border-radius:12px;padding:15px}.btn-green{background:#0a9a2b;color:white;border:none;padding:12px;border-radius:8px;width:100%;font-weight:bold}input{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;margin:8px 0}</style>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-</head><body>
-<div class="top"><b>🟢 GREEN DATA</b><span>🇨🇲</span></div>
-<div class="balance"><p>Wallet Balance</p><h1><span id="bal">0</span> FCFA</h1><p>Referral: <span id="ref">0</span> FCFA</p></div>
-<div class="card"><h3>MTN Data</h3>
-<p>1GB - 1000F <button class="btn-green" onclick="buy(1000,'MTN 1GB')">BUY</button></p><br>
-<p>2GB - 1900F <button class="btn-green" onclick="buy(1900,'MTN 2GB')">BUY</button></p><br>
-<input id="momo" placeholder="Your MoMo number"><br>
-<input id="refcode" placeholder="Invite code (optional)">
-<button class="btn-green" onclick="withdraw()">Withdraw (Min 1000F - 18% fee)</button>
-<p id="msg"></p>
-</div>
-
-<script>
-// --- REPLACE THIS WITH YOUR FIREBASE CONFIG ---
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  databaseURL: "https://YOUR_PROJECT.firebaseio.com",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "123456",
-  appId: "1:123:web:abc"
-};
-// --- END CONFIG ---
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-let refBonus = 0;
-
-function buy(price,name){
- let momo=document.getElementById('momo').value;
- if(!momo){alert('Enter MoMo number');return;}
- // Save sale
- db.ref('sales').push({date:new Date().toLocaleString(), product:name, price:price, buyer:momo});
- // Give referral bonus to inviter if any
- let inviter = document.getElementById('refcode').value;
- if(inviter){
-   db.ref('bonuses/'+inviter).push({from:momo, amount:120});
- }
- alert('Send '+price+'F to MoMo [YOUR NUMBER]. We deliver in 5 mins. Receipt saved.');
-}
-
-function withdraw(){
- if(refBonus < 1000){ alert('Need 1000F. You have '+refBonus); return; }
- let momo=document.getElementById('momo').value;
- let fee=Math.round(refBonus*0.18);
- let toPay=refBonus-fee;
- db.ref('withdraw_requests').push({
-   date: new Date().toLocaleString(),
-   momo: momo,
-   bonus: refBonus,
-   fee: fee,
-   toPay: toPay,
-   status: 'PENDING'
- });
- alert('Withdraw request sent: '+toPay+'F to '+momo+'. Wait 10 mins.');
- refBonus=0; document.getElementById('ref').innerText=refBonus;
-}
-
-// Load my bonus from Firebase
-function loadMyBonus(){
+<style>*{function loadMyBonus(){
  let momo=document.getElementById('momo').value;
  if(!momo) return;
  db.ref('bonuses/'+momo).on('value', snap=>{
