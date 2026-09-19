@@ -1,504 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MoMo Business Dashboard</title>
-
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
-body {
-  background: #f5f6f8;
-  color: #171717;
-}
-
-.header {
-  background: #ffcc00;
-  padding: 18px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-.logo {
-  font-size: 22px;
-  font-weight: 800;
-}
-
-.header small {
-  font-weight: bold;
-}
-
-.container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 20px;
-}
-
-.welcome {
-  margin-bottom: 20px;
-}
-
-.welcome h1 {
-  font-size: 26px;
-  margin-bottom: 6px;
-}
-
-.welcome p {
-  color: #666;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.06);
-}
-
-.card h3 {
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 10px;
-}
-
-.amount {
-  font-size: 25px;
-  font-weight: bold;
-}
-
-.accounts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  margin-bottom: 20px;
-}
-
-.account {
-  background: white;
-  border-radius: 18px;
-  padding: 20px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.06);
-}
-
-.account-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.account-name {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.badge {
-  background: #e9f8ed;
-  color: #16823b;
-  padding: 6px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.balance {
-  font-size: 30px;
-  font-weight: 800;
-  margin-bottom: 8px;
-}
-
-.number {
-  color: #777;
-  margin-bottom: 18px;
-}
-
-.buttons {
-  display: flex;
-  gap: 10px;
-}
-
-button {
-  border: none;
-  border-radius: 10px;
-  padding: 12px 15px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.primary {
-  background: #ffcc00;
-}
-
-.secondary {
-  background: #eeeeee;
-}
-
-.section {
-  background: white;
-  border-radius: 18px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.06);
-}
-
-.section h2 {
-  margin-bottom: 15px;
-}
-
-.table-wrap {
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 650px;
-}
-
-th, td {
-  padding: 13px;
-  border-bottom: 1px solid #eee;
-  text-align: left;
-}
-
-th {
-  color: #666;
-  font-size: 13px;
-}
-
-.success {
-  color: #159447;
-  font-weight: bold;
-}
-
-.pending {
-  color: #d18a00;
-  font-weight: bold;
-}
-
-.failed {
-  color: #d62828;
-  font-weight: bold;
-}
-
-.settings {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-}
-
-.setting {
-  border: 1px solid #eee;
-  border-radius: 12px;
-  padding: 15px;
-}
-
-.setting strong {
-  display: block;
-  margin-bottom: 6px;
-}
-
-.setting span {
-  color: #777;
-  font-size: 14px;
-}
-
-.notice {
-  background: #fff8d6;
-  border-left: 5px solid #ffcc00;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.55);
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-}
-
-.modal-box {
-  background: white;
-  width: 90%;
-  max-width: 430px;
-  padding: 25px;
-  border-radius: 18px;
-}
-
-.modal-box h2 {
-  margin-bottom: 15px;
-}
-
-.modal-box p {
-  color: #666;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-.modal-actions {
-  display: flex;
-  gap: 10px;
-}
-
-@media(max-width: 750px) {
-  .cards {
-    grid-template-columns: 1fr;
-  }
-
-  .accounts {
-    grid-template-columns: 1fr;
-  }
-
-  .settings {
-    grid-template-columns: 1fr;
-  }
-
-  .welcome h1 {
-    font-size: 22px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<header class="header">
-  <div class="logo">MoMo Business</div>
-  <small>Cameroon • XAF</small>
-</header>
-
-<main class="container">
-
-  <div class="welcome">
-    <h1>Business Dashboard</h1>
-    <p>Manage your two authorized MoMo business accounts.</p>
-  </div>
-
-  <div class="notice">
-    <strong>Safe demo mode</strong><br>
-    This dashboard is currently using demonstration data. Never enter your
-    MTN MoMo PIN, OTP or password into this website.
-  </div>
-
-  <section class="cards">
-    <div class="card">
-      <h3>Combined Balance</h3>
-      <div class="amount" id="combinedBalance">1,250,000 XAF</div>
-    </div>
-
-    <div class="card">
-      <h3>Today's Received</h3>
-      <div class="amount">185,000 XAF</div>
-    </div>
-
-    <div class="card">
-      <h3>Today's Transactions</h3>
-      <div class="amount">24</div>
-    </div>
-  </section>
-
-  <section class="accounts">
-
-    <div class="account">
-      <div class="account-top">
-        <div class="account-name">MoMo Account 1</div>
-        <div class="badge">CONNECTED</div>
-      </div>
-
-      <div class="balance">750,000 XAF</div>
-      <div class="number">•••• •••• 1201</div>
-
-      <div class="buttons">
-        <button class="primary" onclick="showInfo('Account 1')">
-          View Account
-        </button>
-
-        <button class="secondary" onclick="showInfo('Account 1 payment')">
-          Payment
-        </button>
-      </div>
-    </div>
-
-    <div class="account">
-      <div class="account-top">
-        <div class="account-name">MoMo Account 2</div>
-        <div class="badge">CONNECTED</div>
-      </div>
-
-      <div class="balance">500,000 XAF</div>
-      <div class="number">•••• •••• 7844</div>
-
-      <div class="buttons">
-        <button class="primary" onclick="showInfo('Account 2')">
-          View Account
-        </button>
-
-        <button class="secondary" onclick="showInfo('Account 2 payment')">
-          Payment
-        </button>
-      </div>
-    </div>
-
-  </section>
-
-  <section class="section">
-    <h2>Recent Transactions</h2>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Reference</th>
-            <th>Account</th>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>Status</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          <tr>
-            <td>MM-100241</td>
-            <td>Account 1</td>
-            <td>Payment received</td>
-            <td>50,000 XAF</td>
-            <td class="success">Successful</td>
-            <td>Today</td>
-          </tr>
-
-          <tr>
-            <td>MM-100240</td>
-            <td>Account 2</td>
-            <td>Payment received</td>
-            <td>25,000 XAF</td>
-            <td class="success">Successful</td>
-            <td>Today</td>
-          </tr>
-
-          <tr>
-            <td>MM-100239</td>
-            <td>Account 1</td>
-            <td>Payment</td>
-            <td>15,000 XAF</td>
-            <td class="pending">Pending</td>
-            <td>Today</td>
-          </tr>
-
-          <tr>
-            <td>MM-100238</td>
-            <td>Account 2</td>
-            <td>Payment received</td>
-            <td>40,000 XAF</td>
-            <td class="success">Successful</td>
-            <td>Yesterday</td>
-          </tr>
-
-          <tr>
-            <td>MM-100237</td>
-            <td>Account 1</td>
-            <td>Payment</td>
-            <td>10,000 XAF</td>
-            <td class="failed">Failed</td>
-            <td>Yesterday</td>
-          </tr>
-
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2>Account Configuration</h2>
-
-    <div class="settings">
-
-      <div class="setting">
-        <strong>Country</strong>
-        <span>Cameroon</span>
-      </div>
-
-      <div class="setting">
-        <strong>Currency</strong>
-        <span>XAF — Central African CFA franc</span>
-      </div>
-
-      <div class="setting">
-        <strong>API Environment</strong>
-        <span>Sandbox / Demo</span>
-      </div>
-
-      <div class="setting">
-        <strong>Authentication</strong>
-        <span>Server-side OAuth 2.0</span>
-      </div>
-
-    </div>
-  </section>
-
-</main>
-
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <h2 id="modalTitle">Information</h2>
-
-    <p id="modalText">
-      This feature will be connected to the official MTN MoMo API after
-      your sandbox credentials have been configured.
-    </p>
-
-    <div class="modal-actions">
-      <button class="primary" onclick="closeModal()">Close</button>
-    </div>
-  </div>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GREEN DATA - Cheapest Data in Cameroon</title>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#f5f7f5}.top{background:#0a9a2b;color:white;padding:12px 15px;display:flex;justify-content:space-between}.balance{background:linear-gradient(135deg,#0a9a2b,#7ac74f);color:white;padding:20px;border-radius:15px;margin:10px}.card{background:white;margin:10px;border-radius:12px;padding:15px}.btn-green{background:#0a9a2b;color:white;border:none;padding:12px;border-radius:8px;width:100%;font-weight:bold}input{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;margin:8px 0}</style>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+</head><body>
+<div class="top"><b>🟢 GREEN DATA</b><span>🇨🇲</span></div>
+<div class="balance"><p>Wallet Balance</p><h1><span id="bal">0</span> FCFA</h1><p>Referral: <span id="ref">0</span> FCFA</p></div>
+<div class="card"><h3>MTN Data</h3>
+<p>1GB - 1000F <button class="btn-green" onclick="buy(1000,'MTN 1GB')">BUY</button></p><br>
+<p>2GB - 1900F <button class="btn-green" onclick="buy(1900,'MTN 2GB')">BUY</button></p><br>
+<input id="momo" placeholder="Your MoMo number"><br>
+<input id="refcode" placeholder="Invite code (optional)">
+<button class="btn-green" onclick="withdraw()">Withdraw (Min 1000F - 18% fee)</button>
+<p id="msg"></p>
 </div>
 
 <script>
-
-function showInfo(type) {
-  document.getElementById("modalTitle").innerText = type;
-
-  document.getElementById("modalText").innerText =
-    "This is currently demo functionality. The next stage will connect this dashboard to the official MTN MoMo API using secure server-side credentials. Your MoMo PIN and OTP will never be stored here.";
-
-  document.getElementById("modal").style.display = "flex";
-}
-
-function closeModal() {
-  document.getElementById("modal").style.display = "none";
-}
-
-window.onclick = function(event) {
-  const modal = document.getElementById("modal");
-
-  if (event.target === modal) {
-    closeModal();
-  }
+// --- REPLACE THIS WITH YOUR FIREBASE CONFIG ---
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "123456",
+  appId: "1:123:web:abc"
 };
+// --- END CONFIG ---
 
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+let refBonus = 0;
+
+function buy(price,name){
+ let momo=document.getElementById('momo').value;
+ if(!momo){alert('Enter MoMo number');return;}
+ // Save sale
+ db.ref('sales').push({date:new Date().toLocaleString(), product:name, price:price, buyer:momo});
+ // Give referral bonus to inviter if any
+ let inviter = document.getElementById('refcode').value;
+ if(inviter){
+   db.ref('bonuses/'+inviter).push({from:momo, amount:120});
+ }
+ alert('Send '+price+'F to MoMo [YOUR NUMBER]. We deliver in 5 mins. Receipt saved.');
+}
+
+function withdraw(){
+ if(refBonus < 1000){ alert('Need 1000F. You have '+refBonus); return; }
+ let momo=document.getElementById('momo').value;
+ let fee=Math.round(refBonus*0.18);
+ let toPay=refBonus-fee;
+ db.ref('withdraw_requests').push({
+   date: new Date().toLocaleString(),
+   momo: momo,
+   bonus: refBonus,
+   fee: fee,
+   toPay: toPay,
+   status: 'PENDING'
+ });
+ alert('Withdraw request sent: '+toPay+'F to '+momo+'. Wait 10 mins.');
+ refBonus=0; document.getElementById('ref').innerText=refBonus;
+}
+
+// Load my bonus from Firebase
+function loadMyBonus(){
+ let momo=document.getElementById('momo').value;
+ if(!momo) return;
+ db.ref('bonuses/'+momo).on('value', snap=>{
+   let total=0;
+   snap.forEach(child=>{ total+=child.val().amount; });
+   refBonus=total;
+   document.getElementById('ref').innerText=total;
+ });
+}
+document.getElementById('momo').addEventListener('change', loadMyBonus);
 </script>
-
-</body>
-</html>
+</body></html>
