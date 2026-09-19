@@ -1,138 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>InvestPro — Investment Platform</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Precious Investment - 345 Days</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#0f172a;color:#fff;padding:12px}
+.header{background:linear-gradient(90deg,#f59e0b,#ef4444);padding:14px;border-radius:12px;text-align:center;font-weight:900}
+.card{background:#1e293b;border-radius:14px;padding:14px;margin:10px 0;border:1px solid #334155}
+.btn{width:100%;padding:14px;border:none;border-radius:10px;font-weight:800;cursor:pointer;margin-top:8px}
+.btn-gold{background:linear-gradient(90deg,#f59e0b,#fbbf24);color:#000}
+.vip-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vip{background:#0f172a;border:1px solid #475569;border-radius:12px;padding:10px;text-align:center}
+.vip.active{border-color:#f59e0b;background:#422006}
+input{width:100%;padding:12px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#fff;margin-top:8px}
+</style></head><body>
+<div class="header">PRECIOUS INVESTMENT<br><small>VIP 1-20 • 345 DAYS • MoMo 678657567 Precious</small></div>
 
-<body>
+<div class="card">
+Balance: <b id="bal">0</b> F | VIP: <b id="myvip">None</b> | Days: <b id="days">0</b>/345
+<button class="btn btn-gold" onclick="claimDaily()" style="margin-top:10px">Claim Daily Income</button>
+<p id="lastClaim" style="font-size:11px;color:#94a3b8;margin-top:6px"></p>
+</div>
 
-<header class="nav">
-  <a class="brand" href="#home">
-    Invest<span>Pro</span>
-  </a>
+<div class="card"><b>VIP 1-20 - 345 DAYS INVESTMENT</b>
+<div class="vip-grid" id="vipGrid"></div>
+</div>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#plans">VIP Plans</a>
-    <a href="#how">How It Works</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<div class="card">
+<b>Deposit to 678657567 Precious</b>
+<input id="depAmt" placeholder="Amount e.g. 1000">
+<input id="depId" placeholder="MoMo Transaction ID">
+<button class="btn btn-gold" onclick="deposit()">Submit Deposit</button>
+</div>
 
-  <div class="nav-actions">
-    <button class="btn ghost" onclick="openModal('loginModal')">
-      Login
-    </button>
+<div class="card">
+<b>Withdraw - 18% Fee</b>
+<input id="withAmt" placeholder="Amount">
+<input id="withMoMo" placeholder="Your MoMo number">
+<button class="btn btn-gold" onclick="withdraw()">Request Withdraw</button>
+</div>
 
-    <button class="btn" onclick="openModal('registerModal')">
-      Create Account
-    </button>
-  </div>
-</header>
-
-<main>
-
-<section id="home" class="hero">
-
-  <div class="hero-copy">
-
-    <div class="eyebrow">
-      SMARTER INVESTING • BUILT FOR GROWTH
-    </div>
-
-    <h1>
-      Put your money to work with a clearer plan.
-    </h1>
-
-    <p>
-      Explore investment opportunities, track your portfolio
-      and manage your account from one simple dashboard.
-    </p>
-
-    <div class="hero-actions">
-
-      <button
-        class="btn big"
-        onclick="document.querySelector('#plans').scrollIntoView({behavior:'smooth'})">
-        Explore Plans
-      </button>
-
-      <button
-        class="btn ghost big"
-        onclick="document.querySelector('#how').scrollIntoView({behavior:'smooth'})">
-        How It Works
-      </button>
-
-    </div>
-
-    <p class="notice">
-      Investment involves risk. Returns are not guaranteed.
-      Only invest money you can afford to lose.
-    </p>
-
-  </div>
-
-  <div class="hero-card">
-
-    <div class="glass">
-
-      <span>Portfolio Overview</span>
-
-      <strong>FCFA 125,000</strong>
-
-      <small>Example account balance</small>
-
-      <div class="chart">
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-      </div>
-
-      <div class="stats">
-
-        <span>
-          <b>+8.4%</b>
-          <small>Example return</small>
-        </span>
-
-        <span>
-          <b>30 days</b>
-          <small>Example term</small>
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section class="trust">
-
-  <div>
-    <b>Simple</b>
-    <span>Clear plan information</span>
-  </div>
-
-  <div>
-    <b>Secure</b>
-    <span>Account-focused controls</span>
-  </div>
-
-  <div>
-    <b>Transparent</b>
-    <span>Risk disclosures included</span>
-  </div>
-
-  <div>
-    <b>24/7</b>
-    <span
+<script>
+const vips=[
+ {id:1,price:1000,daily:345},{id:2,price:2500,daily:600},{id:3,price:5000,daily:800},
+ {id:4,price:10000,daily:1700},{id:5,price:20000,daily:2550},{id:6,price:50000,daily:10500},
+ {id:7,price:100000,daily:460},{id:8,price:200000,daily:920},{id:9,price:500000,daily:2300},
+ {id:10,price:1000000,daily:4600},{id:11,price:1500000,daily:6900},{id:12,price:2000000,daily:9200},
+ {id:13,price:3000000,daily:13800},{id:14,price:4000000,daily:18400},{id:15,price:5000000,daily:23000},
+ {id:16,price:7000000,daily:32200},{id:17,price:10000000,daily:46000},{id:18,price:12000000,daily:55200},
+ {id:19,price:14000000,daily:64400},{id:20,price:15000000,daily:69000}
+];
+let bal=parseInt(localStorage.getItem('bal')||0);
+let myvip=parseInt(localStorage.getItem('vip')||0);
+let daysLeft=parseInt(localStorage.getItem('daysLeft')||0);
+let lastClaim=localStorage.getItem('lastClaim')||'';
+function render(){
+ document.getElementById('bal').innerText=bal;
+ document.getElementById('myvip').innerText=myvip?'VIP'+myvip:'None';
+ document.getElementById('days').innerText=daysLeft;
+ document.getElementById('lastClaim').innerText=lastClaim?'Last claim: '+lastClaim:'No claim yet';
+ let h=''; vips.forEach(v=>{
+  h+=`<div class="vip ${myvip==v.id?'active':''}"><b>VIP${v.id}</b><br>${v.price}F<br><small>${v.daily}F/day<br>345 days<br>Total ${v.daily*345}F</small><br><button class="btn btn-gold" style="padding:6px;font-size:12px" onclick="buyVip(${v.id})">Buy</button></div>`;
+ }); document.getElementById('vipGrid').innerHTML=h;
+}
+function buyVip(id){
+ let v=vips.find(x=>x.id==id);
+ if(bal<v.price) return alert('Low balance. Deposit to 678657567 first');
+ bal-=v.price; myvip=id; daysLeft=345;
+ localStorage.setItem('bal',bal); localStorage.setItem('vip',myvip); localStorage.setItem('daysLeft',daysLeft);
+ render(); alert('VIP'+id+' Active for 345 days!');
+}
+function deposit(){
+ let amt=document.getElementById('depAmt').value, tx=document.getElementById('depId').value;
+ if(!amt||!tx) return alert('Enter amount and ID');
+ bal+=parseInt(amt); localStorage.setItem('bal',bal); render();
+ alert('Deposit '+amt+'F received! Transaction '+tx+' - Checked with 678657567 Precious');
+}
+function claimDaily(){
+ if(myvip==0) return alert('Buy VIP first');
+ if(daysLeft<=0) return alert('VIP expired after 345 days');
+ let today=new Date().toDateString();
+ if(lastClaim==today) return alert('Already claimed today. Come tomorrow');
+ let v=vips[myvip-1];
+ bal+=v.daily; daysLeft--; lastClaim=today;
+ localStorage.setItem('bal',bal); localStorage.setItem('daysLeft',daysLeft); localStorage.setItem('lastClaim',today);
+ render(); alert('Daily income +'+v.daily+'F! Days left: '+daysLeft);
+}
+function withdraw(){
+ let amt=parseInt(document.getElementById('withAmt').value), momo=document.getElementById('withMoMo').value;
+ if(!amt||!momo) return alert('Enter amount and MoMo');
+ if(amt>bal) return alert('Low balance');
+ let fee=Math.floor(amt*0.18), rec=amt-fee;
+ bal-=amt; localStorage.setItem('bal',bal); render();
+ alert('Withdraw request: You receive '+rec+'F (Fee '+fee+'F). Admin will send from 678657567 to '+momo);
+}
+render();
+</script>
+</body></html>
