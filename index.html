@@ -1,242 +1,84 @@
-<!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GREEN INVEST CAMEROON - Full App</title>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GREEN INVEST Cameroon - VIP 1-20 - 1K to 15M</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#f5f7f5}
-.header{background:#0a9a2b;color:white;padding:15px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0}
-.card{background:white;margin:10px;border-radius:12px;padding:15px;box-shadow:0 1px 3px #ddd}
-.btn{background:#0a9a2b;color:white;border:none;padding:12px;border-radius:8px;width:100%;font-weight:bold;margin:5px 0}
-.btn-gray{background:#eee;color:#333}
-input{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;margin:6px 0}
-.badge{background:#e8f5e9;color:#0a9a2b;padding:3px 8px;border-radius:10px;font-size:11px}
-.nav{position:fixed;bottom:0;width:100%;background:white;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #ddd}
-.page{display:none}.active{display:block}
-.video-box{background:#000;color:white;padding:20px;border-radius:10px;text-align:center;margin:10px 0}
+body{background:#f5f3ff;padding-bottom:80px}
+.header{background:linear-gradient(90deg,#4c1d95,#7c3aed);color:white;padding:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px}
+.vip{background:white;border-radius:12px;padding:8px;text-align:center;box-shadow:0 1px 3px #ddd;border:1px solid #ede9fe}
+.vip img{width:100%;height:70px;object-fit:cover;border-radius:8px}
+.price{font-weight:bold;color:#4c1d95;font-size:13px;margin:4px 0}
+.btn{background:#10b981;color:white;border:none;width:100%;padding:8px;border-radius:8px;font-weight:bold;margin-top:4px}
+.btn-w{background:#4c1d95;color:white;border:none;padding:12px;width:90%;margin:10px 5%;border-radius:10px;font-weight:bold}
+.card{background:white;margin:10px;padding:12px;border-radius:12px}
+.nav{position:fixed;bottom:0;width:100%;background:white;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd}
+.page{display:none}.show{display:block}
+input{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin:4px 0}
 </style>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 </head><body>
-
 <div class="header">
-<div>🟢 GREEN INVEST<br><small style="font-size:10px">Cameroon • FCFA Only</small></div>
-<div>🔔 <span onclick="showPage('login')">👤</span></div>
+<h2>VIP Program — Cameroun 🇨🇲</h2>
+<small>20 VIP Levels • 1,000 FCFA — 15,000,000 FCFA • FCFA Only</small><br>
+<small>Balance: <b><span id="bal">0</span> FCFA</b> • ID: 678657567</small>
 </div>
 
-<!-- LOGIN / REGISTER -->
-<div id="login" class="page active">
+<div id="home" class="page show">
+<div class="grid" id="vipGrid"></div>
 <div class="card">
-<h2>Login / Register</h2>
-<input id="phone" placeholder="Phone 6XX XXX XXX">
-<input id="pass" type="password" placeholder="Password">
-<input id="invite" placeholder="Invite code (optional)">
-<button class="btn" onclick="login()">Login / Register</button>
-<p style="font-size:12px;margin-top:10px">Currency: FCFA only • VIP Cameroon • No Canada</p>
-<p id="loginMsg"></p>
+<button class="btn-w" onclick="show('deposit')">Recharge / Deposit</button>
+<button class="btn-w" style="background:white;color:#4c1d95;border:1px solid #4c1d95" onclick="show('withdraw')">Withdrawal - 18% Fee Auto</button>
 </div>
 </div>
 
-<!-- HOME / PRODUCTS -->
-<div id="home" class="page">
-<div class="card" style="background:linear-gradient(135deg,#0a9a2b,#7ac74f);color:white">
-<p>Wallet Balance</p>
-<h1><span id="bal">0</span> FCFA</h1>
-<p>Referral: <span id="ref">0</span> F • Tasks Today: <span id="tasksDone">0</span>/5</p>
-<button class="btn" style="background:white;color:#0a9a2b" onclick="showPage('deposit')">Deposit</button>
-<button class="btn" style="background:white;color:#0a9a2b" onclick="showPage('withdraw')">Withdraw - Redrawer</button>
-</div>
+<div id="deposit" class="page"><div class="card"><h3>Recharge</h3><input id="dAmt" placeholder="Amount 1000-15000000"><input id="dMomo" placeholder="Your MoMo number"><button class="btn-w" onclick="dep()">Confirm Recharge</button></div></div>
 
-<div class="card">
-<h3>🇨🇲 VIP Cameroon - Data Products (Real)</h3>
-<p style="font-size:12px">Buy data once, get data instantly. No daily debt.</p>
+<div id="withdraw" class="page"><div class="card"><h3>Withdrawal</h3><p>Available: <span id="wBal">0</span> F • Min 1000F • Fee 18% You get 82%</p><input id="wMomo" placeholder="MoMo to receive"><button class="btn-w" onclick="wit()">Request</button><p id="wMsg"></p></div></div>
 
-<div style="border:1px solid #ddd;padding:10px;border-radius:10px;margin:10px 0">
-<b>🚗 VIP1 Car - MTN 1GB</b><br>
-Price: <b>1000F</b> • Valid 30 days<br>
-<small>Real product image: MTN data</small><br>
-<img src="https://i.imgur.com/8Km9tLL.png" style="width:60px" onerror="this.style.display='none'">
-<button class="btn" onclick="buyProduct('VIP1 Car MTN 1GB',1000)">Buy Now</button>
-</div>
+<div id="tasks" class="page"><div class="card"><h3>Daily Tasks - 5 TikTok</h3><div id="tList"></div></div></div>
 
-<div style="border:1px solid #ddd;padding:10px;border-radius:10px;margin:10px 0">
-<b>🚚 VIP2 Fleet - MTN 2GB</b><br>
-Price: <b>1900F</b><br>
-<button class="btn" onclick="buyProduct('VIP2 Fleet 2GB',1900)">Buy Now</button>
-</div>
-
-<div style="border:1px solid #ddd;padding:10px;border-radius:10px;margin:10px 0">
-<b>🏠 VIP3 House - 3.5GB</b><br>
-Price: <b>3000F</b><br>
-<button class="btn" onclick="buyProduct('VIP3 House 3.5GB',3000)">Buy Now</button>
-</div>
-</div>
-</div>
-
-<!-- DEPOSIT -->
-<div id="deposit" class="page">
-<div class="card">
-<h3>Deposit - MoMo</h3>
-<input id="depAmount" placeholder="Amount Min 1000F">
-<input id="depMomo" placeholder="Your MoMo number">
-<button class="btn" onclick="deposit()">I have sent MoMo</button>
-<p style="font-size:12px">Send to: <b>[YOUR MOMO NUMBER]</b><br>Name: GREEN BUSINESS<br>After sending, click button. Admin will confirm in 5 mins.</p>
-</div>
-</div>
-
-<!-- WITHDRAW -->
-<div id="withdraw" class="page">
-<div class="card">
-<h3>Withdraw - Redrawer</h3>
-<p>Balance: <span id="wRef">0</span>F • Min 1000F • Fee 18% automatic</p>
-<input id="wMomo" placeholder="MoMo to receive">
-<button class="btn" onclick="doWithdraw()">Request Withdraw</button>
-<p id="wMsg"></p>
-<p style="font-size:11px">Fee 18% = MoMo charges (2%) + service (16%). You receive 82%.</p>
-</div>
-<div class="card"><h4>History</h4><div id="wHistory" style="font-size:12px">No withdraw yet</div></div>
-</div>
-
-<!-- DAILY TASKS - 5 VIDEOS -->
-<div id="tasks" class="page">
-<div class="card">
-<h3>Daily Tasks - Watch 5 TikTok Videos</h3>
-<p style="font-size:12px">Watch our promo videos, earn 20F per video for marketing (max 100F/day). Not investment income.</p>
-
-<div class="video-box">
-<p>Video 1 - GREEN Promo</p>
-<!-- REPLACE SRC WITH YOUR TIKTOK EMBED LINK -->
-<video controls style="width:100%"><source src="" type="video/mp4">Put your TikTok link here - Video 1</video>
-<button class="btn btn-gray" onclick="completeTask(1)">I Watched - Claim 20F</button>
-</div>
-
-<div class="video-box"><p>Video 2</p><video controls style="width:100%"></video><button class="btn btn-gray" onclick="completeTask(2)">Watched - 20F</button></div>
-<div class="video-box"><p>Video 3</p><video controls style="width:100%"></video><button class="btn btn-gray" onclick="completeTask(3)">Watched - 20F</button></div>
-<div class="video-box"><p>Video 4</p><video controls style="width:100%"></video><button class="btn btn-gray" onclick="completeTask(4)">Watched - 20F</button></div>
-<div class="video-box"><p>Video 5</p><video controls style="width:100%"></video><button class="btn btn-gray" onclick="completeTask(5)">Watched - 20F</button></div>
-
-</div>
-</div>
-
-<!-- ADMIN LOGIN -->
-<div id="admin" class="page">
-<div class="card">
-<h3>Admin Login</h3>
-<input id="adminPass" type="password" placeholder="Admin password: 1234">
-<button class="btn" onclick="adminLogin()">Login</button>
-</div>
-<div id="adminPanel" style="display:none">
-<div class="card"><h3>Deposits Pending</h3><table id="depTable" style="width:100%;font-size:11px"></table></div>
-<div class="card"><h3>Withdraw Requests</h3><table id="adminWTable" style="width:100%;font-size:11px"></table></div>
-<div class="card"><h3>Sales</h3><table id="salesTable" style="width:100%;font-size:11px"></table></div>
-</div>
-</div>
+<div id="admin" class="page"><div class="card"><h3>Admin 1234</h3><input id="aPass" type="password" placeholder="Password"><button class="btn-w" onclick="aLogin()">Login</button><div id="aPanel" style="display:none"><div id="aData"></div></div></div></div>
 
 <div class="nav">
-<div onclick="showPage('home')">🏠<br><small>Home</small></div>
-<div onclick="showPage('tasks')">🎬<br><small>Tasks</small></div>
-<div onclick="showPage('deposit')">💳<br><small>Deposit</small></div>
-<div onclick="showPage('withdraw')">💰<br><small>Withdraw</small></div>
-<div onclick="showPage('admin')">⚙️<br><small>Admin</small></div>
+<div onclick="show('home')">🏠<br><small>Welcome</small></div>
+<div onclick="show('deposit')">💳<br><small>Funds</small></div>
+<div onclick="show('home')">👑<br><small>Level</small></div>
+<div onclick="show('tasks')">🏆<br><small>Stain</small></div>
+<div onclick="show('admin')">👤<br><small>Me</small></div>
 </div>
 
 <script>
-// --- PUT YOUR FIREBASE CONFIG HERE (same as before) ---
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  databaseURL: "https://YOUR_PROJECT.firebaseio.com",
-  projectId: "YOUR_PROJECT",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "123",
-  appId: "1:123:web:abc"
-};
-firebase.initializeApp(firebaseConfig);
-const db=firebase.database();
-// --- END CONFIG ---
-
-let currentUser = null;
-let bal=0, ref=0, tasks=0;
-
-function showPage(id){
- document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
- document.getElementById(id).classList.add('active');
- if(id=='admin') loadAdmin();
-}
-function login(){
- let phone=document.getElementById('phone').value;
- if(!phone){alert('Enter phone');return;}
- currentUser=phone;
- localStorage.setItem('green_user',phone);
- document.getElementById('loginMsg').innerText='Logged in as '+phone+' - Cameroon FCFA only';
- showPage('home');
- loadUserData();
-}
-function loadUserData(){
- if(!currentUser) currentUser=localStorage.getItem('green_user');
- if(!currentUser) return;
- db.ref('users/'+currentUser+'/balance').on('value',s=>{ bal=s.val()||0; document.getElementById('bal').innerText=bal; });
- db.ref('bonuses/'+currentUser).on('value',snap=>{
-   let total=0; snap.forEach(c=>{total+=c.val().amount;}); ref=total; document.getElementById('ref').innerText=total; document.getElementById('wRef').innerText=total;
- });
-}
-function buyProduct(name,price){
- let momo=prompt('Buy '+name+' for '+price+'F\nEnter number to receive data:');
- if(!momo) return;
- db.ref('sales').push({date:new Date().toLocaleString(), product:name, price:price, buyer:currentUser||momo, receiver:momo});
- alert('Send '+price+'F to [YOUR MOMO]. Receipt will be sent. Product: '+name);
-}
-function deposit(){
- let amt=document.getElementById('depAmount').value;
- let momo=document.getElementById('depMomo').value;
- if(!amt||!momo){alert('Enter amount and MoMo');return;}
- db.ref('deposits').push({date:new Date().toLocaleString(), amount:amt, momo:momo, user:currentUser, status:'PENDING'});
- alert('Deposit request '+amt+'F sent. Admin will confirm.');
-}
-function doWithdraw(){
- if(ref<1000){alert('Min 1000F needed. You have '+ref);return;}
- let momo=document.getElementById('wMomo').value;
- if(!momo){alert('Enter MoMo');return;}
- let fee=Math.round(ref*0.18); let toPay=ref-fee;
- db.ref('withdraw_requests').push({date:new Date().toLocaleString(), momo:momo, bonus:ref, fee:fee, toPay:toPay, user:currentUser, status:'PENDING'});
- db.ref('bonuses/'+currentUser).remove();
- alert('Withdraw '+toPay+'F requested (fee '+fee+'F).');
-}
-function completeTask(n){
- if(tasks>=5){alert('Already done 5 today');return;}
- db.ref('bonuses/'+currentUser).push({from:'Task'+n, amount:20});
- tasks++; document.getElementById('tasksDone').innerText=tasks;
- alert('Task '+n+' done +20F bonus added');
-}
-function adminLogin(){
- if(document.getElementById('adminPass').value=='1234'){
-   document.getElementById('adminPanel').style.display='block';
-   loadAdmin();
- }else alert('Wrong password');
-}
-function loadAdmin(){
- db.ref('deposits').on('value',snap=>{
-   let tbl=document.getElementById('depTable'); tbl.innerHTML='<tr><th>Date</th><th>User</th><th>Amount</th><th>Action</th></tr>';
-   snap.forEach(c=>{let r=c.val(); if(r.status=='PENDING') tbl.innerHTML+=`<tr><td>${r.date}</td><td>${r.momo}</td><td>${r.amount}</td><td><button onclick="approveDep('${c.key}','${r.user}',${r.amount})">Confirm</button></td></tr>`;});
- });
- db.ref('withdraw_requests').on('value',snap=>{
-   let tbl=document.getElementById('adminWTable'); tbl.innerHTML='<tr><th>Date</th><th>MoMo</th><th>ToPay</th><th>Fee</th><th>Action</th></tr>';
-   snap.forEach(c=>{let r=c.val(); if(r.status=='PENDING') tbl.innerHTML+=`<tr><td>${r.date}</td><td>${r.momo}</td><td>${r.toPay}</td><td>${r.fee}</td><td><button onclick="payW('${c.key}')">Paid</button></td></tr>`;});
- });
- db.ref('sales').on('value',snap=>{
-   let tbl=document.getElementById('salesTable'); tbl.innerHTML='<tr><th>Date</th><th>Product</th><th>Buyer</th></tr>';
-   snap.forEach(c=>{let r=c.val(); tbl.innerHTML+=`<tr><td>${r.date}</td><td>${r.product}</td><td>${r.receiver}</td></tr>`;});
- });
-}
-function approveDep(key,user,amount){
- db.ref('deposits/'+key).update({status:'PAID'});
- db.ref('users/'+user+'/balance').transaction(b=>(b||0)+parseInt(amount));
- alert('Deposit approved +'+amount);
-}
-function payW(key){
- if(confirm('Did you send MoMo?')){
-   db.ref('withdraw_requests/'+key).update({status:'PAID'});
- }
-}
-window.onload=()=>{ let u=localStorage.getItem('green_user'); if(u){currentUser=u; showPage('home'); loadUserData();}};
+let levels=[
+{price:1000,name:"VIP 1",desc:"Starter cashback 0.5%",img:"https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=200"},
+{price:5000,name:"VIP 2",desc:"Priority support",img:"https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200"},
+{price:15000,name:"VIP 3",desc:"Cashback 1%",img:"https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=200"},
+{price:30000,name:"VIP 4",desc:"Free transfers x5",img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=200"},
+{price:50000,name:"VIP 5",desc:"Cashback 1.5% Lounge",img:"https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=200"},
+{price:80000,name:"VIP 6",desc:"Fee waiver",img:"https://images.unsplash.com/photo-1525598912003-663126343e1f?w=200"},
+{price:120000,name:"VIP 7",desc:"Birthday reward",img:"https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=200"},
+{price:200000,name:"VIP 8",desc:"Insurance covered",img:"https://images.unsplash.com/photo-1589758438368-0ad531db3366?w=200"},
+{price:350000,name:"VIP 9",desc:"Cashback 2%",img:"https://images.unsplash.com/photo-1556740772-1a741367b93e?w=200"},
+{price:500000,name:"VIP 10",desc:"Airport Lounge",img:"https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=200"},
+{price:750000,name:"VIP 11",desc:"Invest bonus 1%",img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200"},
+{price:1000000,name:"VIP 12",desc:"24/7 Concierge",img:"https://images.unsplash.com/photo-1613977257365-aaae5a9817ff?w=200"},
+{price:1500000,name:"VIP 13",desc:"Savings +2.5% APY",img:"https://images.unsplash.com/photo-1610375461246-83df859d849d?w=200"},
+{price:2500000,name:"VIP 14",desc:"Zero FX fees",img:"https://images.unsplash.com/photo-1605106702734-205df224ecce?w=200"},
+{price:4000000,name:"VIP 15",desc:"Cashback 3%",img:"https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=200"},
+{price:5500000,name:"VIP 16",desc:"Business account",img:"https://images.unsplash.com/photo-1627123424574-724758594e93?w=200"},
+{price:7500000,name:"VIP 17",desc:"Priority loan",img:"https://images.unsplash.com/photo-1613977257592-527036a46100?w=200"},
+{price:9500000,name:"VIP 18",desc:"Wealth advisor",img:"https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=200"},
+{price:12000000,name:"VIP 19",desc:"Elite events access",img:"https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200"},
+{price:15000000,name:"VIP 20",desc:"Platinum All benefits",img:"https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?w=200"}
+];
+let bal=parseInt(localStorage.getItem('bal')||'0'); let deps=JSON.parse(localStorage.getItem('deps')||'[]'); let wits=JSON.parse(localStorage.getItem('wits')||'[]');
+function show(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));document.getElementById(id).classList.add('show'); if(id=='tasks') renderT();}
+function renderVIP(){let g=document.getElementById('vipGrid'); levels.forEach((l,i)=>{g.innerHTML+=`<div class="vip"><div style="background:#ede9fe;color:#4c1d95;font-size:10px;padding:2px 4px;border-radius:4px;display:inline-block">VIP ${i+1}</div><img src="${l.img}"><div style="font-size:12px;font-weight:bold">${l.name}</div><div class="price">${l.price.toLocaleString()} FCFA</div><div style="font-size:10px;color:gray">${l.desc}</div><button class="btn" onclick="join(${i})">Join</button></div>`;});}
+function renderT(){let t=document.getElementById('tList'); t.innerHTML=''; for(let i=1;i<=5;i++){t.innerHTML+=`<div style="background:#000;color:white;padding:12px;border-radius:10px;margin:6px 0;text-align:center">TikTok Video ${i}<br><button onclick="doTask()" style="margin-top:5px;padding:5px 10px;background:#10b981;border:none;border-radius:5px">Watched +50F</button></div>`;}}
+function doTask(){bal+=50; save(); alert('+50F');}
+function join(i){let num=prompt('Join '+levels[i].name+' '+levels[i].price+'F\nEnter phone to receive product:'); if(!num) return; deps.push({date:new Date().toLocaleString(),amt:levels[i].price,num:num,type:levels[i].name,status:'PENDING'}); localStorage.setItem('deps',JSON.stringify(deps)); alert('Request sent. Send '+levels[i].price+'F to YOUR MOMO');}
+function dep(){let a=document.getElementById('dAmt').value; let m=document.getElementById('dMomo').value; if(!a||!m){alert('Enter');return;} deps.push({date:new Date().toLocaleString(),amt:a,num:m,type:'Recharge',status:'PENDING'}); localStorage.setItem('deps',JSON.stringify(deps)); alert('Deposit '+a+'F pending');}
+function wit(){if(bal<1000){alert('Min 1000F you have '+bal);return;} let m=document.getElementById('wMomo').value; if(!m){alert('Enter MoMo');return;} let fee=Math.round(bal*0.18); let pay=bal-fee; wits.push({date:new Date().toLocaleString(),bonus:bal,fee:fee,pay:pay,num:m}); localStorage.setItem('wits',JSON.stringify(wits)); document.getElementById('wMsg').innerText='Request '+pay+'F to '+m+' Fee '+fee+'F'; bal=0; save();}
+function aLogin(){if(document.getElementById('aPass').value=='1234'){document.getElementById('aPanel').style.display='block'; document.getElementById('aData').innerHTML=deps.map((d,i)=>d.date+' '+d.type+' '+d.amt+'F '+d.num+' '+d.status+' <button onclick="deps['+i+'].status=\'PAID\';bal+=parseInt(deps['+i+'].amt);localStorage.setItem(\'deps\',JSON.stringify(deps));localStorage.setItem(\'bal\',bal);location.reload()">Confirm</button>').join('<br>')+'<hr>'+wits.map(w=>w.date+' '+w.pay+'F to '+w.num+' fee '+w.fee+'F').join('<br>');}else alert('Wrong');}
+function save(){localStorage.setItem('bal',bal); document.getElementById('bal').innerText=bal; document.getElementById('wBal').innerText=bal;}
+renderVIP(); save(); renderT();
 </script>
 </body></html>
