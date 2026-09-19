@@ -1,98 +1,157 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EMP USA</title>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EMP USA OFFICIAL</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#120b2a;color:#fff}
-.top{background:#0a061a;padding:12px;text-align:center;color:#fbbf24;font-weight:900}
+body{background:#0f0a2a;color:#fff;padding-bottom:80px}
+.top{background:#000;padding:12px;text-align:center;color:#ffcc00;font-weight:900;font-size:14px;position:sticky;top:0;z-index:99}
 .card{background:#fff;color:#000;margin:10px;border-radius:12px;padding:12px}
-.dark{background:#251a45;color:#fff;margin:10px;border-radius:12px;padding:12px;border:1px solid #3a2b65}
-.btn{width:100%;padding:12px;border:none;border-radius:10px;font-weight:900;margin-top:8px}
-.blue{background:#2f4bff;color:#fff}.gold{background:#fbbf24;color:#000}.green{background:#1faa59;color:#fff}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px}
-.vip{background:#fff;color:#000;border-radius:12px;padding:8px;text-align:center}
-.vip img{width:100%;height:80px;object-fit:cover;border-radius:8px}
-.topup{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}
-.topup div{background:#eef;padding:8px;text-align:center;border-radius:6px;font-size:11px;cursor:pointer;border:1px solid #ccc}
-.pay{border:1px solid #ddd;padding:10px;border-radius:10px;margin:6px 0;display:flex;gap:10px;align-items:center;cursor:pointer}
-.pay.active{border:2px solid #2f4bff;background:#eef0ff}
-.icon{width:40px;height:40px;background:#002080;color:#fff;display:flex;align-items:center;justify-content:center;border-radius:6px;font-weight:900;font-size:11px}
-.ussd{background:#000;color:#fbbf24;padding:12px;text-align:center;border-radius:8px;font-size:20px;font-weight:900;border:2px dashed #fbbf24;margin:10px 0}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#0a061a;display:flex;justify-content:space-around;padding:10px}
-.nav b{font-size:10px;cursor:pointer;text-align:center}
-.page{display:none}.page.show{display:block;padding-bottom:70px}
-input{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;margin-top:6px}
+.dark{background:#1e1640;color:#fff;margin:10px;border-radius:12px;padding:12px;border:1px solid #3a2b65}
+.btn{width:100%;padding:12px;border:none;border-radius:10px;font-weight:900;margin-top:8px;cursor:pointer}
+.blue{background:#2f4bff;color:#fff}.gold{background:#ffcc00;color:#000}.green{background:#00c853;color:#fff}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.vip{background:#fff;color:#000;border-radius:12px;padding:10px;text-align:center;border:2px solid #e0e0ff}
+.vip-img{width:100%;height:70px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:900;color:#fff}
+.topup{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+.topup div{background:#eee;color:#000;padding:8px;text-align:center;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid #ccc}
+.pay{border:1px solid #ddd;padding:10px;border-radius:10px;margin:6px 0;display:flex;gap:10px;align-items:center;cursor:pointer;background:#f9f9ff;color:#000}
+.pay.active{border:2px solid #2f4bff;background:#dde3ff}
+.icon{width:40px;height:40px;background:#002080;color:#fff;display:flex;align-items:center;justify-content:center;border-radius:6px;font-weight:900;font-size:10px}
+.ussd{background:#000;color:#ffcc00;padding:14px;text-align:center;border-radius:8px;font-size:20px;font-weight:900;border:2px dashed #ffcc00;margin:10px 0;word-break:break-all}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#000;display:flex;justify-content:space-around;padding:8px 0;z-index:99}
+.nav div{font-size:10px;text-align:center;opacity:0.6;cursor:pointer;color:#fff}
+.nav div.active{opacity:1;color:#ffcc00}
+.page{display:none}.page.show{display:block}
+input{width:100%;padding:11px;border:1px solid #ccc;border-radius:8px;margin-top:6px}
 </style></head><body>
+
 <div class="top">EMP USA OFFICIAL - USA Company - 345 DAYS</div>
 
-<div id="p1" class="page show">
-<div class="dark">Bal: <b id="b1">0 XAF</b> | VIP: <b id="v1">None</b> | Days: <b id="d1">0</b>/345<br><button class="btn gold" onclick="claim()">Claim Daily</button></div>
-<div class="grid2" id="vg"></div>
+<!-- WELCOME -->
+<div id="welcome" class="page show">
+<div class="dark">Bal: <b id="b1" style="color:#ffcc00">0 XAF</b> | VIP: <b id="v1">None</b> | Days: <b id="d1">0</b>/345<br><button class="btn gold" onclick="claim()">Claim Daily</button></div>
+<div class="dark" style="font-size:11px">👋 Welcome to EMP USA Company in USA - Invest 345 Days - VIP 1-9 from 1000F to 150,000F</div>
 </div>
 
-<div id="p2" class="page">
+<!-- FUNDS = VIP PRODUCTS -->
+<div id="funds" class="page">
+<div class="card" style="background:#ffcc00"><b>PRODUCTS VIP 1-9 - USA Company - 1000F to 150,000F</b><br><small>Tap Buy Now - 345 Days Contract</small></div>
+<div class="grid2" id="vipGrid"></div>
+</div>
+
+<!-- DEPOSIT = OWN PLACE LIKE YOUR IMAGE -->
+<div id="deposit" class="page">
 <div class="card">
-<div class="blue" style="padding:10px;border-radius:8px;text-align:center;font-weight:900">Bank card</div>
-<p style="margin-top:10px">EMP account balance <span style="float:right;color:#2f4bff">XAF</span></p>
-<p style="margin-top:10px"><b>Top-up amount</b></p>
-<input id="amt" type="number" placeholder="Please enter the top-up amount" oninput="updateCall()">
+<div style="background:#2f4bff;color:#fff;text-align:center;padding:10px;border-radius:8px;font-weight:900">Bank card</div>
+<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #eee"><span>EMP account balance</span><b style="color:#2f4bff" id="b2">0 XAF</b></div>
+<b>Top-up amount - XAF</b>
+<input id="amt" type="number" placeholder="Please enter the top-up amount" oninput="updateUSSD()">
 <div class="topup">
-<div onclick="setA(1000)">XAF1000</div><div onclick="setA(5000)">XAF5000</div><div onclick="setA(25000)">XAF25000</div><div onclick="setA(80000)">XAF80000</div>
-<div onclick="setA(160000)">XAF160000</div><div onclick="setA(320000)">XAF320000</div><div onclick="setA(600000)">XAF600000</div><div onclick="setA(150000)">XAF150000</div>
+<div onclick="setAmt(1000)">XAF1000</div><div onclick="setAmt(5000)">XAF5000</div><div onclick="setAmt(25000)">XAF25000</div><div onclick="setAmt(80000)">XAF80000</div>
+<div onclick="setAmt(160000)">XAF160000</div><div onclick="setAmt(320000)">XAF320000</div><div onclick="setAmt(600000)">XAF600000</div><div onclick="setAmt(150000)">XAF150000</div>
 </div>
 
-<b>3 Payment Methods:</b>
-<div class="pay" id="pm1" onclick="pick(1)"><div class="icon">EMP</div><div><b>empali-04</b><br><small>Charging range: 1000-1000000 - MTN MoMo Precious 678657567</small></div></div>
-<div class="pay" id="pm2" onclick="pick(2)"><div class="icon" style="background:#ff6a00">EMP</div><div><b>empali-03</b><br><small>Charging range: 1000-1000000 - Orange 678657567</small></div></div>
-<div class="pay" id="pm3" onclick="pick(3)"><div class="icon" style="background:#0a8">USDT</div><div><b>USDT-TRC20</b><br><small>Highly recommended - 5-50000 - Bank USA</small></div></div>
+<b>3 Payment Methods - Select One:</b>
+<div class="pay" id="pm1" onclick="pick(1)"><div class="icon">MTN</div><div><b>empali-04 - MTN MoMo</b><br><small>Charging range: 1000-1000000 - Receiver: Precious 678657567</small></div></div>
+<div class="pay" id="pm2" onclick="pick(2)"><div class="icon" style="background:#ff6a00">OM</div><div><b>empali-03 - Orange Money</b><br><small>Charging range: 1000-1000000 - 678657567</small></div></div>
+<div class="pay" id="pm3" onclick="pick(3)"><div class="icon" style="background:#00a86b">USDT</div><div><b>empyinghui-06 / USDT-TRC20</b><br><small>Highly recommended - USA Company</small></div></div>
 
 <div id="detail" style="display:none">
-<div class="ussd" id="ussd">*126*9*678657567*amount#</div>
-<a id="callBtn" href="#"><button class="btn green">📞 TAP TO CALL - DIAL *126*9*678657567*amount#</button></a>
-<input id="tx" placeholder="Transaction ID after paying">
-<button class="btn blue" onclick="sendDep()">Submit Deposit - Wait Admin</button>
+<div class="ussd" id="ussdText">*126*9*678657567*amount#</div>
+<a id="callLink" href="tel:*126*9*678657567*1000%23"><button class="btn green">📞 CLICK TO CALL - *126*9*678657567*amount#</button></a>
+<p style="font-size:10px;text-align:center;margin:5px 0">When you put amount, button will auto-update. Tap it, it opens phone dialer directly.</p>
+<input id="txid" placeholder="Enter Transaction ID from MoMo SMS">
+<button class="btn blue" onclick="submitDep()">Submit Deposit - Wait Admin Approval</button>
 </div>
 </div>
 </div>
 
-<div id="p3" class="page">
-<div class="card">Balance: <b id="b3">0 XAF</b><br>
-<input id="wamt" type="number" placeholder="Withdraw amount"><input id="wmo" placeholder="Your MoMo number">
-<button class="btn blue" onclick="sendWith()">Request Withdraw - Admin Approve</button>
-<div style="font-size:11px;margin-top:6px">Will be sent from Precious 678657567. 18% fee.</div></div>
+<!-- WITHDRAW = OWN PLACE -->
+<div id="withdraw" class="page">
+<div class="card">
+<div style="background:#2f4bff;color:#fff;text-align:center;padding:10px;border-radius:8px">Withdrawal - Own Place</div>
+Balance: <b id="b3">0 XAF</b><br>
+<input id="wamt" type="number" placeholder="Withdraw amount XAF" oninput="updateW()">
+<input id="wmo" placeholder="Your MoMo number">
+<div style="font-size:12px;margin-top:6px">Fee 18%: <span id="fee">0</span> | You get: <span id="get">0</span></div>
+<button class="btn blue" onclick="submitWith()">Request Withdraw - Admin Approval</button>
+<div style="font-size:11px;margin-top:6px">Paid from: Precious - 678657567</div>
+</div>
 </div>
 
-<div id="p4" class="page">
-<div class="dark">ID: <b id="myid"></b><br>Bal: <b id="b4">0</b> | VIP: <b id="v4">None</b><br><div id="ref" style="background:#120b2a;border:1px dashed #fbbf24;padding:6px;font-size:11px;word-break:break-all;margin-top:6px"></div><button class="btn gold" onclick="copyR()">Copy Invite Link</button></div>
-<div class="card"><b>Admin - Pass 678657567</b><input id="apass" placeholder="Password"><button class="btn blue" onclick="openA()">Open Admin</button><div id="ad" style="font-size:11px"></div></div>
-<div class="card"><b>History</b><div id="his" style="font-size:11px"></div></div>
+<!-- ME -->
+<div id="me" class="page">
+<div class="dark" style="text-align:center">ID: <b id="myid"></b><br>Bal: <b id="b4" style="color:#ffcc00">0 XAF</b> | VIP: <b id="v4">None</b> | Days: <b id="d4">0</b>/345 | Earned: <b id="earn">0</b><br>
+<div id="reflink" style="font-size:10px;border:1px dashed #ffcc00;padding:6px;margin-top:6px;word-break:break-all"></div>
+<button class="btn gold" style="margin-top:6px" onclick="copyR()">Copy Invite Link</button>
+</div>
+<div class="card"><b>ADMIN - Pass 678657567</b><br><input id="apass" placeholder="Enter password"><button class="btn blue" onclick="openAdmin()">Open Admin - Approve Deposits & Withdrawals</button><div id="adminArea" style="font-size:11px;margin-top:8px"></div></div>
+<div class="card"><b>History</b><div id="hist" style="font-size:11px"></div></div>
 </div>
 
 <div class="nav">
-<b onclick="show('p1')">🏠<br>Welcome</b><b onclick="show('p1')">📋<br>Funds</b><b onclick="show('p2')" style="color:#fbbf24">💳<br>Deposit</b><b onclick="show('p3')">💸<br>Withdraw</b><b onclick="show('p4')">👤<br>Me</b>
+<div id="navWelcome" class="active" onclick="go('welcome')">🏠<br>Welcome</div>
+<div id="navFunds" onclick="go('funds')">📋<br>Funds</div>
+<div id="navDeposit" onclick="go('deposit')">💳<br>Deposit</div>
+<div id="navWithdraw" onclick="go('withdraw')">💸<br>Withdraw</div>
+<div id="navMe" onclick="go('me')">👤<br>Me</div>
 </div>
 
 <script>
 let vips=[
-{id:1,p:1000,d:345,n:"VIP1 USA Starter",img:"https://picsum.photos/seed/vip1usa/300/200"},
-{id:2,p:5000,d:800,n:"VIP2 USA Basic",img:"https://picsum.photos/seed/vip2usa/300/200"},
-{id:3,p:10000,d:1600,n:"VIP3 USA Pro",img:"https://picsum.photos/seed/vip3usa/300/200"},
-{id:4,p:20000,d:3200,n:"VIP4 Business USA",img:"https://picsum.photos/seed/vip4usa/300/200"},
-{id:5,p:40000,d:6400,n:"VIP5 Gold USA",img:"https://picsum.photos/seed/vip5usa/300/200"},
-{id:6,p:70000,d:12000,n:"VIP6 Platinum USA",img:"https://picsum.photos/seed/vip6usa/300/200"},
-{id:7,p:100000,d:22500,n:"VIP7 Diamond USA",img:"https://picsum.photos/seed/vip7usa/300/200"},
-{id:8,p:120000,d:32500,n:"VIP8 Elite USA",img:"https://picsum.photos/seed/vip8usa/300/200"},
-{id:9,p:150000,d:45500,n:"VIP9 Unlimited USA",img:"https://picsum.photos/seed/vip9usa/300/200"}
+{id:1,p:1000,d:5,n:"VIP1 Starter USA",c:"#1e3a8a",e:"🏢"},
+{id:2,p:5000,d:25,n:"VIP2 Basic USA",c:"#065f46",e:"🏦"},
+{id:3,p:10000,d:52,n:"VIP3 Pro USA",c:"#7c2d12",e:"🏬"},
+{id:4,p:20000,d:105,n:"VIP4 Business USA",c:"#581c87",e:"🏗️"},
+{id:5,p:40000,d:210,n:"VIP5 Gold USA",c:"#9d174d",e:"🏛️"},
+{id:6,p:70000,d:370,n:"VIP6 Platinum USA",c:"#0e7490",e:"🌆"},
+{id:7,p:100000,d:530,n:"VIP7 Diamond USA",c:"#4338ca",e:"🗽"},
+{id:8,p:120000,d:640,n:"VIP8 Elite USA",c:"#be123c",e:"🇺🇸"},
+{id:9,p:150000,d:800,n:"VIP9 Unlimited USA",c:"#000",e:"💎"}
 ];
-let bal=parseInt(localStorage.getItem('bal')||0),vip=parseInt(localStorage.getItem('vip')||0),days=parseInt(localStorage.getItem('days')||0),last=localStorage.getItem('last')||'',code=localStorage.getItem('code')||('88'+Math.floor(100000+Math.random()*900000));localStorage.setItem('code',code);
-let deps=JSON.parse(localStorage.getItem('deps')||'[]'),withs=JSON.parse(localStorage.getItem('withs')||'[]');
+let bal=Number(localStorage.getItem('bal')||0),vip=Number(localStorage.getItem('vip')||0),days=Number(localStorage.getItem('days')||0),last=localStorage.getItem('last')||'',total=Number(localStorage.getItem('total')||0),code=localStorage.getItem('code')||('88'+Math.floor(100000+Math.random()*900000));
+localStorage.setItem('code',code);
+let deps=JSON.parse(localStorage.getItem('deps')||'[]'),),withs=JSON.parse(localStorage.getItem('withs')||'[]');
 let curP=0,curA=0;
-function show(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));document.getElementById(id).classList.add('show')}
-function setA(a){document.getElementById('amt').value=a;curA=a;updateCall()}
-function updateCall(){let a=document.getElementById('amt').value||curA;if(!a)return;curA=a;let ussd=`*126*9*678657567*${a}#`;document.getElementById('ussd').innerText=ussd;document.getElementById('callBtn').href=`tel:*126*9*678657567*${a}%23`;if(curP>0)document.getElementById('detail').style.display='block'}
-function pick(n){curP=n;document.querySelectorAll('.pay').forEach(p=>p.classList.remove('active'));document.getElementById('pm'+n).classList.add('active');updateCall();document.getElementById('detail').style.display='block'}
-function render(){['b1','b3','b4'].forEach(id=>{let el=document.getElementById(id);if(el)el.innerText=bal+' XAF'});document.getElementById('v1').innerText=vip?'VIP'+vip:'None';document.getElementById('v4').innerText=vip?'VIP'+vip:'None';document.getElementById('d1').innerText=days;document.getElementById('myid').innerText=code;document.getElementById('ref').innerText=location.href.split('?')[0]+'?ref='+code;let h='';vips.forEach(v=>{h+=`<div class="vip"><img src="${v.img}"><b>${v.n}</b><br><span style="background:#2f4bff;color:#fff;padding:2px 6px;border-radius:6px;font-size:11px">VIP${v.id} ${v.p}F</span><br><small>${v.d}F/day x345</small><br><button class="btn blue" style="padding:6px" onclick="buy(${v.id})">Buy</button></div>`});document.getElementById('vg').innerHTML=h;let hi='';deps.forEach(d=>hi+=`Dep ${d.a}F ${d.s}<br>`);withs.forEach(w=>hi+=`With ${w.a}F ${w.s}<br>`);document.getElementById('his').innerHTML=hi||'No history'}
-function buy(id){let v=vips.find(x=>x.id==id);if(bal<v.p){alert('Low balance! Deposit *126*9*678657567*'+v.p+'#');show('p2');return}bal-=v.p;vip=id;days=345;localStorage.setItem('bal',bal);localStorage.setItem('vip',vip);localStorage.setItem('days',days);render();alert('VIP'+id+' active 345 days')}
-function sendDep(){let a=document.getElementById('amt').value,tx=document.getElementById('tx').value;if(!a||!tx)return alert('Enter amount and TxID');if(!curP)return alert('Select payment method 1,2,3');deps.push({a:parseInt(a),tx:tx,s:'Pending Admin'});localStorage.setItem('deps',JSON.stringify(deps));render();alert('Deposit '+a+'F via method '+curP+' to Precious 678657567 pending admin')}
-function sendWith(){let a=parseInt(document.getElementById('wamt').value),mo=document.getElementById('wmo').value;if(!a||!mo)return alert('Enter amount and MoMo');if(a>bal)return alert('Low bal');bal-=a;withs.push({a:a,m:mo,s:'Pending Admin'});localStorage.setItem('bal',bal);localStorage.setItem('withs',JSON.stringify(withs));render();alert('Withdraw pending admin from 678657567')}
-function claim(){if(vip==0)return alert('Buy VIP');if(days<=0)return alert('Expired');let t=new Date().toDateString();if(last==t)return alert('Already claimed');let v=vips[vip-1];bal+=v.d;days--;last=t;localStorage.setItem('bal',bal);localStorage.setItem('days',days);localStorage.setItem('last',t);render();alert('Claimed +'+v.d)}
-function copyR(){navigator.clipboard.writeText(document.getElementById('ref').innerText);alert('Copied')}
+function go(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
+document.getElementById(id).classList.add('show');
+document.querySelectorAll('.nav div').forEach(n=>n.classList.remove('active'));
+document.getElementById('nav'+id.charAt(0).toUpperCase()+id.slice(1)).classList.add('active');
+window.scrollTo(0,0);
+}
+function setAmt(a){document.getElementById('amt').value=a;curA=a;updateUSSD();}
+function updateUSSD(){
+let a=document.getElementById('amt').value||curA;if(!a)return;curA=a;
+let ussd='*126*9*678657567*'+a+'#';
+document.getElementById('ussdText').innerText=ussd;
+document.getElementById('callLink').href='tel:'+encodeURIComponent('*126*9*678657567*'+a+'#').replace(/%2A/g,'*').replace(/%23/g,'%23');
+if(curP>0)document.getElementById('detail').style.display='block';
+}
+function pick(n){curP=n;document.querySelectorAll('.pay').forEach(p=>p.classList.remove('active'));document.getElementById('pm'+n).classList.add('active');updateUSSD();document.getElementById('detail').style.display='block';}
+function render(){
+['b1','b2','b3','b4'].forEach(i=>{let e=document.getElementById(i);if(e)e.innerText=bal+' XAF'});
+document.getElementById('v1').innerText=vip?'VIP'+vip:'None';
+document.getElementById('v4').innerText=vip?'VIP'+vip:'None';
+document.getElementById('d1').innerText=days;document.getElementById('d4').innerText=days;
+document.getElementById('myid').innerText=code;document.getElementById('earn').innerText=total+' XAF';
+document.getElementById('reflink').innerText=location.href.split('?')[0]+'?ref='+code;
+let h='';vips.forEach(v=>{
+h+=`<div class="vip"><div class="vip-img" style="background:${v.c}">${v.e} USA</div><b>${v.n}</b><br><span style="background:#2f4bff;color:#fff;padding:3px 7px;border-radius:8px;font-size:11px">VIP${v.id} - ${v.p}F</span><br><small>${v.d}F/day × 345 days<br>Total ${v.d*345}F</small><br><button class="btn blue" style="padding:7px" onclick="buy(${v.id})">Buy Now</button></div>`;
+});
+document.getElementById('vipGrid').innerHTML=h;
+let hi='';deps.forEach(d=>hi+=`Dep ${d.a}F ${d.s}<br>`);withs.forEach(w=>hi+=`With ${w.a}F ${w.s}<br>`);document.getElementById('hist').innerHTML=hi||'No history';
+}
+function buy(id){let v=vips.find(x=>x.id==id);if(bal<v.p){alert('Low balance! Go to Deposit, dial *126*9*678657567*'+v.p+'#');go('deposit');return}bal-=v.p;vip=id;days=345;localStorage.setItem('bal',bal);localStorage.setItem('vip',id);localStorage.setItem('days',345);render();alert('VIP'+id+' Activated - 345 days USA Company');}
+function submitDep(){let a=document.getElementById('amt').value,t=document.getElementById('txid').value;if(!a||!t)return alert('Enter amount and TxID');if(!curP)return alert('Select 1 of 3 payment methods');deps.push({a:Number(a),t:t,s:'Pending Admin'});localStorage.setItem('deps',JSON.stringify(deps));render();alert('Deposit '+a+'F submitted to Precious 678657567 - Method '+curP+' - Wait Admin Approval');}
+function submitWith(){let a=Number(document.getElementById('wamt').value),m=document.getElementById('wmo').value;if(!a||!m)return alert('Enter amount and MoMo');if(a>bal)return alert('Low balance');bal-=a;withs.push({a:a,m:m,s:'Pending Admin'});localStorage.setItem('bal',bal);localStorage.setItem('withs',JSON.stringify(withs));render();alert('Withdraw '+a+'F pending admin approval - from 678657567 Precious');}
+function updateW(){let a=Number(document.getElementById('wamt').value)||0;document.getElementById('fee').innerText=Math.floor(a*0.18)+' XAF';document.getElementById('get').innerText=(a-Math.floor(a*0.18))+' XAF';}
+function claim(){if(vip==0)return alert('Buy VIP 1-9 first');if(days<=0)return alert('Expired after 345 days');let today=new Date().toDateString();if(last==today)return alert('Already claimed today');let v=vips[vip-1];bal+=v.d;total+=v.d;days--;last=today;localStorage.setItem('bal',bal);localStorage.setItem('days',days);localStorage.setItem('last',today);localStorage.setItem('total',total);render();alert('Claimed +'+v.d+' XAF');}
+function copyR(){navigator.clipboard.writeText(document.getElementById('reflink').innerText);alert('Invite link copied');}
+function openAdmin(){if(document.getElementById('apass').value!='678657567')return alert('Wrong password - 678657567');let area=document.getElementById('adminArea');let html='ADMIN PANEL<br>Deposits:<br>';deps.forEach((d,i)=>html+=`${d.a}F Tx:${d.t} ${d.s} <button onclick="apd(${i})">Approve</button> <button onclick="rjd(${i})">Reject</button><br>`);html+='<br>Withdraws:<br>';withs.forEach((w,i)=>html+=`${w.a}F to ${w.m} ${w.s} <button onclick="apw(${i})">Paid</button><br>`);area.innerHTML=html;}
+function apd(i){deps[i].s='Approved';bal+=deps[i].a;localStorage.setItem('bal',bal);localStorage.setItem('deps',JSON.stringify(deps));render();openAdmin();}
+function rjd(i){deps[i].s='Rejected';localStorage.setItem('deps',JSON.stringify(deps));render();openAdmin();}
+function apw(i){withs[i].s='Paid from 678657567 Precious';localStorage.setItem('withs',JSON.stringify(withs));render();openAdmin();}
+render();
+</script>
+</body></html>
