@@ -1,84 +1,129 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GREEN INVEST Cameroon - VIP 1-20 - 1K to 15M</title>
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Precious Company - Video Salary 345 Days</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#f5f3ff;padding-bottom:80px}
-.header{background:linear-gradient(90deg,#4c1d95,#7c3aed);color:white;padding:15px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px}
-.vip{background:white;border-radius:12px;padding:8px;text-align:center;box-shadow:0 1px 3px #ddd;border:1px solid #ede9fe}
-.vip img{width:100%;height:70px;object-fit:cover;border-radius:8px}
-.price{font-weight:bold;color:#4c1d95;font-size:13px;margin:4px 0}
-.btn{background:#10b981;color:white;border:none;width:100%;padding:8px;border-radius:8px;font-weight:bold;margin-top:4px}
-.btn-w{background:#4c1d95;color:white;border:none;padding:12px;width:90%;margin:10px 5%;border-radius:10px;font-weight:bold}
-.card{background:white;margin:10px;padding:12px;border-radius:12px}
-.nav{position:fixed;bottom:0;width:100%;background:white;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #ddd}
-.page{display:none}.show{display:block}
-input{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;margin:4px 0}
-</style>
-</head><body>
-<div class="header">
-<h2>VIP Program — Cameroun 🇨🇲</h2>
-<small>20 VIP Levels • 1,000 FCFA — 15,000,000 FCFA • FCFA Only</small><br>
-<small>Balance: <b><span id="bal">0</span> FCFA</b> • ID: 678657567</small>
-</div>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#0f172a;color:#fff;padding:12px}
+.header{background:linear-gradient(90deg,#f59e0b,#ef4444);padding:14px;border-radius:12px;text-align:center;font-weight:900}
+.card{background:#1e293b;border-radius:14px;padding:14px;margin:10px 0;border:1px solid #334155}
+.btn{width:100%;padding:14px;border:none;border-radius:10px;font-weight:800;cursor:pointer;margin-top:8px}
+.btn-gold{background:linear-gradient(90deg,#f59e0b,#fbbf24);color:#000}
+.btn-green{background:#10b981;color:#fff}
+.vip-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vip{background:#0f172a;border:1px solid #475569;border-radius:12px;padding:10px;text-align:center}
+.vip.active{border-color:#f59e0b;background:#422006}
+.badge{background:#f59e0b;color:#000;font-size:10px;padding:2px 6px;border-radius:10px;font-weight:900}
+input{width:100%;padding:12px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#fff;margin-top:8px}
+.video-box{background:#000;border-radius:12px;padding:10px;margin:10px 0;text-align:center}
+</style></head><body>
+<div class="header">PRECIOUS COMPANY<br><small>VIP 1-20 • 345 DAYS SALARY • VIDEO WORK • MoMo 678657567</small></div>
 
-<div id="home" class="page show">
-<div class="grid" id="vipGrid"></div>
 <div class="card">
-<button class="btn-w" onclick="show('deposit')">Recharge / Deposit</button>
-<button class="btn-w" style="background:white;color:#4c1d95;border:1px solid #4c1d95" onclick="show('withdraw')">Withdrawal - 18% Fee Auto</button>
+<b>Balance:</b> <span id="bal">0</span> FCFA | <b>VIP:</b> <span id="myvip">None</span> | <b>Days Left:</b> <span id="days">0</span>
+<div id="videoTask"></div>
+</div>
+
+<div class="card"><b>VIP PACKAGES - 345 DAYS SALARY</b>
+<div class="vip-grid" id="vipGrid"></div>
+<p style="font-size:11px;color:#94a3b8;margin-top:8px">VIP1 1000F → 3 videos/day × 3F = 9F/day × 345 days = 3105F total salary. No salary problem. Expires after 345 days.</p>
+</div>
+
+<div class="card">
+<b>1. DEPOSIT to 678657567 Precious (MoMo)</b>
+<input id="depAmt" placeholder="Amount e.g. 1000">
+<input id="depId" placeholder="MoMo Transaction ID">
+<button class="btn btn-gold" onclick="deposit()">Submit Deposit - Manual Check</button>
+<p style="font-size:11px;color:#fbbf24;margin-top:6px">Send money to MTN MoMo: 678657567 Name: Precious, then enter ID here. Admin approves in dashboard.</p>
+</div>
+
+<div class="card">
+<b>2. VIDEO WORK - Earn Daily Salary</b>
+<div class="video-box">
+<iframe id="yt" width="100%" height="180" src="https://www.youtube.com/embed/jNQXAC9IVRw" frameborder="0" allowfullscreen></iframe>
+<p style="font-size:12px;margin:6px 0">Watch this video fully, then claim your daily salary</p>
+<button class="btn btn-green" onclick="claimVideo()">I Watched - Claim Today's Salary</button>
 </div>
 </div>
 
-<div id="deposit" class="page"><div class="card"><h3>Recharge</h3><input id="dAmt" placeholder="Amount 1000-15000000"><input id="dMomo" placeholder="Your MoMo number"><button class="btn-w" onclick="dep()">Confirm Recharge</button></div></div>
-
-<div id="withdraw" class="page"><div class="card"><h3>Withdrawal</h3><p>Available: <span id="wBal">0</span> F • Min 1000F • Fee 18% You get 82%</p><input id="wMomo" placeholder="MoMo to receive"><button class="btn-w" onclick="wit()">Request</button><p id="wMsg"></p></div></div>
-
-<div id="tasks" class="page"><div class="card"><h3>Daily Tasks - 5 TikTok</h3><div id="tList"></div></div></div>
-
-<div id="admin" class="page"><div class="card"><h3>Admin 1234</h3><input id="aPass" type="password" placeholder="Password"><button class="btn-w" onclick="aLogin()">Login</button><div id="aPanel" style="display:none"><div id="aData"></div></div></div></div>
-
-<div class="nav">
-<div onclick="show('home')">🏠<br><small>Welcome</small></div>
-<div onclick="show('deposit')">💳<br><small>Funds</small></div>
-<div onclick="show('home')">👑<br><small>Level</small></div>
-<div onclick="show('tasks')">🏆<br><small>Stain</small></div>
-<div onclick="show('admin')">👤<br><small>Me</small></div>
+<div class="card">
+<b>3. WITHDRAW - 18% Fee</b>
+<input id="withAmt" placeholder="Amount to withdraw">
+<input id="withMoMo" placeholder="Your MoMo number to receive">
+<button class="btn btn-gold" onclick="withdraw()">Request Withdrawal</button>
+<p style="font-size:11px;color:#94a3b8">18% fee goes to company. Admin sends to your MoMo manually.</p>
 </div>
 
 <script>
-let levels=[
-{price:1000,name:"VIP 1",desc:"Starter cashback 0.5%",img:"https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=200"},
-{price:5000,name:"VIP 2",desc:"Priority support",img:"https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=200"},
-{price:15000,name:"VIP 3",desc:"Cashback 1%",img:"https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=200"},
-{price:30000,name:"VIP 4",desc:"Free transfers x5",img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=200"},
-{price:50000,name:"VIP 5",desc:"Cashback 1.5% Lounge",img:"https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=200"},
-{price:80000,name:"VIP 6",desc:"Fee waiver",img:"https://images.unsplash.com/photo-1525598912003-663126343e1f?w=200"},
-{price:120000,name:"VIP 7",desc:"Birthday reward",img:"https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=200"},
-{price:200000,name:"VIP 8",desc:"Insurance covered",img:"https://images.unsplash.com/photo-1589758438368-0ad531db3366?w=200"},
-{price:350000,name:"VIP 9",desc:"Cashback 2%",img:"https://images.unsplash.com/photo-1556740772-1a741367b93e?w=200"},
-{price:500000,name:"VIP 10",desc:"Airport Lounge",img:"https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=200"},
-{price:750000,name:"VIP 11",desc:"Invest bonus 1%",img:"https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=200"},
-{price:1000000,name:"VIP 12",desc:"24/7 Concierge",img:"https://images.unsplash.com/photo-1613977257365-aaae5a9817ff?w=200"},
-{price:1500000,name:"VIP 13",desc:"Savings +2.5% APY",img:"https://images.unsplash.com/photo-1610375461246-83df859d849d?w=200"},
-{price:2500000,name:"VIP 14",desc:"Zero FX fees",img:"https://images.unsplash.com/photo-1605106702734-205df224ecce?w=200"},
-{price:4000000,name:"VIP 15",desc:"Cashback 3%",img:"https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=200"},
-{price:5500000,name:"VIP 16",desc:"Business account",img:"https://images.unsplash.com/photo-1627123424574-724758594e93?w=200"},
-{price:7500000,name:"VIP 17",desc:"Priority loan",img:"https://images.unsplash.com/photo-1613977257592-527036a46100?w=200"},
-{price:9500000,name:"VIP 18",desc:"Wealth advisor",img:"https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=200"},
-{price:12000000,name:"VIP 19",desc:"Elite events access",img:"https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=200"},
-{price:15000000,name:"VIP 20",desc:"Platinum All benefits",img:"https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?w=200"}
+const vips=[
+ {id:1,price:1000,daily:9,videos:3,label:"VIP1"},
+ {id:2,price:2500,daily:22,videos:3,label:"VIP2"},
+ {id:3,price:5000,daily:45,videos:3,label:"VIP3"},
+ {id:4,price:10000,daily:90,videos:3,label:"VIP4"},
+ {id:5,price:20000,daily:180,videos:4,label:"VIP5"},
+ {id:6,price:50000,daily:450,videos:4,label:"VIP6"},
+ {id:7,price:100000,daily:900,videos:4,label:"VIP7"},
+ {id:8,price:200000,daily:1800,videos:5,label:"VIP8"},
+ {id:9,price:500000,daily:4500,videos:5,label:"VIP9"},
+ {id:10,price:1000000,daily:9000,videos:5,label:"VIP10"},
+ {id:11,price:1500000,daily:13500,videos:5,label:"VIP11"},
+ {id:12,price:2000000,daily:18000,videos:6,label:"VIP12"},
+ {id:13,price:3000000,daily:27000,videos:6,label:"VIP13"},
+ {id:14,price:4000000,daily:36000,videos:6,label:"VIP14"},
+ {id:15,price:5000000,daily:45000,videos:6,label:"VIP15"},
+ {id:16,price:7000000,daily:63000,videos:7,label:"VIP16"},
+ {id:17,price:10000000,daily:90000,videos:7,label:"VIP17"},
+ {id:18,price:12000000,daily:108000,videos:7,label:"VIP18"},
+ {id:19,price:14000000,daily:126000,videos:8,label:"VIP19"},
+ {id:20,price:15000000,daily:135000,videos:8,label:"VIP20"},
 ];
-let bal=parseInt(localStorage.getItem('bal')||'0'); let deps=JSON.parse(localStorage.getItem('deps')||'[]'); let wits=JSON.parse(localStorage.getItem('wits')||'[]');
-function show(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));document.getElementById(id).classList.add('show'); if(id=='tasks') renderT();}
-function renderVIP(){let g=document.getElementById('vipGrid'); levels.forEach((l,i)=>{g.innerHTML+=`<div class="vip"><div style="background:#ede9fe;color:#4c1d95;font-size:10px;padding:2px 4px;border-radius:4px;display:inline-block">VIP ${i+1}</div><img src="${l.img}"><div style="font-size:12px;font-weight:bold">${l.name}</div><div class="price">${l.price.toLocaleString()} FCFA</div><div style="font-size:10px;color:gray">${l.desc}</div><button class="btn" onclick="join(${i})">Join</button></div>`;});}
-function renderT(){let t=document.getElementById('tList'); t.innerHTML=''; for(let i=1;i<=5;i++){t.innerHTML+=`<div style="background:#000;color:white;padding:12px;border-radius:10px;margin:6px 0;text-align:center">TikTok Video ${i}<br><button onclick="doTask()" style="margin-top:5px;padding:5px 10px;background:#10b981;border:none;border-radius:5px">Watched +50F</button></div>`;}}
-function doTask(){bal+=50; save(); alert('+50F');}
-function join(i){let num=prompt('Join '+levels[i].name+' '+levels[i].price+'F\nEnter phone to receive product:'); if(!num) return; deps.push({date:new Date().toLocaleString(),amt:levels[i].price,num:num,type:levels[i].name,status:'PENDING'}); localStorage.setItem('deps',JSON.stringify(deps)); alert('Request sent. Send '+levels[i].price+'F to YOUR MOMO');}
-function dep(){let a=document.getElementById('dAmt').value; let m=document.getElementById('dMomo').value; if(!a||!m){alert('Enter');return;} deps.push({date:new Date().toLocaleString(),amt:a,num:m,type:'Recharge',status:'PENDING'}); localStorage.setItem('deps',JSON.stringify(deps)); alert('Deposit '+a+'F pending');}
-function wit(){if(bal<1000){alert('Min 1000F you have '+bal);return;} let m=document.getElementById('wMomo').value; if(!m){alert('Enter MoMo');return;} let fee=Math.round(bal*0.18); let pay=bal-fee; wits.push({date:new Date().toLocaleString(),bonus:bal,fee:fee,pay:pay,num:m}); localStorage.setItem('wits',JSON.stringify(wits)); document.getElementById('wMsg').innerText='Request '+pay+'F to '+m+' Fee '+fee+'F'; bal=0; save();}
-function aLogin(){if(document.getElementById('aPass').value=='1234'){document.getElementById('aPanel').style.display='block'; document.getElementById('aData').innerHTML=deps.map((d,i)=>d.date+' '+d.type+' '+d.amt+'F '+d.num+' '+d.status+' <button onclick="deps['+i+'].status=\'PAID\';bal+=parseInt(deps['+i+'].amt);localStorage.setItem(\'deps\',JSON.stringify(deps));localStorage.setItem(\'bal\',bal);location.reload()">Confirm</button>').join('<br>')+'<hr>'+wits.map(w=>w.date+' '+w.pay+'F to '+w.num+' fee '+w.fee+'F').join('<br>');}else alert('Wrong');}
-function save(){localStorage.setItem('bal',bal); document.getElementById('bal').innerText=bal; document.getElementById('wBal').innerText=bal;}
-renderVIP(); save(); renderT();
+let bal=parseInt(localStorage.getItem('bal')||0);
+let myvip=parseInt(localStorage.getItem('vip')||0);
+let daysLeft=parseInt(localStorage.getItem('daysLeft')||0);
+let lastClaim=localStorage.getItem('lastClaim')||'';
+function render(){
+ document.getElementById('bal').innerText=bal;
+ document.getElementById('myvip').innerText=myvip? 'VIP'+myvip : 'None';
+ document.getElementById('days').innerText=daysLeft;
+ let h=''; vips.forEach(v=>{
+  h+=`<div class="vip ${myvip==v.id?'active':''}"><b>${v.label}</b><br><span class="badge">${v.price}F</span><br><small>${v.daily}F/day<br>${v.videos} videos<br>345 days<br>=${v.daily*345}F total</small><br><button class="btn btn-gold" style="padding:6px;font-size:12px" onclick="buyVip(${v.id})">Buy</button></div>`;
+ }); document.getElementById('vipGrid').innerHTML=h;
+ if(daysLeft>0){
+  document.getElementById('videoTask').innerHTML=`<div style="background:#065f46;padding:8px;border-radius:8px;margin-top:8px;font-size:12px">✅ VIP${myvip} Active - Watch ${vips[myvip-1].videos} videos today to earn ${vips[myvip-1].daily}F salary - ${daysLeft} days left</div>`;
+ } else {
+  document.getElementById('videoTask').innerHTML=`<div style="background:#7f1d1d;padding:8px;border-radius:8px;margin-top:8px;font-size:12px">❌ No active VIP - Buy VIP to start video salary</div>`;
+ }
+}
+function buyVip(id){
+ let v=vips.find(x=>x.id==id);
+ if(bal < v.price) return alert('Low balance. Deposit to 678657567 first');
+ bal-=v.price; myvip=id; daysLeft=345;
+ localStorage.setItem('bal',bal); localStorage.setItem('vip',myvip); localStorage.setItem('daysLeft',daysLeft);
+ render(); alert('VIP'+id+' Activated for 345 days! Watch videos daily to earn salary.');
+}
+function deposit(){
+ let amt=document.getElementById('depAmt').value, tx=document.getElementById('depId').value;
+ if(!amt||!tx) return alert('Enter amount and MoMo Transaction ID');
+ alert('Deposit request sent! Admin will check 678657567 Precious for '+amt+'F with ID '+tx+' and approve. Balance added after approval (demo: auto-added).');
+ bal+=parseInt(amt); localStorage.setItem('bal',bal); render();
+}
+function claimVideo(){
+ if(myvip==0) return alert('Buy VIP first');
+ if(daysLeft<=0) return alert('VIP expired after 345 days. Buy new VIP');
+ let today=new Date().toDateString();
+ if(lastClaim==today) return alert('You already claimed today salary. Come tomorrow for next video.');
+ let v=vips[myvip-1];
+ bal+=v.daily; daysLeft--; lastClaim=today;
+ localStorage.setItem('bal',bal); localStorage.setItem('daysLeft',daysLeft); localStorage.setItem('lastClaim',lastClaim);
+ render(); alert('Salary claimed! +'+v.daily+'F for watching videos. '+daysLeft+' days left.');
+}
+function withdraw(){
+ let amt=parseInt(document.getElementById('withAmt').value), momo=document.getElementById('withMoMo').value;
+ if(!amt||!momo) return alert('Enter amount and MoMo');
+ if(amt>bal) return alert('Low balance');
+ let fee=Math.floor(amt*0.18), receive=amt-fee;
+ bal-=amt; localStorage.setItem('bal',bal); render();
+ alert('Withdrawal request: You get '+receive+'F (18% fee = '+fee+'F to company). Admin will send to '+momo+' manually from 678657567.');
+}
+render();
 </script>
 </body></html>
