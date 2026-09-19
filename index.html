@@ -1,14 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EMP Cameroon - Official</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#1a1033;color:#fff;padding-bottom:75px}
-.topbar{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#0f0a1e}
-.topbar .left{display:flex;gap:10px;align-items:center}
-.notice-bar{background:#2a1b4a;margin:8px 10px;border-radius:20px;padding:8px 12px;font-size:12px;white-space:nowrap;overflow:hidden}
-.notice-bar span{animation:scroll 15s linear infinite;display:inline-block}
-@keyframes scroll{0
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EMP Cameroon</title>
+<style>body{background:#1a1033;color:#fff;font-family:Arial;padding-bottom:70px;margin:0}
+.card{background:#251a45;margin:10px;padding:12px;border-radius:12px;border:1px solid #3a2b65}
+.btn{width:100%;padding:12px;border:none;border-radius:10px;font-weight:900;background:#fbbf24;color:#000;margin-top:8px}
+.slider{height:150px;background:#000;border-radius:12px;margin:10px;overflow:hidden;position:relative}
+.slider img{position:absolute;width:100%;height:150px;object-fit:cover;opacity:0;transition:0.8s}.slider img.active{opacity:1}
+.vip-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px}
+.vip{background:#251a45;border:1px solid #4a3a7a;border-radius:10px;padding:8px;text-align:center;font-size:12px}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#0f0a1e;display:flex;justify-content:space-around;padding:10px;border-top:1px solid #3a2b65}
+.nav div{font-size:11px;cursor:pointer}
+input{width:100%;padding:10px;margin-top:6px;border-radius:8px;border:1px solid #4a3a7a;background:#1a1033;color:#fff}
+</style></head><body>
+
+<div style="background:#0f0a1e;padding:10px;text-align:center"><b style="color:#fbbf24">EMP CAMEROON - OFFICIAL</b><br><small>empaaa.vip - 345 DAYS</small></div>
+
+<div class="slider" id="s">
+<img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=600" class="active">
+<img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=600">
+<img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600">
+</div>
+
+<div class="card">
+Welcome! VIP 1-9 (1000F to 150,000F)<br>
+Balance: <b id="b" style="color:#fbbf24">0 F</b> | VIP: <b id="v">None</b> | Days: <b id="d">0</b>/345
+<div style="background:#422006;border:1px dashed #fbbf24;padding:8px;border-radius:8px;margin:8px 0;text-align:center"><b>*126*9*678657567*AMOUNT#</b><br><small>To Precious - 678657567</small></div>
+<button class="btn" onclick="claim()">Claim Daily Income</button>
+</div>
+
+<div class="card"><b>PRODUCTS VIP 1-9</b></div>
+<div class="vip-grid" id="g"></div>
+
+<div class="card">
+<b>DEPOSIT - Admin Approve</b>
+<input id="am" type="number" placeholder="Amount e.g. 1000">
+<input id="tx" placeholder="Tx ID">
+<button class="btn" onclick="dep()">Submit Deposit</button>
+</div>
+
+<div class="card">
+<b>WITHDRAW - 18% Fee - Admin Approve</b>
+<input id="wa" type="number" placeholder="Amount">
+<input id="wm" placeholder="Your MoMo">
+<button class="btn" onclick="wit()">Request Withdraw</button>
+</div>
+
+<div class="card">
+<b>REFERRAL LINK</b><br>
+<div id="ref" style="background:#1a1033;border:1px dashed #fbbf24;padding:8px;border-radius:8px;font-size:11px;word-break:break-all"></div>
+<button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('ref').innerText);alert('Copied')">Copy Link</button>
+</div>
+
+<div class="card">
+<b>ADMIN - Password 678657567</b>
+<input id="ap" placeholder="Password">
+<button class="btn" onclick="admin()">Open Admin</button>
+<div id="ad" style="font-size:11px;margin-top:8px"></div>
+</div>
+
+<div class="nav">
+<div onclick="window.scrollTo(0,0)">🏠<br>Welcome</div>
+<div onclick="document.getElementById('g').scrollIntoView()">📋<br>Funds</div>
+<div onclick="alert('Level: VIP'+(localStorage.getItem('vip')||'None'))">👑<br>Level</div>
+<div onclick="alert('Team: '+(localStorage.getItem('myCode')||''))">🏆<br>Stain</div>
+<div onclick="window.scrollTo(0,document.body.scrollHeight)">👤<br>Me</div>
+</div>
+
+<script>
+const vips=[{id:1,p:1000,d:345},{id:2,p:5000,d:800},{id:3,p:10000,d:1600},{id:4,p:20000,d:3500},{id:5,p:40000,d:6500},{id:6,p:70000,d:12000},{id:7,p:100000,d:16000},{id:8,p:120000,d:22580},{id:9,p:150000,d:35800}];
+let bal=parseInt(localStorage.getItem('bal')||0),vip=parseInt(localStorage.getItem('vip')||0),days=parseInt(localStorage.getItem('days')||0),last=localStorage.getItem('last')||'',code=localStorage.getItem('myCode')||('88'+Math.floor(100000+Math.random()*900000));localStorage.setItem('myCode',code);
+let deps=JSON.parse(localStorage.getItem('deps')||'[]'),withs=JSON.parse(localStorage.getItem('withs')||'[]');
+let slide=0;setInterval(()=>{let imgs=document.querySelectorAll('#s img');imgs.forEach(i=>i.classList.remove('active'));slide=(slide+1)%imgs.length;imgs[slide].classList.add('active');},2500);
+function render(){document.getElementById('b').innerText=bal+' F';document.getElementById('v').innerText=vip?'VIP'+vip:'None';document.getElementById('d').innerText=days;document.getElementById('ref').innerText=location.href+'?ref='+code;let h='';vips.forEach(x=>{h+=`<div class="vip"><b>VIP${x.id}</b><br>${x.p}F<br>${x.d}F/day × 345<br><button class="btn" style="padding:6px;font-size:11px" onclick="buy(${x.id})">Buy</button></div>`});document.getElementById('g').innerHTML=h;let ad='Deposits:<br>';deps.forEach((d,i)=>ad+=`${d.a}F ${d.t} ${d.s} <button onclick="apd(${i})">Approve</button><br>`);ad+='Withdraws:<br>';withs.forEach((w,i)=>ad+=`${w.a}F to ${w.m} <button onclick="apw(${i})">Paid</button><br>`);document.getElementById('ad').innerHTML=ad}
+function buy(id){let v=vips.find(x=>x.id==id);if(bal<v.p){alert('Low balance! Dial *126*9*678657567*'+v.p+'#');return}bal-=v.p;vip=id;days=345;localStorage.setItem('bal',bal);localStorage.setItem('vip',vip);localStorage.setItem('days',days);render();alert('VIP'+id+' Active 345 days')}
+function dep(){let a=document.getElementById('am').value,t=document.getElementById('tx').value;if(!a||!t)return alert('Enter amount and TxID');deps.push({a:parseInt(a),t:t,s:'Pending'});localStorage.setItem('deps',JSON.stringify(deps));render();alert('Deposit pending admin approval - *126*9*678657567*'+a+'# to Precious 678657567')}
+function wit(){let a=parseInt(document.getElementById('wa').value),m=document.getElementById('wm').value;if(!a||!m)return alert('Enter amount and MoMo');if(a>bal)return alert('Low balance');bal-=a;withs.push({a:a,m:m,s:'Pending'});localStorage.setItem('bal',bal);localStorage.setItem('withs',JSON.stringify(withs));render();alert('Withdraw pending admin - will be sent from 678657567')}
+function claim(){if(vip==0)return alert('Buy VIP first');if(days<=0)return alert('Expired');let today=new Date().toDateString();if(last==today)return alert('Already claimed');let v=vips[vip-1];bal+=v.d;days--;last=today;localStorage.setItem('bal',bal);localStorage.setItem('days',days);localStorage.setItem('last',last);render();alert('Claimed +'+v.d+'F')}
+function admin(){if(document.getElementById('ap').value!='678657567')return alert('Wrong pass');render();alert('Admin opened - approve below')}
+function apd(i){deps[i].s='Approved';bal+=deps[i].a;localStorage.setItem('bal',bal);localStorage.setItem('deps',JSON.stringify(deps));render()}
+function apw(i){withs[i].s='Paid from 678657567 Precious';localStorage.setItem('withs',JSON.stringify(withs));render()}
+render();
+</script>
+</body></html>
