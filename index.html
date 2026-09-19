@@ -1,16 +1,4 @@
 !DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GREEN DATA - Cheapest Data in Cameroon</title>
-<style>*{function loadMyBonus(){
- let momo=document.getElementById('momo').value;
- if(!momo) return;
- db.ref('bonuses/'+momo).on('value', snap=>{
-   let total=0;
-   snap.forEach(child=>{ total+=child.val().amount; });
-   refBonus=total;
-   document.getElementById('ref').innerText=total;
- });
-}
-document.getElementById('momo').addEventListener('change', loadMyBonus);
-</script>
-</body></html>
+<style>*{
