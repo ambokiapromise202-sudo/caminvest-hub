@@ -1,167 +1,158 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EMP USA OFFICIAL - Everything Together Final</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0a0e2a;color:#fff;padding-bottom:90px}
-.top{background:linear-gradient(90deg,#000,#1a1a5e);color:#ffcc00;text-align:center;padding:12px;font-weight:900;position:sticky;top:0;z-index:99;border-bottom:2px solid #ffcc00}
-.auth-box{width:92%;max-width:400px;margin:25px auto;background:linear-gradient(135deg,#121040,#0f0c4a);border:2px solid #ffcc00;border-radius:20px;padding:22px;text-align:center}
-.auth-box img{width:130px;height:130px;border-radius:50%;border:4px solid #ffcc00;object-fit:cover;margin:0 auto 12px;display:block}
-.auth-box input{width:100%;padding:14px;border-radius:10px;border:1px solid #ccc;margin:8px 0;color:#000}
-.big-ceo{width:94%;height:340px;object-fit:cover;border-radius:20px;border:3px solid #ffcc00;margin:12px auto;display:block}
-.company-logo-box{text-align:center;padding:12px;background:linear-gradient(135deg,#0a0e5a,#121040);margin:10px;border-radius:14px;border:2px solid #ffcc00}
-.company-logo-box img{width:170px;height:170px;object-fit:contain;border-radius:15px;border:3px solid #ffcc00;background:#fff;padding:6px;box-shadow:0 4px 15px rgba(255,204,0,0.3)}
-.card{background:#fff;color:#000;margin:10px;border-radius:14px;padding:14px}
-.dark{background:#121040;color:#fff;margin:10px;border-radius:14px;padding:14px;border:1px solid #2a2a6a}
-.btn{width:100%;padding:14px;border:none;border-radius:10px;font-weight:900;margin-top:8px;cursor:pointer}
-.blue{background:#2f4bff;color:#fff}.gold{background:#ffcc00;color:#000}.green{background:#00c853;color:#fff}.red{background:#e53935;color:#fff}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.vip{background:#fff;color:#000;border-radius:14px;padding:8px;text-align:center;border:2px solid #e6e6ff;position:relative;min-height:240px}
-.vip-img-wrap{width:100%;height:130px;border-radius:10px;overflow:hidden;border:2px solid #ffcc00;background:#f0f0f0;position:relative}
-.vip-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
-.vip-fallback{width:100%;height:130px;border-radius:10px;background:linear-gradient(135deg,#0a0e5a,#1a1a6a);display:none;align-items:center;justify-content:center;font-size:60px;border:2px solid #ffcc00}
-.vip-badge{position:absolute;top:10px;left:10px;background:#ffcc00;color:#000;padding:4px 8px;border-radius:6px;font-size:10px;font-weight:900;z-index:3}
-.ceo-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:10px}
-.ceo-grid img{width:100%;height:70px;border-radius:8px;object-fit:cover;border:2px solid #ffcc00}
-.deposit-card{background:linear-gradient(135deg,#0a0e5a,#1e1e6e);color:#fff;border:2px solid #ffcc00;border-radius:14px;padding:14px;margin:10px}
-.ussd{background:#000;color:#ffcc00;padding:14px;text-align:center;border-radius:10px;font-size:20px;font-weight:900;border:2px dashed #ffcc00;margin:10px 0;word-break:break-all}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#000;display:flex;justify-content:space-around;padding:10px 0;z-index:99;border-top:2px solid #222}
-.nav div{font-size:10px;text-align:center;opacity:.6;color:#fff;cursor:pointer}.nav div.on{opacity:1;color:#ffcc00;font-weight:900}
-.page{display:none}.page.on{display:block}
-input{width:100%;padding:12px;border-radius:8px;border:1px solid #ccc;margin-top:6px}
-.pay{display:flex;gap:10px;align-items:center;border:2px solid #ddd;border-radius:10px;padding:12px;margin:8px 0;background:#f9f9ff;color:#000;cursor:pointer}.pay.active{border-color:#2f4bff;background:#e6ebff;box-shadow:0 0 8px rgba(47,75,255,0.3)}
-.topup{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}.topup div{background:#e8e8ff;color:#000;padding:10px;text-align:center;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid #ccc}
-.footer{background:#000;color:#aaa;text-align:center;padding:12px;font-size:11px;margin:10px;border-radius:10px;border:1px solid #222}
-</style></head><body>
-<div class="top">EMP USA OFFICIAL - Professional Investment - Est. 2018 USA</div>
 
-<div id="auth" class="page on">
-<div class="auth-box">
-<img src="logo.png" onerror="this.src='ceo.jpg'" alt="EMP USA LOGO">
-<div style="color:#ffcc00;font-weight:900;font-size:20px">EMP USA OFFICIAL</div>
-<div style="font-size:12px">Shipping • Car • House • Real Investments Since 2018<br>Agent: Precious 678657567</div>
-<div id="loginForm"><b style="color:#ffcc00">LOGIN WITH LOGO & PASSWORD</b>
-<input id="lPhone" placeholder="Phone or Investor ID (88xxxxx)">
-<input id="lPass" type="password" placeholder="Password">
-<button class="btn blue" onclick="login()">🔐 LOGIN</button>
-<button class="btn gold" onclick="showReg()">New Investor? REGISTER</button>
-</div>
-<div id="regForm" style="display:none"><b style="color:#ffcc00">REGISTER - NEW INVESTOR</b>
-<input id="rPhone" placeholder="Phone e.g. 6xxxxxxxx">
-<input id="rPass" type="password" placeholder="Password min 6">
-<input id="rPass2" type="password" placeholder="Confirm Password">
-<input id="rRef" placeholder="Referral Code (Optional)">
-<button class="btn green" onclick="register()">✅ REGISTER & START</button>
-<button class="btn gold" onclick="showLogin()">Already have account? LOGIN</button>
-</div>
-</div>
-</div>
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIP Investment - Earn 345 FCFA Daily</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+    body { background: #0a0f1e; color: #fff; line-height: 1.6; }
+    
+    header { 
+      background: linear-gradient(135deg, #fbbf24, #d97706); 
+      padding: 80px 20px; 
+      text-align: center; 
+      color: #0a0f1e;
+    }
+    header h1 { font-size: 2.5rem; margin-bottom: 15px; font-weight: 800; }
+    header p { font-size: 1.2rem; margin-bottom: 25px; font-weight: 500; }
+    
+    .btn { 
+      background: #0a0f1e; color: #fbbf24; padding: 14px 32px; 
+      border: none; border-radius: 12px; font-size: 1.1rem; 
+      cursor: pointer; font-weight: 700; transition: 0.3s; 
+      box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+    }
+    .btn:hover { background: #1f2937; transform: scale(1.05); }
+    
+    .container { max-width: 1200px; margin: 60px auto; padding: 20px; }
+    h2 { text-align: center; margin-bottom: 40px; color: #fbbf24; font-size: 2rem; }
+    
+    .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
+    .card { 
+      background: #111827; padding: 30px 20px; border-radius: 18px; 
+      border: 2px solid #1f2937; text-align: center; transition: 0.3s;
+    }
+    .card:hover { border-color: #fbbf24; transform: translateY(-8px); box-shadow: 0 8px 25px rgba(251, 191, 36, 0.2); }
+    .vip { font-size: 1.4rem; font-weight: 800; color: #fbbf24; margin-bottom: 12px; }
+    .price { font-size: 1.5rem; font-weight: 700; margin: 12px 0; color: #fff; }
+    .earn { color: #22c55e; font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; }
+    .info { font-size: 0.9rem; color: #9ca3af; margin-bottom: 20px; }
 
-<div id="welcome" class="page">
-<img class="big-ceo" src="ceo.jpg" onerror="this.src='https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=600&q=80'" alt="CEO Meeting">
-<div style="text-align:center;margin-top:-28px;position:relative"><span style="background:#ffcc00;color:#000;padding:7px 16px;border-radius:20px;font-weight:900;font-size:12px">🇺🇸 CEO Meeting Cameroon Partners 🇨🇲</span></div>
-<div class="dark" style="text-align:center;margin-top:14px">
-<b style="color:#ffcc00">Welcome: <span id="userPhone"></span></b><br>
-Balance: <b id="b1" style="color:#ffcc00;font-size:18px">0 XAF</b> | VIP: <b id="v1">None</b> | Days: <b id="d1">0</b>/345<br>
-<button class="btn gold" onclick="claim()">💰 Claim Daily Profit</button>
-<button class="btn red" onclick="logout()" style="padding:6px;font-size:11px;margin-top:6px">Logout</button>
-</div>
-<div class="card" style="background:linear-gradient(90deg,#ffcc00,#ffb300);text-align:center"><b>🏢 COMPANY INFO - Transparent & Legit</b><br><small>USA Business Est. 2018 • Cameroon Douala • Real Business</small></div>
-<div class="company-logo-box">
-<img src="logo.png" onerror="this.src='https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=300'" alt="Company Logo">
-<div style="color:#ffcc00;font-weight:900;margin-top:8px">EMP USA OFFICIAL • Investment • Est 2018 USA</div>
-<div style="color:#fff;font-size:11px">Professional • Transparent • Real Business • CEO Michael Johnson</div>
-</div>
-<div class="card" style="background:#0a0e5a;color:#ffcc00;text-align:center;font-weight:900">📸 10 REAL LOGOS - CEO Meeting Cameroon Business People</div>
-<div class="ceo-grid">
-<img src="ceo.jpg" onerror="this.src='https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=200'">
-<img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=200&q=80">
-<img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=200&q=80">
-<img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&q=80">
-<img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=200&q=80">
-<img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=200&q=80">
-<img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb4?w=200&q=80">
-<img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=200&q=80">
-<img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=200&q=80">
-<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80">
-</div>
-<div class="footer">© 2018-2026 EMP USA Official LLC • Support: Precious 678657567 • Risk Disclosure: Investment involves risk</div>
-</div>
+    .note {
+      background: #1f2937; padding: 20px; border-radius: 12px; margin-top: 50px;
+      text-align: center; border: 1px solid #374151;
+    }
 
-<div id="funds" class="page">
-<div class="company-logo-box">
-<img src="logo.png" alt="EMP USA OFFICIAL Logo">
-<div style="color:#ffcc00;font-weight:900;margin-top:8px;font-size:15px">EMP USA OFFICIAL - Real Investment Company</div>
-<div style="color:#fff;font-size:11px">Est. 2018 USA • Shipping • Car • House • Gold • Factory • Oil • Air • Villa • Yacht</div>
-</div>
-<div class="grid" id="vg"></div>
-<div class="footer">All products are real businesses: Shipping at Douala Port, Car import USA, Houses in Cameroon, Gold, Factories, Oil, Air Cargo, Villas, Yachts. Daily profit shared from real business revenue.</div>
-</div>
+    footer { text-align: center; padding: 30px; background: #020617; margin-top: 60px; font-size: 0.9rem; color: #9ca3af; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>VIP Investment Platform</h1>
+    <p>Invest 1,000 FCFA and Earn 345 FCFA Every Day</p>
+    <button class="btn" onclick="alert('Redirect to signup page')">Get Started Now</button>
+  </header>
 
-<div id="deposit" class="page">
-<div class="card" style="text-align:center;background:#2f4bff;color:#fff;font-weight:900">💳 Professional Deposit - Secure & Transparent</div>
-<div class="deposit-card">
-<div style="display:flex;justify-content:space-between;align-items:center"><b>💰 Official Receiver - Cameroon</b><span style="background:#00c853;padding:4px 10px;border-radius:20px;font-size:10px">VERIFIED BUSINESS</span></div>
-<div style="background:#000;border-radius:10px;padding:12px;margin:12px 0;border:1px solid #ffcc00">
-<div style="display:flex;justify-content:space-between;margin:4px 0"><span>Business:</span><b style="color:#ffcc00">EMP USA Cameroon - Precious</b></div>
-<div style="display:flex;justify-content:space-between;margin:4px 0"><span>MoMo:</span><b style="color:#ffcc00">678657567</b></div>
-<div style="display:flex;justify-content:space-between;margin:4px 0"><span>Company:</span><b>Est. 2018 USA</b></div>
-</div>
-<b>Amount XAF</b><input id="amt" type="number" value="1000" oninput="upd()"><div id="ussd" class="ussd">*126*9*678657567*1000#</div>
-<a id="call" href="tel:*126*9*678657567*1000%23"><button class="btn green" style="font-size:16px;padding:16px">📞 TAP TO OPEN DIALER - *126*9*678657567*AMOUNT#</button></a>
-<p style="font-size:11px;text-align:center;color:#ffcc00;margin:8px 0">Type amount → Tap green → Dialer opens with code ready → Press call</p>
-<div class="topup"><div onclick="setA(1000)">1,000</div><div onclick="setA(5000)">5,000</div><div onclick="setA(10000)">10K</div><div onclick="setA(25000)">25K</div><div onclick="setA(40000)">40K</div><div onclick="setA(80000)">80K</div><div onclick="setA(120000)">120K</div><div onclick="setA(150000)">150K</div></div>
-<b style="color:#ffcc00;display:block;margin:12px 0 6px">💳 Payment Methods - Always Visible (Fixed on Redraw)</b>
-<div class="pay active" id="pay1" onclick="pickPay(1)"><div style="width:48px;height:48px;background:#ffcc00;color:#000;display:flex;align-items:center;justify-content:center;border-radius:8px;font-weight:900">MTN</div><div><b>empali-04 - MTN MoMo - Precious 678657567</b><br><small>1K-1M XAF • Instant • *126*9*678657567*amount#</small></div></div>
-<div class="pay" id="pay2" onclick="pickPay(2)"><div style="width:48px;height:48px;background:#ff6a00;color:#fff;display:flex;align-items:center;justify-content:center;border-radius:8px;font-weight:900">OM</div><div><b>empali-03 - Orange Money - 678657567</b><br><small>1K-1M XAF • Orange Money Cameroon</small></div></div>
-<div class="pay" id="pay3" onclick="pickPay(3)"><div style="width:48px;height:48px;background:#00a86b;color:#fff;display:flex;align-items:center;justify-content:center;border-radius:8px;font-weight:900">USDT</div><div><b>USDT-TRC20 - USA Bank - Global</b><br><small>International • Crypto • USA banking</small></div></div>
-<input id="tx" placeholder="TxID from SMS after paying *126*9*"><button class="btn blue" onclick="dep()">✅ Submit Deposit - Wait Admin Approval</button>
-</div>
-</div>
+  <div class="container">
+    <h2>Choose Your VIP Level - VIP 1 to VIP 9</h2>
+    <div class="plans">
+      <div class="card">
+        <div class="vip">VIP 1</div>
+        <div class="price">Invest: 1,000 FCFA</div>
+        <div class="earn">Earn: 345 FCFA / Day</div>
+        <div class="info">Daily profit credited automatically</div>
+        <button class="btn">Activate VIP 1</button>
+      </div>
 
-<div id="withdraw" class="page"><div class="card"><div style="background:#2f4bff;color:#fff;text-align:center;padding:12px;border-radius:10px;font-weight:900">💸 Professional Withdrawal</div>Balance: <b id="b3">0 XAF</b><br><input id="wamt" type="number" placeholder="Amount" oninput="updW()"><input id="wmo" placeholder="Your MoMo Number"><div style="font-size:12px;margin:8px 0">Fee 18% = <span id="fee">0 XAF</span> | You get <b id="get">0 XAF</b></div><button class="btn blue" onclick="withd()">Request Withdraw - From 678657567</button></div></div>
+      <div class="card">
+        <div class="vip">VIP 2</div>
+        <div class="price">Invest: 1,000 FCFA</div>
+        <div class="earn">Earn: 345 FCFA / Day</div>
+        <div class="info">Daily profit credited automatically</div>
+        <button class="btn">Activate VIP 2</button>
+      </div>
 
-<div id="me" class="page">
-<div class="dark" style="text-align:center"><img src="logo.png" onerror="this.src='ceo.jpg'" style="width:85px;height:85px;border-radius:50%;border:3px solid #ffcc00;object-fit:cover;margin:0 auto 8px;display:block;background:#fff;padding:5px"><br>User: <b id="myPhone"></b><br>ID: <b id="myid" style="color:#ffcc00"></b><br>Bal: <b id="b4" style="color:#ffcc00">0 XAF</b> | VIP <b id="v4">None</b> | Days <b id="d4">0</b>/345 | Earn <b id="earn">0</b><div id="ref" style="font-size:10px;border:1px dashed #ffcc00;padding:8px;margin-top:10px;word-break:break-all;background:#000;border-radius:6px"></div><button class="btn gold" onclick="navigator.clipboard.writeText(document.getElementById('ref').innerText);alert('Copied - Earn 10% referral')">Copy Invite Link</button><button class="btn red" onclick="logout()" style="margin-top:8px">Logout</button></div>
-<div class="card"><b>🔐 ADMIN - Pass 678657567</b><input id="apass" type="password" placeholder="Password 678657567"><button class="btn blue" onclick="openA()">Open Admin</button><div id="ad" style="font-size:11px;margin-top:8px"></div></div>
-<div class="card"><b>📜 History - Transparent</b><div id="his" style="font-size:11px"></div></div>
-</div>
+      <div class="card">
+        <div class="vip">VIP 3</div>
+        <div class="price">Invest: 1,000 FCFA</div>
+        <div class="earn">Earn: 345 FCFA / Day</div>
+        <div class="info">Daily profit credited automatically</div>
+        <button class="btn">Activate VIP 3</button>
+      </div>
 
-<div class="nav" id="navbar" style="display:none"><div id="nwelcome" class="on" onclick="go('welcome')">🏠<br>Welcome</div><div id="nfunds" onclick="go('funds')">📋<br>Funds</div><div id="ndeposit" onclick="go('deposit')">💳<br>Deposit</div><div id="nwithdraw" onclick="go('withdraw')">💸<br>Withdraw</div><div id="nme" onclick="go('me')">👤<br>Me</div></div>
+      <div class="card">
+        <div class="vip">VIP 4</div>
+        <div class="price">Invest: 1,000 FCFA</div>
+        <div class="earn">Earn: 345 FCFA / Day</div>
+        <div class="info">Daily profit credited automatically</div>
+        <button class="btn">Activate VIP 4</button>
+      </div>
 
-<script>
-let vips=[
-{id:1,p:1000,d:345,n:"VIP1 Shipping",desc:"Container Ship - Douala Port Logistics",img:"https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80&auto=format&fit=crop",emoji:"🚢"},
-{id:2,p:5000,d:800,n:"VIP2 Car Import",desc:"USA Car Import to Cameroon",img:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=80&auto=format&fit=crop",emoji:"🚗"},
-{id:3,p:10000,d:1600,n:"VIP3 House Estate",desc:"Real Estate House - Bonabéri Douala",img:"https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80&auto=format&fit=crop",emoji:"🏠"},
-{id:4,p:20000,d:2500,n:"VIP4 Gold Bullion",desc:"Gold Bars - Precious Metals",img:"https://images.unsplash.com/photo-1610375461369-3a555b0c0e59?w=600&q=80&auto=format&fit=crop",emoji:"🪙"},
-{id:5,p:40000,d:3550,n:"VIP5 Factory",desc:"Factory Manufacturing Business",img:"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80&auto=format&fit=crop",emoji:"🏭"},
-{id:6,p:70000,d:4500,n:"VIP6 Oil Energy",desc:"Oil Tanker Energy Investment",img:"https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&q=80&auto=format&fit=crop",emoji:"🛢️"},
-{id:7,p:100000,d:8500,n:"VIP7 Air Cargo",desc:"Airplane Air Shipping Cargo",img:"https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80&auto=format&fit=crop",emoji:"✈️"},
-{id:8,p:120000,d:10550,n:"VIP8 Luxury Villa",desc:"Luxury Villa Mansion Estate",img:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80&auto=format&fit=crop",emoji:"🏡"},
-{id:9,p:150000,d:12550,n:"VIP9 CEO Yacht",desc:"Yacht + Jet CEO Unlimited",img:"https://images.unsplash.com/photo-1605281317010-fe5ffe798166?w=600&q=80&auto=format&fit=crop",emoji:"🛥️"}
-];
-let users=JSON.parse(localStorage.getItem('emp_users_final')||'{}');let curUser=localStorage.getItem('emp_cur_final')||'';let bal=0,vip=0,days=0,last='',total=0,code='',deps=[],withs=[];let selectedPay=Number(localStorage.getItem('selectedPay')||1);
-function showReg(){document.getElementById('loginForm').style.display='none';document.getElementById('regForm').style.display='block';}
-function showLogin(){document.getElementById('regForm').style.display='none';document.getElementById('loginForm').style.display='block';}
-function register(){let phone=document.getElementById('rPhone').value.trim();let pass=document.getElementById('rPass').value;let pass2=document.getElementById('rPass2').value;let ref=document.getElementById('rRef').value;if(!phone||!pass)return alert('Enter phone and password');if(pass.length<6)return alert('Min 6 chars');if(pass!=pass2)return alert('Passwords not match');if(users[phone])return alert('Already registered');let newCode='88'+Math.floor(100000+Math.random()*900000);users[phone]={pass:pass,code:newCode,bal:0,vip:0,days:0,last:'',total:0,deps:[],withs:[],ref:ref};localStorage.setItem('emp_users_final',JSON.stringify(users));alert('Registered! ID: '+newCode+' Now login');showLogin();}
-function login(){let phone=document.getElementById('lPhone').value.trim();let pass=document.getElementById('lPass').value;let found=phone;if(!users[phone]){for(let k in users){if(users[k].code==phone){found=k;break;}}}if(!users[found])return alert('User not found, register');if(users[found].pass!=pass)return alert('Wrong password');curUser=found;localStorage.setItem('emp_cur_final',curUser);loadUser();document.getElementById('auth').classList.remove('on');document.getElementById('welcome').classList.add('on');document.getElementById('navbar').style.display='flex';go('welcome');}
-function logout(){saveUser();localStorage.removeItem('emp_cur_final');curUser='';document.getElementById('navbar').style.display='none';document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));document.getElementById('auth').classList.add('on');}
-function loadUser(){let u=users[curUser];if(!u)return;bal=u.bal;vip=u.vip;days=u.days;last=u.last;total=u.total;code=u.code;deps=u.deps||[];withs=u.withs||[];document.getElementById('userPhone').innerText=curUser;document.getElementById('myPhone').innerText=curUser;render();upd();pickPay(selectedPay);}
-function saveUser(){if(!curUser)return;users[curUser].bal=bal;users[curUser].vip=vip;users[curUser].days=days;users[curUser].last=last;users[curUser].total=total;users[curUser].deps=deps;users[curUser].withs=withs;localStorage.setItem('emp_users_final',JSON.stringify(users));}
-if(curUser && users[curUser]){loadUser();document.getElementById('auth').classList.remove('on');document.getElementById('welcome').classList.add('on');document.getElementById('navbar').style.display='flex';}
-function go(id){if(!curUser && id!='auth')return;document.querySelectorAll('.page').forEach(p=>{if(p.id!='auth')p.classList.remove('on')});document.getElementById(id).classList.add('on');document.querySelectorAll('.nav div').forEach(n=>n.classList.remove('on'));let nav=document.getElementById('n'+id);if(nav)nav.classList.add('on');if(id=='deposit'){upd();pickPay(selectedPay);}window.scrollTo(0,0);}
-function setA(a){document.getElementById('amt').value=a;upd();}
-function upd(){let a=document.getElementById('amt').value||1000;if(a<1000)a=1000;document.getElementById('ussd').innerText='*126*9*678657567*'+a+'#';document.getElementById('call').href='tel:*126*9*678657567*'+a+'%23';}
-function pickPay(n){selectedPay=n;localStorage.setItem('selectedPay',n);document.querySelectorAll('.pay').forEach(p=>p.classList.remove('active'));let el=document.getElementById('pay'+n);if(el)el.classList.add('active');}
-function render(){if(!curUser)return;['b1','b3','b4'].forEach(id=>{let e=document.getElementById(id);if(e)e.innerText=bal.toLocaleString()+' XAF';});document.getElementById('v1').innerText=vip?'VIP'+vip:'None';document.getElementById('v4').innerText=vip?'VIP'+vip:'None';document.getElementById('d1').innerText=days;document.getElementById('d4').innerText=days;document.getElementById('myid').innerText=code;document.getElementById('earn').innerText=total.toLocaleString()+' XAF';document.getElementById('ref').innerText=location.href.split('?')[0]+'?ref='+code;let h='';vips.forEach(v=>{h+=`<div class="vip"><div class="vip-badge">${v.n}</div><div class="vip-img-wrap"><img src="${v.img}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><div class="vip-fallback" style="display:none">${v.emoji}</div></div><div style="margin-top:6px"><b>${v.n}</b><br><small style="color:#2f4bff;font-weight:700">${v.desc}</small><br><span style="background:#2f4bff;color:#fff;padding:4px 8px;border-radius:6px;font-size:11px;display:inline-block;margin:4px 0">VIP${v.id} • ${v.p.toLocaleString()}F</span><br><small>${v.d}F/day ×345 = <b>${(v.d*345).toLocaleString()}F</b><br>Real ${v.desc}</small><br><button class="btn blue" style="padding:8px;margin-top:6px" onclick="buy(${v.id})">Invest Now</button></div></div>`;});document.getElementById('vg').innerHTML=h;let hi='';deps.slice().reverse().forEach(d=>hi+=`<div style="border-bottom:1px solid #eee;padding:4px 0">Dep ${d.a}F - ${d.s}</div>`);withs.slice().reverse().forEach(w=>hi+=`<div style="border-bottom:1px solid #eee;padding:4px 0">With ${w.a}F to ${w.m} - ${w.s}</div>`);document.getElementById('his').innerHTML=hi||'No transactions - Transparent history';saveUser();}
-function buy(id){let v=vips.find(x=>x.id==id);if(bal<v.p){alert('Low balance! Deposit *126*9*678657567*'+v.p+'# to invest in '+v.desc);go('deposit');document.getElementById('amt').value=v.p;upd();return}if(!confirm('Invest '+v.p.toLocaleString()+'F in '+v.desc+'? You get '+v.d+'F/day for 345 days'))return;bal-=v.p;vip=id;days=345;render();alert('Invested in '+v.desc+' - VIP'+id+' Active 345 days');}
-function dep(){let a=document.getElementById('amt').value;let t=document.getElementById('tx').value.trim();if(!a||a<1000)return alert('Enter amount min 1000F');if(!t)return alert('Enter TxID from SMS after paying *126*9*678657567*'+a+'#');if(!selectedPay)return alert('Select payment method');deps.push({a:Number(a),t:t,s:'Pending - Method '+selectedPay});render();alert('Deposit '+a+'F to Precious 678657567 via method '+selectedPay+' pending approval');document.getElementById('tx').value='';}
-function withd(){let a=Number(document.getElementById('wamt').value);let m=document.getElementById('wmo').value.trim();if(!a||a<1000)return alert('Enter amount min 1000F');if(!m)return alert('Enter MoMo number');if(a>bal)return alert('Low balance');bal-=a;withs.push({a:a,m:m,s:'Pending'});render();alert('Withdraw pending from 678657567');}
-function updW(){let a=Number(document.getElementById('wamt').value)||0;document.getElementById('fee').innerText=Math.floor(a*0.18).toLocaleString()+' XAF';document.getElementById('get').innerText=(a-Math.floor(a*0.18)).toLocaleString()+' XAF';}
-function claim(){if(vip==0)return alert('Buy VIP first');if(days<=0)return alert('Expired');let td=new Date().toDateString();if(last==td)return alert('Already claimed today');let v=vips[vip-1];bal+=v.d;total+=v.d;days--;last=td;render();alert('Claimed +'+v.d+'F from '+v.desc);}
-function openA(){if(document.getElementById('apass').value!='678657567')return alert('Wrong password');let h='<b>ADMIN - Approve/Reject</b><br>';deps.forEach((d,i)=>{h+=`${d.a}F TxID:${d.t} ${d.s} <button onclick="apd(${i})">Approve</button> <button onclick="rjd(${i})">Reject</button><br>`;});withs.forEach((w,i)=>{h+=`${w.a}F to ${w.m} ${w.s} <button onclick="apw(${i})">Paid</button><br>`;});document.getElementById('ad').innerHTML=h;}
-function apd(i){deps[i].s='Approved';bal+=deps[i].a;render();openA();}
-function rjd(i){deps[i].s='Rejected';render();openA();}
-function apw(i){withs[i].s='Paid from 678657567';render();openA();}
-render();upd();pickPay(selectedPay);
-</script></body></html>
+      <div class="card">
+        <div class="vip">VIP 5</div>
+        <div class="price">Invest: 1,000 FCFA</div>
+        <div class="earn">Earn: 345 FCFA / Day</div>
+        <div class="info">Daily profit credited automatically</div>
+        <button class="btn">Activate VIP 5</button>
+      </div>
+
+      <div class="card">
+        <div class="vip">VIP 6</div>
+        <div class="price">Invest: 1,000 FCFA</div>
+        <div class="earn">Earn: 345 FCFA / Day</div>
+        <div class="info">Daily profit credited automatically</div>
+        <button class="btn">Activate VIP 6</button>
+      </div>
+
+      <div class="card">
+        <div class="vip">VIP 7</div>
+        <div class="price">Invest: 1,000 FCFA</div>
+        <div class="earn">Earn: 345 FCFA / Day</div>
+        <div class="info">Daily profit credited automatically</div>
+        <button class="btn">Activate VIP 7</button>
+      </div>
+
+      <div class="card">
+        <div class="vip">VIP 8</div>
+        <div class="price">Invest: 1,000 FCFA</div>
+        <div class="earn">Earn: 345 FCFA / Day</div>
+        <div class="info">Daily profit credited automatically</div>
+        <button class="btn">Activate VIP 8</button>
+      </div>
+
+      <div class="card">
+        <div class="vip">VIP 9</div>
+        <div class="price">Invest: 1,000 FCFA</div>
+        <div class="earn">Earn: 345 FCFA / Day</div>
+        <div class="info">Daily profit credited automatically</div>
+        <button class="btn">Activate VIP 9</button>
+      </div>
+    </div>
+
+    <div class="note">
+      <h3 style="color:#fbbf24; margin-bottom:10px;">How It Works</h3>
+      <p>1. Choose a VIP level and invest 1,000 FCFA <br>
+         2. You receive 345 FCFA every day <br>
+         3. Withdraw anytime to MTN MoMo or Orange Money</p>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 VIP Investment Platform. All rights reserved. <br>
+    Invest responsibly. Returns are not guaranteed.
+  </footer>
+
+  <script>
+    // Simple alert for all buttons
+    document.querySelectorAll('.btn').forEach(button => {
+      button.addEventListener('click', () => {
+        alert('This will connect to your signup/payment system');
+      });
+    });
+  </script>
+</body>
+</html>
+```
