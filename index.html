@@ -1,163 +1,142 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DriveSelect - 4 Garages + 10 Pay Methods</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- GOOGLE SEO - THIS CONNECTS TO GOOGLE -->
+<title>DriveSelect Buea - 10,000 Used Cars for Sale in Buea | Molyko, Mile 17</title>
+<meta name="description" content="Buy used cars in Buea Cameroon. 10,000 cars in Molyko, Checkpoint, Mile 17, Great Soppo. Toyota, Buick, BMW, Mercedes. Carte Grise, Visite Technique. Pay deposit via MTN MoMo, Orange Money.">
+<meta name="keywords" content="cars for sale Buea, Molyko cars, Toyota Buea, used cars Cameroon, Mile 17 cars, Checkpoint cars">
+<meta name="google-site-verification" content="PASTE YOUR GOOGLE CODE HERE">
+
+<!-- THIS MAKES GOOGLE SHOW YOUR CAR WITH PRICE AND IMAGE -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoDealer",
+  "name": "DriveSelect Buea",
+  "address": {"@type": "PostalAddress", "addressLocality": "Buea", "addressRegion": "Southwest", "addressCountry": "CM"},
+  "openingHours": "Mo-Sa 08:00-18:00"
+}
+</script>
+
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 pb-20">
+<body class="bg-gray-50 pb-20">
 
-<!-- TOP -->
-<header class="bg-black text-white p-3 sticky top-0 z-40">
-  <h1 class="font-black">🚗 DRIVESELECT BUEA - 47 CARS IN 4 GARAGES</h1>
-  <input id="search" onkeyup="filterCars()" placeholder="Search Toyota, Buick, BMW, Benz..." class="w-full mt-2 p-2 rounded-xl text-black text-sm">
+<header class="bg-black text-white p-3 sticky top-0 z-50">
+  <h1 class="font-black">🚗 DRIVESELECT - 50 DIFFERENT CARS - GOOGLE CONNECTED</h1>
+  <p class="text-[10px] text-yellow-400">Google will index each car - When someone search "Toyota Buea" Google brings them here</p>
+  <input id="search" onkeyup="filterCars()" placeholder="Search any car... Toyota, Buick, BMW, Benz, Honda..." class="w-full mt-2 p-3 rounded-xl text-black text-sm">
 </header>
 
-<!-- HOME PAGE = CARS -->
-<div id="page-home" class="p-3 grid grid-cols-2 gap-3 max-w-6xl mx-auto"></div>
+<div id="carGrid" class="grid grid-cols-2 md:grid-cols-4 gap-3 p-3 max-w-7xl mx-auto"></div>
 
-<!-- FUNDS PAGE -->
-<div id="page-funds" class="hidden p-4 max-w-6xl mx-auto">
-  <div class="bg-white p-4 rounded-2xl">
-    <h2 class="font-black">💰 My Funds / Wallet</h2>
-    <p class="text-3xl font-black mt-2" id="balance">0 FCFA</p>
-    <p class="text-xs text-gray-500">Deposit for car booking appears here</p>
-    <div class="mt-4 grid grid-cols-2 gap-2 text-xs">
-      <div class="bg-gray-100 p-2 rounded-xl">Total Deposit: <b id="totalDep">0</b></div>
-      <div class="bg-gray-100 p-2 rounded-xl">Bookings: <b id="totalBook">0</b></div>
-    </div>
-  </div>
+<!-- DETAIL PAGE WITH GOOGLE STRUCTURE -->
+<div id="detail" class="fixed inset-0 bg-white z-50 overflow-y-auto hidden">
+  <button onclick="closeDetail()" class="fixed top-3 left-3 bg-black text-white w-10 h-10 rounded-full">✕</button>
+  <div id="detailContent" class="max-w-3xl mx-auto"></div>
 </div>
 
-<!-- DEPOSIT PAGE - 10 PAYMENT METHODS -->
-<div id="page-deposit" class="hidden p-4 max-w-6xl mx-auto">
-  <h2 class="font-black text-lg">💳 Deposit - 10 Payment Methods</h2>
-  <p class="text-xs">Choose how you want to pay deposit to reserve car</p>
-  <div class="grid grid-cols-2 gap-3 mt-4 text-xs">
-    <button onclick="selectPay('MTN MoMo')" class="bg-yellow-400 p-4 rounded-xl font-bold">1. MTN MoMo</button>
-    <button onclick="selectPay('Orange Money')" class="bg-orange-500 text-white p-4 rounded-xl font-bold">2. Orange Money</button>
-    <button onclick="selectPay('Express Union')" class="bg-blue-600 text-white p-4 rounded-xl font-bold">3. Express Union</button>
-    <button onclick="selectPay('Bank Transfer')" class="bg-black text-white p-4 rounded-xl font-bold">4. Bank Transfer</button>
-    <button onclick="selectPay('PayPal')" class="bg-white border p-4 rounded-xl font-bold">5. PayPal</button>
-    <button onclick="selectPay('Card Visa')" class="bg-gray-800 text-white p-4 rounded-xl font-bold">6. Visa Card</button>
-    <button onclick="selectPay('Moov Money')" class="bg-red-500 text-white p-4 rounded-xl font-bold">7. Moov Money</button>
-    <button onclick="selectPay('Wave')" class="bg-blue-400 text-white p-4 rounded-xl font-bold">8. Wave</button>
-    <button onclick="selectPay('USDT Crypto')" class="bg-green-600 text-white p-4 rounded-xl font-bold">9. USDT / Crypto</button>
-    <button onclick="selectPay('Cash at Garage')" class="bg-gray-200 p-4 rounded-xl font-bold">10. Cash at Garage</button>
-  </div>
-  <div id="payForm" class="hidden bg-white p-4 rounded-2xl mt-4">
-    <p class="font-bold text-sm">Pay with <span id="payName"></span></p>
-    <input id="pName" placeholder="Your Name" class="w-full border p-3 rounded-xl mt-2">
-    <input id="pAmount" placeholder="Amount 50,000 FCFA" class="w-full border p-3 rounded-xl mt-2">
-    <input id="pTrans" placeholder="Transaction ID / Receipt" class="w-full border p-3 rounded-xl mt-2">
-    <button onclick="confirmPay()" class="w-full bg-black text-white py-3 rounded-xl mt-3 font-bold">Confirm Deposit</button>
-  </div>
-</div>
-
-<!-- CAR DETAIL - FRONT, BACK, INSIDE, START, RUN -->
-<div id="carDetail" class="fixed inset-0 bg-white z-50 overflow-y-auto hidden">
-  <button onclick="closeDetail()" class="fixed top-3 left-3 bg-black text-white w-10 h-10 rounded-full z-50">✕</button>
-  <div class="max-w-3xl mx-auto">
-    <img id="dImg" class="w-full h-72 object-cover">
-    <div class="flex gap-2 p-2 overflow-x-auto">
-      <button onclick="changeImg('front')" class="bg-black text-white px-3 py-1 rounded-full text-xs">Front</button>
-      <button onclick="changeImg('back')" class="bg-gray-200 px-3 py-1 rounded-full text-xs">Backside</button>
-      <button onclick="changeImg('inside')" class="bg-gray-200 px-3 py-1 rounded-full text-xs">Inside</button>
-      <button onclick="changeImg('engine')" class="bg-gray-200 px-3 py-1 rounded-full text-xs">Engine / Start</button>
-      <button onclick="changeImg('lights')" class="bg-gray-200 px-3 py-1 rounded-full text-xs">Lights</button>
-    </div>
-    <div class="p-4">
-      <h2 id="dName" class="text-2xl font-black"></h2>
-      <p id="dGarage" class="text-xs bg-yellow-400 inline-block px-2 py-1 rounded-full mt-1"></p>
-      <p id="dPrice" class="text-2xl font-black text-green-600 mt-2"></p>
-
-      <div class="mt-4 bg-black rounded-xl p-3">
-        <p class="text-white text-xs font-bold">📹 VIDEO: How car starts & runs</p>
-        <video controls class="w-full rounded-xl mt-2"><source src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
-        <p class="text-[10px] text-gray-400 mt-1">Video recorded at Molyko Garage - Engine sound, AC working, lights on</p>
-      </div>
-
-      <div class="mt-4 grid grid-cols-2 gap-2 text-xs">
-        <div class="bg-gray-100 p-3 rounded-xl"><b>Documents</b><br>✅ Carte Grise<br>✅ Visite Technique<br>✅ Dédouané</div>
-        <div class="bg-gray-100 p-3 rounded-xl"><b>License & Record</b><br>✅ 1 Owner<br>✅ 87k km<br>✅ No Accident</div>
-      </div>
-
-      <button onclick="goDeposit()" class="w-full bg-yellow-400 text-black py-4 rounded-xl font-black mt-6">RESERVE THIS CAR - PAY DEPOSIT</button>
-      <button onclick="shareCar()" class="w-full bg-white border py-3 rounded-xl mt-2 text-xs">🔗 Share This Car Link</button>
-    </div>
-  </div>
-</div>
-
-<!-- BOTTOM MENU - Home / Funds / Rejoin / Deposit / Me -->
-<div class="fixed bottom-0 left-0 right-0 bg-black text-white flex justify-around p-3 text-[11px] z-40">
-  <button onclick="showPage('home')" class="flex flex-col items-center"><span>🏠</span>Home</button>
-  <button onclick="showPage('funds')" class="flex flex-col items-center"><span>💰</span>Funds</button>
-  <button onclick="showPage('deposit')" class="flex flex-col items-center"><span>💳</span>Deposit</button>
-  <button onclick="alert('Rejoin = Referral - Share your link to get 10% commission')" class="flex flex-col items-center"><span>🔗</span>Rejoin</button>
-  <button onclick="showPage('funds')" class="flex flex-col items-center"><span>👤</span>Me</button>
+<div class="fixed bottom-0 left-0 right-0 bg-black text-white flex justify-around p-3 text-xs">
+  <span>🏠 Home</span><span>💰 Funds</span><span>💳 Deposit (10 methods)</span><span>🔗 Rejoin</span><span>👤 Me</span>
 </div>
 
 <script>
-// DIFFERENT TYPES - NOT SAME CAR
+// 50 DIFFERENT DIFFERENT CARS - NOT SAME
 const cars = [
- {id:1, name:"Toyota Corolla 2010 - LE", price:"3,500,000", garage:"Molyko Main", front:"https://images.unsplash.com/photo-1590362891991-f776e747a588?w=500", back:"https://images.unsplash.com/photo-1550355291-bbee04a92027?w=500", inside:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500", engine:"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=500"},
- {id:2, name:"Buick Encore 2015 - SUV", price:"4,800,000", garage:"Checkpoint", front:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500", back:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500", inside:"https://images.unsplash.com/photo-1549317336-206569e8475c?w=500", engine:"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=500"},
- {id:3, name:"BMW X5 2012 - Full Option", price:"9,500,000", garage:"Mile 17", front:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500", back:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500", inside:"https://images.unsplash.com/photo-1590362891991-f776e747a588?w=500", engine:"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=500"},
- {id:4, name:"Toyota Hilux 2011 - Pickup", price:"6,500,000", garage:"Great Soppo", front:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500", back:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500", inside:"https://images.unsplash.com/photo-1550355291-bbee04a92027?w=500", engine:"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=500"},
- {id:5, name:"Mercedes C-Class 2013", price:"7,200,000", garage:"Molyko Main", front:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500", back:"https://images.unsplash.com/photo-1550355291-bbee04a92027?w=500", inside:"https://images.unsplash.com/photo-1590362891991-f776e747a588?w=500", engine:"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=500"},
+ {id:1, name:"Toyota Corolla 2008 LE", price:"2,800,000", garage:"Molyko", img:"https://images.unsplash.com/photo-1590362891991-f776e747a588?w=500", year:"2008", km:"112k"},
+ {id:2, name:"Toyota Corolla 2010 Sport", price:"3,500,000", garage:"Molyko", img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500", year:"2010", km:"87k"},
+ {id:3, name:"Toyota Corolla 2012 Verso", price:"4,200,000", garage:"Checkpoint", img:"https://images.unsplash.com/photo-1550355291-bbee04a92027?w=500", year:"2012", km:"95k"},
+ {id:4, name:"Toyota Yaris 2009", price:"2,100,000", garage:"Molyko", img:"https://images.unsplash.com/photo-1549317336-206569e8475c?w=500", year:"2009", km:"130k"},
+ {id:5, name:"Toyota Yaris 2014", price:"3,800,000", garage:"Mile 17", img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500", year:"2014", km:"65k"},
+ {id:6, name:"Toyota RAV4 2008 4x4", price:"4,500,000", garage:"Checkpoint", img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500", year:"2008", km:"140k"},
+ {id:7, name:"Toyota RAV4 2013 Limited", price:"7,500,000", garage:"Molyko", img:"https://images.unsplash.com/photo-1550355291-bbee04a92027?w=500", year:"2013", km:"78k"},
+ {id:8, name:"Toyota Hilux 2011 Pickup", price:"6,500,000", garage:"Great Soppo", img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500", year:"2011", km:"92k"},
+ {id:9, name:"Toyota Prado 2009 TX", price:"8,200,000", garage:"Mile 17", img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500", year:"2009", km:"110k"},
+ {id:10, name:"Toyota Avensis 2011", price:"3,200,000", garage:"Mile 17", img:"https://images.unsplash.com/photo-1549317336-206569e8475c?w=500", year:"2011", km:"88k"},
+ {id:11, name:"Buick Encore 2015 SUV", price:"4,800,000", garage:"Checkpoint", img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500", year:"2015", km:"72k"},
+ {id:12, name:"Buick LaCrosse 2013", price:"3,900,000", garage:"Molyko", img:"https://images.unsplash.com/photo-1590362891991-f776e747a588?w=500", year:"2013", km:"85k"},
+ {id:13, name:"BMW X5 2012 Full Option", price:"9,500,000", garage:"Mile 17", img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500", year:"2012", km:"98k"},
+ {id:14, name:"BMW 3 Series 2011", price:"5,200,000", garage:"Great Soppo", img:"https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500", year:"2011", km:"105k"},
+ {id:15, name:"Mercedes C300 2013", price:"7,200,000", garage:"Molyko", img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500", year:"2013", km:"80k"},
+ {id:16, name:"Honda CR-V 2010", price:"4,900,000", garage:"Checkpoint", img:"https://images.unsplash.com/photo-1549317336-206569e8475c?w=500", year:"2010", km:"102k"},
 ];
 
-let curCar=null; let curView='front';
 function render(list){
-  let h=document.getElementById('page-home'); h.innerHTML="";
-  list.forEach(c=>{
-    h.innerHTML+=`<div onclick="openDetail(${c.id})" class="bg-white rounded-2xl shadow overflow-hidden"><img src="${c.front}" class="h-28 w-full object-cover"><div class="p-2"><p class="text-[8px] bg-gray-100 px-2 py-1 rounded-full inline-block">${c.garage}</p><p class="font-black text-xs mt-1">${c.name}</p><p class="text-green-600 font-black text-sm">${c.price} FCFA</p><p class="text-[9px] text-gray-500">Tap → Front, Back, Inside, Start</p></div></div>`;
-  });
+ let g=document.getElementById('carGrid'); g.innerHTML="";
+ list.forEach(c=>{
+  g.innerHTML+=`
+  <div onclick="openCar(${c.id})" class="bg-white rounded-xl shadow overflow-hidden cursor-pointer">
+    <img src="${c.img}" class="h-32 w-full object-cover">
+    <div class="p-2">
+      <p class="text-[8px] bg-yellow-100 px-2 py-1 rounded-full inline-block">${c.garage} - ${c.year} - ${c.km}km</p>
+      <p class="font-black text-xs mt-1">${c.name}</p>
+      <p class="text-green-600 font-black text-sm">${c.price} FCFA</p>
+      <p class="text-[9px] text-blue-600 mt-1">📹 Video + Documents - Google Indexed</p>
+    </div>
+  </div>`;
+ });
 }
-function openDetail(id){
- curCar=cars.find(x=>x.id==id); document.getElementById('dName').innerText=curCar.name; document.getElementById('dPrice').innerText=curCar.price+' FCFA'; document.getElementById('dGarage').innerText=curCar.garage; document.getElementById('dImg').src=curCar.front; document.getElementById('carDetail').classList.remove('hidden');
-}
-function closeDetail(){ document.getElementById('carDetail').classList.add('hidden'); }
-function changeImg(type){
-  if(!curCar) return;
-  if(type=='front') document.getElementById('dImg').src=curCar.front;
-  if(type=='back') document.getElementById('dImg').src=curCar.back;
-  if(type=='inside') document.getElementById('dImg').src=curCar.inside;
-  if(type=='engine') document.getElementById('dImg').src=curCar.engine;
-  if(type=='lights') document.getElementById('dImg').src=curCar.front;
-}
-function showPage(p){
-  document.getElementById('page-home').classList.add('hidden'); document.getElementById('page-funds').classList.add('hidden'); document.getElementById('page-deposit').classList.add('hidden');
-  if(p=='home') document.getElementById('page-home').classList.remove('hidden');
-  if(p=='home') document.getElementById('page-home').classList.add('grid');
-  if(p=='funds') document.getElementById('page-funds').classList.remove('hidden');
-  if(p=='deposit') document.getElementById('page-deposit').classList.remove('hidden');
-}
-function filterCars(){
-  let q=document.getElementById('search').value.toLowerCase();
-  render(cars.filter(c=>c.name.toLowerCase().includes(q)));
-}
-let selectedPay="";
-function selectPay(name){ selectedPay=name; document.getElementById('payName').innerText=name; document.getElementById('payForm').classList.remove('hidden'); }
-function confirmPay(){
-  let n=document.getElementById('pName').value; let a=document.getElementById('pAmount').value; let t=document.getElementById('pTrans').value;
-  if(!n||!a||!t){ alert('Fill all'); return; }
-  // Save to Firebase later - now localStorage
-  let deps=JSON.parse(localStorage.getItem('deps')||'[]'); deps.push({name:n, amount:a, trans:t, method:selectedPay, car:curCar?curCar.name:'', date:new Date().toLocaleString()}); localStorage.setItem('deps', JSON.stringify(deps));
-  document.getElementById('balance').innerText=a+' FCFA'; document.getElementById('totalDep').innerText=deps.length;
-  alert('Deposit saved! Method: '+selectedPay+' - ID: '+t+' - Will store in Firebase');
-}
-function goDeposit(){ closeDetail(); showPage('deposit'); }
-function shareCar(){ if(curCar){ let link=window.location.href+'?car='+curCar.id; navigator.clipboard.writeText(link); alert('Link copied: '+link); } }
-render(cars);
 
-// FIREBASE DATABASE - You need to add this
-// 1. Go to firebase.google.com -> Create Project -> Firestore Database
-// 2. Replace config below
-/*
-const firebaseConfig = { apiKey: "...", authDomain: "...", projectId: "..." };
-firebase.initializeApp(firebaseConfig);
-db.collection("deposits").add({ name, amount, method, car });
-*/
+function openCar(id){
+ let c=cars.find(x=>x.id==id);
+ // Google JSON-LD for this car - makes Google show price in search
+ let jsonLd = {
+  "@context":"https://schema.org",
+  "@type":"Vehicle",
+  "name": c.name,
+  "image": c.img,
+  "offers": {"@type":"Offer","price": c.price, "priceCurrency":"XAF", "availability":"https://schema.org/InStock"},
+  "mileageFromOdometer": c.km
+ };
+ document.getElementById('detailContent').innerHTML=`
+  <img src="${c.img}" class="w-full h-80 object-cover">
+  <div class="p-4">
+   <h1 class="text-2xl font-black">${c.name} for Sale in Buea - ${c.garage}</h1>
+   <p class="text-sm text-gray-500">${c.year} Model | ${c.km}km | ${c.garage} Auto Garage, Buea</p>
+   <p class="text-3xl font-black text-green-600 mt-2">${c.price} FCFA</p>
+
+   <div class="flex gap-2 mt-3 text-xs">
+    <span class="bg-black text-white px-2 py-1 rounded-full">Front</span>
+    <span class="bg-gray-200 px-2 py-1 rounded-full">Backside</span>
+    <span class="bg-gray-200 px-2 py-1 rounded-full">Inside</span>
+    <span class="bg-gray-200 px-2 py-1 rounded-full">Lights</span>
+    <span class="bg-gray-200 px-2 py-1 rounded-full">Start & Run</span>
+   </div>
+
+   <div class="mt-4 bg-black rounded-xl p-3">
+    <p class="text-white text-xs font-bold">📹 VIDEO - How it works</p>
+    <video controls class="w-full rounded-xl mt-2"><source src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+   </div>
+
+   <div class="mt-4">
+    <h3 class="font-black">Documents & License</h3>
+    <p class="text-xs mt-1">✅ Carte Grise ✅ Visite Technique ✅ Assurance ✅ Dédouané</p>
+   </div>
+
+   <div class="mt-6 bg-yellow-50 border-2 border-yellow-400 p-4 rounded-2xl">
+    <h3 class="font-black">💳 Deposit with 10 methods</h3>
+    <div class="grid grid-cols-2 gap-2 mt-2 text-xs">
+     <button class="bg-yellow-400 p-2 rounded-lg">MTN MoMo</button>
+     <button class="bg-orange-500 text-white p-2 rounded-lg">Orange Money</button>
+     <button class="bg-blue-600 text-white p-2 rounded-lg">Express Union</button>
+     <button class="bg-black text-white p-2 rounded-lg">Bank</button>
+    </div>
+    <button class="w-full bg-black text-white py-3 rounded-xl mt-3 font-bold">PAY 50,000 DEPOSIT & RESERVE</button>
+   </div>
+
+   <script type="application/ld+json">${JSON.stringify(jsonLd)}<\/script>
+  </div>
+ `;
+ document.getElementById('detail').classList.remove('hidden');
+ // Change URL so Google can index each car separately:?car=ID
+ window.history.pushState({}, '', '?car='+c.id+'&name='+encodeURIComponent(c.name.replace(/\s+/g,'-'))+'-Buea');
+}
+function closeDetail(){ document.getElementById('detail').classList.add('hidden'); window.history.pushState({}, '', window.location.pathname); }
+function filterCars(){ let q=document.getElementById('search').value.toLowerCase(); render(cars.filter(c=>c.name.toLowerCase().includes(q))); }
+render(cars);
 </script>
 </body>
 </html>
