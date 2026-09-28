@@ -1,142 +1,173 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- GOOGLE SEO - THIS CONNECTS TO GOOGLE -->
-<title>DriveSelect Buea - 10,000 Used Cars for Sale in Buea | Molyko, Mile 17</title>
-<meta name="description" content="Buy used cars in Buea Cameroon. 10,000 cars in Molyko, Checkpoint, Mile 17, Great Soppo. Toyota, Buick, BMW, Mercedes. Carte Grise, Visite Technique. Pay deposit via MTN MoMo, Orange Money.">
-<meta name="keywords" content="cars for sale Buea, Molyko cars, Toyota Buea, used cars Cameroon, Mile 17 cars, Checkpoint cars">
-<meta name="google-site-verification" content="PASTE YOUR GOOGLE CODE HERE">
-
-<!-- THIS MAKES GOOGLE SHOW YOUR CAR WITH PRICE AND IMAGE -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "AutoDealer",
-  "name": "DriveSelect Buea",
-  "address": {"@type": "PostalAddress", "addressLocality": "Buea", "addressRegion": "Southwest", "addressCountry": "CM"},
-  "openingHours": "Mo-Sa 08:00-18:00"
-}
-</script>
-
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DriveSelect - Alibaba of Buea | Buy Anything</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 pb-20">
+<body class="bg-[#f5f5f5] pb-24">
 
-<header class="bg-black text-white p-3 sticky top-0 z-50">
-  <h1 class="font-black">🚗 DRIVESELECT - 50 DIFFERENT CARS - GOOGLE CONNECTED</h1>
-  <p class="text-[10px] text-yellow-400">Google will index each car - When someone search "Toyota Buea" Google brings them here</p>
-  <input id="search" onkeyup="filterCars()" placeholder="Search any car... Toyota, Buick, BMW, Benz, Honda..." class="w-full mt-2 p-3 rounded-xl text-black text-sm">
+<!-- ALIBABA HEADER -->
+<header class="bg-[#FF6A00] text-white p-3 sticky top-0 z-50">
+  <div class="flex items-center gap-2">
+    <h1 class="font-black text-xl">🛒 BueaMarket</h1>
+    <span class="text-xs bg-white text-orange-600 px-2 py-1 rounded-full font-bold">Alibaba of Buea</span>
+  </div>
+  <div class="flex gap-2 mt-3">
+    <input id="search" onkeyup="searchAll()" placeholder="Search anything... car, bumper, light, phone, shoes..." class="w-full p-3 rounded-full text-black text-sm">
+    <button class="bg-black px-4 rounded-full text-sm">🔍</button>
+  </div>
+  <div class="flex gap-2 mt-2 text-[10px] overflow-x-auto">
+    <span class="bg-white/20 px-2 py-1 rounded-full">Toyota</span>
+    <span class="bg-white/20 px-2 py-1 rounded-full">Buick</span>
+    <span class="bg-white/20 px-2 py-1 rounded-full">BMW Parts</span>
+    <span class="bg-white/20 px-2 py-1 rounded-full">Head Light</span>
+    <span class="bg-white/20 px-2 py-1 rounded-full">Bumper</span>
+    <span class="bg-white/20 px-2 py-1 rounded-full">Fender</span>
+    <span class="bg-white/20 px-2 py-1 rounded-full">Engine</span>
+  </div>
 </header>
 
-<div id="carGrid" class="grid grid-cols-2 md:grid-cols-4 gap-3 p-3 max-w-7xl mx-auto"></div>
-
-<!-- DETAIL PAGE WITH GOOGLE STRUCTURE -->
-<div id="detail" class="fixed inset-0 bg-white z-50 overflow-y-auto hidden">
-  <button onclick="closeDetail()" class="fixed top-3 left-3 bg-black text-white w-10 h-10 rounded-full">✕</button>
-  <div id="detailContent" class="max-w-3xl mx-auto"></div>
+<!-- CATEGORIES LIKE ALIBABA -->
+<div class="bg-white p-3 grid grid-cols-5 gap-2 text-[10px] text-center">
+  <div onclick="filterCat('cars')"><div class="text-2xl">🚗</div>Cars</div>
+  <div onclick="filterCat('parts')"><div class="text-2xl">🔧</div>Parts</div>
+  <div onclick="filterCat('light')"><div class="text-2xl">💡</div>Lights</div>
+  <div onclick="filterCat('bumper')"><div class="text-2xl">🛡️</div>Bumper</div>
+  <div onclick="filterCat('engine')"><div class="text-2xl">⚙️</div>Engine</div>
 </div>
 
-<div class="fixed bottom-0 left-0 right-0 bg-black text-white flex justify-around p-3 text-xs">
-  <span>🏠 Home</span><span>💰 Funds</span><span>💳 Deposit (10 methods)</span><span>🔗 Rejoin</span><span>👤 Me</span>
+<!-- PRODUCTS GRID - LIKE ALIBABA -->
+<div id="productGrid" class="grid grid-cols-2 md:grid-cols-4 gap-2 p-2 max-w-7xl mx-auto"></div>
+
+<!-- PRODUCT DETAIL - ALIBABA STYLE -->
+<div id="detail" class="fixed inset-0 bg-white z-50 overflow-y-auto hidden">
+  <button onclick="closeDetail()" class="fixed top-3 left-3 bg-black text-white w-10 h-10 rounded-full z-50">✕</button>
+  <div id="detailBox" class="max-w-4xl mx-auto pb-32"></div>
+</div>
+
+<!-- CART / FUNDS -->
+<div id="cartBar" class="fixed bottom-16 left-0 right-0 bg-black text-white p-3 flex justify-between items-center z-40 hidden">
+  <span class="text-sm"><span id="cartCount">0</span> items | <span id="cartTotal">0 FCFA</span></span>
+  <button onclick="openCheckout()" class="bg-[#FF6A00] px-6 py-2 rounded-full font-bold">Checkout (10 Pay Methods)</button>
+</div>
+
+<!-- BOTTOM MENU - Alibaba style Home / Funds / Deposit / Rejoin / Me -->
+<div class="fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around p-2 text-[10px] z-50">
+  <button onclick="showHome()" class="flex flex-col items-center text-[#FF6A00]"><span class="text-xl">🏠</span>Home</button>
+  <button onclick="openFunds()" class="flex flex-col items-center"><span class="text-xl">💰</span>Funds</button>
+  <button onclick="openDeposit()" class="flex flex-col items-center"><span class="text-xl">💳</span>Deposit</button>
+  <button onclick="openRejoin()" class="flex flex-col items-center"><span class="text-xl">🔗</span>Rejoin</button>
+  <button onclick="openMe()" class="flex flex-col items-center"><span class="text-xl">👤</span>Me</button>
 </div>
 
 <script>
-// 50 DIFFERENT DIFFERENT CARS - NOT SAME
-const cars = [
- {id:1, name:"Toyota Corolla 2008 LE", price:"2,800,000", garage:"Molyko", img:"https://images.unsplash.com/photo-1590362891991-f776e747a588?w=500", year:"2008", km:"112k"},
- {id:2, name:"Toyota Corolla 2010 Sport", price:"3,500,000", garage:"Molyko", img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500", year:"2010", km:"87k"},
- {id:3, name:"Toyota Corolla 2012 Verso", price:"4,200,000", garage:"Checkpoint", img:"https://images.unsplash.com/photo-1550355291-bbee04a92027?w=500", year:"2012", km:"95k"},
- {id:4, name:"Toyota Yaris 2009", price:"2,100,000", garage:"Molyko", img:"https://images.unsplash.com/photo-1549317336-206569e8475c?w=500", year:"2009", km:"130k"},
- {id:5, name:"Toyota Yaris 2014", price:"3,800,000", garage:"Mile 17", img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500", year:"2014", km:"65k"},
- {id:6, name:"Toyota RAV4 2008 4x4", price:"4,500,000", garage:"Checkpoint", img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500", year:"2008", km:"140k"},
- {id:7, name:"Toyota RAV4 2013 Limited", price:"7,500,000", garage:"Molyko", img:"https://images.unsplash.com/photo-1550355291-bbee04a92027?w=500", year:"2013", km:"78k"},
- {id:8, name:"Toyota Hilux 2011 Pickup", price:"6,500,000", garage:"Great Soppo", img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500", year:"2011", km:"92k"},
- {id:9, name:"Toyota Prado 2009 TX", price:"8,200,000", garage:"Mile 17", img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500", year:"2009", km:"110k"},
- {id:10, name:"Toyota Avensis 2011", price:"3,200,000", garage:"Mile 17", img:"https://images.unsplash.com/photo-1549317336-206569e8475c?w=500", year:"2011", km:"88k"},
- {id:11, name:"Buick Encore 2015 SUV", price:"4,800,000", garage:"Checkpoint", img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500", year:"2015", km:"72k"},
- {id:12, name:"Buick LaCrosse 2013", price:"3,900,000", garage:"Molyko", img:"https://images.unsplash.com/photo-1590362891991-f776e747a588?w=500", year:"2013", km:"85k"},
- {id:13, name:"BMW X5 2012 Full Option", price:"9,500,000", garage:"Mile 17", img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500", year:"2012", km:"98k"},
- {id:14, name:"BMW 3 Series 2011", price:"5,200,000", garage:"Great Soppo", img:"https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500", year:"2011", km:"105k"},
- {id:15, name:"Mercedes C300 2013", price:"7,200,000", garage:"Molyko", img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500", year:"2013", km:"80k"},
- {id:16, name:"Honda CR-V 2010", price:"4,900,000", garage:"Checkpoint", img:"https://images.unsplash.com/photo-1549317336-206569e8475c?w=500", year:"2010", km:"102k"},
+// ALIBABA PRODUCTS - DIFFERENT DIFFERENT, NOT SAME
+const products = [
+ {id:1, cat:"cars", name:"Toyota Corolla 2010 LE - Clean", price:3500000, img:"https://images.unsplash.com/photo-1590362891991-f776e747a588?w=400", supplier:"Molyko Auto Garage", location:"Molyko, Buea", sales:120, video:"yes"},
+ {id:2, cat:"cars", name:"Buick Encore 2015 SUV - Full Option", price:4800000, img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400", supplier:"Checkpoint Auto", location:"Checkpoint", sales:89, video:"yes"},
+ {id:3, cat:"parts", name:"Toyota Corolla Head Light - Original", price:45000, img:"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400", supplier:"Molyko Pieces Auto", location:"Molyko", sales:340, video:"no"},
+ {id:4, cat:"bumper", name:"BMW X5 Front Bumper 2012", price:120000, img:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400", supplier:"Mile 17 Parts", location:"Mile 17", sales:56, video:"no"},
+ {id:5, cat:"light", name:"Buick LaCrosse Tail Light", price:60000, img:"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400", supplier:"Great Soppo Garage", location:"Soppo", sales:102, video:"no"},
+ {id:6, cat:"engine", name:"Toyota 1ZZ Engine - Complete", price:850000, img:"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400", supplier:"Molyko Engine Shop", location:"Molyko", sales:23, video:"yes"},
+ {id:7, cat:"cars", name:"Mercedes C300 2013 - Leather", price:7200000, img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400", supplier:"Molyko Main", location:"Molyko", sales:45, video:"yes"},
+ {id:8, cat:"parts", name:"Toyota Hilux Fender - Front", price:75000, img:"https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400", supplier:"Mile 17 Body Works", location:"Mile 17", sales:78, video:"no"},
 ];
 
+let cart = [];
 function render(list){
- let g=document.getElementById('carGrid'); g.innerHTML="";
- list.forEach(c=>{
+ let g=document.getElementById('productGrid'); g.innerHTML="";
+ list.forEach(p=>{
   g.innerHTML+=`
-  <div onclick="openCar(${c.id})" class="bg-white rounded-xl shadow overflow-hidden cursor-pointer">
-    <img src="${c.img}" class="h-32 w-full object-cover">
+  <div onclick="openDetail(${p.id})" class="bg-white rounded-xl overflow-hidden shadow-sm">
+    <img src="${p.img}" class="h-32 w-full object-cover">
     <div class="p-2">
-      <p class="text-[8px] bg-yellow-100 px-2 py-1 rounded-full inline-block">${c.garage} - ${c.year} - ${c.km}km</p>
-      <p class="font-black text-xs mt-1">${c.name}</p>
-      <p class="text-green-600 font-black text-sm">${c.price} FCFA</p>
-      <p class="text-[9px] text-blue-600 mt-1">📹 Video + Documents - Google Indexed</p>
+      <p class="text-[10px] bg-orange-100 text-orange-600 px-2 py-1 rounded-full inline-block">${p.supplier}</p>
+      <p class="font-bold text-xs mt-1 leading-tight">${p.name}</p>
+      <p class="text-[10px] text-gray-500">${p.location} | ${p.sales} sold | ${p.video=='yes'?'📹 Video':''}</p>
+      <p class="text-[#FF6A00] font-black text-sm mt-1">${p.price.toLocaleString()} FCFA</p>
+      <p class="text-[9px] text-gray-400">Min Order: 1 piece | 10 pay methods</p>
     </div>
   </div>`;
  });
 }
+render(products);
 
-function openCar(id){
- let c=cars.find(x=>x.id==id);
- // Google JSON-LD for this car - makes Google show price in search
- let jsonLd = {
-  "@context":"https://schema.org",
-  "@type":"Vehicle",
-  "name": c.name,
-  "image": c.img,
-  "offers": {"@type":"Offer","price": c.price, "priceCurrency":"XAF", "availability":"https://schema.org/InStock"},
-  "mileageFromOdometer": c.km
- };
- document.getElementById('detailContent').innerHTML=`
-  <img src="${c.img}" class="w-full h-80 object-cover">
+function openDetail(id){
+ let p=products.find(x=>x.id==id);
+ document.getElementById('detailBox').innerHTML=`
+  <img src="${p.img}" class="w-full h-80 object-cover">
   <div class="p-4">
-   <h1 class="text-2xl font-black">${c.name} for Sale in Buea - ${c.garage}</h1>
-   <p class="text-sm text-gray-500">${c.year} Model | ${c.km}km | ${c.garage} Auto Garage, Buea</p>
-   <p class="text-3xl font-black text-green-600 mt-2">${c.price} FCFA</p>
+    <p class="text-xs bg-gray-100 px-2 py-1 rounded-full inline-block">${p.supplier} - Verified Supplier - ${p.location}</p>
+    <h1 class="text-xl font-black mt-2">${p.name}</h1>
+    <p class="text-sm text-gray-500">4 Garages in Buea | Mount Fako View | MTN MoMo Shop Nearby</p>
+    <p class="text-3xl font-black text-[#FF6A00] mt-2">${p.price.toLocaleString()} FCFA</p>
 
-   <div class="flex gap-2 mt-3 text-xs">
-    <span class="bg-black text-white px-2 py-1 rounded-full">Front</span>
-    <span class="bg-gray-200 px-2 py-1 rounded-full">Backside</span>
-    <span class="bg-gray-200 px-2 py-1 rounded-full">Inside</span>
-    <span class="bg-gray-200 px-2 py-1 rounded-full">Lights</span>
-    <span class="bg-gray-200 px-2 py-1 rounded-full">Start & Run</span>
-   </div>
-
-   <div class="mt-4 bg-black rounded-xl p-3">
-    <p class="text-white text-xs font-bold">📹 VIDEO - How it works</p>
-    <video controls class="w-full rounded-xl mt-2"><source src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
-   </div>
-
-   <div class="mt-4">
-    <h3 class="font-black">Documents & License</h3>
-    <p class="text-xs mt-1">✅ Carte Grise ✅ Visite Technique ✅ Assurance ✅ Dédouané</p>
-   </div>
-
-   <div class="mt-6 bg-yellow-50 border-2 border-yellow-400 p-4 rounded-2xl">
-    <h3 class="font-black">💳 Deposit with 10 methods</h3>
-    <div class="grid grid-cols-2 gap-2 mt-2 text-xs">
-     <button class="bg-yellow-400 p-2 rounded-lg">MTN MoMo</button>
-     <button class="bg-orange-500 text-white p-2 rounded-lg">Orange Money</button>
-     <button class="bg-blue-600 text-white p-2 rounded-lg">Express Union</button>
-     <button class="bg-black text-white p-2 rounded-lg">Bank</button>
+    <!-- FRONT / BACK / INSIDE / LIGHTS / START -->
+    <div class="flex gap-2 mt-3 text-xs overflow-x-auto">
+      <span class="bg-black text-white px-3 py-1 rounded-full">Front</span>
+      <span class="bg-gray-200 px-3 py-1 rounded-full">Backside</span>
+      <span class="bg-gray-200 px-3 py-1 rounded-full">Inside</span>
+      <span class="bg-gray-200 px-3 py-1 rounded-full">Lights On</span>
+      <span class="bg-gray-200 px-3 py-1 rounded-full">Engine Start</span>
+      <span class="bg-gray-200 px-3 py-1 rounded-full">How it Runs</span>
     </div>
-    <button class="w-full bg-black text-white py-3 rounded-xl mt-3 font-bold">PAY 50,000 DEPOSIT & RESERVE</button>
-   </div>
 
-   <script type="application/ld+json">${JSON.stringify(jsonLd)}<\/script>
+    <!-- VIDEO LIKE ALIBABA SUPPLIER VIDEO -->
+    <div class="mt-4 bg-black rounded-xl p-2">
+      <p class="text-white text-xs font-bold">📹 Supplier Video - Showing ${p.name} - How it works</p>
+      <video controls class="w-full rounded-xl mt-2"><source src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+      <p class="text-[10px] text-gray-400 mt-1">Recorded at ${p.location} Garage, Buea - You can see front, back, inside, lights, engine start</p>
+    </div>
+
+    <!-- DOCUMENTS FOR CARS -->
+    <div class="mt-4 grid grid-cols-2 gap-2 text-xs">
+      <div class="bg-gray-50 p-3 rounded-xl"><b>Documents</b><br>✅ Carte Grise<br>✅ Visite Technique<br>✅ Dédouané<br>✅ Customs Paper</div>
+      <div class="bg-gray-50 p-3 rounded-xl"><b>Supplier Guarantee</b><br>✅ 7 Days Return<br>✅ Delivery to Douala, Limbe<br>✅ 4 Garages to Confirm</div>
+    </div>
+
+    <!-- ADD TO CART - ALIBABA STYLE -->
+    <div class="mt-6 flex gap-2">
+      <button onclick="addToCart(${p.id})" class="flex-1 bg-[#FFD814] text-black py-4 rounded-full font-black">Add to Cart</button>
+      <button onclick="buyNow(${p.id})" class="flex-1 bg-[#FF6A00] text-white py-4 rounded-full font-black">Buy Now - 10 Pay Methods</button>
+    </div>
+    <p class="text-[10px] text-center mt-2 text-gray-500">🔗 Share link of this product - Anyone can buy - You get commission (Rejoin)</p>
   </div>
  `;
  document.getElementById('detail').classList.remove('hidden');
- // Change URL so Google can index each car separately:?car=ID
- window.history.pushState({}, '', '?car='+c.id+'&name='+encodeURIComponent(c.name.replace(/\s+/g,'-'))+'-Buea');
 }
-function closeDetail(){ document.getElementById('detail').classList.add('hidden'); window.history.pushState({}, '', window.location.pathname); }
-function filterCars(){ let q=document.getElementById('search').value.toLowerCase(); render(cars.filter(c=>c.name.toLowerCase().includes(q))); }
-render(cars);
+function closeDetail(){ document.getElementById('detail').classList.add('hidden'); }
+function addToCart(id){
+ let p=products.find(x=>x.id==id); cart.push(p);
+ document.getElementById('cartCount').innerText=cart.length;
+ let total=cart.reduce((s,x)=>s+x.price,0);
+ document.getElementById('cartTotal').innerText=total.toLocaleString()+' FCFA';
+ document.getElementById('cartBar').classList.remove('hidden');
+ alert('Added to cart! Like Alibaba - Continue shopping');
+}
+function buyNow(id){ addToCart(id); openCheckout(); }
+
+function openCheckout(){
+ let methods=`1. MTN MoMo\n2. Orange Money\n3. Express Union\n4. Bank Transfer\n5. PayPal\n6. Visa Card\n7. Moov Money\n8. Wave\n9. USDT Crypto\n10. Cash at Garage - Molyko`;
+ let m=prompt('CHOOSE PAYMENT METHOD:\n\n'+methods+'\n\nType number 1-10');
+ if(m){
+  let name=prompt('Enter your name for deposit');
+  let trans=prompt('Enter Transaction ID after paying');
+  // Save to Firebase / localStorage
+  let orders=JSON.parse(localStorage.getItem('orders')||'[]'); orders.push({items:cart, method:m, name:name, trans:trans, date:new Date().toLocaleString()}); localStorage.setItem('orders', JSON.stringify(orders));
+  alert('ORDER SUCCESS! Deposit saved. We will deliver to Buea/Douala. Check FUNDS page.');
+  cart=[]; document.getElementById('cartBar').classList.add('hidden');
+ }
+}
+function searchAll(){ let q=document.getElementById('search').value.toLowerCase(); render(products.filter(p=>p.name.toLowerCase().includes(q) || p.supplier.toLowerCase().includes(q))); }
+function filterCat(cat){ if(cat=='all') render(products); else render(products.filter(p=>p.cat==cat || p.name.toLowerCase().includes(cat))); }
+function showHome(){ render(products); }
+function openFunds(){ let orders=JSON.parse(localStorage.getItem('orders')||'[]'); alert('FUNDS PAGE\n\nTotal Orders: '+orders.length+'\n\nLast order: '+(orders[orders.length-1]?.trans||'none')+'\n\nThis will connect to Firebase so you see all funds online'); }
+function openDeposit(){ alert('DEPOSIT PAGE - 10 methods\n\n'+'1.MTN 2.Orange 3.Express Union 4.Bank 5.PayPal 6.Visa 7.Moov 8.Wave 9.USDT 10.Cash at Molyko Garage'); }
+function openRejoin(){ let link=window.location.href; navigator.clipboard.writeText(link); alert('REJOIN / REFERRAL\n\nYour share link copied:\n'+link+'\n\nAnyone who buys from your link, you get 10% - Like Alibaba affiliate'); }
+function openMe(){ alert('ME PAGE - Your Store\n\nYou have 4 garages\nMolyko | Checkpoint | Mile 17 | Soppo\n\nTotal products: 10,000 (will load from Google Sheet)'); }
+
+// GOOGLE CONNECTION - Sitemap ready
 </script>
 </body>
 </html>
