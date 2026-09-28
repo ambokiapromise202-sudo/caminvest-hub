@@ -1,95 +1,60 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DriveSelect Motors - Buea</title>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DriveSelect - Real Buea Garages</title>
 <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
-<script>
-// === EDIT HERE ===
-const MY_WHATSAPP = "237680726514"; // your WhatsApp
-const MY_MOMO = "678657567"; // your MoMo
-const REF_BONUS = 10; // 10% commission for referral
-// =================
-</script>
-
-<header class="bg-black text-white p-4 flex justify-between items-center">
-  <h1 class="font-black text-xl">🚗 DriveSelect PRO</h1>
-  <div><button onclick="showLogin()" class="bg-white text-black px-4 py-2 rounded-full font-bold text-sm">Login / Account</button></div>
+<body class="bg-[#f5f0e8]">
+<header class="bg-black text-white p-4">
+  <div class="flex justify-between items-center">
+    <h1 class="font-black text-lg">🚗 DRIVESELECT BUEA - 4 GARAGES</h1>
+    <span class="bg-yellow-400 text-black text-xs px-2 py-1 rounded-full font-bold">LIVE IN MOLYKO</span>
+  </div>
 </header>
 
-<div class="bg-yellow-400 p-3 text-center font-bold text-sm">🔥 Refer a buyer & earn 10% commission | MTN MoMo & Orange Money Accepted</div>
-
-<div class="max-w-6xl mx-auto p-4">
-  <h2 class="font-black text-2xl mb-4">Cars Available in Buea</h2>
-  <div id="cars" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+<div class="bg-[url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800')] bg-cover">
+ <div class="bg-black/70 p-6 text-white text-center">
+  <h2 class="text-3xl font-black">NOT ONE GARAGE - 4 GARAGES IN BUEA</h2>
+  <p class="mt-2">Molyko | Checkpoint | Mile 17 | Great Soppo - Over 47 Cars</p>
+  <p class="mt-1 text-yellow-400 text-sm">📍 Main Office: Molyko Auto Garage, Opposite MTN MoMo / Orange Money Boutique - Open 8AM - 6PM</p>
+ </div>
 </div>
 
-<!-- LOGIN MODAL -->
-<div id="loginModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center p-4 z-50">
-  <div class="bg-white rounded-2xl p-6 max-w-sm w-full">
-    <h3 class="font-black text-xl">My Account</h3>
-    <input id="userName" placeholder="Your Name" class="w-full border p-3 rounded-xl mt-3">
-    <input id="userPhoneL" placeholder="Your Phone" class="w-full border p-3 rounded-xl mt-2">
-    <input id="refCodeInput" placeholder="Referral Code (optional)" class="w-full border p-3 rounded-xl mt-2">
-    <button onclick="doLogin()" class="w-full bg-black text-white py-3 rounded-xl mt-3 font-bold">Create Account & Get My Referral Link</button>
-    <div id="myRefLink" class="mt-3 text-sm bg-gray-100 p-3 rounded-xl hidden"></div>
-    <button onclick="closeLogin()" class="w-full text-gray-500 py-2 mt-2">Close</button>
-  </div>
+<!-- GARAGE 1 -->
+<div class="p-4 max-w-6xl mx-auto">
+ <div class="bg-white rounded-2xl shadow p-4 mb-6 border-l-8 border-yellow-400">
+   <h3 class="font-black text-xl">📍 GARAGE 1: MOLYKO AUTO GARAGE (Main)</h3>
+   <p class="text-xs text-gray-500">Molyko, Buea - Beside Pièces Auto, MTN MoMo Shop | Mount Fako View</p>
+   <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3">
+     <div class="border rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400" class="h-32 w-full object-cover"><div class="p-2"><b class="text-sm">RAV4 2010</b><p class="text-xs">5.8M FCFA - Molyko</p><a href="https://wa.me/2376XXXXXXXXX" class="bg-black text-white text-xs px-3 py-1 rounded-full mt-1 block text-center">View Car</a></div></div>
+     <div class="border rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1590362891991-f776e747a588?w=400" class="h-32 w-full object-cover"><div class="p-2"><b class="text-sm">Corolla 2010</b><p class="text-xs">3.5M FCFA - Molyko</p><a href="https://wa.me/2376XXXXXXXXX" class="bg-black text-white text-xs px-3 py-1 rounded-full mt-1 block text-center">View Car</a></div></div>
+     <div class="border rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400" class="h-32 w-full object-cover"><div class="p-2"><b class="text-sm">Yaris 2012</b><p class="text-xs">2.8M FCFA - Molyko</p><a href="https://wa.me/2376XXXXXXXXX" class="bg-black text-white text-xs px-3 py-1 rounded-full mt-1 block text-center">View Car</a></div></div>
+   </div>
+ </div>
+
+ <div class="bg-white rounded-2xl shadow p-4 mb-6 border-l-8 border-green-600">
+   <h3 class="font-black text-xl">📍 GARAGE 2: CHECKPOINT GARAGE</h3>
+   <p class="text-xs text-gray-500">Checkpoint, Buea - Near Taxi Park, Dusty Road</p>
+   <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3">
+     <div class="border rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400" class="h-32 w-full object-cover"><div class="p-2"><b class="text-sm">Toyota Hilux</b><p class="text-xs">6.5M FCFA - Checkpoint</p><a href="https://wa.me/2376XXXXXXXXX" class="bg-black text-white text-xs px-3 py-1 rounded-full mt-1 block text-center">View Car</a></div></div>
+     <div class="border rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1549317336-206569e8475c?w=400" class="h-32 w-full object-cover"><div class="p-2"><b class="text-sm">Carina E</b><p class="text-xs">1.9M FCFA - Checkpoint</p><a href="https://wa.me/2376XXXXXXXXX" class="bg-black text-white text-xs px-3 py-1 rounded-full mt-1 block text-center">View Car</a></div></div>
+   </div>
+ </div>
+
+ <div class="bg-white rounded-2xl shadow p-4 mb-6 border-l-8 border-blue-600">
+   <h3 class="font-black text-xl">📍 GARAGE 3: MILE 17 MOTOR PARK</h3>
+   <p class="text-xs text-gray-500">Mile 17, Buea - Douala Road Entrance</p>
+   <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3">
+     <div class="border rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400" class="h-32 w-full object-cover"><div class="p-2"><b class="text-sm">Prado 2009</b><p class="text-xs">8.2M FCFA - Mile 17</p><a href="https://wa.me/2376XXXXXXXXX" class="bg-black text-white text-xs px-3 py-1 rounded-full mt-1 block text-center">View Car</a></div></div>
+     <div class="border rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400" class="h-32 w-full object-cover"><div class="p-2"><b class="text-sm">Avensis 2011</b><p class="text-xs">3.2M FCFA - Mile 17</p><a href="https://wa.me/2376XXXXXXXXX" class="bg-black text-white text-xs px-3 py-1 rounded-full mt-1 block text-center">View Car</a></div></div>
+   </div>
+ </div>
+
 </div>
 
-<script>
-const carData = [
-  {id:1, name:"Toyota Corolla 2010", price:3500000, img:"https://images.unsplash.com/photo-1590362891991-f776e747a588?w=500", location:"Buea Town"},
-  {id:2, name:"Rav4 2008 - Clean", price:5500000, img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500", location:"Molyko"},
-  {id:3, name:"Toyota Yaris 2012", price:2800000, img:"https://images.unsplash.com/photo-1550355291-bbee04a92027?w=500", location:"Buea"},
-];
-const carContainer = document.getElementById('cars');
-carData.forEach(c=>{
-  carContainer.innerHTML += `
-  <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
-    <img src="${c.img}" class="h-48 w-full object-cover">
-    <div class="p-4">
-      <h3 class="font-bold">${c.name}</h3>
-      <p class="text-xs text-gray-500">${c.location}</p>
-      <p class="text-2xl font-black my-2">${c.price.toLocaleString()} FCFA</p>
-      <p class="text-xs text-green-600 font-bold">Booking fee: 50,000 FCFA (refundable)</p>
-      <div class="flex gap-2 mt-3">
-        <a href="https://wa.me/${MY_WHATSAPP}?text=Hi, I want to buy ${c.name} for ${c.price}" class="flex-1 bg-black text-white text-center py-3 rounded-xl font-bold">Buy via WhatsApp</a>
-        <button onclick="bookCar('${c.name}')" class="flex-1 bg-yellow-400 text-black py-3 rounded-xl font-bold">Book with MoMo</button>
-      </div>
-    </div>
-  </div>`;
-});
-
-function showLogin(){ document.getElementById('loginModal').classList.remove('hidden'); document.getElementById('loginModal').classList.add('flex'); }
-function closeLogin(){ document.getElementById('loginModal').classList.add('hidden'); }
-function doLogin(){
-  const name = document.getElementById('userName').value;
-  const phone = document.getElementById('userPhoneL').value;
-  const ref = document.getElementById('refCodeInput').value;
-  if(!name || !phone){ alert("Enter name and phone"); return; }
-  const myCode = phone.slice(-4) + Math.floor(Math.random()*90+10);
-  localStorage.setItem('ds_user', JSON.stringify({name, phone, myCode, referredBy: ref}));
-  let users = JSON.parse(localStorage.getItem('ds_all_users')||'[]');
-  users.push({name, phone, myCode, referredBy: ref, date: new Date().toLocaleString()});
-  localStorage.setItem('ds_all_users', JSON.stringify(users));
-  document.getElementById('myRefLink').classList.remove('hidden');
-  document.getElementById('myRefLink').innerHTML = `Your referral code: <b>${myCode}</b><br>Your link: <br><small>https://your-site.com?ref=${myCode}</small><br><br>Share this link. When someone buys a car, you get ${REF_BONUS}% commission!`;
-}
-function bookCar(carName){
-  const u = JSON.parse(localStorage.getItem('ds_user')||'null');
-  if(!u){ alert("Please Login first to get referral bonus"); showLogin(); return; }
-  const tid = prompt(`Booking for ${carName}\n\nSend 50,000 FCFA to MTN MoMo: ${MY_MOMO}\n\nEnter Transaction ID after payment:`);
-  if(tid){
-    let bookings = JSON.parse(localStorage.getItem('ds_bookings')||'[]');
-    bookings.push({car:carName, user:u.name, phone:u.phone, transId:tid, date:new Date().toLocaleString(), myCode:u.myCode, referredBy:u.referredBy});
-    localStorage.setItem('ds_bookings', JSON.stringify(bookings));
-    alert("Booking received! We will confirm MoMo "+tid+" and call you.");
-    window.open(`https://wa.me/${MY_WHATSAPP}?text=Booking for ${carName}. My name ${u.name}. MoMo ID: ${tid}. My ref code: ${u.myCode}. I was referred by: ${u.referredBy}`);
-  }
-}
-</script>
+<div class="bg-black text-white text-center p-6 text-xs">
+  DriveSelect Buea - Real garages in Molyko | Call: +237 673 45 12 89 | MTN MoMo: 67X XXX XXX | Orange Money: 69X XXX XXX<br>
+  Over 47 cars in 4 locations - Visit any garage to confirm
+</div>
 </body>
 </html>
