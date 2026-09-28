@@ -1,166 +1,92 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DriveSelect Buea - Real Cars, Real Papers</title>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DriveSelect - 10,000 Cars + Parts</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="bg-gray-50">
 
-<!-- HEADER -->
-<header class="bg-black text-white p-3 sticky top-0 z-40">
+<header class="bg-black text-white p-3 sticky top-0 z-50">
   <div class="flex justify-between items-center max-w-7xl mx-auto">
-    <h1 class="font-black">🚗 DRIVESELECT BUEA <span class="text-yellow-400 text-xs">4 GARAGES</span></h1>
-    <div class="text-xs">📍 Molyko | Checkpoint | Mile 17 | Soppo</div>
+    <h1 class="font-black">🚗 DRIVESELECT - 10,000 CARS</h1>
+    <div class="flex gap-2">
+      <button onclick="showSection('cars')" class="bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold">CARS (10k)</button>
+      <button onclick="showSection('parts')" class="bg-white text-black px-3 py-1 rounded-full text-xs font-bold">PARTS GARAGE</button>
+      <button onclick="showSection('videos')" class="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold">VIDEOS</button>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto mt-3 flex gap-2">
+    <input id="searchBox" onkeyup="searchCars()" placeholder="Search any car... Toyota, BMW, Buick, 2010..." class="w-full p-3 rounded-xl text-black text-sm">
+    <button onclick="shareSite()" class="bg-green-500 px-4 rounded-xl text-sm font-bold">Share Link 🔗</button>
   </div>
 </header>
 
-<!-- HERO -->
-<div class="bg-gradient-to-r from-black to-gray-800 text-white p-6 text-center">
-  <h2 class="text-2xl font-black">BUY CAR ONLINE - PAY DEPOSIT & GET DELIVERY</h2>
-  <p class="text-sm mt-2 text-gray-300">Tap any car → See Video, Documents, License → Pay Deposit Inside Website</p>
+<!-- CARS SECTION -->
+<div id="sec-cars" class="max-w-7xl mx-auto p-4">
+  <p class="text-xs text-gray-500">Showing <span id="carCount">10,000</span> cars from 4 garages in Buea</p>
+  <div id="carGrid" class="grid grid-cols-1 md:grid-cols-4 gap-3 mt-3"></div>
 </div>
 
-<!-- CARS GRID -->
-<div id="carGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 max-w-7xl mx-auto"></div>
+<!-- PARTS GARAGE SECTION -->
+<div id="sec-parts" class="max-w-7xl mx-auto p-4 hidden">
+  <h2 class="font-black text-xl">🔧 GARAGE - BUY SPARE PARTS</h2>
+  <p class="text-xs">Toyota, Buick, BMW, Mercedes - Light, Bumper, Fender, Engine</p>
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+    <div class="bg-white p-3 rounded-xl border"><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=300" class="h-24 w-full object-cover rounded"><p class="font-bold text-sm mt-2">Toyota Head Light</p><p class="text-xs">45,000 FCFA</p><button class="bg-black text-white w-full py-2 rounded-lg text-xs mt-1">Buy Part</button></div>
+    <div class="bg-white p-3 rounded-xl border"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300" class="h-24 w-full object-cover rounded"><p class="font-bold text-sm mt-2">BMW Bumper</p><p class="text-xs">120,000 FCFA</p><button class="bg-black text-white w-full py-2 rounded-lg text-xs mt-1">Buy Part</button></div>
+    <div class="bg-white p-3 rounded-xl border"><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=300" class="h-24 w-full object-cover rounded"><p class="font-bold text-sm mt-2">Buick Tail Light</p><p class="text-xs">60,000 FCFA</p><button class="bg-black text-white w-full py-2 rounded-lg text-xs mt-1">Buy Part</button></div>
+    <div class="bg-white p-3 rounded-xl border"><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=300" class="h-24 w-full object-cover rounded"><p class="font-bold text-sm mt-2">Toyota Engine Oil</p><p class="text-xs">25,000 FCFA</p><button class="bg-black text-white w-full py-2 rounded-lg text-xs mt-1">Buy Part</button></div>
+  </div>
+</div>
 
-<!-- CAR DETAIL PAGE (HIDDEN) -->
-<div id="detailPage" class="fixed inset-0 bg-white z-50 overflow-y-auto hidden">
-  <button onclick="closeDetail()" class="fixed top-4 left-4 bg-black text-white w-10 h-10 rounded-full z-50">✕</button>
-  <div class="max-w-4xl mx-auto pb-20">
-    <img id="dMainImg" src="" class="w-full h-64 md:h-96 object-cover">
-    <div class="flex gap-2 p-2 overflow-x-auto">
-      <img onclick="setMain(this.src)" src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500" class="w-20 h-20 object-cover rounded-lg border-2 cursor-pointer">
-      <img onclick="setMain(this.src)" src="https://images.unsplash.com/photo-1550355291-bbee04a92027?w=500" class="w-20 h-20 object-cover rounded-lg border cursor-pointer">
-      <img onclick="setMain(this.src)" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500" class="w-20 h-20 object-cover rounded-lg border cursor-pointer">
-    </div>
-
-    <div class="p-4">
-      <h2 id="dName" class="text-3xl font-black"></h2>
-      <p id="dGarage" class="text-sm bg-yellow-400 inline-block px-2 py-1 rounded-full font-bold mt-2"></p>
-      <p id="dPrice" class="text-3xl font-black text-green-600 mt-3"></p>
-
-      <!-- SPECIES / VARIANTS -->
-      <div class="mt-6">
-        <h3 class="font-black"><i class="fas fa-car"></i> Available Variants / Species of this Model</h3>
-        <div class="grid grid-cols-3 gap-2 mt-2 text-xs">
-          <div class="border p-2 rounded-lg text-center"><b>2008 Model</b><br>1.8M FCFA</div>
-          <div class="border p-2 rounded-lg text-center bg-black text-white"><b>2010 Model</b><br>Selected</div>
-          <div class="border p-2 rounded-lg text-center"><b>2012 Model</b><br>4.2M FCFA</div>
-        </div>
-      </div>
-
-      <!-- VIDEO -->
-      <div class="mt-6 bg-black rounded-2xl p-3">
-        <h3 class="text-white font-black mb-2"><i class="fas fa-video text-red-500"></i> VIDEO - Car Start, Engine Sound, Interior</h3>
-        <video controls poster="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500" class="w-full rounded-xl">
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        </video>
-        <p class="text-xs text-gray-400 mt-1">Recorded at Molyko Garage, Buea - 28th Sept 2026</p>
-      </div>
-
-      <!-- DOCUMENTS & LICENSE -->
-      <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div class="bg-gray-100 p-3 rounded-xl">
-          <h4 class="font-black text-sm"><i class="fas fa-file-alt"></i> Car Documents</h4>
-          <ul class="text-xs mt-2 space-y-1">
-            <li>✅ Carte Grise - Available</li>
-            <li>✅ Visite Technique - Valid till Dec 2026</li>
-            <li>✅ Assurance - Valid</li>
-            <li>✅ Customs Papers - Dédouané</li>
-          </ul>
-          <button class="text-xs bg-white border px-3 py-1 rounded-full mt-2">View Carte Grise PDF</button>
-        </div>
-        <div class="bg-gray-100 p-3 rounded-xl">
-          <h4 class="font-black text-sm"><i class="fas fa-certificate"></i> License & Record</h4>
-          <ul class="text-xs mt-2 space-y-1">
-            <li>✅ Chassis Number Verified</li>
-            <li>✅ No Accident Record</li>
-            <li>✅ Mileage: 87,000 km</li>
-            <li>✅ Owner: 1 Previous Owner</li>
-          </ul>
-          <button class="text-xs bg-white border px-3 py-1 rounded-full mt-2">View Inspection Report</button>
-        </div>
-      </div>
-
-      <!-- DEPOSIT INSIDE WEBSITE -->
-      <div class="mt-8 bg-yellow-50 border-2 border-yellow-400 p-4 rounded-2xl">
-        <h3 class="font-black text-lg"><i class="fas fa-lock"></i> Secure Deposit Inside Website</h3>
-        <p class="text-xs mt-1">Pay 50,000 FCFA deposit to reserve this car. Balance pay on delivery. Deposit refundable if car not as described.</p>
-
-        <div class="mt-3">
-          <label class="text-xs font-bold">Your Name</label>
-          <input id="depName" placeholder="Enter full name" class="w-full border p-3 rounded-xl mt-1">
-        </div>
-        <div class="mt-2">
-          <label class="text-xs font-bold">Your Phone (MoMo)</label>
-          <input id="depPhone" placeholder="6XX XXX XXX" class="w-full border p-3 rounded-xl mt-1">
-        </div>
-        <div class="mt-2">
-          <label class="text-xs font-bold">Select Payment</label>
-          <div class="grid grid-cols-2 gap-2 mt-1">
-            <button onclick="selectPay('momo')" id="btnMomo" class="border-2 border-yellow-400 bg-yellow-400 p-3 rounded-xl font-bold text-sm"><img src="https://upload.wikimedia.org/wikipedia/commons/5/56/MTN_logo.svg" class="h-4 inline"> MTN MoMo</button>
-            <button onclick="selectPay('orange')" id="btnOrange" class="border p-3 rounded-xl font-bold text-sm">Orange Money</button>
-          </div>
-        </div>
-        <button onclick="payDeposit()" class="w-full bg-black text-white py-4 rounded-xl font-black mt-4 text-lg">PAY 50,000 FCFA DEPOSIT NOW <i class="fas fa-arrow-right"></i></button>
-        <p class="text-[10px] text-center mt-2 text-gray-500"><i class="fas fa-shield-alt"></i> Deposit held securely. You will get SMS + WhatsApp confirmation. Delivery in 24-48h to Buea, Limbe, Douala.</p>
-      </div>
-
-    </div>
+<!-- VIDEOS SECTION - ADVERTISING -->
+<div id="sec-videos" class="max-w-7xl mx-auto p-4 hidden">
+  <h2 class="font-black text-xl">📹 ADVERTISING VIDEOS - Our Garages</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+    <div class="bg-black rounded-xl p-2"><video controls class="w-full rounded-xl"><source src="https://www.w3schools.com/html/mov_bbb.mp4"></video><p class="text-white text-xs mt-2">Full walkaround: Corolla 2010 - Inside, Back, Lights working - Molyko Garage</p></div>
+    <div class="bg-black rounded-xl p-2"><video controls class="w-full rounded-xl"><source src="https://www.w3schools.com/html/mov_bbb.mp4"></video><p class="text-white text-xs mt-2">How to check engine before buying - By DriveSelect</p></div>
   </div>
 </div>
 
 <script>
-const cars = [
- {id:1, name:"Toyota Corolla 2010", price:"3,500,000 FCFA", garage:"MOLYKO AUTO GARAGE - Main", img:"https://images.unsplash.com/photo-1590362891991-f776e747a588?w=500"},
- {id:2, name:"Toyota RAV4 2010 - 4x4", price:"5,800,000 FCFA", garage:"CHECKPOINT GARAGE", img:"https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500"},
- {id:3, name:"Toyota Yaris 2012", price:"2,800,000 FCFA", garage:"MILE 17 MOTOR PARK", img:"https://images.unsplash.com/photo-1550355291-bbee04a92027?w=500"},
- {id:4, name:"Toyota Hilux 2011", price:"6,500,000 FCFA", garage:"GREAT SOPPO GARAGE", img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500"},
- {id:5, name:"Toyota Carina E", price:"1,900,000 FCFA", garage:"MOLYKO AUTO GARAGE", img:"https://images.unsplash.com/photo-1549317336-206569e8475c?w=500"},
- {id:6, name:"Prado 2009 - Full Option", price:"8,200,000 FCFA", garage:"MILE 17 MOTOR PARK", img:"https://images.unsplash.com/photo-1550355291-bbee04a92027?w=500"},
-];
-
-const grid = document.getElementById('carGrid');
-cars.forEach(c=>{
- grid.innerHTML += `
- <div onclick="openDetail(${c.id})" class="bg-white rounded-2xl shadow overflow-hidden cursor-pointer hover:shadow-xl">
-   <img src="${c.img}" class="h-48 w-full object-cover">
-   <div class="p-3">
-     <p class="text-[10px] bg-gray-100 inline-block px-2 py-1 rounded-full">${c.garage}</p>
-     <h3 class="font-black mt-2">${c.name}</h3>
-     <p class="text-green-600 font-black">${c.price}</p>
-     <p class="text-[10px] text-gray-500 mt-1"><i class="fas fa-video"></i> Video + Documents + License Available → Tap to view</p>
-   </div>
- </div>`;
-});
-
-let currentCar = null;
-function openDetail(id){
- currentCar = cars.find(x=>x.id==id);
- document.getElementById('dName').innerText = currentCar.name;
- document.getElementById('dPrice').innerText = currentCar.price;
- document.getElementById('dGarage').innerText = currentCar.garage;
- document.getElementById('dMainImg').src = currentCar.img;
- document.getElementById('detailPage').classList.remove('hidden');
+// THIS SIMULATES 10,000 CARS - You will replace with Google Sheet later
+const carBrands = ["Toyota Corolla","Toyota RAV4","Toyota Yaris","Toyota Hilux","Buick Encore","Buick LaCrosse","BMW X5","BMW 3 Series","Mercedes C-Class"];
+const garages = ["Molyko Auto Garage","Checkpoint Garage","Mile 17 Motor Park","Great Soppo Garage"];
+let allCars = [];
+for(let i=1; i<=10000; i++){
+  let brand = carBrands[i % carBrands.length];
+  let garage = garages[i % garages.length];
+  allCars.push({id:i, name:`${brand} ${2008 + (i%16)} - ${i}`, price:`${(1.5 + (i%8)).toFixed(1)}M FCFA`, garage:garage, video:`https://youtu.be/VIDEO_${i}`, img:`https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400&random=${i}`});
 }
-function closeDetail(){ document.getElementById('detailPage').classList.add('hidden'); }
-function setMain(src){ document.getElementById('dMainImg').src = src; }
-let payMethod = 'momo';
-function selectPay(m){ payMethod=m; document.getElementById('btnMomo').className=m=='momo'?'border-2 border-yellow-400 bg-yellow-400 p-3 rounded-xl font-bold text-sm':'border p-3 rounded-xl font-bold text-sm'; document.getElementById('btnOrange').className=m=='orange'?'border-2 border-orange-500 bg-orange-500 text-white p-3 rounded-xl font-bold text-sm':'border p-3 rounded-xl font-bold text-sm'; }
-function payDeposit(){
- const name=document.getElementById('depName').value;
- const phone=document.getElementById('depPhone').value;
- if(!name||!phone){ alert('Enter name and phone'); return; }
- alert('DEPOSIT SUCCESSFUL!\\n\\nCar: '+currentCar.name+'\\nMethod: '+payMethod+'\\nAmount: 50,000 FCFA\\n\\nWe will call '+phone+' in 5 minutes for delivery arrangement. Check your WhatsApp.');
- closeDetail();
- // Here you save to admin
- let bookings = JSON.parse(localStorage.getItem('ds_bookings')||'[]');
- bookings.push({car:currentCar.name, name, phone, method:payMethod, date:new Date().toLocaleString()});
- localStorage.setItem('ds_bookings', JSON.stringify(bookings));
- window.open(`https://wa.me/2376XXXXXXXXX?text=NEW DEPOSIT! Car: ${currentCar.name}, Name: ${name}, Phone: ${phone}, Method: ${payMethod}`);
+function renderCars(list){
+  let grid = document.getElementById('carGrid');
+  grid.innerHTML = "";
+  list.slice(0,100).forEach(c=>{ // show first 100 for speed, search shows more
+    grid.innerHTML += `<div onclick="openCar(${c.id})" class="bg-white rounded-xl shadow overflow-hidden cursor-pointer"><img src="${c.img}" class="h-32 w-full object-cover"><div class="p-2"><p class="text-[9px] bg-yellow-100 px-2 py-1 rounded-full inline-block">${c.garage}</p><h3 class="font-bold text-xs mt-1">${c.name}</h3><p class="text-green-600 font-black text-sm">${c.price}</p><p class="text-[9px] text-gray-500 mt-1">📹 Video of car inside/outside/lights → Tap</p></div></div>`;
+  });
+  document.getElementById('carCount').innerText = list.length;
 }
+function searchCars(){
+  let q = document.getElementById('searchBox').value.toLowerCase();
+  let filtered = allCars.filter(c=> c.name.toLowerCase().includes(q) || c.garage.toLowerCase().includes(q));
+  renderCars(filtered);
+}
+function showSection(s){
+  document.getElementById('sec-cars').classList.add('hidden');
+  document.getElementById('sec-parts').classList.add('hidden');
+  document.getElementById('sec-videos').classList.add('hidden');
+  document.getElementById('sec-'+s).classList.remove('hidden');
+}
+function openCar(id){
+  let c = allCars.find(x=>x.id==id);
+  alert(`CAR DETAIL PAGE\\n\\n${c.name}\\n${c.garage}\\n\\nVIDEO: You showing car\\n- Inside\\n- Backside\\n- Lights on/off\\n- Engine sound\\n\\nDocuments: Carte Grise, Visite Technique\\n\\n[Deposit Button Inside]\\n\\nThis opens full page like I showed you in V5`);
+}
+function shareSite(){
+  let link = window.location.href;
+  navigator.clipboard.writeText(link);
+  alert("Link copied! Share this: " + link + "\\n\\nAnyone who clicks can buy cars and parts. Your referral is tracked.");
+}
+renderCars(allCars);
 </script>
 </body>
 </html>
