@@ -1,15 +1,44 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MOTOREA | Global Luxury Automotive & Investment Company</title>
+<link rel="icon" href="logo.png" />
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>body{font-family:'Manrope',sans-serif;background:#0A0A0A;color:white}</style>
+</head>
+<body>
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDIwEW-1hOLVeev-NhC5FK81r1w_xVYNLc",
-  authDomain: "carlink-5257f.firebaseapp.com",
-  projectId: "carlink-5257f",
-  storageBucket: "carlink-5257f.firebasestorage.app",
-  messagingSenderId: "615417571365",
-  appId: "1:615417571365:web:3d54a097074d63e301f7cc",
-  measurementId: "G-KNQV5NSR10"
-};
+<!-- HEADER - LOGO IN EVERY SECTION -->
+<header class="fixed top-0 w-full z-50 bg-[#0A0A0A]/90 backdrop-blur border-b border-white/10">
+  <div class="max-w-[1400px] mx-auto flex justify-between items-center px-8 py-5">
+    <div class="flex items-center gap-3">
+      <img src="logo.png" alt="Logo" class="h-9 w-auto" onerror="this.src='https://via.placeholder.com/40x40?text=M'" />
+      <span class="tracking-[0.3em] font-bold">MOTOREA</span>
+    </div>
+    <nav class="hidden md:flex gap-8 text-sm text-white/70">
+      <a href="#" class="text-white border-b border-[#E9C787]">Home</a>
+      <a href="#inventory">Inventory</a>
+      <a href="#investment">Investments</a>
+      <a href="#dashboard">Dashboard</a>
+    </nav>
+    <button class="bg-[#E9C787] text-black px-6 py-2.5 text-sm font-semibold rounded">BOOK CONSULTATION</button>
+  </div>
+</header>
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+<!-- HERO - REAL CARS ONLY -->
+<section class="pt-28 pb-16 relative overflow-hidden">
+  <div class="max-w-[1400px] mx-auto grid md:grid-cols-2 gap-10 px-8 items-center">
+    <div>
+      <h1 class="text-5xl md:text-7xl font-extrabold leading-[0.95]"><span class="text-[#E9C787]">GLOBAL LUXURY</span><br>AUTOMOTIVE<br>& INVESTMENT COMPANY</h1>
+      <p class="text-white/60 mt-6 max-w-lg">Curating exceptional vehicles and strategic automotive investments worldwide. 25+ locations, private brokerage & portfolio solutions.</p>
+      <div class="flex gap-4 mt-8">
+        <a href="#inventory" class="bg-[#E9C787] text-black px-8 py-3 font-semibold rounded">Explore Inventory</a>
+        <a href="#investment" class="border border-[#E9C787] px-8 py-3 rounded">Investment Opportunities</a>
+      </div>
+    </div>
+    <div class="relative">
+      <!-- REAL CAR IMAGES -->
+      <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1200" alt="Porsche 911" class="rounded-2xl w-full object-cover h
