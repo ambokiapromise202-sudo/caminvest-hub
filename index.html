@@ -2,176 +2,155 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Promise Global Business Academy</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-:root{--navy:#0a1931;--gold:#c5a572;--light:#f6f8fb}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
-body{background:var(--light);color:#1e293b;padding-bottom:85px}
-.header{position:sticky;top:0;z-index:999;background:white;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #e2e8f0}
-.logo{font-weight:800;color:var(--navy)}.logo span{color:var(--gold)}
-.btn{padding:12px 20px;border-radius:30px;border:none;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;text-align:center}
-.btn-navy{background:var(--navy);color:white}.btn-gold{background:var(--gold);color:var(--navy)}
-.hero{background:linear-gradient(0deg,rgba(10,25,49,0.85),rgba(10,25,49,0.6)),url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200');background-size:cover;color:white;padding:60px 20px;text-align:center}
-.card{background:white;border-radius:18px;overflow:hidden;border:1px solid #e2e8f0;margin-bottom:16px}
-.card img{width:100%;height:180px;object-fit:cover}
-.card-body{padding:16px}
-.input{width:100%;padding:13px;border:1px solid #e2e8f0;border-radius:12px;margin:8px 0}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;place-items:center;z-index:2000;padding:20px}
-.modal-box{background:white;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:90vh;overflow:auto}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #e2e8f0;display:flex;justify-content:space-around;padding:8px 0;z-index:998}
-.bottom-nav a{font-size:11px;color:#64748b;text-decoration:none;text-align:center}.bottom-nav a.active{color:var(--navy)}
-.whatsapp{position:fixed;right:16px;bottom:90px;background:#25D366;color:white;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:26px;z-index:997;text-decoration:none}
-.level{border-left:4px solid var(--gold);background:#fffbeb;padding:12px;border-radius:10px;margin:10px 0}
+:root{--navy:#0a1931;--navy2:#102a54;--gold:#c5a572;--light:#f6f8fb;--b:#e2e8f0}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--light);color:#0f172a}
+button{cursor:pointer}
+.screen{display:none;min-height:100vh}.screen.active{display:block}
+.header{position:sticky;top:0;z-index:100;background:white;border-bottom:1px solid var(--b);padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;color:var(--navy);line-height:1;font-size:14px}.logo span{color:var(--gold);display:block;font-size:11px;font-weight:600}
+.btn{padding:14px 20px;border-radius:100px;border:none;font-weight:700;font-size:14px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;width:100%}
+.btn-navy{background:var(--navy);color:white}.btn-gold{background:var(--gold);color:var(--navy)}.btn-white{background:white;border:1px solid var(--b);color:var(--navy)}
+.card{background:white;border-radius:20px;border:1px solid var(--b);padding:18px;margin-bottom:14px;box-shadow:0 4px 20px rgba(0,0,0,.03)}
+.hero{padding:50px 20px;text-align:center;background:linear-gradient(180deg,rgba(10,25,49,.9),rgba(10,25,49,.75)),url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1000') center/cover;color:white;min-height:60vh;display:grid;place-items:center}
+.input{width:100%;padding:14px;border-radius:12px;border:1px solid var(--b);margin:8px 0;font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.course-img{width:100%;height:110px;object-fit:cover;border-radius:14px}
+.badge{background:var(--gold);color:var(--navy);font-size:10px;font-weight:800;padding:4px 8px;border-radius:20px;display:inline-block}
+.q-opt{padding:12px;border:1px solid var(--b);border-radius:12px;margin:8px 0;background:white;text-align:left;width:100%}
+.q-opt.correct{border-color:#22c55e;background:#f0fdf4}
+.q-opt.wrong{border-color:#ef4444;background:#fef2f2}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid var(--b);display:flex;justify-content:space-around;padding:10px 0 calc(10px + env(safe-area-inset-bottom));z-index:200}
+.bottom button{background:none;border:none;font-size:11px;color:#64748b;display:flex;flex-direction:column;align-items:center;gap:3px}
+.bottom button.active{color:var(--navy);font-weight:700}
+.whatsapp{position:fixed;right:16px;bottom:88px;width:56px;height:56px;background:#25D366;color:white;border-radius:50%;display:grid;place-items:center;font-size:26px;z-index:201;box-shadow:0 8px 24px rgba(0,0,0,.2)}
 </style>
 </head>
 <body>
 
-<div class="header">
-<div class="logo">PROMISE GLOBAL <span>BUSINESS ACADEMY</span></div>
-<button onclick="openLogin()" class="btn btn-navy" style="padding:8px 14px;font-size:13px" id="authBtn">Login</button>
+<!-- SCREEN 1: LANDING -->
+<div id="s-landing" class="screen active">
+<div class="header"><div class="logo">PROMISE GLOBAL<br>BUSINESS ACADEMY<span>Learn Today. Build Tomorrow.</span></div><button class="btn-navy" style="width:auto;padding:10px 18px;border-radius:100px" onclick="showScreen('s-auth')">Login</button></div>
+<div class="hero"><div><div class="badge" style="background:rgba(197,165,114,.2);color:var(--gold);border:1px solid rgba(197,165,114,.4)">OFFICIAL • BUEA TO GLOBAL</div><h1 style="font-size:34px;margin:16px 0;line-height:1.1">Learn Today.<br><span style="color:var(--gold)">Build Tomorrow.<br>Lead The World.</span></h1><p style="color:#cbd5e1;font-size:14px">Online business school - MoMo 678657567</p><div style="display:flex;gap:10px;margin-top:20px"><button class="btn btn-gold" onclick="showScreen('s-auth')">Explore Courses</button><button class="btn" style="background:white;color:var(--navy)" onclick="showScreen('s-auth')">Student Portal</button></div></div></div>
+<div style="padding:20px"><div class="card"><h3>Why 678657567?</h3><p style="color:#64748b;font-size:13px;margin-top:6px">Official MoMo for Precious - Promise Global Business Academy. Pay once, learn forever.</p></div></div>
 </div>
 
-<div class="hero">
-<h1>Learn Today.<br><span style="color:var(--gold)">Build Tomorrow. Lead The World.</span></h1>
-<p style="margin:12px 0;color:#cbd5e1">Online business school - Practical skills - Buea to Global</p>
-<div style="display:flex;gap:10px;justify-content:center;margin-top:14px"><a href="#courses" class="btn btn-gold">Explore Courses</a><a href="#portal" class="btn" style="background:white;color:var(--navy)">Student Portal</a></div>
-</div>
-
-<div style="padding:20px;max-width:1100px;margin:0 auto" id="courses">
-<h2>6 Business Courses</h2>
-<p style="color:#64748b;font-size:14px">Buy with MoMo to 680726514 - Then unlock lessons + quiz</p>
-
-<div id="courseList"></div>
-</div>
-
-<div id="portal" style="padding:20px;max-width:1100px;margin:0 auto">
-<div class="card"><div class="card-body">
-<h3>My Portal - My Courses & Progress</h3>
-<div id="myLearning" style="margin-top:10px;color:#64748b">Login to see your bought courses, levels, and quizzes.</div>
+<!-- SCREEN 2: AUTH -->
+<div id="s-auth" class="screen">
+<div class="header"><button onclick="showScreen('s-landing')" style="background:none;border:none"><i class="fa-solid fa-arrow-left"></i></button><div class="logo">LOGIN / REGISTER</div><div></div></div>
+<div style="padding:20px;max-width:420px;margin:0 auto">
+<div class="card"><h2 style="color:var(--navy)">Welcome Precious Academy</h2><p style="font-size:13px;color:#64748b;margin:8px 0">Register now, it takes you inside instantly. No China lock.</p>
+<input id="authEmail" class="input" placeholder="Email">
+<input id="authPass" class="input" type="password" placeholder="Password min 4">
+<p id="authErr" style="color:#ef4444;font-size:12px;margin:6px 0"></p>
+<button class="btn btn-navy" onclick="doRegister()" style="margin-top:10px">Register & Enter Academy</button>
+<button class="btn btn-white" onclick="doLogin()" style="margin-top:10px">Login</button>
+<p style="font-size:11px;color:#94a3b8;text-align:center;margin-top:12px">Demo works offline. Secure Firebase later.</p>
 </div></div>
 </div>
 
-<!-- LOGIN MODAL - FIXED -->
-<div id="loginModal" class="modal">
-<div class="modal-box">
-<h3 id="loginTitle">Student Login / Register</h3>
-<p style="font-size:13px;color:#64748b;margin:6px 0">This login is now WORKING. No more China lock problem.</p>
-<input id="email" class="input" placeholder="Email or Username">
-<input id="password" class="input" type="password" placeholder="Password (min 4)">
-<div style="display:flex;gap:10px;margin-top:10px">
-<button onclick="doLogin()" class="btn btn-navy" style="flex:1">Login</button>
-<button onclick="doRegister()" class="btn btn-gold" style="flex:1">Register</button>
-</div>
-<p id="loginMsg" style="font-size:12px;margin-top:10px;color:red"></p>
-<button onclick="closeLogin()" style="margin-top:12px;background:none;border:none;color:#64748b;width:100%">Close</button>
+<!-- SCREEN 3: DASHBOARD INSIDE -->
+<div id="s-dashboard" class="screen">
+<div class="header"><div class="logo">INSIDE ACADEMY<br><span id="userEmailShow">student</span></div><button onclick="doLogout()" style="background:none;border:none;color:#64748b">Logout</button></div>
+<div style="padding:16px;max-width:900px;margin:0 auto">
+<div class="card" style="background:var(--navy);color:white"><h3>Welcome, <span id="userName">Student</span>! 🎉</h3><p style="color:#cbd5e1;font-size:13px;margin-top:6px">You are inside Promise Global Business Academy. MoMo: 678657567</p><div style="display:flex;gap:10px;margin-top:12px"><div class="card" style="flex:1;margin:0;padding:12px;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.1)"><b id="boughtCount">0</b><br><span style="font-size:11px;color:#cbd5e1">Courses Bought</span></div><div class="card" style="flex:1;margin:0;padding:12px;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.1)"><b id="quizScore">0</b><br><span style="font-size:11px;color:#cbd5e1">Quizzes Passed</span></div></div></div>
+
+<h3 style="margin:10px 0">6 Business Courses</h3>
+<div id="coursesInside"></div>
+
+<div class="card" style="border-left:4px solid var(--gold)"><h3>🔥 Daily Questions - Changes Every Day</h3><p style="font-size:12px;color:#64748b">Questions about Business Academy - New set today: <b id="todayDate"></b></p><div id="dailyQuiz"></div><button class="btn btn-navy" onclick="loadDailyQuiz()" style="margin-top:10px">Get New Questions</button></div>
 </div>
 </div>
 
-<!-- BUY COURSE MODAL -->
-<div id="buyModal" class="modal">
-<div class="modal-box">
-<h3 id="buyCourseName">Buy Course</h3>
-<p style="font-size:14px;margin:10px 0">MoMo Number: <b>680726514</b> - Name: Promise</p>
-<div class="level"><b>Step 1:</b> MoMo <span id="buyPrice"></span> to 680726514</div>
-<div class="level"><b>Step 2:</b> Enter amount you paid:</div>
-<input id="paidAmount" class="input" type="number" placeholder="e.g. 5000">
-<div class="level"><b>Step 3:</b> What is your MoMo transaction ID? (optional)</div>
-<input id="transId" class="input" placeholder="e.g. 123456789">
-<button onclick="confirmBuy()" class="btn btn-navy" style="width:100%;margin-top:10px">I Have Paid - Unlock Course</button>
-<button onclick="closeBuy()" style="margin-top:10px;background:none;border:none;color:#64748b;width:100%">Cancel</button>
-<p style="font-size:11px;color:#64748b;margin-top:10px">After clicking, course will unlock instantly. We will verify MoMo manually and send WhatsApp confirmation.</p>
+<!-- SCREEN 4: COURSE PLAYER -->
+<div id="s-course" class="screen">
+<div class="header"><button onclick="showScreen('s-dashboard')" style="background:none;border:none"><i class="fa-solid fa-arrow-left"></i> Back</button><div class="logo" id="coursePlayerTitle">Course</div><div></div></div>
+<div style="padding:16px;max-width:700px;margin:0 auto">
+<div id="coursePlayerBody"></div>
+<div class="card"><h3>Quiz For This Course</h3><div id="courseQuiz"></div></div>
+<button class="btn btn-navy" onclick="markComplete()">Mark Level Complete & Continue</button>
 </div>
 </div>
 
-<!-- LESSONS + QUIZ MODAL -->
-<div id="lessonModal" class="modal">
-<div class="modal-box">
-<h3 id="lessonTitle">Course Lessons</h3>
-<div id="lessonContent"></div>
-<div id="quizArea" style="margin-top:16px"></div>
-<button onclick="closeLesson()" style="margin-top:16px;background:none;border:none;color:#64748b;width:100%">Close</button>
+<div class="bottom">
+<button class="active" onclick="showScreen('s-landing')"><i class="fa-solid fa-house"></i>Home</button>
+<button onclick="showScreen('s-dashboard')"><i class="fa-solid fa-book"></i>Courses</button>
+<button onclick="document.getElementById('dailyQuiz').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-question"></i>Daily Quiz</button>
+<button onclick="window.open('https://wa.me/237678657567?text=Hello%20Precious%20Academy%20MoMo%20678657567','_blank')"><i class="fa-brands fa-whatsapp"></i>Support</button>
 </div>
-</div>
-
-<nav class="bottom-nav">
-<a href="#" class="active"><i class="fa-solid fa-house"></i><br>Home</a>
-<a href="#courses"><i class="fa-solid fa-book"></i><br>Courses</a>
-<a href="#portal"><i class="fa-solid fa-graduation-cap"></i><br>Portal</a>
-<a href="https://wa.me/237680726514?text=Hello%20Promise%20Global%20Business%20Academy"><i class="fa-brands fa-whatsapp"></i><br>Support</a>
-</nav>
-
-<a href="https://wa.me/237680726514?text=Hello%20Promise%20Global%20Business%20Academy.%20I%20would%20like%20to%20know%20more%20about%20your%20courses,%20student%20registration,%20and%20how%20the%20academy%20works." class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+<a href="https://wa.me/237678657567?text=Hello%20Promise%20Global%20Business%20Academy%20I%20paid%20to%20678657567" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
 
 <script>
-const COURSES = [
-{ id:'c1', name:'Start Business With 10K', price:10000, img:'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600', lessons:['Mindset: Separate Business MoMo','3 Products in Buea: Data, Thrift, Groundnut','First Customer in 24H - WhatsApp Status'], quiz:{q:'What is 50/30/20 rule?', opts:['50% Reinvest, 30% Save, 20% Eat','50% Eat, 30% Save, 20% Reinvest'], ans:0}},
-{ id:'c2', name:'WhatsApp Sales Mastery', price:5000, img:'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600', lessons:['Setup Business Profile & Catalog','Status That Sells - Morning/Afternoon/Evening','3-Sentence Closer'], quiz:{q:'When customer says "How much?" what do you say?', opts:['Tell price + delivery + scarcity','Say "DM me"'], ans:0}},
-{ id:'c3', name:'MoMo Money Management', price:7500, img:'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600', lessons:['Real Profit Formula','Pricing Strategy','Never Eat Capital'], quiz:{q:'Selling 2500, Buying 1500, Transport 200, Profit?', opts:['800F','1000F'], ans:0}},
-{ id:'c4', name:'Facebook & TikTok Marketing', price:8000, img:'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600', lessons:['Content that sells','Free traffic methods','Lead generation'], quiz:{q:'Best content?', opts:['Real delivery video','Google image'], ans:0}},
-{ id:'c5', name:'Leadership & Team Building', price:12000, img:'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600', lessons:['Leadership traits','Hiring first staff','Managing team'], quiz:{q:'First hire should be?', opts:['Someone who complements your weakness','Your friend'], ans:0}},
-{ id:'c6', name:'Importation & E-commerce', price:15000, img:'https://images.unsplash.com/photo-1557821552-17105176677c?w=600', lessons:['Find products','Ship to Cameroon','Sell online'], quiz:{q:'Best product?', opts:['High demand, low competition','Any product'], ans:0}},
+const COURSES=[
+{id:'c1',name:'Start Business With 10K',price:10000,img:'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600',lessons:['Level 1: Mindset - Separate MoMo 678657567','Level 2: 3 Products in Buea','Level 3: First Customer in 24H']},
+{id:'c2',name:'WhatsApp Sales Mastery',price:5000,img:'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600',lessons:['Level 1: Business Profile','Level 2: Status That Sells','Level 3: Closer Script']},
+{id:'c3',name:'MoMo Money Management',price:7500,img:'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600',lessons:['Level 1: Profit Formula','Level 2: Pricing','Level 3: 50/30/20 Rule']},
+{id:'c4',name:'Facebook & TikTok',price:8000,img:'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600',lessons:['Level 1: Viral Content','Level 2: Free Traffic','Level 3: Leads']},
+{id:'c5',name:'Leadership',price:12000,img:'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600',lessons:['Level 1: Leader Traits','Level 2: First Hire','Level 3: Manage Team']},
+{id:'c6',name:'Importation',price:15000,img:'https://images.unsplash.com/photo-1557821552-17105176677c?w=600',lessons:['Level 1: Find Products','Level 2: Ship to Buea','Level 3: Sell Online']},
 ];
 
-let currentBuy=null;
-let currentUser=JSON.parse(localStorage.getItem('pgba_user')||'null');
-let bought=JSON.parse(localStorage.getItem('pgba_bought')||'{}');
+const QUESTION_BANK=[
+{q:'What is Promise Global Business Academy slogan?',o:['Learn Today. Build Tomorrow. Lead The World.','Make Money Fast'],a:0},
+{q:'What is official MoMo for academy?',o:['678657567','680726514'],a:0},
+{q:'How much to start business in Buea course?',o:['10,000F','1 Million'],a:0},
+{q:'50/30/20 rule means?',o:['50% Reinvest, 30% Save, 20% Eat','50% Eat all'],a:0},
+{q:'Where is academy founder from?',o:['Buea, Cameroon','China'],a:0},
+{q:'What is first step to get customer?',o:['Post real product photo on WhatsApp Status','Do nothing'],a:0},
+{q:'Profit = ?',o:['Selling - Buying - Transport','Selling only'],a:0},
+{q:'Best WhatsApp sales time?',o:['Morning product, Afternoon delivery, Evening sold out','Once a week'],a:0},
+{q:'What to do after MoMo payment?',o:['Enter amount + Transaction ID to unlock','Wait forever'],a:0},
+{q:'Which product sells fast in Molyko?',o:['Thrift shirts 2500F','Ice'],a:0},
+{q:'How many courses in academy?',o:['6 Business Courses','1'],a:0},
+{q:'What is daily quiz for?',o:['Test business knowledge, changes daily','No use'],a:0},
+{q:'Founder name?',o:['Precious / Promise','Unknown'],a:0},
+{q:'Can you learn without physical campus?',o:['Yes, online-first is current model','No'],a:0},
+{q:'What happens after passing quiz?',o:['Level complete, certificate progress','Nothing'],a:0},
+{q:'Is academy for Buea to Global?',o:['Yes','No'],a:0},
+{q:'What to send on WhatsApp after payment?',o:['Proof of payment to 678657567','Nothing'],a:0},
+{q:'How to close sale?',o:['Price + Delivery + Scarcity','DM me'],a:0},
+{q:'Best content for TikTok?',o:['Real delivery video','Stolen photo'],a:0},
+{q:'First hire should be?',o:['Complements your weakness','Your friend only'],a:0},
+];
 
-function renderCourses(){
-  const list=document.getElementById('courseList');
-  list.innerHTML=COURSES.map(c=>{
-    const isBought = currentUser && bought[currentUser.email]?.includes(c.id);
-    return `<div class="card"><img src="${c.img}"><div class="card-body"><h3>${c.name}</h3><p style="font-weight:800;margin:8px 0">${c.price.toLocaleString()} FCFA</p>${isBought?`<div class="level">✅ BOUGHT - Level: ${c.price>=10000?'Advanced':'Starter'}</div><button onclick="openLesson('${c.id}')" class="btn btn-navy" style="width:100%">Open Lessons + Quiz</button>`:`<button onclick="openBuy('${c.id}')" class="btn btn-navy" style="width:100%">Buy Course - MoMo 680726514</button><button onclick="openLesson('${c.id}')" class="btn" style="width:100%;margin-top:8px;background:white;border:1px solid #e2e8f0">Preview Lessons</button>`}</div></div>`
-  }).join('');
+let currentUser=null; let currentCourse=null;
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);if(id==='s-dashboard') renderInside();}
+function doRegister(){const e=document.getElementById('authEmail').value.trim();const p=document.getElementById('authPass').value.trim();if(!e||p.length<4){document.getElementById('authErr').innerText='Enter email and password min 4';return}let users=JSON.parse(localStorage.getItem('pgba_users')||'{}');users[e]=p;localStorage.setItem('pgba_users',JSON.stringify(users));currentUser={email:e};localStorage.setItem('pgba_user',JSON.stringify(currentUser));enterAcademy();}
+function doLogin(){const e=document.getElementById('authEmail').value.trim();const p=document.getElementById('authPass').value.trim();let users=JSON.parse(localStorage.getItem('pgba_users')||'{}');if(users[e]&&users[e]===p){currentUser={email:e};localStorage.setItem('pgba_user',JSON.stringify(currentUser));enterAcademy();}else{document.getElementById('authErr').innerText='Wrong email/password. Register first.';}}
+function enterAcademy(){document.getElementById('userEmailShow').innerText=currentUser.email;document.getElementById('userName').innerText=currentUser.email.split('@')[0];showScreen('s-dashboard');}
+function doLogout(){localStorage.removeItem('pgba_user');currentUser=null;showScreen('s-landing');}
+function renderInside(){
+ currentUser=JSON.parse(localStorage.getItem('pgba_user')||'null'); if(!currentUser){showScreen('s-auth');return}
+ let bought=JSON.parse(localStorage.getItem('pgba_bought')||'{}')[currentUser.email]||[];
+ document.getElementById('boughtCount').innerText=bought.length;
+ document.getElementById('coursesInside').innerHTML=COURSES.map(c=>{
+   const isBought=bought.includes(c.id);
+   return `<div class="card" style="display:flex;gap:12px"><img src="${c.img}" class="course-img" style="width:90px;height:70px"><div style="flex:1"><h4 style="font-size:14px">${c.name}</h4><p style="font-size:12px;color:#64748b">${c.price.toLocaleString()}F - MoMo 678657567</p>${isBought?`<span class="badge">✅ BOUGHT</span> <button onclick="openCourse('${c.id}')" class="btn-navy" style="width:auto;padding:6px 12px;margin-top:6px;border-radius:20px;font-size:12px">Open Inside</button>`:`<button onclick="buyCourse('${c.id}')" class="btn btn-navy" style="padding:8px 12px;margin-top:6px;font-size:12px">Buy - 678657567</button>`}</div></div>`
+ }).join('');
+ loadDailyQuiz();
 }
-function openLogin(){document.getElementById('loginModal').style.display='grid'}
-function closeLogin(){document.getElementById('loginModal').style.display='none'}
-function openBuy(id){if(!currentUser){openLogin();document.getElementById('loginMsg').innerText='Login first to buy course';return} currentBuy=COURSES.find(c=>c.id===id); document.getElementById('buyCourseName').innerText='Buy '+currentBuy.name; document.getElementById('buyPrice').innerText=currentBuy.price+'F'; document.getElementById('buyModal').style.display='grid'}
-function closeBuy(){document.getElementById('buyModal').style.display='none'}
-function confirmBuy(){
-  const amt=Number(document.getElementById('paidAmount').value);
-  if(amt < (currentBuy.price*0.9)){alert('Amount too low. Pay at least '+currentBuy.price+'F');return}
-  if(!bought[currentUser.email]) bought[currentUser.email]=[];
-  if(!bought[currentUser.email].includes(currentBuy.id)) bought[currentUser.email].push(currentBuy.id);
-  localStorage.setItem('pgba_bought',JSON.stringify(bought));
-  localStorage.setItem('pgba_lastTrans',document.getElementById('transId').value+' - '+amt);
-  closeBuy();
-  renderCourses(); renderPortal();
-  alert('Success! Course unlocked. Level: '+(amt>=10000?'Advanced':'Starter')+'. Now take quiz. We will verify MoMo on WhatsApp 680726514');
-  openLesson(currentBuy.id);
+function buyCourse(id){
+ const amt=prompt('You are buying course. Pay '+COURSES.find(c=>c.id===id).price+'F to MoMo 678657567 (Precious). Enter amount you paid:');
+ if(!amt) return; if(Number(amt) < COURSES.find(c=>c.id===id).price*0.8){alert('Pay full amount to 678657567');return}
+ let bought=JSON.parse(localStorage.getItem('pgba_bought')||'{}'); if(!bought[currentUser.email]) bought[currentUser.email]=[]; if(!bought[currentUser.email].includes(id)) bought[currentUser.email].push(id); localStorage.setItem('pgba_bought',JSON.stringify(bought)); alert('Success! Paid to 678657567. Course unlocked inside!'); renderInside();
 }
-function openLesson(id){
-  const c=COURSES.find(x=>x.id===id);
-  const isBought = currentUser && bought[currentUser.email]?.includes(id);
-  document.getElementById('lessonTitle').innerText=c.name+' - Lessons';
-  document.getElementById('lessonContent').innerHTML=c.lessons.map((l,i)=>`<div class="level"><b>Level ${i+1}:</b> ${l} ${!isBought && i>0 ? '(Buy to unlock)' : ''}</div>`).join('') + (isBought?`':'<p style="font-size:13px;color:red;margin-top:10px">Buy to unlock all levels</p>`);
-  document.getElementById('quizArea').innerHTML=`<h4>Question:</h4><p>${c.quiz.q}</p>${c.quiz.opts.map((o,i)=>`<button onclick="checkQuiz(${i},${c.quiz.ans})" class="btn" style="width:100%;margin:6px 0;background:white;border:1px solid #e2e8f0">${o}</button>`).join('')}<p id="quizResult" style="margin-top:8px;font-weight:700"></p>`;
-  document.getElementById('lessonModal').style.display='grid';
+function openCourse(id){currentCourse=COURSES.find(c=>c.id===id);document.getElementById('coursePlayerTitle').innerText=currentCourse.name;document.getElementById('coursePlayerBody').innerHTML=`<img src="${currentCourse.img}" style="width:100%;height:180px;object-fit:cover;border-radius:16px"><div style="margin-top:12px">${currentCourse.lessons.map(l=>`<div class="card" style="border-left:4px solid var(--gold)">${l}</div>`).join('')}</div>`;loadCourseQuiz();showScreen('s-course');}
+function loadCourseQuiz(){const q=QUESTION_BANK.filter((_,i)=>i%6===COURSES.indexOf(currentCourse))[0]||QUESTION_BANK[0];document.getElementById('courseQuiz').innerHTML=`<p style="font-weight:700;margin-bottom:8px">${q.q}</p>${q.o.map((o,i)=>`<button class="q-opt" onclick="checkCourseQuiz(this,${i},${q.a})">${o}</button>`).join('')}<p id="cqResult" style="margin-top:8px;font-weight:700"></p>`}
+function checkCourseQuiz(btn,chosen,correct){const res=document.getElementById('cqResult');if(chosen===correct){btn.classList.add('correct');res.innerText='✅ Correct!';let sc=Number(localStorage.getItem('pgba_score_'+currentUser.email)||0)+1;localStorage.setItem('pgba_score_'+currentUser.email,sc);document.getElementById('quizScore').innerText=sc;}else{btn.classList.add('wrong');res.innerText='❌ Wrong, try again'}}
+function loadDailyQuiz(){
+ const today=new Date().toDateString(); document.getElementById('todayDate').innerText=today;
+ const seed=today.split('').reduce((a,b)=>a+b.charCodeAt(0),0);
+ let shuffled=[...QUESTION_BANK].sort(()=>0.5 - (seed%100)/100); // daily changing
+ shuffled=shuffled.slice(0,5);
+ document.getElementById('dailyQuiz').innerHTML=shuffled.map((q,qi)=>`<div class="card" style="padding:12px"><b style="font-size:13px">${qi+1}. ${q.q}</b><div>${q.o.map((o,i)=>`<button class="q-opt" onclick="this.parentElement.querySelectorAll('.q-opt').forEach(b=>b.disabled=true); if(${i}===${q.a}){this.classList.add('correct')}else{this.classList.add('wrong')}" style="font-size:13px">${o}</button>`).join('')}</div></div>`).join('');
 }
-function checkQuiz(chosen, correct){ document.getElementById('quizResult').innerText = chosen===correct ? '✅ Correct! You passed this level.' : '❌ Wrong, try again.'; if(chosen===correct){ let prog=JSON.parse(localStorage.getItem('pgba_prog')||'{}'); if(!prog[currentUser.email]) prog[currentUser.email]={}; prog[currentUser.email][currentBuy?.id||'c1']=true; localStorage.setItem('pgba_prog',JSON.stringify(prog)); renderPortal(); } }
-function closeLesson(){document.getElementById('lessonModal').style.display='none'}
-function doRegister(){
-  const e=document.getElementById('email').value.trim(); const p=document.getElementById('password').value.trim();
-  if(!e||p.length<4){document.getElementById('loginMsg').innerText='Enter email and password min 4 chars';return}
-  let users=JSON.parse(localStorage.getItem('pgba_users')||'{}'); users[e]=p; localStorage.setItem('pgba_users',JSON.stringify(users));
-  currentUser={email:e}; localStorage.setItem('pgba_user',JSON.stringify(currentUser)); updateAuth(); closeLogin(); renderCourses(); renderPortal();
-}
-function doLogin(){
-  const e=document.getElementById('email').value.trim(); const p=document.getElementById('password').value.trim();
-  let users=JSON.parse(localStorage.getItem('pgba_users')||'{}');
-  if(users[e] && users[e]===p){currentUser={email:e}; localStorage.setItem('pgba_user',JSON.stringify(currentUser)); updateAuth(); closeLogin(); renderCourses(); renderPortal();}
-  else{document.getElementById('loginMsg').innerText='Wrong email or password. Register if new.'}
-}
-function updateAuth(){document.getElementById('authBtn').innerText=currentUser?currentUser.email.split('@')[0]+' (Logout)':'Login'; if(currentUser) document.getElementById('authBtn').onclick=()=>{localStorage.removeItem('pgba_user'); currentUser=null; updateAuth(); renderCourses(); renderPortal();}; else document.getElementById('authBtn').onclick=openLogin;}
-function renderPortal(){
-  if(!currentUser){document.getElementById('myLearning').innerHTML='Login to see courses';return}
-  const my=bought[currentUser.email]||[];
-  const prog=JSON.parse(localStorage.getItem('pgba_prog')||'{}')[currentUser.email]||{};
-  document.getElementById('myLearning').innerHTML=my.length? my.map(id=>{const c=COURSES.find(x=>x.id===id); return `<div class="level">✅ ${c.name} - Price Level: ${c.price}F - Quiz: ${prog[id]?'Passed':'Not yet'}</div>`}).join('') + `<br><a href="https://wa.me/237680726514?text=I%20paid%20for%20${my.join(',')}%20Amount:%20${localStorage.getItem('pgba_lastTrans')||''}" class="btn btn-navy" style="width:100%">Send Payment Proof on WhatsApp</a>` : 'No bought courses yet. Buy from Courses above.';
-}
-updateAuth(); renderCourses(); renderPortal();
+function markComplete(){alert('Level Complete! Next level unlocked. Continue learning.');showScreen('s-dashboard');}
+(function(){const u=localStorage.getItem('pgba_user');if(u){currentUser=JSON.parse(u);}})
 </script>
 </body>
 </html>
