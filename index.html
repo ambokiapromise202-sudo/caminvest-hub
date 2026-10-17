@@ -3,111 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CamInvest Business Academy - Buea</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+<title>CamInvest Business Academy - Buea | Real Business School</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial}
-body{background:#f8fafc;color:#0f172a}
-.header{background:#0f172a;color:white;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
-.logo{font-weight:800;font-size:20px;color:#22c55e}
-.btn-green{background:#22c55e;color:white;padding:12px 24px;border-radius:30px;border:none;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
-.hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);color:white;padding:60px 20px;text-align:center}
-.hero h1{font-size:42px;font-weight:800;line-height:1.1;margin-bottom:15px}
+body{background:#f8fafc;color:#0f172a;line-height:1.6}
+.header{background:#0f172a;color:white;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:999}
+.logo{font-weight:800;color:#22c55e;font-size:18px}
+.btn{padding:12px 22px;border-radius:30px;border:none;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.btn-green{background:#22c55e;color:white}
+.btn-dark{background:#0f172a;color:white}
+.hero{background:linear-gradient(135deg,#0f172a,#1e3a8a);color:white;padding:70px 20px;text-align:center}
+.hero h1{font-size:40px;line-height:1.1;font-weight:800}
 .hero h1 span{color:#22c55e}
-.hero p{color:#cbd5e1;max-width:600px;margin:0 auto 25px;font-size:16px}
-.stats{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:20px}
-.stat{background:rgba(255,255,255,0.1);padding:12px 20px;border-radius:12px;font-size:13px}
-.courses{padding:40px 15px;max-width:1100px;margin:0 auto}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:20px}
-.card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06);border:1px solid #e2e8f0}
-.card img{width:100%;height:180px;object-fit:cover}
-.card-body{padding:18px}
-.badge{background:#dcfce7;color:#166534;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
-.price{font-size:22px;font-weight:800;margin:10px 0}
-.old{color:#94a3b8;text-decoration:line-through;font-size:14px;margin-left:8px}
-.buy{width:100%;background:#0f172a;color:white;padding:14px;border:none;border-radius:30px;font-weight:700;margin-top:10px;cursor:pointer}
-.buy:hover{background:#22c55e}
-.footer{background:#0f172a;color:#94a3b8;padding:30px 20px;text-align:center;margin-top:40px;font-size:13px}
+.wrap{max-width:1100px;margin:0 auto;padding:30px 15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.card{background:white;border-radius:20px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.06);border:1px solid #e2e8f0}
+.card img{width:100%;height:200px;object-fit:cover}
+.card-body{padding:20px}
+.tag{background:#dcfce7;color:#166534;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:800}
+.price{font-size:24px;font-weight:800;margin:12px 0}
+.module{background:white;border-radius:20px;padding:25px;margin-top:25px;border:1px solid #e2e8f0}
+.lesson{background:#f8fafc;padding:15px;border-radius:12px;margin:10px 0;border-left:4px solid #22c55e}
+.footer{background:#0f172a;color:#94a3b8;text-align:center;padding:35px 20px;margin-top:50px}
 </style>
 </head>
 <body>
 
 <div class="header">
 <div class="logo">● CamInvest ACADEMY</div>
-<a href="https://wa.me/237678657567?text=Hi, I want to join Business Academy" class="btn-green">Join WhatsApp</a>
+<a href="https://wa.me/237678657567?text=Hi, I want to join Academy" class="btn btn-green">WhatsApp</a>
 </div>
 
 <div class="hero">
-<h1>Learn Real Business.<br><span>Start With Small Money.</span><br>In Buea.</h1>
-<p>Cameroon's first practical business academy. No theory. No fake daily income. Just real skills to start, sell, and grow with 10k-50k FCFA. Taught by Ambokia Promise.</p>
-<a href="#courses" class="btn-green">View Courses - From 5,000 FCFA</a>
-<div class="stats">
-<div class="stat">📍 Buea, SW Region</div>
-<div class="stat">🎓 10 Practical Modules</div>
-<div class="stat">📱 MTN MoMo / Orange Money</div>
-</div>
+<h1>Learn Real Business.<br><span>Start With Small Money.</span><br>In Buea & Worldwide.</h1>
+<p style="color:#cbd5e1;max-width:650px;margin:15px auto;font-size:16px">Cameroon's First Practical Business Academy. No fake daily income. Real skills, real products, real profit. Founded by Ambokia Promise, Buea.</p>
+<a href="#courses" class="btn btn-green" style="margin-top:15px">Start Learning - From 5,000F</a>
 </div>
 
-<div class="courses" id="courses">
-<h2 style="font-size:28px;font-weight:800">Popular Courses</h2>
-<p style="color:#64748b;margin-top:6px">Pay once, learn forever + Certificate + WhatsApp Mentorship</p>
+<div class="wrap" id="courses">
+<h2 style="font-size:30px;font-weight:800">Our Courses - Pay Once, Learn Forever</h2>
+<p style="color:#64748b">MoMo Payment to 678657567 + Certificate + Mentorship</p>
 
-<div class="grid">
+<div class="grid" style="margin-top:20px">
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600">
+<img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=700">
 <div class="card-body">
-<span class="badge">BESTSELLER</span>
-<h3 style="margin-top:10px">Start Business With 10K FCFA</h3>
-<p style="color:#64748b;font-size:13px;margin-top:6px">7-day practical guide. Find product, find customer, make first profit in Buea.</p>
-<div class="price">10,000 FCFA <span class="old">25,000</span></div>
-<a href="https://wa.me/237678657567?text=I want to BUY Course 1 - Start with 10K for 10,000F"><button class="buy">Enroll Now - MoMo</button></a>
+<span class="tag">BESTSELLER</span>
+<h3 style="margin-top:10px">Module 1: Start Business With 10K</h3>
+<p style="color:#64748b;font-size:14px">How to turn 10k to 15k in 7 days in Buea.</p>
+<div class="price">10,000 FCFA</div>
+<a href="https://wa.me/237678657567?text=I want to BUY Module 1 - 10K Business for 10,000F"><button class="btn btn-dark" style="width:100%">Enroll Now - MoMo 678657567</button></a>
 </div>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600">
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=700">
 <div class="card-body">
-<span class="badge">NEW</span>
-<h3 style="margin-top:10px">WhatsApp Sales Mastery</h3>
-<p style="color:#64748b;font-size:13px;margin-top:6px">How to get customers on WhatsApp Status, Facebook & TikTok without ads.</p>
-<div class="price">5,000 FCFA <span class="old">15,000</span></div>
-<a href="https://wa.me/237678657567?text=I want to BUY Course 2 - WhatsApp Sales for 5,000F"><button class="buy">Enroll Now - MoMo</button></a>
+<span class="tag">SALES</span>
+<h3 style="margin-top:10px">Module 2: WhatsApp Sales Mastery</h3>
+<p style="color:#64748b;font-size:14px">Get customers daily from WhatsApp & Facebook.</p>
+<div class="price">5,000 FCFA</div>
+<a href="https://wa.me/237678657567?text=I want to BUY Module 2 - WhatsApp Sales for 5,000F"><button class="btn btn-dark" style="width:100%">Enroll Now</button></a>
 </div>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600">
+<img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=700">
 <div class="card-body">
-<span class="badge">PRO</span>
-<h3 style="margin-top:10px">MoMo Money Management</h3>
-<p style="color:#64748b;font-size:13px;margin-top:6px">Never go broke again. Calculate profit, price, savings for small business.</p>
-<div class="price">7,500 FCFA <span class="old">20,000</span></div>
-<a href="https://wa.me/237678657567?text=I want to BUY Course 3 - MoMo Money for 7,500F"><button class="buy">Enroll Now - MoMo</button></a>
+<span class="tag">MONEY</span>
+<h3 style="margin-top:10px">Module 3: MoMo Money Management</h3>
+<p style="color:#64748b;font-size:14px">Never go broke. Price, profit, savings formula.</p>
+<div class="price">7,500 FCFA</div>
+<a href="https://wa.me/237678657567?text=I want to BUY Module 3 - MoMo Money for 7,500F"><button class="btn btn-dark" style="width:100%">Enroll Now</button></a>
 </div>
 </div>
 
 </div>
 
-<div style="background:white;padding:25px;border-radius:18px;margin-top:30px;border:1px solid #e2e8f0">
-<h3>How It Works - 100% Real</h3>
-<p style="margin-top:10px;line-height:1.7;color:#334155">
-1. Click Enroll Now → You go to WhatsApp 678657567<br>
-2. Send MoMo to 678657567 (Name: Precious) → Send screenshot<br>
-3. We add you to Academy + give you login to watch videos<br>
-4. You get Certificate after completing<br>
-<b>NO fake daily income. You pay for KNOWLEDGE, you get SKILL for life.</b>
-</p>
-<a href="https://wa.me/237678657567?text=Hi, I want to join CamInvest Academy today" style="display:block;text-align:center;margin-top:15px;background:#22c55e;color:white;padding:14px;border-radius:30px;text-decoration:none;font-weight:700">Join Academy on WhatsApp</a>
+<!-- FULL LESSONS INSIDE SITE -->
+<div class="module">
+<h2>📖 INSIDE THE ACADEMY - What You Will Learn</h2>
+
+<h3 style="margin-top:20px;color:#1e3a8a">MODULE 1: START WITH 10K FCFA</h3>
+<div class="lesson"><b>Lesson 1: Mindset</b><br>10k is not small. Separate MoMo: Business 678657567 and Personal. Never eat capital.</div>
+<div class="lesson"><b>Lesson 2: 3 Products to Start in Buea Today</b><br>
+1. Data: Buy 10GB 8k, sell 1GB 1,200F = 4k profit<br>
+2. Thrift in Molyko: Buy 5 shirts 7,500F, sell 2,500F each = 5k profit<br>
+3. Groundnut Pack: Buy 5k, repackage 500F x15 = 7,500F</div>
+<div class="lesson"><b>Lesson 3: First Customer in 24H</b><br>Post on Status with real photo: "Available in Buea - 2,500F - Delivery Molyko. Chat 678657567". Message 20 friends one by one.</div>
+
+<h3 style="margin-top:30px;color:#1e3a8a">MODULE 2: WHATSAPP SALES MASTERY</h3>
+<div class="lesson"><b>Lesson 1: Your WhatsApp is Your Shop</b><br>Set Business Profile, add 5 products to Catalog with real photos, price, description.</div>
+<div class="lesson"><b>Lesson 2: Status That Sells</b><br>Morning: Product. Afternoon: Delivery video. Evening: "Sold Out - 5 more tomorrow, reserve".</div>
+<div class="lesson"><b>Lesson 3: The 3-Sentence Closer</b><br>Customer: "How much?" You: "2,500F sir, delivery 500F in Molyko. I have 3 left today. Should I keep one for you?"</div>
+
+<h3 style="margin-top:30px;color:#1e3a8a">MODULE 3: MOMO MONEY MANAGEMENT</h3>
+<div class="lesson"><b>Formula: Selling Price - Buying Price - Transport = REAL PROFIT</b><br>If you sell 2,500F, you bought 1,500F, transport 200F, your profit is 800F. Write it every day.</div>
+<div class="lesson"><b>Rule 50/30/20:</b><br>50% Re-invest, 30% Save, 20% Eat. This is how you grow from 10k to 100k.</div>
+
+<div style="text-align:center;margin-top:25px">
+<a href="https://wa.me/237678657567?text=Hi, I finished reading modules, I want to enroll now and get certificate" class="btn btn-green" style="padding:16px 40px;font-size:16px">I Want Certificate - Join on WhatsApp</a>
+</div>
+
+</div>
+
+<div style="background:#0f172a;color:white;padding:25px;border-radius:20px;margin-top:30px;text-align:center">
+<h3>How To Enroll - 100% Real Process</h3>
+<p style="color:#cbd5e1;margin-top:10px">1. Click Enroll → WhatsApp 678657567<br>2. MoMo to 678657567 - Send screenshot<br>3. Get Access + Certificate + Group</p>
 </div>
 
 </div>
 
 <div class="footer">
-<b style="color:white">CamInvest Business Academy</b><br>
-Founder: Ambokia Promise | Buea, Cameroon | 678657567<br>
+<b style="color:white;font-size:16px">CamInvest Business Academy</b><br>
+Founder: Ambokia Promise | Buea, Southwest, Cameroon<br>
+WhatsApp: 678657567 | Email: caminvesthub@gmail.com<br>
 Real Business. Real Skills. Real Money.<br><br>
-© 2026 All Rights Reserved - Legal Education Platform
+© 2026 - Legal Education Platform - We Teach, You Earn
 </div>
 
 </body>
