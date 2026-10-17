@@ -1,39 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My 4 SIMs Dashboard</title>
-<script src="https://cdn.tailwindcss.com"></script>
+<title>CamInvest Business Academy - Buea</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',Arial}
+body{background:#f8fafc;color:#0f172a}
+.header{background:#0f172a;color:white;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100}
+.logo{font-weight:800;font-size:20px;color:#22c55e}
+.btn-green{background:#22c55e;color:white;padding:12px 24px;border-radius:30px;border:none;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);color:white;padding:60px 20px;text-align:center}
+.hero h1{font-size:42px;font-weight:800;line-height:1.1;margin-bottom:15px}
+.hero h1 span{color:#22c55e}
+.hero p{color:#cbd5e1;max-width:600px;margin:0 auto 25px;font-size:16px}
+.stats{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:20px}
+.stat{background:rgba(255,255,255,0.1);padding:12px 20px;border-radius:12px;font-size:13px}
+.courses{padding:40px 15px;max-width:1100px;margin:0 auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:20px}
+.card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06);border:1px solid #e2e8f0}
+.card img{width:100%;height:180px;object-fit:cover}
+.card-body{padding:18px}
+.badge{background:#dcfce7;color:#166534;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.price{font-size:22px;font-weight:800;margin:10px 0}
+.old{color:#94a3b8;text-decoration:line-through;font-size:14px;margin-left:8px}
+.buy{width:100%;background:#0f172a;color:white;padding:14px;border:none;border-radius:30px;font-weight:700;margin-top:10px;cursor:pointer}
+.buy:hover{background:#22c55e}
+.footer{background:#0f172a;color:#94a3b8;padding:30px 20px;text-align:center;margin-top:40px;font-size:13px}
+</style>
 </head>
-<body class="bg-black text-white p-4">
-<h1 class="text-2xl font-bold">My 4 MTN/Orange SIMs</h1>
-<p class="text-white/50 text-sm">Legal Dashboard - You control with your PIN</p>
+<body>
 
-<div id="sims" class="grid gap-4 mt-6"></div>
-
-<div class="mt-8 bg-[#1a1a1a] p-4 rounded-xl">
-<h3 class="font-bold">Add Money Entry</h3>
-<select id="simSelect" class="w-full mt-2 p-3 bg-black rounded text-white">
-<option value="0">MTN SIM 1 - 67X</option>
-<option value="1">MTN SIM 2 - 68X</option>
-<option value="2">Orange SIM 1 - 69X</option>
-<option value="3">Orange SIM 2 - 65X</option>
-</select>
-<input id="amount" type="number" placeholder="Amount e.g. 5000" class="w-full mt-2 p-3 bg-black rounded" />
-<button onclick="addMoney()" class="w-full mt-3 bg-yellow-500 text-black p-3 rounded font-bold">Add Entry</button>
+<div class="header">
+<div class="logo">● CamInvest ACADEMY</div>
+<a href="https://wa.me/237678657567?text=Hi, I want to join Business Academy" class="btn-green">Join WhatsApp</a>
 </div>
 
-<div class="mt-4 bg-[#1a1a1a] p-4 rounded-xl">
-<h3 class="font-bold">Withdraw (Requires Your PIN on Phone)</h3>
-<input id="withdrawPhone" placeholder="Send to +237..." class="w-full mt-2 p-3 bg-black rounded" />
-<input id="withdrawAmount" type="number" placeholder="Amount" class="w-full mt-2 p-3 bg-black rounded" />
-<button onclick="withdraw()" class="w-full mt-3 border-yellow-500 text-yellow-500 p-3 rounded font-bold">Request Withdraw - Confirm with PIN</button>
-<p class="text-xs text-white/30 mt-2">You will receive USSD *126# to enter PIN. We never bypass PIN.</p>
+<div class="hero">
+<h1>Learn Real Business.<br><span>Start With Small Money.</span><br>In Buea.</h1>
+<p>Cameroon's first practical business academy. No theory. No fake daily income. Just real skills to start, sell, and grow with 10k-50k FCFA. Taught by Ambokia Promise.</p>
+<a href="#courses" class="btn-green">View Courses - From 5,000 FCFA</a>
+<div class="stats">
+<div class="stat">📍 Buea, SW Region</div>
+<div class="stat">🎓 10 Practical Modules</div>
+<div class="stat">📱 MTN MoMo / Orange Money</div>
+</div>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+<div class="courses" id="courses">
+<h2 style="font-size:28px;font-weight:800">Popular Courses</h2>
+<p style="color:#64748b;margin-top:6px">Pay once, learn forever + Certificate + WhatsApp Mentorship</p>
 
-const firebaseConfig = { apiKey: "YOUR_KEY", authDomain: "YOUR_PROJECT.firebaseapp.com", projectId: "YOUR
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600">
+<div class="card-body">
+<span class="badge">BESTSELLER</span>
+<h3 style="margin-top:10px">Start Business With 10K FCFA</h3>
+<p style="color:#64748b;font-size:13px;margin-top:6px">7-day practical guide. Find product, find customer, make first profit in Buea.</p>
+<div class="price">10,000 FCFA <span class="old">25,000</span></div>
+<a href="https://wa.me/237678657567?text=I want to BUY Course 1 - Start with 10K for 10,000F"><button class="buy">Enroll Now - MoMo</button></a>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600">
+<div class="card-body">
+<span class="badge">NEW</span>
+<h3 style="margin-top:10px">WhatsApp Sales Mastery</h3>
+<p style="color:#64748b;font-size:13px;margin-top:6px">How to get customers on WhatsApp Status, Facebook & TikTok without ads.</p>
+<div class="price">5,000 FCFA <span class="old">15,000</span></div>
+<a href="https://wa.me/237678657567?text=I want to BUY Course 2 - WhatsApp Sales for 5,000F"><button class="buy">Enroll Now - MoMo</button></a>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600">
+<div class="card-body">
+<span class="badge">PRO</span>
+<h3 style="margin-top:10px">MoMo Money Management</h3>
+<p style="color:#64748b;font-size:13px;margin-top:6px">Never go broke again. Calculate profit, price, savings for small business.</p>
+<div class="price">7,500 FCFA <span class="old">20,000</span></div>
+<a href="https://wa.me/237678657567?text=I want to BUY Course 3 - MoMo Money for 7,500F"><button class="buy">Enroll Now - MoMo</button></a>
+</div>
+</div>
+
+</div>
+
+<div style="background:white;padding:25px;border-radius:18px;margin-top:30px;border:1px solid #e2e8f0">
+<h3>How It Works - 100% Real</h3>
+<p style="margin-top:10px;line-height:1.7;color:#334155">
+1. Click Enroll Now → You go to WhatsApp 678657567<br>
+2. Send MoMo to 678657567 (Name: Precious) → Send screenshot<br>
+3. We add you to Academy + give you login to watch videos<br>
+4. You get Certificate after completing<br>
+<b>NO fake daily income. You pay for KNOWLEDGE, you get SKILL for life.</b>
+</p>
+<a href="https://wa.me/237678657567?text=Hi, I want to join CamInvest Academy today" style="display:block;text-align:center;margin-top:15px;background:#22c55e;color:white;padding:14px;border-radius:30px;text-decoration:none;font-weight:700">Join Academy on WhatsApp</a>
+</div>
+
+</div>
+
+<div class="footer">
+<b style="color:white">CamInvest Business Academy</b><br>
+Founder: Ambokia Promise | Buea, Cameroon | 678657567<br>
+Real Business. Real Skills. Real Money.<br><br>
+© 2026 All Rights Reserved - Legal Education Platform
+</div>
+
+</body>
+</html>
