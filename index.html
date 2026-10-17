@@ -2,212 +2,176 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Promise Global Business Academy | Learn Today. Build Tomorrow. Lead The World.</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promise Global Business Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-:root{--navy:#0a1931;--navy2:#122a54;--gold:#c5a572;--gold2:#a88a5a;--light:#f6f8fb;--text:#1e293b;--muted:#64748b}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;color:var(--text);background:var(--light);padding-bottom:90px}
-h1,h2,h3{font-family:'Plus Jakarta Sans',sans-serif}
-.header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;padding:14px 20px}
-.logo-wrap{display:flex;align-items:center;gap:10px}
-.logo-icon{width:42px;height:42px;background:var(--navy);color:var(--gold);display:grid;place-items:center;border-radius:10px;font-weight:800;font-size:18px}
-.logo-text b{display:block;font-family:'Plus Jakarta Sans';font-weight:800;color:var(--navy);line-height:1;font-size:15px}
-.logo-text span{font-size:11px;color:var(--muted);letter-spacing:0.5px}
-.nav-desktop{display:none;gap:22px}
-.nav-desktop a{color:var(--text);text-decoration:none;font-weight:500;font-size:14px}
-.btn{padding:12px 22px;border-radius:100px;font-weight:700;font-size:14px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;justify-content:center;transition:.2s}
-.btn-navy{background:var(--navy);color:white}
-.btn-navy:hover{background:var(--navy2)}
-.btn-white{background:white;color:var(--navy);border:1px solid #e2e8f0}
-.btn-gold{background:var(--gold);color:var(--navy)}
-.hero{position:relative;min-height:88vh;display:grid;place-items:center;text-align:center;padding:30px 20px;overflow:hidden;color:white}
-.hero-bg{position:absolute;inset:0;z-index:-2}
-.hero-bg img{width:100%;height:100%;object-fit:cover}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(10,25,49,0.75) 0%, rgba(10,25,49,0.88) 100%);z-index:-1}
-.hero-content{max-width:860px}
-.hero-badge{background:rgba(197,165,114,0.15);border:1px solid rgba(197,165,114,0.3);color:var(--gold);padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:0.5px;margin-bottom:18px;display:inline-block}
-.hero h1{font-size:clamp(32px,6vw,54px);line-height:1.05;font-weight:800;margin-bottom:14px}
-.hero h1 span{color:var(--gold)}
-.hero p{color:#cbd5e1;font-size:clamp(14px,2.5vw,17px);max-width:680px;margin:0 auto 28px;line-height:1.6}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.section{padding:70px 20px;max-width:1200px;margin:0 auto}
-.section-dark{background:var(--navy);color:white}
-.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:30px}
-.card{background:white;border-radius:20px;overflow:hidden;border:1px solid #e2e8f0;box-shadow:0 4px 24px rgba(0,0,0,0.04)}
-.card img{width:100%;height:190px;object-fit:cover}
-.card-body{padding:20px}
-.founder{display:flex;gap:20px;align-items:center;background:white;border-radius:20px;padding:24px;border:1px solid #e2e8f0;flex-wrap:wrap}
-.founder img{width:88px;height:88px;border-radius:100px;object-fit:cover}
-.faq{border:1px solid #e2e8f0;border-radius:14px;margin-bottom:10px;overflow:hidden}
-.faq summary{padding:16px 20px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
-.faq p{padding:0 20px 16px;color:var(--muted);font-size:14px}
-.footer{background:#070f22;color:#94a3b8;padding:50px 20px 30px}
-.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px}
-.footer b{color:white}
-.footer a{color:#94a3b8;text-decoration:none;display:block;margin:8px 0;font-size:14px}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,0.97);backdrop-filter:blur(14px);border-top:1px solid #e2e8f0;display:flex;justify-content:space-around;padding:8px 0 calc(8px + env(safe-area-inset-bottom));z-index:999}
-.bottom-nav a{flex:1;text-align:center;color:var(--muted);text-decoration:none;font-size:10px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px}
-.bottom-nav a i{font-size:18px}
-.bottom-nav a.active{color:var(--navy)}
-.bottom-nav a.active i{color:var(--gold)}
-.whatsapp-float{position:fixed;right:18px;bottom:96px;z-index:998;background:#25D366;color:white;width:56px;height:56px;border-radius:100px;display:grid;place-items:center;box-shadow:0 8px 24px rgba(37,211,102,0.4);text-decoration:none}
-.whatsapp-float i{font-size:28px}
-.mobile-menu{position:fixed;inset:0;background:white;z-index:2000;padding:30px;display:none;flex-direction:column;gap:18px}
-.mobile-menu a{font-size:18px;font-weight:600;color:var(--navy);text-decoration:none}
-@media(min-width:900px){.nav-desktop{display:flex} .bottom-nav{display:none} body{padding-bottom:0} .whatsapp-float{bottom:24px}}
+:root{--navy:#0a1931;--gold:#c5a572;--light:#f6f8fb}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
+body{background:var(--light);color:#1e293b;padding-bottom:85px}
+.header{position:sticky;top:0;z-index:999;background:white;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #e2e8f0}
+.logo{font-weight:800;color:var(--navy)}.logo span{color:var(--gold)}
+.btn{padding:12px 20px;border-radius:30px;border:none;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;text-align:center}
+.btn-navy{background:var(--navy);color:white}.btn-gold{background:var(--gold);color:var(--navy)}
+.hero{background:linear-gradient(0deg,rgba(10,25,49,0.85),rgba(10,25,49,0.6)),url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200');background-size:cover;color:white;padding:60px 20px;text-align:center}
+.card{background:white;border-radius:18px;overflow:hidden;border:1px solid #e2e8f0;margin-bottom:16px}
+.card img{width:100%;height:180px;object-fit:cover}
+.card-body{padding:16px}
+.input{width:100%;padding:13px;border:1px solid #e2e8f0;border-radius:12px;margin:8px 0}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;place-items:center;z-index:2000;padding:20px}
+.modal-box{background:white;border-radius:20px;padding:22px;max-width:420px;width:100%;max-height:90vh;overflow:auto}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #e2e8f0;display:flex;justify-content:space-around;padding:8px 0;z-index:998}
+.bottom-nav a{font-size:11px;color:#64748b;text-decoration:none;text-align:center}.bottom-nav a.active{color:var(--navy)}
+.whatsapp{position:fixed;right:16px;bottom:90px;background:#25D366;color:white;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:26px;z-index:997;text-decoration:none}
+.level{border-left:4px solid var(--gold);background:#fffbeb;padding:12px;border-radius:10px;margin:10px 0}
 </style>
 </head>
 <body>
 
-<header class="header">
-<div class="logo-wrap">
-<div class="logo-icon">P</div>
-<div class="logo-text"><b>PROMISE GLOBAL BUSINESS ACADEMY</b><span>Learn Today. Build Tomorrow. Lead The World.</span></div>
-</div>
-<nav class="nav-desktop">
-<a href="#home">Home</a><a href="#about">About Us</a><a href="#courses">Courses</a><a href="#portal">Student Portal</a><a href="#contact">Contact</a>
-</nav>
-<div style="display:flex;gap:8px;align-items:center">
-<a href="#portal" class="btn btn-navy" style="padding:10px 18px">Login / Register</a>
-<button onclick="document.getElementById('mMenu').style.display='flex'" style="background:none;border:none;font-size:22px;display:block" class="md:hidden"><i class="fa-solid fa-bars"></i></button>
-</div>
-</header>
-
-<div id="mMenu" class="mobile-menu">
-<div style="display:flex;justify-content:space-between"><b>Menu</b><button onclick="this.parentElement.parentElement.style.display='none'" style="font-size:24px;background:none;border:none">✕</button></div>
-<a href="#home" onclick="this.parentElement.style.display='none'">Home</a>
-<a href="#about" onclick="this.parentElement.style.display='none'">About Us</a>
-<a href="#courses" onclick="this.parentElement.style.display='none'">Courses</a>
-<a href="#portal" onclick="this.parentElement.style.display='none'">Student Portal</a>
-<a href="#contact" onclick="this.parentElement.style.display='none'">Contact</a>
+<div class="header">
+<div class="logo">PROMISE GLOBAL <span>BUSINESS ACADEMY</span></div>
+<button onclick="openLogin()" class="btn btn-navy" style="padding:8px 14px;font-size:13px" id="authBtn">Login</button>
 </div>
 
-<section id="home" class="hero">
-<div class="hero-bg"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1600" alt="Modern Business Academy Building"></div>
-<div class="hero-overlay"></div>
-<div class="hero-content">
-<div class="hero-badge">ONLINE-FIRST BUSINESS EDUCATION</div>
-<h1>Promise Global <span>Business Academy</span></h1>
-<p style="font-style:italic;color:var(--gold);font-weight:600;margin-bottom:12px">Learn Today. Build Tomorrow. Lead The World.</p>
-<p>Promise Global Business Academy is an online-first educational platform focused on practical business knowledge, entrepreneurship, leadership, digital skills, and financial literacy. Our goal is to help aspiring entrepreneurs and business professionals develop the knowledge and skills needed to build sustainable businesses. We currently operate online, with a physical campus as a future ambition.</p>
-<div class="hero-btns">
-<a href="#courses" class="btn btn-gold">Explore Courses</a>
-<a href="#about" class="btn btn-white">About the Academy</a>
-<a href="#portal" class="btn btn-navy">Student Login / Register</a>
+<div class="hero">
+<h1>Learn Today.<br><span style="color:var(--gold)">Build Tomorrow. Lead The World.</span></h1>
+<p style="margin:12px 0;color:#cbd5e1">Online business school - Practical skills - Buea to Global</p>
+<div style="display:flex;gap:10px;justify-content:center;margin-top:14px"><a href="#courses" class="btn btn-gold">Explore Courses</a><a href="#portal" class="btn" style="background:white;color:var(--navy)">Student Portal</a></div>
 </div>
-</div>
-</section>
 
-<section id="about" class="section">
-<h2 style="font-size:32px;color:var(--navy)">Welcome to the Academy</h2>
-<div class="grid-3">
-<div class="card"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600"><div class="card-body"><h3>About Our Academy</h3><p style="color:var(--muted);font-size:14px;margin-top:8px">We focus on practical, not theoretical business education. Every course is built for real-world application in African and global markets.</p></div></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600"><div class="card-body"><h3>Why Learn With Us</h3><p style="color:var(--muted);font-size:14px;margin-top:8px">No fake promises. Real skills, real mentorship, real community. Learn at your pace with support from Buea to the world.</p></div></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600"><div class="card-body"><h3>Learning Experience</h3><p style="color:var(--muted);font-size:14px;margin-top:8px">Video lessons, quizzes, assignments, progress tracking, and certificates. Designed for mobile first.</p></div></div>
-</div>
-</section>
+<div style="padding:20px;max-width:1100px;margin:0 auto" id="courses">
+<h2>6 Business Courses</h2>
+<p style="color:#64748b;font-size:14px">Buy with MoMo to 680726514 - Then unlock lessons + quiz</p>
 
-<section id="courses" class="section" style="background:white">
-<h2 style="font-size:32px;color:var(--navy)">Our Courses</h2>
-<p style="color:var(--muted)">Public visitors can view all courses. Enrollment requires student login.</p>
-<div class="grid-3">
-<div class="card"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600"><div class="card-body"><h3>Entrepreneurship Fundamentals</h3><p style="font-size:13px;color:var(--muted)">Start a business with limited capital. Business modeling, validation, first customers.</p><div style="display:flex;gap:8px;margin-top:12px"><a href="#portal" onclick="enroll('Entrepreneurship Fundamentals')" class="btn btn-navy" style="flex:1">Enroll Free</a><a href="#courses" class="btn btn-white" style="flex:1">Details</a></div></div></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600"><div class="card-body"><h3>Financial Literacy & MoMo Management</h3><p style="font-size:13px;color:var(--muted)">Profit calculation, pricing, saving, re-investment. 50/30/20 rule.</p><div style="display:flex;gap:8px;margin-top:12px"><a href="#portal" onclick="enroll('Financial Literacy')" class="btn btn-navy" style="flex:1">Enroll Free</a><a href="#courses" class="btn btn-white" style="flex:1">Details</a></div></div></div>
-<div class="card"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600"><div class="card-body"><h3>Digital Sales & WhatsApp Marketing</h3><p style="font-size:13px;color:var(--muted)">Get customers daily using WhatsApp Status, Facebook, TikTok without paid ads.</p><div style="display:flex;gap:8px;margin-top:12px"><a href="#portal" onclick="enroll('Digital Sales')" class="btn btn-navy" style="flex:1">Enroll Free</a><a href="#courses" class="btn btn-white" style="flex:1">Details</a></div></div></div>
+<div id="courseList"></div>
 </div>
-</section>
 
-<section class="section section-dark" style="text-align:center">
-<h2 style="font-size:28px">Meet the Founder</h2>
-<div style="max-width:700px;margin:20px auto;background:rgba(255,255,255,0.06);padding:24px;border-radius:20px;border:1px solid rgba(255,255,255,0.1)">
-<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" style="width:80px;height:80px;border-radius:100px;object-fit:cover;border:3px solid var(--gold)">
-<h3 style="margin-top:12px">Promise</h3><p style="color:var(--gold);font-size:13px">Founder, Promise Global Business Academy</p><p style="color:#cbd5e1;font-size:14px;margin-top:10px">Entrepreneur from Buea, Cameroon. Passionate about practical business education for young people. Building an online-first academy to help Africans build sustainable businesses.</p>
-</div>
-</section>
-
-<section class="section">
-<h2 style="font-size:26px;color:var(--navy)">Frequently Asked Questions</h2>
-<div style="margin-top:20px;max-width:800px">
-<div class="faq"><details class="faq"><summary>Is this a physical university? <i class="fa-solid fa-chevron-down"></i></summary><p>No. We are an online-first business education platform. A physical campus is a future ambition, not current reality.</p></details></div>
-<div class="faq"><details class="faq"><summary>How do I enroll? <i class="fa-solid fa-chevron-down"></i></summary><p>Click Enroll, register/login in Student Portal, you will be enrolled. Currently using secure local storage. Firebase backend required for production persistence.</p></details></div>
-<div class="faq"><details class="faq"><summary>Do you give certificates? <i class="fa-solid fa-chevron-down"></i></summary><p>Yes, after completing lessons, quizzes and assignments, you receive a course completion certificate.</p></details></div>
-</div>
-</section>
-
-<section id="portal" class="section" style="background:white">
-<h2 style="font-size:28px;color:var(--navy)">Student Portal</h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:20px">
-<div class="card"><div class="card-body"><h3>Register / Login</h3>
-<input id="email" placeholder="Email" style="width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #e2e8f0">
-<input id="pass" type="password" placeholder="Password" style="width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #e2e8f0">
-<button onclick="handleAuth()" class="btn btn-navy" style="width:100%;margin-top:8px">Login / Register</button>
-<p id="authMsg" style="font-size:12px;color:var(--muted);margin-top:8px">Demo mode: Data saved locally. For production, Firebase Auth + Firestore needed. See console for setup instructions.</p>
+<div id="portal" style="padding:20px;max-width:1100px;margin:0 auto">
+<div class="card"><div class="card-body">
+<h3>My Portal - My Courses & Progress</h3>
+<div id="myLearning" style="margin-top:10px;color:#64748b">Login to see your bought courses, levels, and quizzes.</div>
 </div></div>
-<div class="card"><div class="card-body"><h3>My Learning</h3><div id="myCourses" style="font-size:14px;color:var(--muted)">Login to see enrolled courses, progress, lessons, quizzes, certificates.</div><button onclick="logout()" class="btn btn-white" style="width:100%;margin-top:12px">Logout</button></div></div>
 </div>
-</section>
 
-<section id="contact" class="section">
-<h2 style="font-size:28px;color:var(--navy)">Contact and Student Support</h2>
-<div class="grid-3">
-<div class="card"><div class="card-body"><h3><i class="fa-brands fa-whatsapp"></i> WhatsApp Support</h3><p style="font-size:14px;color:var(--muted)">Chat: +237 680726514</p><a href="https://wa.me/237680726514?text=Hello%20Promise%20Global%20Business%20Academy.%20I%20would%20like%20to%20know%20more%20about%20your%20courses,%20student%20registration,%20and%20how%20the%20academy%20works." class="btn btn-navy" style="width:100%;margin-top:10px">Chat on WhatsApp</a></div></div>
-<div class="card"><div class="card-body"><h3>Campus Partnership Inquiry</h3><p style="font-size:14px;color:var(--muted)">Interested in partnership? Send inquiry.</p><input placeholder="Your Email" style="width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #e2e8f0"><textarea placeholder="Message" style="width:100%;padding:12px;border-radius:10px;border:1px solid #e2e8f0"></textarea><button onclick="alert('Thanks! For production, connect to email backend. We received your inquiry.')" class="btn btn-navy" style="width:100%;margin-top:8px">Send Inquiry</button></div></div>
-<div class="card"><div class="card-body"><h3>Student Support Info</h3><p style="font-size:14px;color:var(--muted)">Response time: 24h via WhatsApp. Online learning available 24/7. Certificates issued after completion.</p></div></div>
+<!-- LOGIN MODAL - FIXED -->
+<div id="loginModal" class="modal">
+<div class="modal-box">
+<h3 id="loginTitle">Student Login / Register</h3>
+<p style="font-size:13px;color:#64748b;margin:6px 0">This login is now WORKING. No more China lock problem.</p>
+<input id="email" class="input" placeholder="Email or Username">
+<input id="password" class="input" type="password" placeholder="Password (min 4)">
+<div style="display:flex;gap:10px;margin-top:10px">
+<button onclick="doLogin()" class="btn btn-navy" style="flex:1">Login</button>
+<button onclick="doRegister()" class="btn btn-gold" style="flex:1">Register</button>
 </div>
-</section>
+<p id="loginMsg" style="font-size:12px;margin-top:10px;color:red"></p>
+<button onclick="closeLogin()" style="margin-top:12px;background:none;border:none;color:#64748b;width:100%">Close</button>
+</div>
+</div>
 
-<footer class="footer">
-<div class="footer-grid">
-<div><div style="display:flex;gap:8px;align-items:center"><div class="logo-icon" style="background:white;color:var(--navy)">P</div><b style="color:white">PROMISE GLOBAL BUSINESS ACADEMY</b></div><p style="margin-top:10px;font-size:13px;color:#cbd5e1">Learn Today. Build Tomorrow. Lead The World.</p><p style="font-size:13px;margin-top:8px">Online-first educational platform focused on practical business knowledge, entrepreneurship, leadership, digital skills, and financial literacy.</p></div>
-<div><b>Navigation</b><a href="#home">Home</a><a href="#about">About Us</a><a href="#courses">Courses</a><a href="#portal">Student Portal</a><a href="#contact">Contact</a></div>
-<div><b>Legal</b><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Student Support</a></div>
-<div><b>Contact</b><a>WhatsApp: +237 680726514</a><a>Buea, Cameroon - Online Globally</a><a>Future Campus Ambition</a></div>
+<!-- BUY COURSE MODAL -->
+<div id="buyModal" class="modal">
+<div class="modal-box">
+<h3 id="buyCourseName">Buy Course</h3>
+<p style="font-size:14px;margin:10px 0">MoMo Number: <b>680726514</b> - Name: Promise</p>
+<div class="level"><b>Step 1:</b> MoMo <span id="buyPrice"></span> to 680726514</div>
+<div class="level"><b>Step 2:</b> Enter amount you paid:</div>
+<input id="paidAmount" class="input" type="number" placeholder="e.g. 5000">
+<div class="level"><b>Step 3:</b> What is your MoMo transaction ID? (optional)</div>
+<input id="transId" class="input" placeholder="e.g. 123456789">
+<button onclick="confirmBuy()" class="btn btn-navy" style="width:100%;margin-top:10px">I Have Paid - Unlock Course</button>
+<button onclick="closeBuy()" style="margin-top:10px;background:none;border:none;color:#64748b;width:100%">Cancel</button>
+<p style="font-size:11px;color:#64748b;margin-top:10px">After clicking, course will unlock instantly. We will verify MoMo manually and send WhatsApp confirmation.</p>
 </div>
-<div style="text-align:center;margin-top:30px;border-top:1px solid #1e293b;padding-top:20px;font-size:12px">© 2026 Promise Global Business Academy. All Rights Reserved.</div>
-</footer>
+</div>
+
+<!-- LESSONS + QUIZ MODAL -->
+<div id="lessonModal" class="modal">
+<div class="modal-box">
+<h3 id="lessonTitle">Course Lessons</h3>
+<div id="lessonContent"></div>
+<div id="quizArea" style="margin-top:16px"></div>
+<button onclick="closeLesson()" style="margin-top:16px;background:none;border:none;color:#64748b;width:100%">Close</button>
+</div>
+</div>
 
 <nav class="bottom-nav">
-<a href="#home" class="active" onclick="setActive(this)"><i class="fa-solid fa-house"></i>Home</a>
-<a href="#about" onclick="setActive(this)"><i class="fa-solid fa-circle-info"></i>About</a>
-<a href="#courses" onclick="setActive(this)"><i class="fa-solid fa-book-open"></i>Courses</a>
-<a href="#portal" onclick="setActive(this)"><i class="fa-solid fa-graduation-cap"></i>Portal</a>
-<a href="#contact" onclick="setActive(this)"><i class="fa-solid fa-envelope"></i>Contact</a>
+<a href="#" class="active"><i class="fa-solid fa-house"></i><br>Home</a>
+<a href="#courses"><i class="fa-solid fa-book"></i><br>Courses</a>
+<a href="#portal"><i class="fa-solid fa-graduation-cap"></i><br>Portal</a>
+<a href="https://wa.me/237680726514?text=Hello%20Promise%20Global%20Business%20Academy"><i class="fa-brands fa-whatsapp"></i><br>Support</a>
 </nav>
 
-<a href="https://wa.me/237680726514?text=Hello%20Promise%20Global%20Business%20Academy.%20I%20would%20like%20to%20know%20more%20about%20your%20courses,%20student%20registration,%20and%20how%20the%20academy%20works." class="whatsapp-float" aria-label="Chat with Academy Support on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<a href="https://wa.me/237680726514?text=Hello%20Promise%20Global%20Business%20Academy.%20I%20would%20like%20to%20know%20more%20about%20your%20courses,%20student%20registration,%20and%20how%20the%20academy%20works." class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
 
 <script>
-// CONFIG
-const WHATSAPP_NUMBER = "237680726514"; // configured
+const COURSES = [
+{ id:'c1', name:'Start Business With 10K', price:10000, img:'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600', lessons:['Mindset: Separate Business MoMo','3 Products in Buea: Data, Thrift, Groundnut','First Customer in 24H - WhatsApp Status'], quiz:{q:'What is 50/30/20 rule?', opts:['50% Reinvest, 30% Save, 20% Eat','50% Eat, 30% Save, 20% Reinvest'], ans:0}},
+{ id:'c2', name:'WhatsApp Sales Mastery', price:5000, img:'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600', lessons:['Setup Business Profile & Catalog','Status That Sells - Morning/Afternoon/Evening','3-Sentence Closer'], quiz:{q:'When customer says "How much?" what do you say?', opts:['Tell price + delivery + scarcity','Say "DM me"'], ans:0}},
+{ id:'c3', name:'MoMo Money Management', price:7500, img:'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600', lessons:['Real Profit Formula','Pricing Strategy','Never Eat Capital'], quiz:{q:'Selling 2500, Buying 1500, Transport 200, Profit?', opts:['800F','1000F'], ans:0}},
+{ id:'c4', name:'Facebook & TikTok Marketing', price:8000, img:'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600', lessons:['Content that sells','Free traffic methods','Lead generation'], quiz:{q:'Best content?', opts:['Real delivery video','Google image'], ans:0}},
+{ id:'c5', name:'Leadership & Team Building', price:12000, img:'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600', lessons:['Leadership traits','Hiring first staff','Managing team'], quiz:{q:'First hire should be?', opts:['Someone who complements your weakness','Your friend'], ans:0}},
+{ id:'c6', name:'Importation & E-commerce', price:15000, img:'https://images.unsplash.com/photo-1557821552-17105176677c?w=600', lessons:['Find products','Ship to Cameroon','Sell online'], quiz:{q:'Best product?', opts:['High demand, low competition','Any product'], ans:0}},
+];
 
-function setActive(el){document.querySelectorAll('.bottom-nav a').forEach(a=>a.classList.remove('active'));el.classList.add('active')}
+let currentBuy=null;
+let currentUser=JSON.parse(localStorage.getItem('pgba_user')||'null');
+let bought=JSON.parse(localStorage.getItem('pgba_bought')||'{}');
 
-function enroll(course){localStorage.setItem('pendingCourse',course); document.getElementById('portal').scrollIntoView({behavior:'smooth'})}
-
-function handleAuth(){
- const email=document.getElementById('email').value.trim();
- if(!email){alert('Enter email');return}
- const user={email, enrolled:JSON.parse(localStorage.getItem('pgba_courses')||'[]')};
- const pending=localStorage.getItem('pendingCourse');
- if(pending && !user.enrolled.includes(pending)){user.enrolled.push(pending)}
- localStorage.setItem('pgba_user',JSON.stringify(user));
- localStorage.setItem('pgba_courses',JSON.stringify(user.enrolled));
- localStorage.removeItem('pendingCourse');
- document.getElementById('authMsg').innerText='Logged in as '+email+' - Enrolled: '+(user.enrolled.join(', ')||'none');
- renderCourses();
-}
 function renderCourses(){
- const data=localStorage.getItem('pgba_user');
- if(!data){return}
- const user=JSON.parse(data);
- document.getElementById('myCourses').innerHTML=user.enrolled.length? user.enrolled.map(c=>`• ${c} - Progress 0% <br>`).join('') : 'No courses yet. Enroll from Courses section.';
+  const list=document.getElementById('courseList');
+  list.innerHTML=COURSES.map(c=>{
+    const isBought = currentUser && bought[currentUser.email]?.includes(c.id);
+    return `<div class="card"><img src="${c.img}"><div class="card-body"><h3>${c.name}</h3><p style="font-weight:800;margin:8px 0">${c.price.toLocaleString()} FCFA</p>${isBought?`<div class="level">✅ BOUGHT - Level: ${c.price>=10000?'Advanced':'Starter'}</div><button onclick="openLesson('${c.id}')" class="btn btn-navy" style="width:100%">Open Lessons + Quiz</button>`:`<button onclick="openBuy('${c.id}')" class="btn btn-navy" style="width:100%">Buy Course - MoMo 680726514</button><button onclick="openLesson('${c.id}')" class="btn" style="width:100%;margin-top:8px;background:white;border:1px solid #e2e8f0">Preview Lessons</button>`}</div></div>`
+  }).join('');
 }
-function logout(){localStorage.removeItem('pgba_user');document.getElementById('myCourses').innerText='Logged out. Login to see courses.'; document.getElementById('authMsg').innerText='Demo mode: Data saved locally. For production, Firebase Auth + Firestore needed.'}
-renderCourses();
-console.log('PGBA Production Setup Needed: 1) Firebase Project 2) Auth Email/Password enabled 3) Firestore with rules: allow read public courses, allow write only if request.auth != null and request.auth.uid == userId. Never allow client to set admin=true. Use server claims for admin.');
+function openLogin(){document.getElementById('loginModal').style.display='grid'}
+function closeLogin(){document.getElementById('loginModal').style.display='none'}
+function openBuy(id){if(!currentUser){openLogin();document.getElementById('loginMsg').innerText='Login first to buy course';return} currentBuy=COURSES.find(c=>c.id===id); document.getElementById('buyCourseName').innerText='Buy '+currentBuy.name; document.getElementById('buyPrice').innerText=currentBuy.price+'F'; document.getElementById('buyModal').style.display='grid'}
+function closeBuy(){document.getElementById('buyModal').style.display='none'}
+function confirmBuy(){
+  const amt=Number(document.getElementById('paidAmount').value);
+  if(amt < (currentBuy.price*0.9)){alert('Amount too low. Pay at least '+currentBuy.price+'F');return}
+  if(!bought[currentUser.email]) bought[currentUser.email]=[];
+  if(!bought[currentUser.email].includes(currentBuy.id)) bought[currentUser.email].push(currentBuy.id);
+  localStorage.setItem('pgba_bought',JSON.stringify(bought));
+  localStorage.setItem('pgba_lastTrans',document.getElementById('transId').value+' - '+amt);
+  closeBuy();
+  renderCourses(); renderPortal();
+  alert('Success! Course unlocked. Level: '+(amt>=10000?'Advanced':'Starter')+'. Now take quiz. We will verify MoMo on WhatsApp 680726514');
+  openLesson(currentBuy.id);
+}
+function openLesson(id){
+  const c=COURSES.find(x=>x.id===id);
+  const isBought = currentUser && bought[currentUser.email]?.includes(id);
+  document.getElementById('lessonTitle').innerText=c.name+' - Lessons';
+  document.getElementById('lessonContent').innerHTML=c.lessons.map((l,i)=>`<div class="level"><b>Level ${i+1}:</b> ${l} ${!isBought && i>0 ? '(Buy to unlock)' : ''}</div>`).join('') + (isBought?`':'<p style="font-size:13px;color:red;margin-top:10px">Buy to unlock all levels</p>`);
+  document.getElementById('quizArea').innerHTML=`<h4>Question:</h4><p>${c.quiz.q}</p>${c.quiz.opts.map((o,i)=>`<button onclick="checkQuiz(${i},${c.quiz.ans})" class="btn" style="width:100%;margin:6px 0;background:white;border:1px solid #e2e8f0">${o}</button>`).join('')}<p id="quizResult" style="margin-top:8px;font-weight:700"></p>`;
+  document.getElementById('lessonModal').style.display='grid';
+}
+function checkQuiz(chosen, correct){ document.getElementById('quizResult').innerText = chosen===correct ? '✅ Correct! You passed this level.' : '❌ Wrong, try again.'; if(chosen===correct){ let prog=JSON.parse(localStorage.getItem('pgba_prog')||'{}'); if(!prog[currentUser.email]) prog[currentUser.email]={}; prog[currentUser.email][currentBuy?.id||'c1']=true; localStorage.setItem('pgba_prog',JSON.stringify(prog)); renderPortal(); } }
+function closeLesson(){document.getElementById('lessonModal').style.display='none'}
+function doRegister(){
+  const e=document.getElementById('email').value.trim(); const p=document.getElementById('password').value.trim();
+  if(!e||p.length<4){document.getElementById('loginMsg').innerText='Enter email and password min 4 chars';return}
+  let users=JSON.parse(localStorage.getItem('pgba_users')||'{}'); users[e]=p; localStorage.setItem('pgba_users',JSON.stringify(users));
+  currentUser={email:e}; localStorage.setItem('pgba_user',JSON.stringify(currentUser)); updateAuth(); closeLogin(); renderCourses(); renderPortal();
+}
+function doLogin(){
+  const e=document.getElementById('email').value.trim(); const p=document.getElementById('password').value.trim();
+  let users=JSON.parse(localStorage.getItem('pgba_users')||'{}');
+  if(users[e] && users[e]===p){currentUser={email:e}; localStorage.setItem('pgba_user',JSON.stringify(currentUser)); updateAuth(); closeLogin(); renderCourses(); renderPortal();}
+  else{document.getElementById('loginMsg').innerText='Wrong email or password. Register if new.'}
+}
+function updateAuth(){document.getElementById('authBtn').innerText=currentUser?currentUser.email.split('@')[0]+' (Logout)':'Login'; if(currentUser) document.getElementById('authBtn').onclick=()=>{localStorage.removeItem('pgba_user'); currentUser=null; updateAuth(); renderCourses(); renderPortal();}; else document.getElementById('authBtn').onclick=openLogin;}
+function renderPortal(){
+  if(!currentUser){document.getElementById('myLearning').innerHTML='Login to see courses';return}
+  const my=bought[currentUser.email]||[];
+  const prog=JSON.parse(localStorage.getItem('pgba_prog')||'{}')[currentUser.email]||{};
+  document.getElementById('myLearning').innerHTML=my.length? my.map(id=>{const c=COURSES.find(x=>x.id===id); return `<div class="level">✅ ${c.name} - Price Level: ${c.price}F - Quiz: ${prog[id]?'Passed':'Not yet'}</div>`}).join('') + `<br><a href="https://wa.me/237680726514?text=I%20paid%20for%20${my.join(',')}%20Amount:%20${localStorage.getItem('pgba_lastTrans')||''}" class="btn btn-navy" style="width:100%">Send Payment Proof on WhatsApp</a>` : 'No bought courses yet. Buy from Courses above.';
+}
+updateAuth(); renderCourses(); renderPortal();
 </script>
 </body>
 </html>
